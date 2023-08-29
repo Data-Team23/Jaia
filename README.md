@@ -30,38 +30,57 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
 <div>
   <table align="center">
     <tr>
-    <td><b>Entrega</b></td>
-    <td><b>Descrição</b></td>
-    <td><b>Data</b></td>
-    <td><b>Tag</b></td>
+    <td><b>Backlog</b></td>
+    <td><b>Importância</b></td>
   </tr>
 
   <tr>
-   <td>Primeira Sprint</td>
-   <td>Produto: Discovery de Produto, Ideação das Telas, Teste de Usabilidade | Desenvolvimento: Tela de Cadastros(Cadastro, Edição e Deleção de Produtos, marcas, fornecedores,vendedores, pessoas, categorias) | Desenvolvimento: Tela de Estoque (Cadastro, Edição e Deleção de Armazém, reserva de estoque, movimentação de estoque e saldo de produtos)</td>
-   <td>24/09/2023</td>
-   <td><a href= "Sprint 01">Sprint 01</a></td>
+   <td>Cadastro, edição, deleção e visualização de clientes cadastrados</td>
+   <td>Imprescindível</td>
   </tr>
-
   <tr>
-   <td>Segunda Sprint</td>
-   <td>Produto: Discovery de Produto, Ideação das Telas, Teste de Usabilidade | Desenvolvimento: Cadastro, Edição e Deleção de Pedidos | Melhorias Primeira Sprint </td>
-   <td>15/10/2023</td>
-   <td><a href="Sprint 02">Sprint02</a></td>
+   <td>Cadastro, edição, deleção e visualização de departamentos cadastrados</td>
+   <td>Imprescindível</td>
   </tr>
-
   <tr>
-   <td>Terceira Sprint</td>
-   <td>Produto: Discovery de Produto, Ideação das Telas, Teste de Usabilidade | Desenvolvimento: Tela de Faturamento (Visualização de Receitas em tabelas e Relatórios de BI) | Melhorias Segunda Sprint </td>
-   <td>05/11/2023</td>
-   <td><a href="Sprint 03">Sprint03</a></td>
+   <td>Cadastro, edição, deleção e visualização de funcionários cadastrados</td>
+   <td>Imprescindível</td>
   </tr>
- 
-   <tr>
-   <td>Quarta Sprint</td>
-   <td>Melhorias, Documentação e Instruções de Uso</td>
-   <td>26/11/2023</td>
-   <td><a href="">Sprint04</a></td>
+  <tr>
+   <td>Landingpage para requisição de serviços</td>
+   <td>Imprescindível</td>
+  </tr>
+  <tr>
+   <td>Envio de e-mail pós cadastro de clientes</td>
+   <td>Importante</td>
+  </tr>
+  <tr>
+   <td>Cadastro, edição, deleção e visualização de Ordens de Serviços</td>
+   <td>Imprescindível</td>
+  </tr>
+  <tr>
+   <td>Tela de acompanhamento de Ordem de Serviço</td>
+   <td>Importante</td>
+  </tr>
+  <tr>
+   <td>Aprovação e reprovação de Ordens de Serviços</td>
+   <td>Importante</td>
+  </tr>
+  <tr>
+   <td>Criação, edição, deleção e visualização de Laudo Técnico</td>
+   <td>Imprescindível</td>
+  </tr>
+  <tr>
+   <td>Automatização de criação de Ordem de Serviço</td>
+   <td>Desejável</td>
+  </tr>
+  <tr>
+   <td>Automatização de envio de e-mail após criação de Ordem de Serviço</td>
+   <td>Desejável</td>
+  </tr>
+  <tr>
+   <td>Automatização de envio de e-mail após aprovação/reprovação do Laudo técnico</td>
+   <td>Desejável</td>
   </tr>
   </table>
 </div>
