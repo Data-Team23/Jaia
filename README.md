@@ -51,12 +51,16 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
    <td>Imprescindível</td>
   </tr>
   <tr>
-   <td>Envio de e-mail pós cadastro de clientes</td>
-   <td>Importante</td>
+   <td>Criação, edição, deleção e visualização de Laudo Técnico</td>
+   <td>Imprescindível</td>
   </tr>
   <tr>
    <td>Cadastro, edição, deleção e visualização de Ordens de Serviços</td>
    <td>Imprescindível</td>
+  </tr>
+  <tr>
+   <td>Envio de e-mail pós cadastro de clientes</td>
+   <td>Importante</td>
   </tr>
   <tr>
    <td>Tela de acompanhamento de Ordem de Serviço</td>
@@ -65,10 +69,6 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
   <tr>
    <td>Aprovação e reprovação de Ordens de Serviços</td>
    <td>Importante</td>
-  </tr>
-  <tr>
-   <td>Criação, edição, deleção e visualização de Laudo Técnico</td>
-   <td>Imprescindível</td>
   </tr>
   <tr>
    <td>Automatização de criação de Ordem de Serviço</td>
@@ -80,6 +80,14 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
   </tr>
   <tr>
    <td>Automatização de envio de e-mail após aprovação/reprovação do Laudo técnico</td>
+   <td>Desejável</td>
+  </tr>
+  <tr>
+   <td>Relatório de atividades da empresa</td>
+   <td>Desejável</td>
+  </tr>
+  <tr>
+   <td>Dashboard de métricas do ERP</td>
    <td>Desejável</td>
   </tr>
   </table>
