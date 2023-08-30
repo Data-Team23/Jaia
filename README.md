@@ -94,6 +94,75 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
 </div>
 
 
+# Sprint 01
+
+<div>
+  <table align="center">
+    <tr>
+    <td><b>Task</b></td>
+    <td><b>Importância</b></td>
+  </tr>
+  <tr>
+   <td>Cadastro, edição, deleção e visualização de clientes cadastrados</td>
+   <td>Imprescindível</td>
+  </tr>
+  <tr>
+   <td>Cadastro, edição, deleção e visualização de departamentos cadastrados</td>
+   <td>Imprescindível</td>
+  </tr>
+  <tr>
+   <td>Cadastro, edição, deleção e visualização de funcionários cadastrados</td>
+   <td>Imprescindível</td>
+  </tr>
+  <tr>
+   <td>Landingpage para requisição de serviços</td>
+   <td>Imprescindível</td>
+  </tr>
+  <tr>
+   <td>Barra de pesquisa de clientes</td>
+   <td>Importante</td>
+  </tr>
+  <tr>
+   <td>Envio de e-mail pós cadastro de clientes	</td>
+   <td>Desejável</td>
+  </tr>
+  </table>
+</div>
+
+# Sprint 02
+
+<div>
+  <table align="center">
+    <tr>
+    <td><b>Task</b></td>
+    <td><b>Importância</b></td>
+  </tr>
+  <tr>
+   <td>Cadastro, edição, deleção e visualização de Ordens de Serviços</td>
+   <td>Imprescindível</td>
+  </tr>
+  <tr>
+   <td>Cadastro, edição, deleção e visualização de departamentos cadastrados</td>
+   <td>Imprescindível</td>
+  </tr>
+  <tr>
+   <td>Tela de acompanhamento de Ordem de Serviço</td>
+   <td>Importante</td>
+  </tr>
+  <tr>
+   <td>Pesquisa de Ordem de Serviço por Numeração</td>
+   <td>Desejável</td>
+  </tr>
+  <tr>
+   <td>Pesquisa de Ordem de Serviço por Status</td>
+   <td>Desejável</td>
+  </tr>
+  <tr>
+   <td>Pesquisa de Ordem de Serviço por Departamento</td>
+   <td>Desejável</td>
+  </tr>
+  </table>
+</div>
 
 ## Análise de Mercado
 
