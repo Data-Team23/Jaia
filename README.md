@@ -28,7 +28,7 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
 # Product Backlog
 
 <div>
-  <table align="center">
+  <table>
     <tr>
     <td><b>Backlog</b></td>
     <td><b>Importância</b></td>
@@ -97,7 +97,7 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
 # Sprint 01
 
 <div>
-  <table align="center">
+  <table>
     <tr>
     <td><b>Task</b></td>
     <td><b>Importância</b></td>
@@ -132,7 +132,7 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
 # Sprint 02
 
 <div>
-  <table align="center">
+  <table>
     <tr>
     <td><b>Task</b></td>
     <td><b>Importância</b></td>
@@ -171,7 +171,7 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
 # Sprint 03
 
 <div>
-  <table align="center">
+  <table>
     <tr>
     <td><b>Task</b></td>
     <td><b>Importância</b></td>
@@ -199,7 +199,7 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
 # Sprint 04
 
 <div>
-  <table align="center">
+  <table>
     <tr>
     <td><b>Task</b></td>
     <td><b>Importância</b></td>
@@ -256,7 +256,7 @@ De acordo com uma das maiores empresas do setor de ERP, o SAP, o mercado global 
 Afunilando um pouco mais sobre o assunto, no Brasil os softwares ERP, foram investidos R$14 bi de reais em 2020, ou seja, com o aumento de industrias/empresas, existe a necessidade de entender mais sobre gerencimento de dados ou até mesmo a integração de todos os sistemas da empresa.
 
 #### SOM (Serviceable Obtainable Market)
-XXXXX
+Atualmente a solução para um sistema de inspeção predial é um pouco inédita, então pensando em faturamento, gostariamos de atacar cerca de 0,0001% desse mercado, totalizando R$140.000 anuais e crescer 3x  por ano.
 
 ### Benchmark
 
