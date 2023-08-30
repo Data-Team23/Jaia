@@ -161,8 +161,61 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
    <td>Pesquisa de Ordem de Serviço por Departamento</td>
    <td>Desejável</td>
   </tr>
+  <tr>
+   <td>Automatização de envio de e-mail após criação de Ordem de Serviço</td>
+   <td>Desejável</td>
+  </tr>
   </table>
 </div>
+
+# Sprint 03
+
+<div>
+  <table align="center">
+    <tr>
+    <td><b>Task</b></td>
+    <td><b>Importância</b></td>
+  </tr>
+  <tr>
+   <td>Automatização de criação de Ordem de Serviço</td>
+   <td>Importante</td>
+  </tr>
+  <tr>
+   <td>Criação, edição, deleção e visualização de Laudo Técnico</td>
+   <td>Imprescindível</td>
+  </tr>
+  <tr>
+   <td>Aprovação e reprovação de Laudo Técnico</td>
+   <td>Importante</td>
+  </tr>
+  <tr>
+   <td>Automatização de envio de e-mail após aprovação/reprovação do Laudo técnico</td>
+   <td>Desejável</td>
+  </tr>
+  </table>
+</div>
+
+
+# Sprint 04
+
+<div>
+  <table align="center">
+    <tr>
+    <td><b>Task</b></td>
+    <td><b>Importância</b></td>
+  </tr>
+  <tr>
+   <td>Relatório de atividades da empresa</td>
+   <td>Imprescindível</td>
+  </tr>
+  <tr>
+   <td>Dashboard de métricas do ERP</td>
+   <td>Imprescindível</td>
+  </tr>
+  </table>
+</div>
+
+
 
 ## Análise de Mercado
 
