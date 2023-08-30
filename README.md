@@ -209,8 +209,24 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
    <td>Imprescindível</td>
   </tr>
   <tr>
-   <td>Dashboard de métricas do ERP</td>
-   <td>Imprescindível</td>
+   <td>Dashboard - Gráfico quantidade de ordens finalizadas</td>
+   <td>Importante</td>
+  </tr>
+  <tr>
+   <td>Dashboard - Gráfico quantidade de ordens por departamento</td>
+   <td>Importante</td>
+  </tr>
+  <tr>
+   <td>Dashboard - Gráfico quantidade de ordens por funcionário</td>
+   <td>Importante</td>
+  </tr>
+  <tr>
+   <td>Dashboard - Gráfico quantidade de ordens ao longo do tempo</td>
+   <td>Importante</td>
+  </tr>
+  <tr>
+   <td>Dashboard - Filtro de funcionário, departamento, cliente e data</td>
+   <td>Desejável</td>
   </tr>
   </table>
 </div>
