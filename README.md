@@ -1,5 +1,3 @@
-![engenhariaTAB](https://github.com/Data-Team23/Jaia/assets/102003274/cd477f59-76d2-4d3f-b462-50c8a444b5c6)# Jaia
-
 # Contexto
 [Jaia Software](https://jaia.software/jaia-erp.php)
 
@@ -245,6 +243,8 @@ Notion | Anotação de brainstorm e definição das features
 Miro | Mapeamento de jornada, fluxo de informação e priorização de feature
 Figma | Prototipação de baixa e alta fidelidade
 Hotjar | Teste de usabilidade e análise de dados
+VSCode | Programação das features
+MySQL | Criação e Programação dos Bancos de Dados
 
 
 ### TAMSOMSAM
@@ -279,6 +279,19 @@ Uma das personas gerais para esse tipo de sistema pode ser definida conforme a i
 
 
 ## Jornada do Usuário
+
+### Contratação do Serviço
+![image](https://github.com/Data-Team23/Jaia/assets/102003274/909d6638-484f-4d72-82c6-625aba8c6809)
+
+### Requisição de Inspeção
+![image](https://github.com/Data-Team23/Jaia/assets/102003274/bf551d41-bd26-47b0-bd78-33dcae632a13)
+
+### Abertura de Ordem de Serviço
+![image](https://github.com/Data-Team23/Jaia/assets/102003274/323f98a2-a641-408b-ab11-6434283beab4)
+
+### Registro da Inspeção
+
+### Preenchimento do Laudo
 
 ## Brainstorm e Priorização
 
