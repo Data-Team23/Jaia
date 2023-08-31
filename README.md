@@ -1,4 +1,4 @@
-# Jaia
+![engenhariaTAB](https://github.com/Data-Team23/Jaia/assets/102003274/cd477f59-76d2-4d3f-b462-50c8a444b5c6)# Jaia
 
 # Contexto
 [Jaia Software](https://jaia.software/jaia-erp.php)
@@ -265,10 +265,18 @@ Atualmente a solução para um sistema de inspeção predial é um pouco inédit
 
 > _5+ Engenharia_ - [5+ Engenharia](https://5mais.com.br/)
 
+> _Produttivo_ - [Produttivo](https://app.produttivo.com.br/works)
 
 ## Dor e Necessidade
 
+Atualmente as manutenções prediais são controladas de forma arcaíca e sem uma padronização na gestão deste serviço. Ter um software que faz essa gestão para seu estabelecimento é essencial para que haja comodidade e segurança na documentação. A ideia deste projeto é criar um Sistema de Inspeção onde seja possível a requisição de inspeções e montagem do laudo técnico.
+
 ## Persona
+
+Uma das personas gerais para esse tipo de sistema pode ser definida conforme a imagem abaixo. Basicamente essa persona é composta por pessoas ou cargos que se preocupam com a segurança de seu departamento/local e que precisam de organização e gerenciamento das inspeções de seu ambiente.
+
+![image](https://github.com/Data-Team23/Jaia/assets/102003274/f5bb3a19-31fb-4924-8565-a784480c4029)
+
 
 ## Jornada do Usuário
 
