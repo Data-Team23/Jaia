@@ -294,9 +294,11 @@ Uma das personas gerais para esse tipo de sistema pode ser definida conforme a i
 
 ### Registro da Inspeção
 
+![image](https://github.com/Data-Team23/Jaia/assets/102003274/d730999e-d9bd-4aa8-8ba8-91ebf58163c9)
+
 ### Preenchimento do Laudo
 
-## Brainstorm e Priorização
+![image](https://github.com/Data-Team23/Jaia/assets/102003274/c7d1f225-eaae-4459-8a11-dd9009147efe)
 
 ## Levantamentos de Requisitos
 
