@@ -1,9 +1,9 @@
 <template>
     <h1>Login PAGE</h1>
     <br>
-    <button>
-        <RouterLink to="/home">LOGIN</RouterLink>
-    </button>
+    <RouterLink to="/home">
+        LOGIN
+    </RouterLink>  
 </template>
 
 <script setup lang="ts">
