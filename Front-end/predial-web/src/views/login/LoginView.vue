@@ -1,5 +1,5 @@
 <template>
-    <h1>Login PAGE</h1>
+    <h1 style="color: white;">Login PAGE</h1>
     <br>
     <RouterLink to="/home">
         LOGIN

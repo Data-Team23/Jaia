@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import LoginView from '@/views/LoginView.vue'
-import ListDepartmentViewVue from '@/views/department/ListDepartmentView.vue'
-import AddDepartmentViewVue from '@/views/department/AddDepartmentView.vue'
+import LoginView from '@/views/login/LoginView.vue'
+import ListDepartmentView from '@/views/departamento/ListDepartmentView.vue'
+import AddDepartmentView from '@/views/departamento/AddDepartmentView.vue'
+import UpdateDepartmentView from '@/views/departamento/UpdateDepartmentView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,7 +11,10 @@ const router = createRouter({
     {
       path: '/',
       name: 'login',
-      component: LoginView
+      component: LoginView,
+      meta: {
+        hideNavBar: true,
+      }
     },
     {
       path: '/home',
@@ -20,13 +24,18 @@ const router = createRouter({
     {
       path: '/departamentos',
       name: 'departamentos',
-      component: ListDepartmentViewVue
+      component: ListDepartmentView
     },
     {
       path: '/adicionar-departamento',
       name: 'adicionar-departamento',
-      component: AddDepartmentViewVue
-    }
+      component: AddDepartmentView
+    },
+    {
+      path: '/editar-departamento',
+      name: 'editar-departamento',
+      component: UpdateDepartmentView
+    },
   ]
 })
 

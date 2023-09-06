@@ -1,13 +1,7 @@
 <script setup lang="ts">
-import NavBar from '../components/shared/NavBar.vue';
-
+  import './styles.css'
 </script>
 
 <template>
-  <!-- <header style="position: absolute; top: 0%; left: 0%;">
-    <NavBar></NavBar> 
-  </header> -->
-  <main>
-    <h1>Home Page</h1>
-  </main>
+  <h1 class="h1-home">Home Page</h1>
 </template>
