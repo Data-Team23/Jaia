@@ -1,0 +1,13 @@
+.div-button{
+    width: 100%;
+    margin: 0 10px;
+}
+
+.div-button button{
+    color: #666666;
+    background-color: #FFFFFF;
+    padding: 7px 20px;
+    font-weight: 700;
+    border-radius: 10px;
+    width: 150px;
+}

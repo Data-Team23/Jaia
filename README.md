@@ -299,8 +299,42 @@ Uma das personas gerais para esse tipo de sistema pode ser definida conforme a i
 ### Preenchimento do Laudo
 
 ![image](https://github.com/Data-Team23/Jaia/assets/102003274/c7d1f225-eaae-4459-8a11-dd9009147efe)
+<<<<<<< HEAD
+=======
 
-## Levantamentos de Requisitos
+## User Stories
+
+### Sprint 01
+- [x] Como administrador do sistema, desejo cadastrar, editar e visualizar todos os clientes que entrarem em contato com a empresa.
+- [x] Como administrador do sistema, desejo cadastrar, editar e visualizar todos os departamentos da empresa.
+- [x] Como administrador do sistema, desejo cadastrar, editar e visualizar todos os funcionários da empresa.
+- [x] Como cliente da empresa, desejo fazer requisição de serviços de inspeção para o meu estabelecimento.
+- [x] Como administrador, desejo que meu sistema tenha filtros de pesquisa para os cadastros
+- [x] Como administrador, desejo que meu sistema envie e-mail para o cliente após a finalização do cadastro
+
+### Sprint 02
+- [ ] Como administrador, desejo cadastrar, editar, deletar e visualizar todas as ordens de serviço.
+- [ ] Como supervisor, quero atribuir ordens de serviço para os técnicos
+- [ ] Como administrador quero ter uma tela para acompanhamento de Ordens de Serviço.
+- [ ] Como administrador quero pesquisar a ordem de serviço por numeração, status ou departamento.
+- [ ] Como administrador quero automatizar o envio do e-mail após a criação da ordem de serviço
+
+### Sprint 03
+- [ ] Como cliente, quero não criar requisições novas para inspeções corriqueiras
+- [ ] Como técnico, quero visualizar todas as ordens de serivço em meu nome
+- [ ] Como técnico quero aprovar, reprovar e comentar em todas as ordens de serviços abertas
+- [ ] Como técnico desejo preencher laudos técnicos após a finalização da Ordem de Serviço
+- [ ] Como cliente, desejo receber um email automático com o laudo técnico aprovado/reprovado
+
+### Sprint 04
+- [ ] Como supervisor, desejo ter um relatório personalizado
+- [ ] Como supervisor, desejo ter um dashboard com um gráfico de ordens finalizadas
+- [ ] Como supervisor, desejo ter um dashboard com um gráfico de ordens por departamento
+- [ ] Como supervisor, desejo ter um dashboard com um gráfico de ordens funcionário
+- [ ] Como supervisor, desejo ter filtros de departamento, cliente e data
+
+>>>>>>> b9b9a168c54b8b9130e3e0e7103ebc7bd5cc06ed
+
 
 ## Protótipo de Baixa Fidelidade
 
