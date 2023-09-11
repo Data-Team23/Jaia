@@ -48,11 +48,11 @@
                             </tr>
                         </tbody>
                     </table>
-                    <v-pagination
+                    <!-- <v-pagination
                         v-model="page"
                         :length="clientes.length / 5"
                         rounded="circle"
-                    ></v-pagination>
+                    ></v-pagination> -->
                 </div>
             </div>
         </div>
