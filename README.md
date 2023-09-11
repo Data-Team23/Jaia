@@ -331,8 +331,6 @@ Uma das personas gerais para esse tipo de sistema pode ser definida conforme a i
 - [ ] Como supervisor, desejo ter um dashboard com um gráfico de ordens funcionário
 - [ ] Como supervisor, desejo ter filtros de departamento, cliente e data
 
-
-
 ## Protótipo de Baixa Fidelidade
 
 ## Protótipo de Alta Fidelidade
