@@ -27,20 +27,5 @@
 </template>
 
 <style>
-    h1{
-        color: white;
-    }
-    .label{
-        display: flex;
-        flex-direction: column;
-        color: white;
-    }
-    .input-field{
-        background-color: #626288;
-        height: 50px;
-        border-radius: 20px;
-        color: white;
-        font-size: 18px;
-        padding: 0 10px;
-    }
+    
 </style>

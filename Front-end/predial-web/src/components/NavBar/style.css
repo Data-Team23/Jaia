@@ -1,0 +1,84 @@
+.nav-bar-container{
+    display: flex; 
+    flex-direction: column; 
+    width: 200px; 
+    height: 100%;
+    background-color: #464667 !important;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 0 60px 0;
+}
+
+img{
+    width: 100%;
+    height: 180px;
+}
+
+li{
+    list-style: none;
+}
+
+.active {
+    background-color: #2E2E48;
+}
+.active .radius {
+    background-color: #2E2E48;
+}
+.active .nav-text{
+    background-image: linear-gradient(90deg, #464667, #2E2E48);
+}
+
+.active .router-link{
+    background-color: #2E2E48;
+    border-radius: 20px 0 0 20px;
+}
+
+.router-link{
+    display: flex;
+    padding: 7px 20px;
+    color: #FFFFFF;
+    transition: none;
+    border-radius: 20px 0 0 20px;
+    &:hover {
+        background-color: transparent !important;
+        color: goldenrod;
+    }
+}
+
+.radius{
+    background-color: #464667;
+}
+
+.radius-top, .radius-bottom{
+    height: 10px;
+    width: 100%;
+    background-color: transparent;
+}
+
+.active .radius-top, .active .radius-bottom{
+    height: 10px;
+    width: 100%;
+    background-color: #464667;
+}
+
+.radius-top {
+    border-radius: 0 0 100px 0;
+}
+.radius-bottom {
+    border-radius: 0 100px 0 0;
+}
+
+.nav-button{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.button-logout{
+    height: 50px;
+    background-color: #FFFFFF;
+    color: #666666;
+    width: 110px;
+    border-radius: 20px;
+}
+

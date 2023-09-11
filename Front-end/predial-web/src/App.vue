@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import NavBar from './components/shared/NavBar.vue';
+  import NavBar from './components/NavBar/NavBar.vue';
   import { useRoute } from 'vue-router';
 
 
@@ -9,7 +9,7 @@
 </script>
 
 <template>  
-  <header style="position: absolute; top: 0%; left: 0%;" v-if="!$route.meta.hideNavBar">
+  <header v-if="!$route.meta.hideNavBar">
     <NavBar></NavBar> 
   </header>
   <main>
@@ -22,5 +22,12 @@
     background-color: #3A3A5A;
     width: 100%;
     height: 100%;
+  }
+  main{
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 0 30px 0 15px;
   }
 </style>
