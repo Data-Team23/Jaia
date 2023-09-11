@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root {
+    --primary-bg-color: #3A3A5A;
+    --primary-text-color: #FFFFFF;
+    --primary-link-color: goldenrod;
+  
+    --secondary-bg-color: #4D4D6C;
+    --secondary-text-color: #777795;
+    --secondary-hover-color: red;
+    --font: font-family: 'Poppins', sans-serif; 
+}
+
+body{
+    font-family: var(--font);
+}
+  
+.container {
+    width: 100%;
+}
+  
+.list-container {
+    background-color: var(--primary-bg-color);
+    padding: 40px;
+    width: 100%;
+    box-shadow: 5px 5px 20px 0 #00000030;
+    border-radius: 20px;
+}
+  
+.list-view {
+    width: 100%;
+}
+  
+thead, tbody {
+    background-color: var(--secondary-bg-color);
+    color: var(--primary-text-color);
+}
+  
+table tbody td,
+th {
+    padding: 7px;
+}
+  
+#delete-button {
+    color: var(--primary-link-color);
+}
+  
+#edit-button {
+    cursor: pointer;
+    &:hover {
+      color: var(--primary-link-color);
+    }
+}
+  
+span {
+    cursor: pointer;
+    margin: 0 7px;
+}
+  
+.top-list {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.search-input {
+    display: flex;
+    align-items: end;
+}
+  
+.top-list h3 {
+    white-space: nowrap;
+}
+  
+.search-input input {
+    width: 330px;
+    background-color: var(--secondary-text-color);
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px 2px #00000025;
+    color: var(--primary-text-color);
+    padding: 0 10px;
+    caret-color: var(--primary-text-color);
+}
+  
+.v-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.add-client-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+  
+.add-client-button {
+    background-color: var(--primary-bg-color);
+    margin: 10px 0;
+    border-radius: 20px;
+    padding: 3px 40px;
+    box-shadow: 5px 5px 20px 0 #00000030;
+    font-weight: bold;
+    border: 1px solid var(--primary-bg-color);
+}
+  
+.add-client-button:hover {
+    border: 1px solid var(--primary-link-color);
+    color: var(--primary-link-color);
+}
+  
+.add-client-container {
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-bg-color);
+    padding: 30px;
+    box-shadow: 5px 5px 20px 0 #00000030;
+    border-radius: 20px;
+}
+  
+.delete-client-container {
+    background-color: var(--primary-bg-color);
+    color: var(--primary-text-color);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 5px 5px 20px 0 #00000030;
+}
+  
+.confirm-delete-button {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+  
+.confirm-delete-button .div-button:first-child button {
+    color: red;
+}
+  
+.send-button {
+    width: 100%;
+}
+  
+.send-button .div-button {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+  
+.close-button {
+    display: flex;
+    justify-content: flex-end;
+}
+  
+table tbody:nth-child(odd) {
+    background-color: #626288;
+}
+  
+thead th {
+    font-weight: bolder;
+}
+  
+tbody td {
+    font-size: 14px;
+}
+  
+thead tr th:last-child {
+    border-radius: 0 7px 7px 0;
+}
+  
+thead tr th:first-child {
+    border-radius: 7px 0 0 7px;
+}
+  
+tbody tr td:last-child {
+    border-radius: 0 7px 7px 0;
+    text-align: center;
+    line-height: 0.5em;
+    padding: 7px 0;
+}
+  
+tbody tr td:first-child {
+    border-radius: 7px 0 0 7px;
+}
+  
+.table-container {
+    border-radius: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.input-line {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  justify-content: space-between;
+  gap: 200px;
+}
+
+
+
+
+
+
