@@ -4,6 +4,7 @@ import LoginView from '@/views/login/LoginView.vue'
 import ListDepartmentView from '@/views/departamento/ListDepartmentView.vue'
 import AddDepartmentView from '@/views/departamento/AddDepartmentView.vue'
 import UpdateDepartmentView from '@/views/departamento/UpdateDepartmentView.vue'
+import ListClientViewVue from '@/views/cliente/ListClientView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,6 +37,11 @@ const router = createRouter({
       name: 'editar-departamento',
       component: UpdateDepartmentView
     },
+    {
+      path: '/clientes',
+      name: 'clientes',
+      component: ListClientViewVue
+    }
   ]
 })
 
