@@ -3,14 +3,13 @@ package com.dataTeam.jaia.jaia.model;
 import jakarta.persistence.*;
 
 
-@Entity
 @Table(name = "")
-public class Usuario {
+public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "")
-    private Long id;
+    private Double cnpj;
 
     @Column(name = "")
     private String nome;
@@ -22,18 +21,17 @@ public class Usuario {
     private String email;
 
     @Column(name = "")
-    private String acessos;
+    private String logadouro;
 
+    @Column(name = "")
+    private Double telefone;
 
-
-
-
-    public Long getId() {
-        return id;
+    public Double getCnpj() {
+        return cnpj;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCnpj(Double cnpj) {
+        this.cnpj = cnpj;
     }
 
     public String getNome() {
@@ -60,11 +58,23 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getAcessos() {
-        return acessos;
+    public String getLogadouro() {
+        return logadouro;
     }
 
-    public void setAcessos(String acessos) {
-        this.acessos = acessos;
+    public void setLogadouro(String logadouro) {
+        this.logadouro = logadouro;
     }
+
+    public Double getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(Double telefone) {
+        this.telefone = telefone;
+    }
+
+
+
+
 }
