@@ -331,9 +331,22 @@ Uma das personas gerais para esse tipo de sistema pode ser definida conforme a i
 - [ ] Como supervisor, desejo ter um dashboard com um gráfico de ordens funcionário
 - [ ] Como supervisor, desejo ter filtros de departamento, cliente e data
 
-## Protótipo de Baixa Fidelidade
-
 ## Protótipo de Alta Fidelidade
+> _Landing Page_ - [Landing Page](https://drive.google.com/file/d/1yvxOZ45Gv9OEMV1K2_VCr2cSWsviPUTc/view?usp=sharing)
+
+> _Plataforma - Usuário_ - [Plataforma - Usuário](https://drive.google.com/file/d/1sQtjtkNJukLVNMacCZ7smczllghU0Dka/view?usp=sharing)
+
+> _CRUD Cliente_ - [CRUD Cliente](https://drive.google.com/file/d/1trerQmV_RaqEF4XdmavweAmB2dZ7eXaX/view?usp=sharing)
+
+> _CRUD Funcionário_ - [CRUD Funcionário](https://drive.google.com/file/d/1xbpi8JXZIiRtuJyA6XZeHOuk3-fb2Zko/view?usp=sharing)
+
+> _CRUD Departamento_ - [CRUD Departamento](https://drive.google.com/file/d/1rFVIRfbj8Ckr2nJWfwr_4lwvZS3UPqPq/view?usp=sharing)
+
+> _CRUD Requisição_ - [CRUD Requisição](https://drive.google.com/file/d/1IdCYwBXQ8CiW8nXfQInGO15jqdHotIVC/view?usp=sharing)
+
+> _CRUD Ordem de Serviço_ - [CRUD Ordem de Serviço](https://drive.google.com/file/d/1DT_R4xCqkJAtmnlFQksIOOL-vgp6fzMx/view?usp=sharing)
+
+> _CRUD Checklist_ - [CRUD Checklist](https://drive.google.com/file/d/1F5rtkDbU8IyD-t6z-3tpACPOWymZ9TsU/view?usp=sharing)
 
 ## Testes de Usabilidade
 
