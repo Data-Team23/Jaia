@@ -9,6 +9,9 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "")
+    private Long id;
+
+    @Column(name = "")
     private Double cnpj;
 
     @Column(name = "")
@@ -25,6 +28,18 @@ public class Cliente {
 
     @Column(name = "")
     private Double telefone;
+
+
+
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Double getCnpj() {
         return cnpj;
