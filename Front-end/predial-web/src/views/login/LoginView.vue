@@ -39,20 +39,26 @@
     import { ref } from 'vue';
     import { watchEffect } from 'vue';
     import router from '@/router';
+    import { showOnlyRequisicoes } from '@/stores/counter';
     
     const inputCNPJ = ref('')
     const inputPassword = ref('')
 
-    function handleLogin(){
+    function handleLogin() {
         const credentials = {
             cnpj: inputCNPJ.value,
             password: inputPassword.value
         }
 
-        console.log(credentials)
-
-        router.push('/clientes')
+        if (credentials.cnpj === '0000' && credentials.password === '0000') {
+            showOnlyRequisicoes.value = true;
+            router.push('/requisicoes');
+        } else {
+            showOnlyRequisicoes.value = false;
+            router.push('/clientes');
+        }
     }
+
 
     
 </script>
