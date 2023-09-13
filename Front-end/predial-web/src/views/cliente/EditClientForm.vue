@@ -1,5 +1,7 @@
 <template>
-    <h2>Atualizar cliente</h2>
+    <div class="form-title">
+        <h2>Atualizar cliente</h2>
+    </div>
     <form action="" class="add-form">
         <div class="input-inline-field">
             <InputField 

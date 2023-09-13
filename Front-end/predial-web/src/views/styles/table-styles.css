@@ -1,0 +1,130 @@
+@import url('../../global.css');
+
+.container{
+    width: 100%;
+}
+.list-container{
+    background-color: var(--primary-bg-color);
+    padding: 40px;
+    width: 100%;
+    box-shadow: 5px 5px 20px 0 #00000030;
+    border-radius: 20px;
+}
+
+.list-view{
+    width: 100%;
+}
+
+.add-client-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+  
+.add-client-button {
+    background-color: var(--primary-bg-color);
+    margin: 10px 0;
+    border-radius: 20px;
+    padding: 3px 40px;
+    box-shadow: 5px 5px 20px 0 #00000030;
+    font-weight: bold;
+    border: 1px solid var(--primary-bg-color);
+    color: var(--primary-text-color);
+}
+  
+.add-client-button:hover {
+    border: 1px solid var(--primary-link-color);
+    color: var(--primary-link-color);
+}
+
+thead, tbody{
+    background-color: #4D4D6C;
+    color: #FFFFFF;
+}
+table tbody td, th{
+    padding: 7px;
+}
+table{
+    width: 100%;
+}
+
+#delete-button{
+    color: goldenrod;
+    &:hover{
+        color: red;
+    }
+}
+
+#edit-button{
+    &:hover{
+        color: goldenrod;
+    }
+}
+
+span{
+    cursor: pointer;
+    margin: 0 7px;
+}
+
+.top-list{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.search-input{
+    display: flex;
+    align-items: end;
+}
+
+.top-list h3{
+    white-space: nowrap;
+    color: #FFFFFF;
+}
+
+.search-input input{
+    width: 330px;
+    background-color: #777795;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px 2px #00000025;
+    color: #FFFFFFFF;
+    padding: 0 10px;
+    caret-color: #FFFFFF;
+}
+
+table tbody:nth-child(odd){
+    background-color: #626288;
+}
+
+thead th{
+    font-weight: bolder;
+}
+
+tbody td{
+    font-size: 14px;
+}
+
+thead tr th:last-child{
+    border-radius: 0 7px 7px 0;
+}
+
+thead tr th:first-child{
+    border-radius: 7px 0 0 7px;
+}
+
+tbody tr td:last-child{
+    border-radius: 0 7px 7px 0;
+    text-align: center;
+    line-height: 0.5em;
+    padding: 7px 0;
+}
+
+tbody tr td:first-child{
+    border-radius: 7px 0 0 7px;
+}
+
+.table-container{
+    border-radius: 20px;
+}
