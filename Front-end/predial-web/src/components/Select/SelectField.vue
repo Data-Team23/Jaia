@@ -1,8 +1,8 @@
 <template>
     <label for="" class="label">
         {{ label }}
-        <select name="" id="" class="select-field">
-            <option style="color: #B3B3B3;" selected>Selecione um opção</option>
+        <select name="" id="" class="select-field" :value="modelValue" @input="updateSelect">
+            <option style="color: #B3B3B3;" disabled value="">Selecione um opção</option>
             <option :value="option"  v-for="option in optionValues">{{option}}</option>
         </select>
     </label>
@@ -20,11 +20,16 @@
             optionValues: {
                 type: Array,
                 default: () => []
+            },
+            modelValue: {
+                type: String,
+                default: null
             }
         },
         methods: {
             updateSelect(event: any) {
-                this.$emit("update:option", event.target.value)
+                const selectedValue = (event.target as HTMLSelectElement).value;
+                this.$emit('update:modelValue', selectedValue);
             }
         }
     }
