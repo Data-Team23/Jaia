@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import LoginView from '@/views/login/LoginView.vue'
 import ListDepartmentView from '@/views/departamento/ListDepartmentView.vue'
 import AddDepartmentView from '@/views/departamento/AddDepartmentView.vue'
@@ -19,11 +18,6 @@ const router = createRouter({
       meta: {
         hideNavBar: true,
       }
-    },
-    {
-      path: '/home',
-      name: 'home',
-      component: HomeView
     },
     {
       path: '/departamentos',

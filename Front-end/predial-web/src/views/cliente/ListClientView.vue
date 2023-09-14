@@ -101,10 +101,12 @@
 <script setup lang="ts">
 
     import { ref } from 'vue';
-    import "./styles.css"
     import AddClientForm from "./AddClientForm.vue";
     import EditClientForm from "./EditClientForm.vue";
     import InputButton from '@/components/Button/InputButton.vue';
+    import '../styles/form-styles.css'
+    import '../styles/table-styles.css'
+    import '../styles/dialog-styles.css'
     
     let addDialog = ref(false)
     let editDialog = ref(false)
