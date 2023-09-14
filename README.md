@@ -175,12 +175,12 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
     <td><b>Importância</b></td>
   </tr>
   <tr>
-   <td>Automatização de criação de Ordem de Serviço</td>
-   <td>Importante</td>
-  </tr>
-  <tr>
    <td>Criação, edição, deleção e visualização de Laudo Técnico</td>
    <td>Imprescindível</td>
+  </tr>
+  <tr>
+   <td>Automatização de criação de Ordem de Serviço</td>
+   <td>Importante</td>
   </tr>
   <tr>
    <td>Aprovação e reprovação de Laudo Técnico</td>
