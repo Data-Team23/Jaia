@@ -21,11 +21,11 @@
                 placeholder="Informe o nome:"
                 :model-value="nameValue">
             </InputField>
-            <InputField 
+            <SelectField 
                 label="Plano:" 
-                placeholder="Informe o telefone:"
-                :model-value="planeValue">
-            </InputField>
+                :option-values="options"
+                v-model="planeValue">
+            </SelectField>
         </div>
         <div class="input-inline-field">
             <InputField 
@@ -43,11 +43,19 @@
 <script setup lang="ts">
     import InputField from '@/components/InputField/InputField.vue';
     import InputButton from '@/components/Button/InputButton.vue';
+    import SelectField from '@/components/Select/SelectField.vue';
     import { ref } from 'vue';
 
+    const options = [
+        'Gold',
+        'Silver',
+        'Bronze'
+    ]
+    
     const cnpjValue = ref('09.888.344/0001-01')
     const phoneValue = ref('(12) 99689-5533')
     const nameValue = ref('João Carlos')
-    const planeValue = ref('Master')
+    const planeValue = ref(options[0])
     const addressValue = ref('Rua Itajaí n° 245')
+
 </script>
