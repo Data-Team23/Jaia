@@ -1,0 +1,32 @@
+[
+    {
+        "nome": "Joao Carlos",
+        "logradouro": "Rua Itajaí n° 245",
+        "cnpj": "09.888.344/0001-01",
+        "telefone": "(12) 9677-8854"
+    },
+    {
+        "nome": "Hugo Henrique",
+        "logradouro": "Rua Itajaí n° 245",
+        "cnpj": "09.888.344/0001-01",
+        "telefone": "(12) 9677-8854"
+    },
+    {
+        "nome": "Felipe Dantas",
+        "logradouro": "Rua Itajaí n° 245",
+        "cnpj": "09.888.344/0001-01",
+        "telefone": "(12) 9677-8854"
+    },
+    {
+        "nome": "Lucas Mateus",
+        "logradouro": "Rua Itajaí n° 245",
+        "cnpj": "09.888.344/0001-01",
+        "telefone": "(12) 9677-8854"
+    },
+    {
+        "nome": "Gabriel Nunes",
+        "logradouro": "Rua Itajaí n° 245",
+        "cnpj": "09.888.344/0001-01",
+        "telefone": "(12) 9677-8854"
+    }  
+]
