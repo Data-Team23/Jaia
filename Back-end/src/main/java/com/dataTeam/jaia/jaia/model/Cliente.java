@@ -2,8 +2,8 @@ package com.dataTeam.jaia.jaia.model;
 
 import jakarta.persistence.*;
 
-
-@Table(name = "")
+@Entity
+@Table(name = "cliente")
 public class Cliente {
 
     @Id
@@ -11,22 +11,22 @@ public class Cliente {
     @Column(name = "")
     private Long id;
 
-    @Column(name = "")
+    @Column(name = "cnpj_cli")
     private Double cnpj;
 
-    @Column(name = "")
+    @Column(name = "nome_cli")
     private String nome;
 
-    @Column(name = "")
+    @Column(name = "senha_cli")
     private String senha;
 
-    @Column(name = "")
-    private String email;
+//    @Column(name = "")
+//    private String email;
+//
+//    @Column(name = "")
+//    private String logadouro;
 
-    @Column(name = "")
-    private String logadouro;
-
-    @Column(name = "")
+    @Column(name = "telefone_cli")
     private Double telefone;
 
 
@@ -65,21 +65,21 @@ public class Cliente {
         this.senha = senha;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getLogadouro() {
-        return logadouro;
-    }
-
-    public void setLogadouro(String logadouro) {
-        this.logadouro = logadouro;
-    }
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
+//
+//    public String getLogadouro() {
+//        return logadouro;
+//    }
+//
+//    public void setLogadouro(String logadouro) {
+//        this.logadouro = logadouro;
+//    }
 
     public Double getTelefone() {
         return telefone;
