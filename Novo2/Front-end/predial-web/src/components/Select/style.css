@@ -1,0 +1,19 @@
+@import url('../../global.css');
+
+.select-field{
+    background-color: #626288;
+    height: 40px;
+    border-radius: 20px;
+    color: var(--primary-text-color-2);
+    font-size: 16px;
+    padding: 0 10px;
+    box-shadow: 4px 4px 10px 0 #00000025;
+}
+
+select, option:checked{
+    -webkit-appearance: auto !important;
+}
+
+option{
+    color: var(--primary-text-color);
+}
