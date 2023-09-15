@@ -1,3 +1,15 @@
+# Sumário
+
+* [Contexto](#contexto)
+* [Equipe](#equipe)
+* [Product Backlog](#product-backlog)
+* [Sprint 01](#sprint-01)
+* [Sprint 02](#sprint-02)
+* [Sprint 03](#sprint-03)
+* [Sprint 03](#sprint-04)
+* [Tecnologias utilizadas](#tecnologias-utilizadas)
+
+
 # Contexto
 [Jaia Software](https://jaia.software/jaia-erp.php)
 
@@ -229,6 +241,14 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
   </table>
 </div>
 
+# Tecnologias Utilizadas
+
+- ``Java``
+- ``JavaScript``
+- ``Vue``
+- ``HTML``
+- ``CSS``
+- ``Oracle SQL``
 
 # Sprint 01
 
