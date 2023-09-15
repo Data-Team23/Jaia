@@ -14,8 +14,13 @@
             <div class="list-container">
                 <div class="top-list">
                     <h3><strong>Carteira de clientes</strong></h3>
-                    <div class="search-input">
-                        <input type="text">
+                    <div class="search-filter">
+                        <select v-model="selectedFilter">
+                            <option value="name">Nome</option>
+                            <option value="cnpj">CNPJ</option>
+                            <option value="phone">Telefone</option>
+                        </select>
+                        <input type="text" placeholder="Filtrar..." v-model="filterInput">
                     </div>
                 </div>
                 <div class="table-container">
@@ -30,7 +35,7 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody v-for="(cliente, index) in clientes" :key="index">
+                        <tbody v-for="(cliente, index) in clients" :key="index">
                             <tr>
                                 <td>{{ index+1 }}</td>
                                 <td>{{ cliente.nome }}</td>
@@ -100,51 +105,49 @@
 
 <script setup lang="ts">
 
-    import { ref } from 'vue';
+    import { ref, onMounted, type Ref, watch } from 'vue';
+    import axios from 'axios';
     import AddClientForm from "./AddClientForm.vue";
     import EditClientForm from "./EditClientForm.vue";
     import InputButton from '@/components/Button/InputButton.vue';
     import '../styles/form-styles.css'
     import '../styles/table-styles.css'
     import '../styles/dialog-styles.css'
+    import type IClient from './IClient'
     
     let addDialog = ref(false)
     let editDialog = ref(false)
     let deleteDialog = ref(false)
-    
 
-    const page = 1 
+    let clients = ref<Array<IClient>>([])
+    let filteredClients = ref<Array<IClient>>([])
 
-    const clientes = [
-        {
-            nome: 'Joao Carlos',
-            logradouro: 'Rua Itajaí n° 245',
-            cnpj: '09.888.344/0001-01',
-            telefone: '(12) 9677-8854'
-        },
-        {
-            nome: 'Joao Carlos',
-            logradouro: 'Rua Itajaí n° 245',
-            cnpj: '09.888.344/0001-01',
-            telefone: '(12) 9677-8854'
-        },
-        {
-            nome: 'Joao Carlos',
-            logradouro: 'Rua Itajaí n° 245',
-            cnpj: '09.888.344/0001-01',
-            telefone: '(12) 9677-8854'
-        },
-        {
-            nome: 'Joao Carlos',
-            logradouro: 'Rua Itajaí n° 245',
-            cnpj: '09.888.344/0001-01',
-            telefone: '(12) 9677-8854'
-        },
-        {
-            nome: 'Joao Carlos',
-            logradouro: 'Rua Itajaí n° 245',
-            cnpj: '09.888.344/0001-01',
-            telefone: '(12) 9677-8854'
-        }
-    ]
+    let selectedFilter = ref("nome")
+    let filterInput = ref("")
+
+    console.log(selectedFilter.value)
+
+    onMounted(() => {
+        listClients();
+    })
+
+    watch([selectedFilter, filterInput], () => {
+        filterClients()
+    })
+
+    function filterClients(){
+        filteredClients.value = clients.value.filter((client: any) => {
+            const selectedValue = client[selectedFilter.value];
+            selectedValue.includes(filterInput.value)
+        })
+        return filteredClients;
+    }
+
+    function listClients() {
+        axios.get<any>(`${import.meta.env.VITE_API_URL}/clientes.json`)
+            .then((response) => {   
+                clients.value = response.data
+            })
+    }
+
 </script>
