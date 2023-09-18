@@ -31,10 +31,10 @@
             <div class="radius-bottom"></div>
           </div>
         </li>
-        <li :class="{ 'active': $route.path === '/requisicoes' }">
+        <li :class="{ 'active': $route.path === '/requisicoesAdmin' }">
           <div class="nav-text">
             <div class="radius-top"></div>
-            <router-link to="/requisicoes" class="router-link">
+            <router-link to="/requisicoesAdmin" class="router-link">
               Requisições
             </router-link>
             <div class="radius-bottom"></div>
