@@ -2,12 +2,18 @@
 
 .select-field{
     background-color: #626288;
-    height: 40px;
+    height: 100%;
     border-radius: 20px;
     color: var(--primary-text-color-2);
+    border: 1px solid #626288;
     font-size: 16px;
     padding: 0 10px;
     box-shadow: 4px 4px 10px 0 #00000025;
+}
+
+.select-field:focus{
+    border: 1px solid var(--primary-link-color);
+    outline: none;
 }
 
 select, option:checked{
@@ -16,4 +22,8 @@ select, option:checked{
 
 option{
     color: var(--primary-text-color);
+}
+
+option:checked{
+    color: var(--primary-text-color-2);
 }

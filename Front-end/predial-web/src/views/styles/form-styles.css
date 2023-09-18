@@ -28,6 +28,10 @@
     color: var(--primary-text-color);
 }
 
+.close-button span:hover{
+    color: var(--primary-link-color);
+}
+
 .input-inline-field{
     display: flex;
     width: 100%;

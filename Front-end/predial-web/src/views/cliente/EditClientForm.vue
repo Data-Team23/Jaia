@@ -24,7 +24,9 @@
             <SelectField 
                 label="Plano:" 
                 :option-values="options"
-                v-model="planeValue">
+                v-model="planeValue"
+                value-prop="value" 
+                display-prop="label">
             </SelectField>
         </div>
         <div class="input-inline-field">
@@ -35,7 +37,7 @@
             </InputField>
         </div>
         <div class="send-button">
-            <InputButton text-button="Salvar"></InputButton>
+            <InputButton text-button="Salvar" @click="updateClient"></InputButton>
         </div>
     </form>
 </template>
@@ -47,15 +49,36 @@
     import { ref } from 'vue';
 
     const options = [
-        'Gold',
-        'Silver',
-        'Bronze'
+        {
+            label: 'Gold',
+            value: 'gold'
+        },
+        {
+            label: 'Silver',
+            value: 'silver'
+        },
+        {
+            label: 'Bronze',
+            value: 'bronze'
+        },
     ]
     
     const cnpjValue = ref('09.888.344/0001-01')
     const phoneValue = ref('(12) 99689-5533')
     const nameValue = ref('João Carlos')
-    const planeValue = ref(options[0])
+    const planeValue = ref(options[0].value)
     const addressValue = ref('Rua Itajaí n° 245')
+
+    function updateClient(){
+        event?.preventDefault()
+        const client = {
+            cnpjValue: cnpjValue.value,
+            phoneValue: phoneValue.value,
+            nameValue: nameValue.value,
+            planeValue: planeValue.value,
+            addressValue: addressValue.value,
+        }
+        console.log(client)
+    }
 
 </script>
