@@ -100,7 +100,6 @@
 </template>
 
 <script setup lang="ts">
-
 import { ref, onMounted, type Ref, watch, computed } from 'vue';
 import axios from 'axios';
 import AddClientForm from "./AddClientForm.vue";
@@ -182,5 +181,4 @@ watch(page, (newPage) => {
 const changePage = (pageNumber: any) => {
     page.value = pageNumber;
 };
-
 </script>

@@ -1,3 +1,15 @@
+# Sumário
+
+* [Contexto](#contexto)
+* [Equipe](#equipe)
+* [Product Backlog](#product-backlog)
+* [Sprint 01](#sprint-01)
+* [Sprint 02](#sprint-02)
+* [Sprint 03](#sprint-03)
+* [Sprint 03](#sprint-04)
+* [Tecnologias utilizadas](#tecnologias-utilizadas)
+
+
 # Contexto
 [Jaia Software](https://jaia.software/jaia-erp.php)
 
@@ -92,7 +104,7 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
 </div>
 
 
-# Sprint 01
+# Backlog Sprint 01
 
 <div>
   <table>
@@ -127,7 +139,7 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
   </table>
 </div>
 
-# Sprint 02
+# Backlog Sprint 02
 
 <div>
   <table>
@@ -166,7 +178,7 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
   </table>
 </div>
 
-# Sprint 03
+# Backlog Sprint 03
 
 <div>
   <table>
@@ -194,7 +206,7 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
 </div>
 
 
-# Sprint 04
+# Backlog Sprint 04
 
 <div>
   <table>
@@ -229,7 +241,24 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
   </table>
 </div>
 
+# Tecnologias Utilizadas
 
+- ``Java``
+- ``JavaScript``
+- ``Vue``
+- ``HTML``
+- ``CSS``
+- ``Oracle SQL``
+
+# Sprint 01
+
+## User Stories
+- [x] Como administrador do sistema, desejo cadastrar, editar e visualizar todos os clientes que entrarem em contato com a empresa.
+- [x] Como administrador do sistema, desejo cadastrar, editar e visualizar todos os departamentos da empresa.
+- [x] Como administrador do sistema, desejo cadastrar, editar e visualizar todos os funcionários da empresa.
+- [x] Como cliente da empresa, desejo fazer requisição de serviços de inspeção para o meu estabelecimento.
+- [x] Como administrador, desejo que meu sistema tenha filtros de pesquisa para os cadastros
+- [x] Como administrador, desejo que meu sistema envie e-mail para o cliente após a finalização do cadastro
 
 ## Análise de Mercado
 
@@ -300,36 +329,6 @@ Uma das personas gerais para esse tipo de sistema pode ser definida conforme a i
 
 ![image](https://github.com/Data-Team23/Jaia/assets/102003274/c7d1f225-eaae-4459-8a11-dd9009147efe)
 
-## User Stories
-
-### Sprint 01
-- [x] Como administrador do sistema, desejo cadastrar, editar e visualizar todos os clientes que entrarem em contato com a empresa.
-- [x] Como administrador do sistema, desejo cadastrar, editar e visualizar todos os departamentos da empresa.
-- [x] Como administrador do sistema, desejo cadastrar, editar e visualizar todos os funcionários da empresa.
-- [x] Como cliente da empresa, desejo fazer requisição de serviços de inspeção para o meu estabelecimento.
-- [x] Como administrador, desejo que meu sistema tenha filtros de pesquisa para os cadastros
-- [x] Como administrador, desejo que meu sistema envie e-mail para o cliente após a finalização do cadastro
-
-### Sprint 02
-- [ ] Como administrador, desejo cadastrar, editar, deletar e visualizar todas as ordens de serviço.
-- [ ] Como supervisor, quero atribuir ordens de serviço para os técnicos
-- [ ] Como administrador quero ter uma tela para acompanhamento de Ordens de Serviço.
-- [ ] Como administrador quero pesquisar a ordem de serviço por numeração, status ou departamento.
-- [ ] Como administrador quero automatizar o envio do e-mail após a criação da ordem de serviço
-
-### Sprint 03
-- [ ] Como cliente, quero não criar requisições novas para inspeções corriqueiras
-- [ ] Como técnico, quero visualizar todas as ordens de serivço em meu nome
-- [ ] Como técnico quero aprovar, reprovar e comentar em todas as ordens de serviços abertas
-- [ ] Como técnico desejo preencher laudos técnicos após a finalização da Ordem de Serviço
-- [ ] Como cliente, desejo receber um email automático com o laudo técnico aprovado/reprovado
-
-### Sprint 04
-- [ ] Como supervisor, desejo ter um relatório personalizado
-- [ ] Como supervisor, desejo ter um dashboard com um gráfico de ordens finalizadas
-- [ ] Como supervisor, desejo ter um dashboard com um gráfico de ordens por departamento
-- [ ] Como supervisor, desejo ter um dashboard com um gráfico de ordens funcionário
-- [ ] Como supervisor, desejo ter filtros de departamento, cliente e data
 
 ## Protótipo de Alta Fidelidade
 > _Landing Page_ - [Landing Page](https://drive.google.com/file/d/1yvxOZ45Gv9OEMV1K2_VCr2cSWsviPUTc/view?usp=sharing)
@@ -364,3 +363,117 @@ Uma das personas gerais para esse tipo de sistema pode ser definida conforme a i
 
 > [!WARNING]
 > Critical content demanding immediate user attention due to potential risks.
+
+
+## Modelagem de Dados
+
+### DER
+<img width="612" alt="MicrosoftTeams-image (1)" src="https://github.com/Data-Team23/Jaia/assets/102003274/95da3d49-9444-4d3e-98d7-ef3ece4fae86">
+
+
+### MER
+
+<img width="601" alt="MicrosoftTeams-image" src="https://github.com/Data-Team23/Jaia/assets/102003274/27c594f5-52a0-47a3-aa94-616ca7269a95">
+
+### Criação das Tabelas
+<details>
+<summary>Código</summary>
+
+```sql
+create table endereco(
+     id_end number(2) constraint pk_id_end primary key
+    ,logradouro_end varchar(50) not null
+    ,numero_end number(10) not null
+    ,bairro_end varchar(50) not null
+    ,cidade_end varchar(50) not null
+    ,uf_end varchar(2) not null
+);
+
+ 
+
+create table cliente(
+     cnpj_cli number(14) constraint pk_cli_cnpj primary key
+    ,nome_cli varchar(100) not null
+    ,telefone_cli number(14) constraint uk_cli_tel unique not null
+    ,senha_cli varchar(200) not null
+    ,fk_id_end number(2)
+    ,constraint fk_cli_id_end foreign key(fk_id_end) references endereco(id_end)
+    );
+
+ 
+
+create table requisicao(
+     id_req number(2) constraint pk_req_id_req primary key
+    ,inspecao_req varchar(20) not null
+    ,descricao_req varchar(200) not null
+    ,status_req varchar(20) not null
+    ,data_abertura_req date default sysdate
+);
+
+ 
+
+create table solicitacao(
+	cnpj_cli number(14)
+    ,id_req number(2)
+    ,constraint pk_soli_cnpj_req primary key(cnpj_cli, id_req)
+    ,constraint fk_soli_cnpj foreign key(cnpj_cli) references cliente(cnpj_cli)
+    ,constraint fk_soli_id_req foreign key(id_req) references requisicao(id_req)
+);
+
+ 
+
+create table departamento(
+     cod_depart number(2) constraint pk_dept_cod_depart primary key
+    ,nome_depart varchar(20) constraint uk_dept_nom_depart unique not null
+);
+
+ 
+
+create table funcionario(
+     cpf_func number(11) constraint pk_func_cpf_func primary key
+    ,nome_func varchar(100) not null
+    ,email_func varchar(100) constraint uk_func_email_func unique not null
+    ,supervisor number(11)
+    ,cod_depart number(2)
+    ,constraint fk_func_super foreign key(supervisor) references funcionario(cpf_func)
+    ,constraint fk_funcde_cod_depart foreign key(cod_depart) references departamento(cod_depart)
+);
+
+ 
+
+create table administrador(
+     nome_usuario varchar(10) constraint pk_adm_nom_adm primary key
+    ,nome_adm varchar(50) not null
+    ,senha_adm varchar(200) not null
+);
+```
+</details>
+
+# Sprint 02
+
+## User Stories
+- [ ] Como administrador, desejo cadastrar, editar, deletar e visualizar todas as ordens de serviço.
+- [ ] Como supervisor, quero atribuir ordens de serviço para os técnicos
+- [ ] Como administrador quero ter uma tela para acompanhamento de Ordens de Serviço.
+- [ ] Como administrador quero pesquisar a ordem de serviço por numeração, status ou departamento.
+- [ ] Como administrador quero automatizar o envio do e-mail após a criação da ordem de serviço
+
+
+# Sprint 03
+
+## User Stories
+- [ ] Como cliente, quero não criar requisições novas para inspeções corriqueiras
+- [ ] Como técnico, quero visualizar todas as ordens de serivço em meu nome
+- [ ] Como técnico quero aprovar, reprovar e comentar em todas as ordens de serviços abertas
+- [ ] Como técnico desejo preencher laudos técnicos após a finalização da Ordem de Serviço
+- [ ] Como cliente, desejo receber um email automático com o laudo técnico aprovado/reprovado
+
+# Sprint 04
+
+## User Stories
+- [ ] Como supervisor, desejo ter um relatório personalizado
+- [ ] Como supervisor, desejo ter um dashboard com um gráfico de ordens finalizadas
+- [ ] Como supervisor, desejo ter um dashboard com um gráfico de ordens por departamento
+- [ ] Como supervisor, desejo ter um dashboard com um gráfico de ordens funcionário
+- [ ] Como supervisor, desejo ter filtros de departamento, cliente e data
+
