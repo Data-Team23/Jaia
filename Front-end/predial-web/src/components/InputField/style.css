@@ -8,13 +8,19 @@ h1{
     font-size: 18px;
 }
 .input-field-component{
-    background-color: #626288;
+    background-color: var(--input-field-color);
     height: 40px;
     border-radius: 20px;
     color: #FFFFFF;
     font-size: 18px;
     padding: 0 10px;
     box-shadow: 4px 4px 10px 0 #00000025;
+    border: 1px solid var(--input-field-color);
+}
+
+.input-field-component:focus{
+    border: 1px solid var(--primary-link-color);
+    outline: none;
 }
 
 .input-field-component::placeholder{

@@ -2,8 +2,56 @@
     {
         "nome": "Joao Carlos",
         "logradouro": "Rua Itajaí n° 245",
+        "cnpj": "10.882.344/0001-01",
+        "telefone": "(12) 8811-8854"
+    },
+    {
+        "nome": "Hugo Henrique",
+        "logradouro": "Rua Itajaí n° 245",
+        "cnpj": "22.888.344/0001-01",
+        "telefone": "(12) 9744-8854"
+    },
+    {
+        "nome": "Felipe Dantas",
+        "logradouro": "Rua Itajaí n° 245",
+        "cnpj": "54.888.344/0001-01",
+        "telefone": "(12) 7171-8854"
+    },
+    {
+        "nome": "Lucas Mateus",
+        "logradouro": "Rua Itajaí n° 245",
         "cnpj": "09.888.344/0001-01",
-        "telefone": "(12) 9677-8854"
+        "telefone": "(12) 9100-8854"
+    },
+    {
+        "nome": "Gabriel Nunes",
+        "logradouro": "Rua Itajaí n° 245",
+        "cnpj": "09.888.344/0001-01",
+        "telefone": "(12) 9122-8854"
+    },
+    {
+        "nome": "Gabriel Nunes",
+        "logradouro": "Rua Itajaí n° 245",
+        "cnpj": "09.888.344/0001-01",
+        "telefone": "(12) 9122-8854"
+    },  
+    {
+        "nome": "Gabriel Nunes",
+        "logradouro": "Rua Itajaí n° 245",
+        "cnpj": "09.888.344/0001-01",
+        "telefone": "(12) 9122-8854"
+    },
+    {
+        "nome": "Gabriel Nunes",
+        "logradouro": "Rua Itajaí n° 245",
+        "cnpj": "09.888.344/0001-01",
+        "telefone": "(12) 9122-8854"
+    },
+    {
+        "nome": "Gabriel Nunes",
+        "logradouro": "Rua Itajaí n° 245",
+        "cnpj": "09.888.344/0001-01",
+        "telefone": "(12) 9122-8854"
     },
     {
         "nome": "Hugo Henrique",
@@ -27,6 +75,12 @@
         "nome": "Gabriel Nunes",
         "logradouro": "Rua Itajaí n° 245",
         "cnpj": "09.888.344/0001-01",
-        "telefone": "(12) 9677-8854"
-    }  
+        "telefone": "(12) 9122-8854"
+    },
+    {
+        "nome": "Joao Carlos",
+        "logradouro": "Rua Itajaí n° 245",
+        "cnpj": "10.882.344/0001-01",
+        "telefone": "(12) 8811-8854"
+    }
 ]

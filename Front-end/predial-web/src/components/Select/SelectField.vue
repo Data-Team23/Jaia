@@ -1,9 +1,11 @@
 <template>
     <label for="" class="label">
         {{ label }}
-        <select name="" id="" class="select-field" :value="modelValue" @input="updateSelect">
-            <option style="color: #B3B3B3;" disabled value="">Selecione um opção</option>
-            <option :value="option"  v-for="option in optionValues">{{option}}</option>
+        <select name="" id="select-field-comp" class="select-field" :value="modelValue" @input="updateSelect">
+            <option style="color: #B3B3B3;" disabled value="" selected>Selecione um opção</option>
+            <template v-for="option in optionValues" :key="getSelectedValue(option)">
+                <option :value="getSelectedValue(option)">{{getSelectedLabel(option)}}</option>
+            </template>
         </select>
     </label>
 </template>
@@ -15,7 +17,7 @@
         props: {
             label: {
                 type: String,
-                default: 'Selecione uma opção'
+                default: ''
             },
             optionValues: {
                 type: Array,
@@ -24,12 +26,27 @@
             modelValue: {
                 type: String,
                 default: null
+            },
+            valueProp: {
+                type: String,
+                default: 'value'
+            },
+            displayProp: {
+                type: String,
+                default: 'label'
             }
         },
         methods: {
             updateSelect(event: any) {
                 const selectedValue = (event.target as HTMLSelectElement).value;
                 this.$emit('update:modelValue', selectedValue);
+            },
+            getSelectedValue(option: any){
+                return option[this.valueProp];
+            },
+            getSelectedLabel(option: any){
+                return option[this.displayProp]
+
             }
         }
     }
