@@ -51,6 +51,13 @@
     margin-right:5px;
 }
 
+.container{
+  display: flex;
+  justify-content: space-between;
+  gap: 100px;
+  color: black;
+}
+
 
   
     

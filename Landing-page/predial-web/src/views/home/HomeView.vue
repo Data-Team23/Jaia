@@ -13,11 +13,22 @@
         </section>
         <div class="solucoes">
             <p class="title">Soluções</p>
+            <div class="container">   
+                <div class="ordem-servico">
+                    <p>teste1</p>
+                </div>
+                <div class="checklist">
+                    <p class="">teste2</p>
+                </div>
+                <div class="laudo-tecnico">
+                    <p class="">teste3</p>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
-<script>
+<script lang="ts">
     import './style.css'
 </script>
   
