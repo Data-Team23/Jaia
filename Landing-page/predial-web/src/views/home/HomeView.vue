@@ -14,21 +14,57 @@
         <div class="solucoes">
             <p class="title">Soluções</p>
             <div class="container">   
-                <div class="ordem-servico">
-                    <p>teste1</p>
+                <div class="ordem-servico box">
+                    <img src="@/assets/solucoes1.png" alt="Ordem de Serviço"/>
+                    <h>Ordem de Serviço</h>
+                    <span class="button-solucoes" id="detalhes-os" @click="detalhesOS = true">Ver detalhes</span>
+                    <v-dialog v-model="detalhesOS">
+                            <OrdemServicoForm></OrdemServicoForm>
+                    </v-dialog>
                 </div>
-                <div class="checklist">
-                    <p class="">teste2</p>
+                <div class="checklist box">
+                    <img src="@/assets/solucoes2.png" alt="Checklist"/>
+                    <h>Checklist</h>
+                    <span class="button-solucoes" id="detalhes-ck" @click="detalhesCK = true">Ver detalhes</span>
+                    <v-dialog v-model="detalhesCK">
+                            <ChecklistForm></ChecklistForm>
+                    </v-dialog>
                 </div>
-                <div class="laudo-tecnico">
-                    <p class="">teste3</p>
+                <div class="laudo-tecnico box">
+                    <img src="@/assets/solucoes3.png" alt="Laudo Tecnico"/>
+                    <h>Laudo Técnico</h>
+                    <span class="button-solucoes" id="detalhes-lt" @click="detalhesLT = true">Ver detalhes</span>
+                    <v-dialog v-model="detalhesLT">
+                            <LaudoTecnicoForm></LaudoTecnicoForm>
+                    </v-dialog>
+                </div>
+            </div>
+        </div>
+        <div class="footer-box">
+            <img src="@/assets/logo-predial-rodape.png" alt="Logo" class="logo"/>
+            <div class="footer-text"> 
+                <div class="footer-contato">
+                    <h>Contato</h>
+                </div>
+                <div class="footer-inf">
+                    <p>Predial Consultoria LTDA | CNPJ: xxxxxxxx/xxxx-xx | R. Fatec, 04 | São José dos Campos – SP | CEP 00000-000</p>
+                    <p>Contato Suporte: (12)00000-0000 E-mail: suporte@predial.com.br</p>
                 </div>
             </div>
         </div>
     </div>
 </template>
 
-<script lang="ts">
-    import './style.css'
+<script setup lang="ts">
+    import './styles/style.css'
+    import { ref } from 'vue';
+    import LaudoTecnicoForm from "./LaudoTecnicoView.vue";
+    import ChecklistForm from "./ChecklistView.vue";
+    import OrdemServicoForm from "./OrdemServicoView.vue";
+        
+    let detalhesOS = ref(false);
+    let detalhesCK = ref(false);
+    let detalhesLT = ref(false);
+    console.log(detalhesLT)
 </script>
   
