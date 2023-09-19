@@ -17,7 +17,7 @@
 
 <style>
   template{
-    background-color: #3A3A5A;
+    background-color: #DEDEDE;
     width: 100%;
     height: 100%;
   }
