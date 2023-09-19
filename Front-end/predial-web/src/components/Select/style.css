@@ -3,6 +3,7 @@
 .select-field{
     background-color: #626288;
     height: 100%;
+    min-height: 40px;
     border-radius: 20px;
     color: var(--primary-text-color-2);
     border: 1px solid #626288;
