@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dataTeam.jaia.jaia.model.Departamento;
+import com.dataTeam.jaia.jaia.service.DepartamentoService;
 import com.dataTeam.jaia.jaia.service.IDepartamentoService;
 
 @RestController
@@ -20,27 +21,75 @@ import com.dataTeam.jaia.jaia.service.IDepartamentoService;
 public class DepartamentoController {
 
     @Autowired
-    private IDepartamentoService service;
+    private DepartamentoService service;
 
-    //add departamento
-    @PostMapping
-    public Departamento novoDepartamento(@RequestBody Departamento departamento) {
-        return service.novoDepartamento(departamento);
+    // Adicionar departamento
+    @PostMapping("")
+    public ResponseEntity<Departamento> novoDepartamento(@RequestBody Departamento departamento) {
+        try {
+            // Chame o serviço para criar um novo departamento
+            ResponseEntity<Departamento> resultado = service.novoDepartamento(departamento);
+
+            // Verifique se o serviço retornou com sucesso
+            if (resultado.getStatusCode() == HttpStatus.CREATED) {
+                // Retorne um ResponseEntity com o departamento criado e status HTTP 201 CREATED
+                return ResponseEntity.status(HttpStatus.CREATED).body(resultado.getBody());
+            } else {
+                // Se o serviço não retornou um status CREATED, retorne um ResponseEntity com status HTTP 500 INTERNAL_SERVER_ERROR
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            }
+        } catch (IllegalArgumentException e) {
+            // Se os dados do departamento forem inválidos, retorne um ResponseEntity com status HTTP 400 BAD_REQUEST
+            return ResponseEntity.badRequest().build();
+        } catch (Exception e) {
+            // Se ocorrer outro erro, retorne um ResponseEntity com status HTTP 500 INTERNAL_SERVER_ERROR
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
 
-    //delete departamento
+    /*  Deletar departamento
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteDepartamento(@PathVariable Long id) {
-    // Chama o serviço para excluir o departamento pelo ID
-    boolean delete = service.deleteDepartamento(id);
-    
-    if (delete) {
-        return ResponseEntity.ok("Departamento com ID " + id + " foi excluído com sucesso.");
-    } else {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Departamento com ID " + id + " não encontrado.");
+        ResponseEntity<String> response;
+        try {
+            response = ResponseEntity.deleteDepartamento(id);
+        } catch (IllegalArgumentException e) {
+            // Se os dados do departamento forem inválidos, retorne um ResponseEntity com status HTTP 400 BAD_REQUEST
+            response = ResponseEntity.badRequest().build();
+        } catch (Exception e) {
+            // Se ocorrer outro erro, retorne um ResponseEntity com status HTTP 500 INTERNAL_SERVER_ERROR
+            response = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        return response;
+    }*/
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteDepartamento(@PathVariable Long id) {
+        ResponseEntity<String> response;
+        try {
+            boolean delete = IDepartamentoService.deleteDepartamento(id);
+
+        if (delete) {
+            response = ResponseEntity.ok("Departamento com ID " + id + " foi excluído com sucesso.");
+        } else {
+            response = ResponseEntity.status(HttpStatus.NOT_FOUND).body("Departamento com ID " + id + " não encontrado.");
+        }
+    } catch (IllegalArgumentException e) {
+        // Se os dados do departamento forem inválidos, retorne um ResponseEntity com status HTTP 400 BAD_REQUEST
+        response = ResponseEntity.badRequest().build();
+    } catch (Exception e) {
+        // Se ocorrer outro erro, retorne um ResponseEntity com status HTTP 500 INTERNAL_SERVER_ERROR
+        response = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
+    return response;
 }
 
 
+
+    
 }
+
+
+
+
