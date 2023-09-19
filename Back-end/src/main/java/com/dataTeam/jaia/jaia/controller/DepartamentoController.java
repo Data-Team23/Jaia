@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dataTeam.jaia.jaia.model.Departamento;
-import com.dataTeam.jaia.jaia.service.DepartamentoService;
 import com.dataTeam.jaia.jaia.service.IDepartamentoService;
 
 @RestController
@@ -21,7 +20,7 @@ import com.dataTeam.jaia.jaia.service.IDepartamentoService;
 public class DepartamentoController {
 
     @Autowired
-    private DepartamentoService service;
+    private IDepartamentoService service;
 
     // Adicionar departamento
     @PostMapping("")
@@ -47,30 +46,13 @@ public class DepartamentoController {
         }
     }
 
-
-    /*  Deletar departamento
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteDepartamento(@PathVariable Long id) {
         ResponseEntity<String> response;
         try {
-            response = ResponseEntity.deleteDepartamento(id);
-        } catch (IllegalArgumentException e) {
-            // Se os dados do departamento forem inválidos, retorne um ResponseEntity com status HTTP 400 BAD_REQUEST
-            response = ResponseEntity.badRequest().build();
-        } catch (Exception e) {
-            // Se ocorrer outro erro, retorne um ResponseEntity com status HTTP 500 INTERNAL_SERVER_ERROR
-            response = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-        return response;
-    }*/
+            ResponseEntity<String> delete = service.deleteDepartamento(id);
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteDepartamento(@PathVariable Long id) {
-        ResponseEntity<String> response;
-        try {
-            boolean delete = IDepartamentoService.deleteDepartamento(id);
-
-        if (delete) {
+        if (delete.getStatusCode() == HttpStatus.OK) {
             response = ResponseEntity.ok("Departamento com ID " + id + " foi excluído com sucesso.");
         } else {
             response = ResponseEntity.status(HttpStatus.NOT_FOUND).body("Departamento com ID " + id + " não encontrado.");
