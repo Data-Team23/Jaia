@@ -19,19 +19,26 @@ public class DepartamentoService implements IDepartamentoService {
     @Autowired
     private DepartamentoRepository departRepo;
 
+    //add
     @Transactional
-    @Override
-    public Departamento novoDepartamento(Departamento departamento){
-        if(departamento == null||
+    public ResponseEntity<Departamento> novoDepartamento(Departamento departamento) {
+        try {
+            if (departamento == null ||
                 departamento.getCod_depart() == null ||
                 departamento.getNome_depart() == null ||
-                departamento.getNome_depart().isBlank())
-            throw new IllegalArgumentException("Departamento com atributos inválidos");
+                departamento.getNome_depart().isBlank()) {
+                throw new IllegalArgumentException("Departamento com atributos inválidos");
+            }
 
-    Departamento departamentoNovo = departRepo.save(departamento);
-    return departamentoNovo;
-}
+            Departamento novoDepartamento = departRepo.save(departamento);
+    
+            return ResponseEntity.ok(novoDepartamento);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
 
+    //delete
     @Override
     public  ResponseEntity<String> deleteDepartamento(Long id) {
         Optional<Departamento> departamentoOptional = departRepo.findById(id);
@@ -46,8 +53,18 @@ public class DepartamentoService implements IDepartamentoService {
         }
     }
 
-    public List<Departamento> listarDepartamento(){
-        return departRepo.findAll();
-    }
+
+
+
+
+
+
+
+        //list
+        public List<Departamento> listarDepartamento(){
+            return departRepo.findAll();
+        }
+
+    
     
 }
