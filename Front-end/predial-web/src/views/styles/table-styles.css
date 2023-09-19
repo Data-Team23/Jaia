@@ -96,6 +96,7 @@ span{
 
 .search-filter input{
     width: 70%;
+    height: 40px;
     background-color: #777795;
     border-radius: 10px;
     box-shadow: 4px 4px 10px 2px #00000025;
@@ -105,6 +106,10 @@ span{
     border: 1px solid #777795;
     &::placeholder{
         color: #FFFFFF60;
+    }
+    &:focus{
+        border: 1px solid var(--primary-link-color);
+        outline: none;
     }
 }
 
@@ -165,4 +170,9 @@ tbody tr td:first-child{
 
 .pagination-list li .active{
     color: var(--primary-link-color);
+}
+
+::v-deep .v-overlay__content{
+    
+        max-height: 100%;
 }
