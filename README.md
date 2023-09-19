@@ -57,11 +57,11 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
    <td>Imprescindível</td>
   </tr>
   <tr>
-   <td>Landingpage para requisição de serviços</td>
+   <td>Cadastro, edição, deleção e visualização de requisições do cliente</td>
    <td>Imprescindível</td>
   </tr>
   <tr>
-   <td>Criação, edição, deleção e visualização de Laudo Técnico</td>
+   <td>Landingpage para requisição de serviços</td>
    <td>Imprescindível</td>
   </tr>
   <tr>
@@ -70,19 +70,19 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
   </tr>
   <tr>
    <td>Envio de e-mail pós cadastro de clientes</td>
-   <td>Importante</td>
+   <td>Imprescindível</td>
   </tr>
   <tr>
-   <td>Tela de acompanhamento de Ordem de Serviço</td>
-   <td>Importante</td>
+   <td>Cadastro, edição, deleção e visualização de Ordens de Serviços</td>
+   <td>Imprescindível</td>
   </tr>
   <tr>
    <td>Aprovação e reprovação de Ordens de Serviços</td>
-   <td>Importante</td>
+   <td>Imprescindível</td>
   </tr>
   <tr>
-   <td>Automatização de criação de Ordem de Serviço</td>
-   <td>Desejável</td>
+   <td>Relatório de atividades da empresa</td>
+   <td>Importante</td>
   </tr>
   <tr>
    <td>Automatização de envio de e-mail após criação de Ordem de Serviço</td>
@@ -93,11 +93,7 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
    <td>Desejável</td>
   </tr>
   <tr>
-   <td>Relatório de atividades da empresa</td>
-   <td>Desejável</td>
-  </tr>
-  <tr>
-   <td>Dashboard de métricas do ERP</td>
+   <td>Automatização de criação de Ordem de Serviço</td>
    <td>Desejável</td>
   </tr>
   </table>
@@ -129,12 +125,12 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
    <td>Imprescindível</td>
   </tr>
   <tr>
-   <td>Barra de pesquisa de clientes</td>
-   <td>Importante</td>
+   <td>Cadastro, edição, deleção e visualização de requisições do cliente</td>
+   <td>Imprescindível</td>
   </tr>
   <tr>
    <td>Envio de e-mail pós cadastro de clientes	</td>
-   <td>Desejável</td>
+   <td>Imprescindível</td>
   </tr>
   </table>
 </div>
@@ -152,28 +148,8 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
    <td>Imprescindível</td>
   </tr>
   <tr>
-   <td>Cadastro, edição, deleção e visualização de departamentos cadastrados</td>
+   <td>Aprovação e reprovação de Ordens de Serviços</td>
    <td>Imprescindível</td>
-  </tr>
-  <tr>
-   <td>Tela de acompanhamento de Ordem de Serviço</td>
-   <td>Importante</td>
-  </tr>
-  <tr>
-   <td>Pesquisa de Ordem de Serviço por Numeração</td>
-   <td>Desejável</td>
-  </tr>
-  <tr>
-   <td>Pesquisa de Ordem de Serviço por Status</td>
-   <td>Desejável</td>
-  </tr>
-  <tr>
-   <td>Pesquisa de Ordem de Serviço por Departamento</td>
-   <td>Desejável</td>
-  </tr>
-  <tr>
-   <td>Automatização de envio de e-mail após criação de Ordem de Serviço</td>
-   <td>Desejável</td>
   </tr>
   </table>
 </div>
@@ -187,19 +163,11 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
     <td><b>Importância</b></td>
   </tr>
   <tr>
-   <td>Criação, edição, deleção e visualização de Laudo Técnico</td>
-   <td>Imprescindível</td>
-  </tr>
-  <tr>
-   <td>Automatização de criação de Ordem de Serviço</td>
+   <td>Relatório de atividades da empresa</td>
    <td>Importante</td>
   </tr>
   <tr>
-   <td>Aprovação e reprovação de Laudo Técnico</td>
-   <td>Importante</td>
-  </tr>
-  <tr>
-   <td>Automatização de envio de e-mail após aprovação/reprovação do Laudo técnico</td>
+   <td>Automatização de envio de e-mail após criação de Ordem de Serviço</td>
    <td>Desejável</td>
   </tr>
   </table>
@@ -215,28 +183,8 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
     <td><b>Importância</b></td>
   </tr>
   <tr>
-   <td>Relatório de atividades da empresa</td>
+   <td>Automatização de envio de e-mail após aprovação/reprovação do Laudo técnico</td>
    <td>Imprescindível</td>
-  </tr>
-  <tr>
-   <td>Dashboard - Gráfico quantidade de ordens finalizadas</td>
-   <td>Importante</td>
-  </tr>
-  <tr>
-   <td>Dashboard - Gráfico quantidade de ordens por departamento</td>
-   <td>Importante</td>
-  </tr>
-  <tr>
-   <td>Dashboard - Gráfico quantidade de ordens por funcionário</td>
-   <td>Importante</td>
-  </tr>
-  <tr>
-   <td>Dashboard - Gráfico quantidade de ordens ao longo do tempo</td>
-   <td>Importante</td>
-  </tr>
-  <tr>
-   <td>Dashboard - Filtro de funcionário, departamento, cliente e data</td>
-   <td>Desejável</td>
   </tr>
   </table>
 </div>
@@ -253,12 +201,9 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
 # Sprint 01
 
 ## User Stories
-- [x] Como administrador do sistema, desejo cadastrar, editar e visualizar todos os clientes que entrarem em contato com a empresa.
-- [x] Como administrador do sistema, desejo cadastrar, editar e visualizar todos os departamentos da empresa.
-- [x] Como administrador do sistema, desejo cadastrar, editar e visualizar todos os funcionários da empresa.
-- [x] Como cliente da empresa, desejo fazer requisição de serviços de inspeção para o meu estabelecimento.
-- [x] Como administrador, desejo que meu sistema tenha filtros de pesquisa para os cadastros
-- [x] Como administrador, desejo que meu sistema envie e-mail para o cliente após a finalização do cadastro
+- [x] Como planejador de inspeção, desejo cadastrar, editar e visualizar todos os clientes, departamentos e funcionários da empresa para que seja possível iniciar o registro da prestação do serviço.
+- [x] Como gerente de marketing, desejo fazer com que meu futuro cliente encontre nossa empresa de forma atrativa e entenda a prestação de serviço que fornecemos, para que seja possível a contratação.
+- [x] Como cliente, desejo ter acesso ao portal do usuário e realizar as requisições de inspeção para o meu prédio, pois preciso do laudo de inspeção para tornar o ambiente seguro. 
 
 ## Análise de Mercado
 
@@ -452,8 +397,9 @@ create table administrador(
 # Sprint 02
 
 ## User Stories
-- [ ] Como administrador, desejo cadastrar, editar, deletar e visualizar todas as ordens de serviço.
-- [ ] Como supervisor, quero atribuir ordens de serviço para os técnicos
+- [ ] Como supervisor de serviços, desejo cadastrar checklists de inspeção para que meu subordinado consiga realizar a inspeção do serviço e concluir uma ordem de serviço.
+- [ ] Como planejador de inspeção, desejo cadastrar, editar e visualizar as ordens de serviços a partir das requisições que chegam pelo portal do usuário.
+- [ ] Como técnico, desejo avaliar o local e consequentemente anotar irregularidades que a inspeção cobra, e ao final aprovar ou reprovar a inspeção do local.
 - [ ] Como administrador quero ter uma tela para acompanhamento de Ordens de Serviço.
 - [ ] Como administrador quero pesquisar a ordem de serviço por numeração, status ou departamento.
 - [ ] Como administrador quero automatizar o envio do e-mail após a criação da ordem de serviço
