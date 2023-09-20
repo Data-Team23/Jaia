@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.dataTeam.jaia.jaia.model.Departamento;
 import com.dataTeam.jaia.jaia.repository.DepartamentoRepository;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -55,16 +56,29 @@ public class DepartamentoService implements IDepartamentoService {
 
 
 
-
-
-
-
-
         //list
         public List<Departamento> listarDepartamento(){
             return departRepo.findAll();
         }
 
+
+
+        //atualizar
+        @Override
+        @Transactional
+        public Departamento atualizarDepartamento(Long id, Departamento atualizarDepartamento) {
+            Optional<Departamento> existingDepartmentOptional = departRepo.findById(id);
+
+            if (existingDepartmentOptional.isPresent()) {
+                Departamento existingDepartment = existingDepartmentOptional.get();
+                existingDepartment.setNome_depart(atualizarDepartamento.getNome_depart());
+
+                return departRepo.save(existingDepartment);
+            } else {
+                throw new EntityNotFoundException("O departamento encontrado não foi encontrado: " + id);
+            }
+        }
+    }
     
     
-}
+
