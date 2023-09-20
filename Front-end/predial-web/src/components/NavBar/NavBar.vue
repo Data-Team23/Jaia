@@ -62,6 +62,15 @@
                     <div class="radius-bottom"></div>
                 </div>
             </li>
+            <li :class="{ 'active': $route.path === '/Dashboard' }">
+                <div class="nav-text">
+                    <div class="radius-top"></div>
+                    <router-link to="/dashboard" class="router-link">
+                        Dashboard
+                    </router-link>
+                    <div class="radius-bottom"></div>
+                </div>
+            </li>
 
         </ul>
         <br><br>
