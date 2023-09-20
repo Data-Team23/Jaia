@@ -207,7 +207,11 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
 ## User Stories
 - [x] Como planejador de inspeção, desejo cadastrar, editar e visualizar todos os clientes, departamentos e funcionários da empresa para que seja possível iniciar o registro da prestação do serviço.
 - [x] Como gerente de marketing, desejo fazer com que meu futuro cliente encontre nossa empresa de forma atrativa e entenda a prestação de serviço que fornecemos, para que seja possível a contratação.
-- [x] Como cliente, desejo ter acesso ao portal do usuário e realizar as requisições de inspeção para o meu prédio, pois preciso do laudo de inspeção para tornar o ambiente seguro. 
+- [x] Como cliente, desejo ter acesso ao portal do usuário e realizar as requisições de inspeção para o meu prédio, pois preciso do laudo de inspeção para tornar o ambiente seguro.
+
+## Burndown
+![image](https://github.com/Data-Team23/Jaia/assets/102003274/8895d5bf-aa0a-42c2-88c5-806d243d5f61)
+
 
 ## Análise de Mercado
 
