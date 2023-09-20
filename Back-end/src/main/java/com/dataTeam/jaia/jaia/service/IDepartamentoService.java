@@ -14,13 +14,9 @@ public interface IDepartamentoService {
     //delete departamento
     ResponseEntity<String> deleteDepartamento(Long id);
 
-    //delete teste
-    //Departamento deleteDepartamento1 (Long id);
-
     //listar departamento
     List<Departamento> listarDepartamento();
 
     //update departamento
-    //ResponseEntity<String> updateDepartamento(Long id);
-
+    Departamento atualizarDepartamento(Long id, Departamento atualizarDepartamento);
 }
