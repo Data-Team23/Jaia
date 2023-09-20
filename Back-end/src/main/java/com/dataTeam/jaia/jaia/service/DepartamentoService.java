@@ -41,16 +41,16 @@ public class DepartamentoService implements IDepartamentoService {
 
     //delete
     @Override
-    public  ResponseEntity<String> deleteDepartamento(Long id) {
-        Optional<Departamento> departamentoOptional = departRepo.findById(id);
+    public  ResponseEntity<String> deleteDepartamento(Long cod_depart) {
+        Optional<Departamento> departamentoOptional = departRepo.findByCod_depart(cod_depart);
         
         if (departamentoOptional.isPresent()) {
             // O departamento foi encontrado, podemos excluí-lo
-            departRepo.deleteById(id);
-            return ResponseEntity.ok("Departamento com ID " + id + " foi excluído com sucesso.");
+            departRepo.deleteByCod_depart(cod_depart);
+            return ResponseEntity.ok("Departamento com ID " + cod_depart + " foi excluído com sucesso.");
         } else {
             // O departamento não foi encontrado
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Departamento com ID " + id + " não encontrado.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Departamento com ID " + cod_depart + " não encontrado.");
         }
     }
 
@@ -67,7 +67,7 @@ public class DepartamentoService implements IDepartamentoService {
         @Override
         @Transactional
         public Departamento atualizarDepartamento(Long id, Departamento atualizarDepartamento) {
-            Optional<Departamento> existingDepartmentOptional = departRepo.findById(id);
+            Optional<Departamento> existingDepartmentOptional = departRepo.findByCod_depart(id);
 
             if (existingDepartmentOptional.isPresent()) {
                 Departamento existingDepartment = existingDepartmentOptional.get();
