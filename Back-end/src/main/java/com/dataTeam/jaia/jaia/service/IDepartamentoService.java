@@ -12,11 +12,11 @@ public interface IDepartamentoService {
     ResponseEntity<Departamento> novoDepartamento(Departamento departamento);
 
     //delete departamento
-    ResponseEntity<String> deleteDepartamento(Long id);
+    ResponseEntity<String> deleteDepartamento(Long codDepart);
 
     //listar departamento
     List<Departamento> listarDepartamento();
 
     //update departamento
-    Departamento atualizarDepartamento(Long id, Departamento atualizarDepartamento);
+    Departamento atualizarDepartamento(Long codDepart, Departamento atualizarDepartamento);
 }
