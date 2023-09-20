@@ -127,3 +127,34 @@ span:hover {
 }
 
 
+/* form */
+
+.box-form{
+  padding: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 5px;
+  align-items: center;
+  height: 60vh; 
+  border-radius: 20px;
+  background-color:#B3B3B3;
+  box-shadow: 5px 5px 20px 0 #00000030;
+}
+
+.box-titulo{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 50px;
+  color: white;
+  font-size: 20px;
+}
+
+.box-imagem{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+  gap: 100px;
+}

@@ -4,7 +4,12 @@
             <div class="wrapper">
                 <div class="home-titulo">
                     <h2 class="title">O que é a Predial?</h2>
-                    <button class="button"><img src="@/assets/whats.png" alt="Logo" class="whats-logo" />Fale Conosco</button>
+                    <a href="https://wa.me/5512982156294" target="_blank">
+                        <button class="button">
+                        <img src="@/assets/whats.png" alt="Logo" class="whats-logo" />
+                        Fale Conosco
+                        </button>
+                    </a>
                 </div>
                 <div class="home-img">
                 <img class="celular" src="@/assets/celular.png" alt="Celular com logo">
@@ -18,7 +23,7 @@
                     <img src="@/assets/solucoes1.png" alt="Ordem de Serviço"/>
                     <h>Ordem de Serviço</h>
                     <span class="button-solucoes" id="detalhes-os" @click="detalhesOS = true">Ver detalhes</span>
-                    <v-dialog v-model="detalhesOS">
+                    <v-dialog v-model="detalhesOS" width="80%">
                             <OrdemServicoForm></OrdemServicoForm>
                     </v-dialog>
                 </div>
@@ -26,7 +31,7 @@
                     <img src="@/assets/solucoes2.png" alt="Checklist"/>
                     <h>Checklist</h>
                     <span class="button-solucoes" id="detalhes-ck" @click="detalhesCK = true">Ver detalhes</span>
-                    <v-dialog v-model="detalhesCK">
+                    <v-dialog v-model="detalhesCK" width="80%">
                             <ChecklistForm></ChecklistForm>
                     </v-dialog>
                 </div>
@@ -34,7 +39,7 @@
                     <img src="@/assets/solucoes3.png" alt="Laudo Tecnico"/>
                     <h>Laudo Técnico</h>
                     <span class="button-solucoes" id="detalhes-lt" @click="detalhesLT = true">Ver detalhes</span>
-                    <v-dialog v-model="detalhesLT">
+                    <v-dialog v-model="detalhesLT" width="80%">
                             <LaudoTecnicoForm></LaudoTecnicoForm>
                     </v-dialog>
                 </div>
@@ -56,7 +61,7 @@
 </template>
 
 <script setup lang="ts">
-    import './styles/style.css'
+    import './style.css'
     import { ref } from 'vue';
     import LaudoTecnicoForm from "./LaudoTecnicoView.vue";
     import ChecklistForm from "./ChecklistView.vue";
