@@ -163,12 +163,12 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
     <td><b>Importância</b></td>
   </tr>
   <tr>
-   <td>Relatório de atividades da empresa</td>
+   <td>Cadastro, edição e visualização dos checklists de inspeção</td>
    <td>Importante</td>
   </tr>
   <tr>
-   <td>Automatização de envio de e-mail após criação de Ordem de Serviço</td>
-   <td>Desejável</td>
+   <td>Relatório de atividades da empresa</td>
+   <td>Importante</td>
   </tr>
   </table>
 </div>
@@ -183,8 +183,12 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
     <td><b>Importância</b></td>
   </tr>
   <tr>
+   <td>Automatização de envio de e-mail após criação de Ordem de Serviço</td>
+   <td>Desejável</td>
+  </tr>
+  <tr>
    <td>Automatização de envio de e-mail após aprovação/reprovação do Laudo técnico</td>
-   <td>Imprescindível</td>
+   <td>Desejável</td>
   </tr>
   </table>
 </div>
@@ -300,14 +304,7 @@ Uma das personas gerais para esse tipo de sistema pode ser definida conforme a i
 
 ### Melhorias
 
-> [!NOTE]
-> Highlights information that users should take into account, even when skimming.
-
-> [!IMPORTANT]
-> Crucial information necessary for users to succeed.
-
-> [!WARNING]
-> Critical content demanding immediate user attention due to potential risks.
+- [ ] Retirar planos
 
 
 ## Modelagem de Dados
@@ -397,29 +394,19 @@ create table administrador(
 # Sprint 02
 
 ## User Stories
-- [ ] Como supervisor de serviços, desejo cadastrar checklists de inspeção para que meu subordinado consiga realizar a inspeção do serviço e concluir uma ordem de serviço.
 - [ ] Como planejador de inspeção, desejo cadastrar, editar e visualizar as ordens de serviços a partir das requisições que chegam pelo portal do usuário.
 - [ ] Como técnico, desejo avaliar o local e consequentemente anotar irregularidades que a inspeção cobra, e ao final aprovar ou reprovar a inspeção do local.
-- [ ] Como administrador quero ter uma tela para acompanhamento de Ordens de Serviço.
-- [ ] Como administrador quero pesquisar a ordem de serviço por numeração, status ou departamento.
-- [ ] Como administrador quero automatizar o envio do e-mail após a criação da ordem de serviço
 
 
 # Sprint 03
 
 ## User Stories
-- [ ] Como cliente, quero não criar requisições novas para inspeções corriqueiras
-- [ ] Como técnico, quero visualizar todas as ordens de serivço em meu nome
-- [ ] Como técnico quero aprovar, reprovar e comentar em todas as ordens de serviços abertas
-- [ ] Como técnico desejo preencher laudos técnicos após a finalização da Ordem de Serviço
-- [ ] Como cliente, desejo receber um email automático com o laudo técnico aprovado/reprovado
+- [ ] Como supervisor de serviços, desejo cadastrar checklists de inspeção para que meu subordinado consiga realizar a inspeção do serviço e concluir uma ordem de serviço.
+- [ ] Como supervisor de seviços, desejo entender como estão as métricas dos serviços prestados para que seja possível analisar as demandas que tivemos ao longo do tempo e planejar as demandas para os próximos meses.
 
 # Sprint 04
 
 ## User Stories
-- [ ] Como supervisor, desejo ter um relatório personalizado
-- [ ] Como supervisor, desejo ter um dashboard com um gráfico de ordens finalizadas
-- [ ] Como supervisor, desejo ter um dashboard com um gráfico de ordens por departamento
-- [ ] Como supervisor, desejo ter um dashboard com um gráfico de ordens funcionário
-- [ ] Como supervisor, desejo ter filtros de departamento, cliente e data
+- [ ] Como cliente, desejo ser avisado quando uma requisição que fiz for atendida e criada uma ordem de serviço para que seja possível o acompanhamento dos serviços que vão ser prestados.
+- [ ] Como cliente desejo receber a aprovação ou reprovação do laudo técnico para que seja possível guardar o laudo ou até mesmo tomar ações em relação às reprovações que tivemos.
 
