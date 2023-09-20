@@ -1,4 +1,4 @@
-package com.dataTeam.jaia.jaia.repository;
-
-public class UsuarioRepository {
-}
+//package com.dataTeam.jaia.jaia.repository;
+//
+//public class UsuarioRepository {
+//}

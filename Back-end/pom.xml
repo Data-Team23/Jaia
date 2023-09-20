@@ -45,6 +45,16 @@
 			<artifactId>ojdbc11-production</artifactId>
 			<version>21.5.0.0</version>
 			<type>pom</type>
+			<exclusions>
+				<exclusion>
+					<groupId>com.oracle.database.ha</groupId>
+					<artifactId>ons</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.oracle.database.ha</groupId>
+					<artifactId>simplefan</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.oracle.database.security</groupId>
