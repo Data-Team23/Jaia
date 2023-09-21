@@ -3,6 +3,10 @@
 .select-field{
     background-color: #626288;
     height: 100%;
+<<<<<<< HEAD:Landing-page/predial-web/src/components/Select/style.css
+=======
+    min-height: 40px;
+>>>>>>> origin/front-end:Front-end/predial-web/src/components/Select/style.css
     border-radius: 20px;
     color: var(--primary-text-color-2);
     border: 1px solid #626288;

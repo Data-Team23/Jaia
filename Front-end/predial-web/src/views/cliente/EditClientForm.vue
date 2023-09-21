@@ -1,26 +1,43 @@
 <template>
     <div class="form-title">
-        <h2>Adicionar cliente</h2>
+        <h2>Atualizar cliente</h2>
     </div>
     <form action="" class="add-form">
         <div class="input-inline-field">
-            <InputField label="CNPJ:" placeholder="00.000.000/0000-01" v-model="cnpjValue">
+            <InputField 
+                label="CNPJ:" 
+                value="00.000.000/0000-01"
+                :model-value="cnpjValue">
             </InputField>
-            <InputField label="Telefone:" placeholder="(12) 996534789" v-model="phoneValue">
+            <InputField 
+                label="Telefone:" 
+                placeholder="Informe o telefone:"
+                :model-value="phoneValue">
             </InputField>
         </div>
         <div class="input-inline-field">
-            <InputField label="Nome:" placeholder="Informe o nome" v-model="nameValue">
+            <InputField 
+                label="Nome:" 
+                placeholder="Informe o nome:"
+                :model-value="nameValue">
             </InputField>
-            <SelectField label="Plano:" :option-values="options" v-model="planeValue" value-prop="value" display-prop="label">
+            <SelectField 
+                label="Plano:" 
+                :option-values="options"
+                v-model="planeValue"
+                value-prop="value" 
+                display-prop="label">
             </SelectField>
         </div>
         <div class="input-inline-field">
-            <InputField label="Endereço:" placeholder="Rua Itajaí n° 435" v-model="addressValue">
+            <InputField 
+                label="Endereço:" 
+                placeholder="Informe o endereço:"
+                :model-value="addressValue">
             </InputField>
         </div>
         <div class="send-button">
-            <InputButton text-button="Salvar" @click="createClient"></InputButton>
+            <InputButton text-button="Salvar" @click="updateClient"></InputButton>
         </div>
     </form>
 </template>
@@ -30,12 +47,6 @@
     import InputButton from '@/components/Button/InputButton.vue';
     import SelectField from '@/components/Select/SelectField.vue';
     import { ref } from 'vue';
-
-    const cnpjValue = ref("")
-    const phoneValue = ref("")
-    const nameValue = ref("")
-    const planeValue = ref("")
-    const addressValue = ref("")
 
     const options = [
         {
@@ -50,9 +61,15 @@
             label: 'Bronze',
             value: 'bronze'
         },
-    ]  
+    ]
+    
+    const cnpjValue = ref('09.888.344/0001-01')
+    const phoneValue = ref('(12) 99689-5533')
+    const nameValue = ref('João Carlos')
+    const planeValue = ref(options[0].value)
+    const addressValue = ref('Rua Itajaí n° 245')
 
-    function createClient(){
+    function updateClient(){
         event?.preventDefault()
         const client = {
             cnpjValue: cnpjValue.value,
@@ -63,4 +80,5 @@
         }
         console.log(client)
     }
+
 </script>
