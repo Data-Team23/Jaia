@@ -26,8 +26,8 @@ public class ClienteService implements IClienteService {
                 cliente.getSenha().isBlank() ||
                 cliente.getCnpj() == null ||
                 cliente.getCnpj().isNaN() ||
-//                cliente.getEmail() == null ||
-//                cliente.getEmail().isBlank()||
+                cliente.getEmail() == null ||
+                cliente.getEmail().isBlank()||
 //                cliente.getLogadouro() == null ||
 //                cliente.getLogadouro().isBlank() ||
                 cliente.getTelefone() == null ||
@@ -48,7 +48,6 @@ public class ClienteService implements IClienteService {
         }
         return clienteOp.get();
     }
-
 
 
 }
