@@ -66,8 +66,8 @@ public class DepartamentoService implements IDepartamentoService {
         //atualizar
         @Override
         @Transactional
-        public Departamento atualizarDepartamento(Long id, Departamento atualizarDepartamento) {
-            Optional<Departamento> existingDepartmentOptional = departRepo.findByCod_depart(id);
+        public Departamento atualizarDepartamento(Long cod_depart, Departamento atualizarDepartamento) {
+            Optional<Departamento> existingDepartmentOptional = departRepo.findByCod_depart(cod_depart);
 
             if (existingDepartmentOptional.isPresent()) {
                 Departamento existingDepartment = existingDepartmentOptional.get();
@@ -75,7 +75,7 @@ public class DepartamentoService implements IDepartamentoService {
 
                 return departRepo.save(existingDepartment);
             } else {
-                throw new EntityNotFoundException("O departamento encontrado não foi encontrado: " + id);
+                throw new EntityNotFoundException("O departamento encontrado não foi encontrado: " + cod_depart);
             }
         }
     }
