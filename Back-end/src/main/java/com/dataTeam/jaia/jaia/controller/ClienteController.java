@@ -4,10 +4,10 @@ package com.dataTeam.jaia.jaia.controller;
 import com.dataTeam.jaia.jaia.model.Cliente;
 import com.dataTeam.jaia.jaia.service.IClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/cliente")
@@ -32,16 +32,16 @@ public class ClienteController {
         return service.buscarPorId(id);
     }
 
-    @GetMapping("/emails")
-    public List<String> buscarTodosEmails() {
-        List<Cliente> clientes = service.buscarTodosClientes();
+    @GetMapping("/email/{id}")
+    public ResponseEntity<String> buscarEmailPorId(@PathVariable("id") Long id) {
+        Cliente cliente = service.buscarPorId(id);
 
-        // Use a função stream e map para extrair apenas os emails
-        List<String> emails = clientes.stream()
-                .map(Cliente::getEmail)
-                .collect(Collectors.toList());
+        if (cliente == null) {
+            return ResponseEntity.notFound().build();
+        }
 
-        return emails;
+        String email = cliente.getEmail();
+        return ResponseEntity.ok(email);
     }
 
 }
