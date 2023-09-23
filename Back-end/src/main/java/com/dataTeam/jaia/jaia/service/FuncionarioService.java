@@ -10,7 +10,7 @@ import com.dataTeam.jaia.jaia.repository.FuncionarioRepository;
 
 public class FuncionarioService implements IFuncionario{
 
-    @Autowired
+    @Autowired(required=true)
     private FuncionarioRepository funcionarioRepo;
 
     public Funcionario novoFuncionario(Funcionario funcionario){
