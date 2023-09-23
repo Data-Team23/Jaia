@@ -20,12 +20,8 @@ public class Cliente {
     @Column(name = "senha_cli")
     private String senha;
 
-//    @Column(name = "")
-//    private String email;
-//
-//    @Column(name = "")
-//    private String logadouro;
-
+    @Column(name = "email_cli")
+    private String email;
     @Column(name = "telefone_cli")
     private Double telefone;
 
@@ -65,21 +61,13 @@ public class Cliente {
         this.senha = senha;
     }
 
-//    public String getEmail() {
-//        return email;
-//    }
-//
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
-//
-//    public String getLogadouro() {
-//        return logadouro;
-//    }
-//
-//    public void setLogadouro(String logadouro) {
-//        this.logadouro = logadouro;
-//    }
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Double getTelefone() {
         return telefone;
