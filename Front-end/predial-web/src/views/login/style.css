@@ -1,0 +1,41 @@
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-box{
+    background-color: #3A3A5A;
+    width: 500px;
+    height: 360px;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 20px 0 rgb(0, 0, 0, 0.3);
+}
+
+.input-field{
+    width: 90%;
+    padding: 13px;
+}
+
+.button{
+    padding: 10px;
+    margin: 20px;
+    color: #666666;
+    background-color: white;
+    width: 100px;
+    border-radius: 20px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
