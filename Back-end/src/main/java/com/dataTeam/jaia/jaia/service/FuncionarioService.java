@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.dataTeam.jaia.jaia.model.Funcionario;
 import com.dataTeam.jaia.jaia.repository.FuncionarioRepository;
 
+import jakarta.transaction.Transactional;
+
 public class FuncionarioService implements IFuncionario{
 
     @Autowired(required=true)

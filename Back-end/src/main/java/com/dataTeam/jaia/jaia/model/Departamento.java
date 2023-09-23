@@ -5,18 +5,24 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+
 @Entity
 @Table(name = "departamento")
 public class Departamento {
+
+
+//private Funcionario funcionario;
+
     @Id
-    @Column(name = "cod_dapart")
+    @Column(name = "cod_depart")
     private Long cod_depart;
 
     @Column(name = "nome_depart", unique = true)
     private String nome_depart;
 
-    @OneToMany(mappedBy = "departamento", cascade = CascadeType.ALL)
-    private List<Funcionario> funcionarios; 
+     //@OneToMany(mappedBy = "departamento")
+    //private List<Funcionario> funcionarios;
+
 
     public Long getCod_depart() {
         return cod_depart;
@@ -38,6 +44,26 @@ public class Departamento {
     public Departamento(Long cod_depart, String nome_depart){
         this.cod_depart = cod_depart;
         this.nome_depart = nome_depart;
+
     }
 
+
+
+    /*public String getNome_func() {
+        return funcionario.getNome_func();
+    }
+
+
+    public void setNome_func(String nome){
+        funcionario.setNome_func(nome);
+    }*/
+    
+
 }
+
+
+
+
+    
+
+

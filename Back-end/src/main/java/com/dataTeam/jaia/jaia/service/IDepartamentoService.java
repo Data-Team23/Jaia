@@ -2,21 +2,23 @@ package com.dataTeam.jaia.jaia.service;
 
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
-
 import com.dataTeam.jaia.jaia.model.Departamento;
 
 public interface IDepartamentoService {
 
     //add departamento
-    ResponseEntity<Departamento> novoDepartamento(Departamento departamento);
+
+    public Departamento novoDepartamento( Departamento departamento);
 
     //delete departamento
-    ResponseEntity<String> deleteDepartamento(Long codDepart);
+
+    public Departamento deleteDepartamento(Long cod_depart);
 
     //listar departamento
-    List<Departamento> listarDepartamento();
+
+    public List<Departamento> listarDepartamento();
 
     //update departamento
-    Departamento atualizarDepartamento(Long codDepart, Departamento atualizarDepartamento);
+    public Departamento atualizarDepartamento(Long cod_depart, Departamento departamento);
+
 }

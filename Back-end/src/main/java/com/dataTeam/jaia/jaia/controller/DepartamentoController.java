@@ -3,10 +3,7 @@ package com.dataTeam.jaia.jaia.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,71 +24,26 @@ public class DepartamentoController {
     private IDepartamentoService service;
 
     // Adicionar departamento
-    @PostMapping("/departamentos")
-    public ResponseEntity<Departamento> novoDepartamento(@RequestBody Departamento departamento) {
-        try {
-            // Chame o serviço para criar um novo departamento
-            ResponseEntity<Departamento> resultado = service.novoDepartamento(departamento);
-
-            // Verifique se o serviço retornou com sucesso
-            if (resultado.getStatusCode() == HttpStatus.CREATED) {
-                // Retorne um ResponseEntity com o departamento criado e status HTTP 201 CREATED
-                return ResponseEntity.status(HttpStatus.CREATED).body(resultado.getBody());
-            } else {
-                // Se o serviço não retornou um status CREATED, retorne um ResponseEntity com status HTTP 500 INTERNAL_SERVER_ERROR
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-            }
-        } catch (IllegalArgumentException e) {
-            // Se os dados do departamento forem inválidos, retorne um ResponseEntity com status HTTP 400 BAD_REQUEST
-            return ResponseEntity.badRequest().build();
-        } catch (Exception e) {
-            // Se ocorrer outro erro, retorne um ResponseEntity com status HTTP 500 INTERNAL_SERVER_ERROR
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+    @PostMapping("/adicionar")
+    public Departamento novoDepartamento(@RequestBody Departamento departamento){
+        return service.novoDepartamento(departamento);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteDepartamento(@PathVariable Long id) {
-        ResponseEntity<String> response;
-        try {
-            ResponseEntity<String> delete = service.deleteDepartamento(id);
-
-        if (delete.getStatusCode() == HttpStatus.OK) {
-            response = ResponseEntity.ok("Departamento com ID " + id + " foi excluído com sucesso.");
-        } else {
-            response = ResponseEntity.status(HttpStatus.NOT_FOUND).body("Departamento com ID " + id + " não encontrado.");
-        }
-    } catch (IllegalArgumentException e) {
-        // Se os dados do departamento forem inválidos, retorne um ResponseEntity com status HTTP 400 BAD_REQUEST
-        response = ResponseEntity.badRequest().build();
-    } catch (Exception e) {
-        // Se ocorrer outro erro, retorne um ResponseEntity com status HTTP 500 INTERNAL_SERVER_ERROR
-        response = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    // Deletar departamento por ID
+    @GetMapping("/delete/{cod_depart}")
+    public Departamento deleteDepartamento(@PathVariable("cod_depart") Long cod_depart){
+        return service.deleteDepartamento(cod_depart);
     }
-    return response;
-}
 
-    //listar
-    @GetMapping("/{id}")
+    // Listar todos os departamentos
+    @GetMapping("/buscar")
     public List<Departamento> buscarTodos(){
         return service.listarDepartamento();
-        
     }
 
-    //update
-    @PutMapping("/{id}")
-    public ResponseEntity<Departamento> atualizarDepartamento(@PathVariable Long id, @RequestBody Departamento atualizarDepartamento) {
-        Departamento savedDepartment = service.atualizarDepartamento(id, atualizarDepartamento);
-        return ResponseEntity.ok(savedDepartment);
+    // Atualizar departamento por ID
+    @PutMapping("atualizar/{cod_depart}")
+    public Departamento atualizarDepartamento(@PathVariable("cod_depart") Long cod_depart, @RequestBody Departamento atualizarDepartamento) {
+        return service.atualizarDepartamento(cod_depart, atualizarDepartamento);
     }
-
-
-
-
-
-    
 }
-
-
-
-

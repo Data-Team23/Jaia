@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.dataTeam.jaia.jaia.model.Departamento;
@@ -20,65 +18,58 @@ public class DepartamentoService implements IDepartamentoService {
     @Autowired
     private DepartamentoRepository departRepo;
 
-    //add
     @Transactional
-    public ResponseEntity<Departamento> novoDepartamento(Departamento departamento) {
-        try {
-            if (departamento == null ||
+    public Departamento novoDepartamento(Departamento departamento){
+        if (departamento == null ||
                 departamento.getCod_depart() == null ||
                 departamento.getNome_depart() == null ||
-                departamento.getNome_depart().isBlank()) {
-                throw new IllegalArgumentException("Departamento com atributos inválidos");
-            }
-
-            Departamento novoDepartamento = departRepo.save(departamento);
-    
-            return ResponseEntity.ok(novoDepartamento);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+                departamento.getNome_depart().isBlank()){
+                //departamento.getNome_func() == null ||
+                //departamento.getNome_func().isBlank()){
+            throw new IllegalArgumentException("Não foi possível cadastrar o novo departamento, tente novamente");
         }
+        return departRepo.save(departamento);
     }
 
-    //delete
-    @Override
-    public  ResponseEntity<String> deleteDepartamento(Long cod_depart) {
-        Optional<Departamento> departamentoOptional = departRepo.findByCod_depart(cod_depart);
-        
-        if (departamentoOptional.isPresent()) {
-            // O departamento foi encontrado, podemos excluí-lo
-            departRepo.deleteByCod_depart(cod_depart);
-            return ResponseEntity.ok("Departamento com ID " + cod_depart + " foi excluído com sucesso.");
+    public List<Departamento> listarDepartamento(){
+        return departRepo.findAll();
+    }
+
+    public Departamento deleteDepartamento(Long cod_depart){
+        Optional<Departamento> delete = departRepo.findById(cod_depart);
+
+        if (delete.isPresent()){
+            departRepo.deleteById(cod_depart);
+            return delete.get(); // Retorna o departamento excluído
         } else {
-            // O departamento não foi encontrado
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Departamento com ID " + cod_depart + " não encontrado.");
+            throw new IllegalArgumentException("Departamento não encontrado.");
         }
     }
 
+    @Transactional
+    public Departamento atualizarDepartamento(Long cod_depart, Departamento atualizarDepartamento) {
+    Optional<Departamento> existingDepartmentOptional = departRepo.findById(cod_depart);
 
-
-        //list
-        public List<Departamento> listarDepartamento(){
-            return departRepo.findAll();
+    if (existingDepartmentOptional.isPresent()) {
+        Departamento existingDepartment = existingDepartmentOptional.get();
+        
+        // Verificar e atualizar apenas campos não nulos
+        if (atualizarDepartamento.getNome_depart() != null) {
+            existingDepartment.setNome_depart(atualizarDepartamento.getNome_depart());
         }
+        
+        /*if (atualizarDepartamento.getNome_func() != null) {
+            existingDepartment.setNome_func(atualizarDepartamento.getNome_func());
+        }*/
 
-
-
-        //atualizar
-        @Override
-        @Transactional
-        public Departamento atualizarDepartamento(Long cod_depart, Departamento atualizarDepartamento) {
-            Optional<Departamento> existingDepartmentOptional = departRepo.findByCod_depart(cod_depart);
-
-            if (existingDepartmentOptional.isPresent()) {
-                Departamento existingDepartment = existingDepartmentOptional.get();
-                existingDepartment.setNome_depart(atualizarDepartamento.getNome_depart());
-
-                return departRepo.save(existingDepartment);
-            } else {
-                throw new EntityNotFoundException("O departamento encontrado não foi encontrado: " + cod_depart);
-            }
-        }
+        return departRepo.save(existingDepartment);
+    } else {
+        throw new EntityNotFoundException("O departamento encontrado não foi encontrado: " + cod_depart);
     }
+}
+
+}
+
     
     
 

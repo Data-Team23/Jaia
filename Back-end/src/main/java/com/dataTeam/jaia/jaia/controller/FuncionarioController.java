@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dataTeam.jaia.jaia.model.Funcionario;
 import com.dataTeam.jaia.jaia.service.FuncionarioService;
 
-import jakarta.transaction.Transactional;
-
 @RestController
 @RequestMapping(value = "/funcionarios")
 @CrossOrigin
@@ -57,7 +55,7 @@ public class FuncionarioController {
 
     @PutMapping("/atualizar/{cpf}")
     public ResponseEntity<Funcionario> atualizarFuncionario(
-        @PathVariable Integer cpf, 
+        @PathVariable Integer cpf,
         @RequestBody Funcionario novoFuncionario
     ) {
         Funcionario funcionarioAtualizado = funcionarioService.atualizarFuncionario(cpf, novoFuncionario);
