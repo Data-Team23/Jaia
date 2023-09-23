@@ -74,9 +74,10 @@ span{
     margin-bottom: 30px;
 }
 
-.search-input{
+.search-filter{
     display: flex;
     align-items: end;
+    width: 400px;
 }
 
 .top-list h3{
@@ -84,14 +85,32 @@ span{
     color: #FFFFFF;
 }
 
-.search-input input{
-    width: 330px;
+.search-filter select{
+    background-color: #777795;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px 2px #00000025;
+    color: #FFFFFFFF;
+    padding: 0 10px;
+    margin: 0 10px;    
+}
+
+.search-filter input{
+    width: 70%;
+    height: 40px;
     background-color: #777795;
     border-radius: 10px;
     box-shadow: 4px 4px 10px 2px #00000025;
     color: #FFFFFFFF;
     padding: 0 10px;
     caret-color: #FFFFFF;
+    border: 1px solid #777795;
+    &::placeholder{
+        color: #FFFFFF60;
+    }
+    &:focus{
+        border: 1px solid var(--primary-link-color);
+        outline: none;
+    }
 }
 
 table tbody:nth-child(odd){
@@ -127,4 +146,33 @@ tbody tr td:first-child{
 
 .table-container{
     border-radius: 20px;
+}
+
+.pagination-list{
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.pagination-list li{
+    padding: 5px 12px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.pagination-list li a{
+    background-color: transparent;
+    color: var(--primary-text-color-2);
+    &:hover{
+        color: var(--primary-link-color);
+    }
+}
+
+.pagination-list li .active{
+    color: var(--primary-link-color);
+}
+
+::v-deep .v-overlay__content{
+    
+        max-height: 100%;
 }

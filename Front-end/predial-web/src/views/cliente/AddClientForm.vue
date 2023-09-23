@@ -12,7 +12,7 @@
         <div class="input-inline-field">
             <InputField label="Nome:" placeholder="Informe o nome" v-model="nameValue">
             </InputField>
-            <SelectField label="Plano:" :option-values="options" v-model="planeValue">
+            <SelectField label="Plano:" :option-values="options" v-model="planeValue" value-prop="value" display-prop="label">
             </SelectField>
         </div>
         <div class="input-inline-field">
@@ -38,10 +38,19 @@
     const addressValue = ref("")
 
     const options = [
-        'Gold',
-        'Silver',
-        'Bronze'
-    ]
+        {
+            label: 'Gold',
+            value: 'gold'
+        },
+        {
+            label: 'Silver',
+            value: 'silver'
+        },
+        {
+            label: 'Bronze',
+            value: 'bronze'
+        },
+    ]  
 
     function createClient(){
         event?.preventDefault()
