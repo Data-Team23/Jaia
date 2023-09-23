@@ -2,17 +2,21 @@
     <section class="box-form">
     <div class="box-titulo">
         <h>Detalhes - Checklist</h>
-        <p>
-        Este é um exemplo de texto longo que precisa ser dividido em várias
-        linhas para melhor legibilidade. Você pode usar a tag &lt;br&gt; para
-        criar quebras de linha:
-        <br />
-        <br />
-        - Linha 1<br />
-        - Linha 2<br />
-        - Linha 3<br />
-        - Linha 4<br />
-        - E assim por diante...
+        <p class="tittle-form">Nossos Checklists são uma parte fundamental da Predial, oferecendo uma abordagem organizada para garantir a inspeção precisa de edifícios. Aqui está um breve resumo de como nossos Checklists funcionam:
+            <br />
+            <br />
+            Criação: Iniciar um Checklist é simples. Clientes e inspetores podem criar Checklists personalizados para inspecionar edifícios de forma específica.
+            <br />
+            Preenchimento: Durante a inspeção, os inspetores seguem o Checklist, marcando itens e observações conforme necessário.
+            <br />
+            Avaliação: Nossa plataforma avalia automaticamente os resultados do Checklist, destacando áreas que requerem atenção especial.
+            <br />
+            Relatórios Detalhados: Os clientes recebem relatórios detalhados que incluem os resultados da inspeção, permitindo uma análise completa do estado do edifício.
+            <br />
+            Melhoria Contínua: Usar Checklists ajuda a manter a qualidade das inspeções, contribuindo para a segurança e eficiência das estruturas urbanas.
+            <br />
+            <br />
+            Em resumo, nossos Checklists simplificam a inspeção de edifícios, fornecendo uma maneira organizada e eficaz de avaliar sua condição. Conte com a Predial para inspeções precisas e melhorias contínuas na manutenção de edifícios.
         </p>
     </div>
     <div class="box-imagem">

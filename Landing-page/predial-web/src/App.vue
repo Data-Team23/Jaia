@@ -26,6 +26,5 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    padding: 0 30px 0 15px;
   }
 </style>

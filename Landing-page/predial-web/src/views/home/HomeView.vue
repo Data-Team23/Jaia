@@ -4,6 +4,15 @@
             <div class="wrapper">
                 <div class="home-titulo">
                     <h2 class="title">O que é a Predial?</h2>
+                    <p class="tittle-somos">
+                        A Predial é a sua solução confiável para inspeções prediais sob medida. Somos uma plataforma dedicada a atender às necessidades dos nossos clientes que buscam inspecionar seus edifícios com eficiência e precisão.
+                        <br />
+                        <br />
+                        Concebida pela Jaia, a Predial permite que proprietários de edifícios, gerentes e administradores solicitem inspeções personalizadas para seus imóveis. Nossa plataforma intuitiva facilita o processo de agendar e coordenar inspeções, além de oferecer uma maneira eficaz de documentar detalhes relevantes e capturar evidências visuais.
+                        <br />
+                        <br />
+                        Com a Predial, você pode contar com relatórios instantâneos que embasam decisões fundamentadas. Elevamos o padrão das inspeções prediais, contribuindo para uma maior segurança e excelência nas estruturas urbanas. Confie na Predial para cuidar das suas necessidades de inspeção predial de forma eficiente e confiável.
+                    </p>
                     <a href="https://wa.me/5512982156294" target="_blank">
                         <button class="button">
                         <img src="@/assets/whats.png" alt="Logo" class="whats-logo" />
@@ -49,7 +58,7 @@
             <img src="@/assets/logo-predial-rodape.png" alt="Logo" class="logo"/>
             <div class="footer-text"> 
                 <div class="footer-contato">
-                    <h>Contato</h>
+                    <h>CONTATO</h>
                 </div>
                 <div class="footer-inf">
                     <p>Predial Consultoria LTDA | CNPJ: xxxxxxxx/xxxx-xx | R. Fatec, 04 | São José dos Campos – SP | CEP 00000-000</p>

@@ -51,75 +51,12 @@
           <span class="material-symbols-outlined" @click="addDialog = false"> close </span>
         </div>
         <AddRequisicoesForm></AddRequisicoesForm>
-                <th>CNPJ</th>
-                <th>Inspeção</th>
-                <th>Status Req.</th>
-                <th>Descrição</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody v-for="(requisition, index) in paginatedRequisitions" :key="index">
-              <tr>
-                <td>{{ index + 1 }}</td>
-                <td>{{ requisition.nome }}</td>
-                <td>{{ requisition.data }}</td>
-                <td>{{ requisition.cnpj }}</td>
-                <td>{{ requisition.inspecao }}</td>
-                <td>{{ requisition.status_req }}</td>
-                <td>{{ requisition.descricao }}</td>
-                <td>
-                  <span
-                    class="material-symbols-outlined"
-                    id="edit-button"
-                    @click="editDialog = true"
-                  >
-                    fullscreen_exit
-                  </span>
-                  <span
-                    class="material-symbols-outlined"
-                    id="delete-button"
-                    @click="deleteDialog = true"
-                  >
-                    delete
-                  </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="pagination">
-            <ul class="pagination-list">
-              <li
-                v-for="pageNumber in totalPages"
-                :key="pageNumber"
-                @click="changePage(pageNumber)"
-              >
-                <a :class="{ active: page === pageNumber }">
-                  {{ pageNumber }}
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <v-dialog v-model="addDialog" width="80%" height="fit-content" class="v-overlay__content">
-      <div class="add-client-container">
-        <div class="close-button">
-          <span class="material-symbols-outlined" @click="addDialog = false">
-            close
-          </span>
-        </div>
-        <div class="add-form-container">
-          <AddRequisicoesForm></AddRequisicoesForm>
-        </div>
       </div>
     </v-dialog>
     <v-dialog v-model="editDialog" width="80%">
       <div class="add-client-container">
         <div class="close-button">
-          <span class="material-symbols-outlined" @click="editDialog = false">
-            close
-          </span>
+          <span class="material-symbols-outlined" @click="editDialog = false"> close </span>
         </div>
         <UpdateRequisicoesForm></UpdateRequisicoesForm>
       </div>
@@ -129,14 +66,8 @@
         <h2>Tem certeza que deseja excluir ?</h2>
         <br />
         <div class="confirm-delete-button">
-          <InputButton
-            text-button="Sim"
-            @click="deleteDialog = false"
-          ></InputButton>
-          <InputButton
-            text-button="Não"
-            @click="deleteDialog = false"
-          ></InputButton>
+          <InputButton text-button="Sim" @click="deleteDialog = false"></InputButton>
+          <InputButton text-button="Não" @click="deleteDialog = false"></InputButton>
         </div>
       </div>
     </v-dialog>
@@ -144,9 +75,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import "./styles.css";
-import AddRequisicoesForm from "./AddRequisicoesView.vue";
 
 import { computed, onMounted, ref, watch } from "vue";
 import SelectField from "@/components/Select/SelectField.vue";

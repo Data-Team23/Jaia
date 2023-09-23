@@ -2,17 +2,24 @@
     <section class="box-form">
     <div class="box-titulo">
         <h>Detalhes - Laudo Técnico</h>
-        <p>
-        Este é um exemplo de texto longo que precisa ser dividido em várias
-        linhas para melhor legibilidade. Você pode usar a tag &lt;br&gt; para
-        criar quebras de linha:
-        <br />
-        <br />
-        - Linha 1<br />
-        - Linha 2<br />
-        - Linha 3<br />
-        - Linha 4<br />
-        - E assim por diante...
+        <p class="tittle-form">
+            Nossos Laudos Técnicos são essenciais na Predial, fornecendo uma análise especializada para garantir a segurança e qualidade de edifícios. Aqui está um breve resumo de como nossos Laudos Técnicos funcionam:
+            <br />
+            <br />
+            Avaliação Especializada: Nossos técnicos altamente qualificados realizam uma avaliação detalhada de edifícios, identificando problemas estruturais e elétricos, entre outros.
+            <br />
+            Coleta de Dados: Durante a avaliação, são coletados dados relevantes para analisar a condição geral do edifício e suas instalações.
+            <br />
+            Análise Detalhada: Os dados coletados são minuciosamente analisados, resultando em um Laudo Técnico abrangente que destaca áreas que precisam de intervenção.
+            <br />
+            Recomendações e Soluções: Fornecemos recomendações específicas e soluções para quaisquer problemas identificados, visando a segurança e eficiência do edifício.
+            <br />
+            Relatórios Profissionais: Clientes recebem relatórios técnicos profissionais que servem como guia para a manutenção e melhoria contínua das estruturas.
+            <br />
+            Contribuindo para a Segurança: Nossos Laudos Técnicos são uma parte crucial na manutenção da segurança e excelência das estruturas urbanas.
+            <br />
+            <br />
+            Em resumo, nossos Laudos Técnicos fornecem uma análise especializada e recomendações para garantir a segurança e qualidade dos edifícios. Conte com a Predial para avaliações precisas e melhorias contínuas na manutenção de edifícios.
         </p>
     </div>
     <div class="box-imagem">
