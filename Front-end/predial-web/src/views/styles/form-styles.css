@@ -1,0 +1,48 @@
+@import url('../../global.css');
+
+.form-title{
+    color: var(--primary-text-color);
+}
+
+.add-client-container{
+    width: 100%;
+    background-color: var(--primary-bg-color);
+    padding: 30px;
+    box-shadow: 5px 5px 20px 0 #00000030;
+    border-radius: 20px;
+}
+
+.v-dialog > .v-overlay__content{
+    margin: 0 !important;
+    max-height: 100%;
+}
+
+.send-button{
+    width: 100%;
+}
+.send-button .div-button{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.close-button{  
+    display: flex;
+    justify-content: flex-end;
+    color: var(--primary-text-color);
+}
+
+.close-button span:hover{
+    color: var(--primary-link-color);
+}
+
+.input-inline-field{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
+.input-inline-field label{
+    width: 40%;
+}
