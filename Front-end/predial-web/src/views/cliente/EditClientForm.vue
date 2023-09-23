@@ -1,7 +1,5 @@
 <template>
-    <div class="form-title">
-        <h2>Atualizar cliente</h2>
-    </div>
+    <h2>Atualizar cliente</h2>
     <form action="" class="add-form">
         <div class="input-inline-field">
             <InputField 
@@ -21,13 +19,11 @@
                 placeholder="Informe o nome:"
                 :model-value="nameValue">
             </InputField>
-            <SelectField 
+            <InputField 
                 label="Plano:" 
-                :option-values="options"
-                v-model="planeValue"
-                value-prop="value" 
-                display-prop="label">
-            </SelectField>
+                placeholder="Informe o telefone:"
+                :model-value="planeValue">
+            </InputField>
         </div>
         <div class="input-inline-field">
             <InputField 
@@ -37,7 +33,7 @@
             </InputField>
         </div>
         <div class="send-button">
-            <InputButton text-button="Salvar" @click="updateClient"></InputButton>
+            <InputButton text-button="Salvar"></InputButton>
         </div>
     </form>
 </template>
@@ -45,40 +41,11 @@
 <script setup lang="ts">
     import InputField from '@/components/InputField/InputField.vue';
     import InputButton from '@/components/Button/InputButton.vue';
-    import SelectField from '@/components/Select/SelectField.vue';
     import { ref } from 'vue';
 
-    const options = [
-        {
-            label: 'Gold',
-            value: 'gold'
-        },
-        {
-            label: 'Silver',
-            value: 'silver'
-        },
-        {
-            label: 'Bronze',
-            value: 'bronze'
-        },
-    ]
-    
     const cnpjValue = ref('09.888.344/0001-01')
     const phoneValue = ref('(12) 99689-5533')
     const nameValue = ref('João Carlos')
-    const planeValue = ref(options[0].value)
+    const planeValue = ref('Master')
     const addressValue = ref('Rua Itajaí n° 245')
-
-    function updateClient(){
-        event?.preventDefault()
-        const client = {
-            cnpjValue: cnpjValue.value,
-            phoneValue: phoneValue.value,
-            nameValue: nameValue.value,
-            planeValue: planeValue.value,
-            addressValue: addressValue.value,
-        }
-        console.log(client)
-    }
-
 </script>

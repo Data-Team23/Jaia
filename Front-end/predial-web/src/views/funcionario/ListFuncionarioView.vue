@@ -74,6 +74,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import "./styles.css";
 import AddFuncionarioForm from "./AddFuncionarioView.vue";
 import EditFuncionarioForm from "./UpdateFuncionarioView.vue";
 import InputButton from '@/components/Button/InputButton.vue';

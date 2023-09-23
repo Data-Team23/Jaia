@@ -10,10 +10,4 @@
     font-weight: 700;
     border-radius: 10px;
     width: 150px;
-    border: 1px solid #FFFFFF;
 }
-
-.div-button button:hover {
-    color: var(--primary-link-color);
-    border: 1px solid var(--primary-link-color);
-}   
