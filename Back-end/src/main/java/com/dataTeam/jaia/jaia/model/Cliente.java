@@ -22,6 +22,7 @@ public class Cliente {
 
     @Column(name = "email_cli")
     private String email;
+    
     @Column(name = "telefone_cli")
     private Double telefone;
 

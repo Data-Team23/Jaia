@@ -70,7 +70,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import "./styles.css";
 import AddDepartmentForm from "./AddDepartmentView.vue";
 import EditDepartmentForm from "./UpdateDepartmentView.vue";
 import InputButton from '@/components/Button/InputButton.vue';
