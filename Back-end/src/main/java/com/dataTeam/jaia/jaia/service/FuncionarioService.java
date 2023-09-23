@@ -10,9 +10,10 @@ import com.dataTeam.jaia.jaia.repository.FuncionarioRepository;
 
 public class FuncionarioService implements IFuncionario{
 
-    @Autowired
+    @Autowired(required=true)
     private FuncionarioRepository funcionarioRepo;
 
+    @Transactional
     public Funcionario novoFuncionario(Funcionario funcionario){
 
         if(funcionario == null ||
@@ -29,10 +30,12 @@ public class FuncionarioService implements IFuncionario{
         
     }
 
+    @Transactional
     public List<Funcionario> buscarTodosFuncionarios() {
         return funcionarioRepo.findAll();
     }
 
+    @Transactional
     public Funcionario buscarPorCpf(Integer cpf) {
         Optional<Funcionario> funcionarioOp = funcionarioRepo.findById(cpf);
         
@@ -42,7 +45,7 @@ public class FuncionarioService implements IFuncionario{
         return funcionarioOp.get();    
     }
 
-    
+    @Transactional
     public void deletarFuncionario(Integer cpf) {
         funcionarioRepo.deleteById(cpf);
     }

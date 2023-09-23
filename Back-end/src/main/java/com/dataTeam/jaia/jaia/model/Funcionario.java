@@ -26,8 +26,8 @@ public class Funcionario {
     @ManyToOne
     @JoinColumn(name = "cod_depart")
     private Departamento departamento;
-
-    @OneToOne
+    
+    @ManyToOne
     @JoinColumn(name = "supervisor", referencedColumnName = "cpf_func")
     private Funcionario supervisor;
 

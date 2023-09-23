@@ -15,6 +15,8 @@ public class Departamento {
     @Column(name = "nome_depart", unique = true)
     private String nome_depart;
 
+    @OneToMany(mappedBy = "departamento", cascade = CascadeType.ALL)
+    private List<Funcionario> funcionarios; 
 
     public Long getCod_depart() {
         return cod_depart;
