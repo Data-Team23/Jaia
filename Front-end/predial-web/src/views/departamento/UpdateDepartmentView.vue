@@ -1,7 +1,4 @@
 <template>
-  <div class="form-title">
-    <h2>Atualizar departamento</h2>
-  </div>
     <form action="" class="add-form">
       <div class="input-inline-field">
         <InputField 

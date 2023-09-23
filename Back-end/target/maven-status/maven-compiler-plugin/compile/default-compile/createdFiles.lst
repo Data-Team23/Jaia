@@ -1,0 +1,6 @@
+com\dataTeam\jaia\jaia\JaiaApplication.class
+com\dataTeam\jaia\jaia\repository\ClienteRepository.class
+com\dataTeam\jaia\jaia\service\IClienteService.class
+com\dataTeam\jaia\jaia\controller\ClienteController.class
+com\dataTeam\jaia\jaia\service\ClienteService.class
+com\dataTeam\jaia\jaia\model\Cliente.class

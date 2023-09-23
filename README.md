@@ -1,15 +1,3 @@
-# Sumário
-
-* [Contexto](#contexto)
-* [Equipe](#equipe)
-* [Product Backlog](#product-backlog)
-* [Sprint 01](#sprint-01)
-* [Sprint 02](#sprint-02)
-* [Sprint 03](#sprint-03)
-* [Sprint 03](#sprint-04)
-* [Tecnologias utilizadas](#tecnologias-utilizadas)
-
-
 # Contexto
 [Jaia Software](https://jaia.software/jaia-erp.php)
 
@@ -57,11 +45,11 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
    <td>Imprescindível</td>
   </tr>
   <tr>
-   <td>Cadastro, edição, deleção e visualização de requisições do cliente</td>
+   <td>Landingpage para requisição de serviços</td>
    <td>Imprescindível</td>
   </tr>
   <tr>
-   <td>Landingpage para requisição de serviços</td>
+   <td>Criação, edição, deleção e visualização de Laudo Técnico</td>
    <td>Imprescindível</td>
   </tr>
   <tr>
@@ -70,19 +58,19 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
   </tr>
   <tr>
    <td>Envio de e-mail pós cadastro de clientes</td>
-   <td>Imprescindível</td>
+   <td>Importante</td>
   </tr>
   <tr>
-   <td>Cadastro, edição, deleção e visualização de Ordens de Serviços</td>
-   <td>Imprescindível</td>
+   <td>Tela de acompanhamento de Ordem de Serviço</td>
+   <td>Importante</td>
   </tr>
   <tr>
    <td>Aprovação e reprovação de Ordens de Serviços</td>
-   <td>Imprescindível</td>
+   <td>Importante</td>
   </tr>
   <tr>
-   <td>Relatório de atividades da empresa</td>
-   <td>Importante</td>
+   <td>Automatização de criação de Ordem de Serviço</td>
+   <td>Desejável</td>
   </tr>
   <tr>
    <td>Automatização de envio de e-mail após criação de Ordem de Serviço</td>
@@ -93,14 +81,18 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
    <td>Desejável</td>
   </tr>
   <tr>
-   <td>Automatização de criação de Ordem de Serviço</td>
+   <td>Relatório de atividades da empresa</td>
+   <td>Desejável</td>
+  </tr>
+  <tr>
+   <td>Dashboard de métricas do ERP</td>
    <td>Desejável</td>
   </tr>
   </table>
 </div>
 
 
-# Backlog Sprint 01
+# Sprint 01
 
 <div>
   <table>
@@ -125,17 +117,17 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
    <td>Imprescindível</td>
   </tr>
   <tr>
-   <td>Cadastro, edição, deleção e visualização de requisições do cliente</td>
-   <td>Imprescindível</td>
+   <td>Barra de pesquisa de clientes</td>
+   <td>Importante</td>
   </tr>
   <tr>
    <td>Envio de e-mail pós cadastro de clientes	</td>
-   <td>Imprescindível</td>
+   <td>Desejável</td>
   </tr>
   </table>
 </div>
 
-# Backlog Sprint 02
+# Sprint 02
 
 <div>
   <table>
@@ -148,43 +140,51 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
    <td>Imprescindível</td>
   </tr>
   <tr>
-   <td>Aprovação e reprovação de Ordens de Serviços</td>
+   <td>Cadastro, edição, deleção e visualização de departamentos cadastrados</td>
    <td>Imprescindível</td>
   </tr>
-  </table>
-</div>
-
-# Backlog Sprint 03
-
-<div>
-  <table>
-    <tr>
-    <td><b>Task</b></td>
-    <td><b>Importância</b></td>
-  </tr>
   <tr>
-   <td>Cadastro, edição e visualização dos checklists de inspeção</td>
+   <td>Tela de acompanhamento de Ordem de Serviço</td>
    <td>Importante</td>
   </tr>
   <tr>
-   <td>Relatório de atividades da empresa</td>
-   <td>Importante</td>
+   <td>Pesquisa de Ordem de Serviço por Numeração</td>
+   <td>Desejável</td>
   </tr>
-  </table>
-</div>
-
-
-# Backlog Sprint 04
-
-<div>
-  <table>
-    <tr>
-    <td><b>Task</b></td>
-    <td><b>Importância</b></td>
+  <tr>
+   <td>Pesquisa de Ordem de Serviço por Status</td>
+   <td>Desejável</td>
+  </tr>
+  <tr>
+   <td>Pesquisa de Ordem de Serviço por Departamento</td>
+   <td>Desejável</td>
   </tr>
   <tr>
    <td>Automatização de envio de e-mail após criação de Ordem de Serviço</td>
    <td>Desejável</td>
+  </tr>
+  </table>
+</div>
+
+# Sprint 03
+
+<div>
+  <table>
+    <tr>
+    <td><b>Task</b></td>
+    <td><b>Importância</b></td>
+  </tr>
+  <tr>
+   <td>Automatização de criação de Ordem de Serviço</td>
+   <td>Importante</td>
+  </tr>
+  <tr>
+   <td>Criação, edição, deleção e visualização de Laudo Técnico</td>
+   <td>Imprescindível</td>
+  </tr>
+  <tr>
+   <td>Aprovação e reprovação de Laudo Técnico</td>
+   <td>Importante</td>
   </tr>
   <tr>
    <td>Automatização de envio de e-mail após aprovação/reprovação do Laudo técnico</td>
@@ -193,24 +193,42 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
   </table>
 </div>
 
-# Tecnologias Utilizadas
 
-- ``Java``
-- ``JavaScript``
-- ``Vue``
-- ``HTML``
-- ``CSS``
-- ``Oracle SQL``
+# Sprint 04
 
-# Sprint 01
+<div>
+  <table>
+    <tr>
+    <td><b>Task</b></td>
+    <td><b>Importância</b></td>
+  </tr>
+  <tr>
+   <td>Relatório de atividades da empresa</td>
+   <td>Imprescindível</td>
+  </tr>
+  <tr>
+   <td>Dashboard - Gráfico quantidade de ordens finalizadas</td>
+   <td>Importante</td>
+  </tr>
+  <tr>
+   <td>Dashboard - Gráfico quantidade de ordens por departamento</td>
+   <td>Importante</td>
+  </tr>
+  <tr>
+   <td>Dashboard - Gráfico quantidade de ordens por funcionário</td>
+   <td>Importante</td>
+  </tr>
+  <tr>
+   <td>Dashboard - Gráfico quantidade de ordens ao longo do tempo</td>
+   <td>Importante</td>
+  </tr>
+  <tr>
+   <td>Dashboard - Filtro de funcionário, departamento, cliente e data</td>
+   <td>Desejável</td>
+  </tr>
+  </table>
+</div>
 
-## User Stories
-- [x] Como planejador de inspeção, desejo cadastrar, editar e visualizar todos os clientes, departamentos e funcionários da empresa para que seja possível iniciar o registro da prestação do serviço.
-- [x] Como gerente de marketing, desejo fazer com que meu futuro cliente encontre nossa empresa de forma atrativa e entenda a prestação de serviço que fornecemos, para que seja possível a contratação.
-- [x] Como cliente, desejo ter acesso ao portal do usuário e realizar as requisições de inspeção para o meu prédio, pois preciso do laudo de inspeção para tornar o ambiente seguro.
-
-## Burndown
-![image](https://github.com/Data-Team23/Jaia/assets/102003274/8895d5bf-aa0a-42c2-88c5-806d243d5f61)
 
 
 ## Análise de Mercado
@@ -282,6 +300,36 @@ Uma das personas gerais para esse tipo de sistema pode ser definida conforme a i
 
 ![image](https://github.com/Data-Team23/Jaia/assets/102003274/c7d1f225-eaae-4459-8a11-dd9009147efe)
 
+## User Stories
+
+### Sprint 01
+- [x] Como administrador do sistema, desejo cadastrar, editar e visualizar todos os clientes que entrarem em contato com a empresa.
+- [x] Como administrador do sistema, desejo cadastrar, editar e visualizar todos os departamentos da empresa.
+- [x] Como administrador do sistema, desejo cadastrar, editar e visualizar todos os funcionários da empresa.
+- [x] Como cliente da empresa, desejo fazer requisição de serviços de inspeção para o meu estabelecimento.
+- [x] Como administrador, desejo que meu sistema tenha filtros de pesquisa para os cadastros
+- [x] Como administrador, desejo que meu sistema envie e-mail para o cliente após a finalização do cadastro
+
+### Sprint 02
+- [ ] Como administrador, desejo cadastrar, editar, deletar e visualizar todas as ordens de serviço.
+- [ ] Como supervisor, quero atribuir ordens de serviço para os técnicos
+- [ ] Como administrador quero ter uma tela para acompanhamento de Ordens de Serviço.
+- [ ] Como administrador quero pesquisar a ordem de serviço por numeração, status ou departamento.
+- [ ] Como administrador quero automatizar o envio do e-mail após a criação da ordem de serviço
+
+### Sprint 03
+- [ ] Como cliente, quero não criar requisições novas para inspeções corriqueiras
+- [ ] Como técnico, quero visualizar todas as ordens de serivço em meu nome
+- [ ] Como técnico quero aprovar, reprovar e comentar em todas as ordens de serviços abertas
+- [ ] Como técnico desejo preencher laudos técnicos após a finalização da Ordem de Serviço
+- [ ] Como cliente, desejo receber um email automático com o laudo técnico aprovado/reprovado
+
+### Sprint 04
+- [ ] Como supervisor, desejo ter um relatório personalizado
+- [ ] Como supervisor, desejo ter um dashboard com um gráfico de ordens finalizadas
+- [ ] Como supervisor, desejo ter um dashboard com um gráfico de ordens por departamento
+- [ ] Como supervisor, desejo ter um dashboard com um gráfico de ordens funcionário
+- [ ] Como supervisor, desejo ter filtros de departamento, cliente e data
 
 ## Protótipo de Alta Fidelidade
 > _Landing Page_ - [Landing Page](https://drive.google.com/file/d/1yvxOZ45Gv9OEMV1K2_VCr2cSWsviPUTc/view?usp=sharing)
@@ -308,109 +356,11 @@ Uma das personas gerais para esse tipo de sistema pode ser definida conforme a i
 
 ### Melhorias
 
-- [ ] Retirar planos
+> [!NOTE]
+> Highlights information that users should take into account, even when skimming.
 
+> [!IMPORTANT]
+> Crucial information necessary for users to succeed.
 
-## Modelagem de Dados
-
-### DER
-<img width="612" alt="MicrosoftTeams-image (1)" src="https://github.com/Data-Team23/Jaia/assets/102003274/95da3d49-9444-4d3e-98d7-ef3ece4fae86">
-
-
-### MER
-
-<img width="601" alt="MicrosoftTeams-image" src="https://github.com/Data-Team23/Jaia/assets/102003274/27c594f5-52a0-47a3-aa94-616ca7269a95">
-
-### Criação das Tabelas
-<details>
-<summary>Código</summary>
-
-```sql
-create table endereco(
-     id_end number(2) constraint pk_id_end primary key
-    ,logradouro_end varchar(50) not null
-    ,numero_end number(10) not null
-    ,bairro_end varchar(50) not null
-    ,cidade_end varchar(50) not null
-    ,uf_end varchar(2) not null
-);
-
- 
-
-create table cliente(
-     cnpj_cli number(14) constraint pk_cli_cnpj primary key
-    ,nome_cli varchar(100) not null
-    ,telefone_cli number(14) constraint uk_cli_tel unique not null
-    ,senha_cli varchar(200) not null
-    ,fk_id_end number(2)
-    ,constraint fk_cli_id_end foreign key(fk_id_end) references endereco(id_end)
-    );
-
- 
-
-create table requisicao(
-     id_req number(2) constraint pk_req_id_req primary key
-    ,inspecao_req varchar(20) not null
-    ,descricao_req varchar(200) not null
-    ,status_req varchar(20) not null
-    ,data_abertura_req date default sysdate
-);
-
- 
-
-create table solicitacao(
-	cnpj_cli number(14)
-    ,id_req number(2)
-    ,constraint pk_soli_cnpj_req primary key(cnpj_cli, id_req)
-    ,constraint fk_soli_cnpj foreign key(cnpj_cli) references cliente(cnpj_cli)
-    ,constraint fk_soli_id_req foreign key(id_req) references requisicao(id_req)
-);
-
- 
-
-create table departamento(
-     cod_depart number(2) constraint pk_dept_cod_depart primary key
-    ,nome_depart varchar(20) constraint uk_dept_nom_depart unique not null
-);
-
- 
-
-create table funcionario(
-     cpf_func number(11) constraint pk_func_cpf_func primary key
-    ,nome_func varchar(100) not null
-    ,email_func varchar(100) constraint uk_func_email_func unique not null
-    ,supervisor number(11)
-    ,cod_depart number(2)
-    ,constraint fk_func_super foreign key(supervisor) references funcionario(cpf_func)
-    ,constraint fk_funcde_cod_depart foreign key(cod_depart) references departamento(cod_depart)
-);
-
- 
-
-create table administrador(
-     nome_usuario varchar(10) constraint pk_adm_nom_adm primary key
-    ,nome_adm varchar(50) not null
-    ,senha_adm varchar(200) not null
-);
-```
-</details>
-
-# Sprint 02
-
-## User Stories
-- [ ] Como planejador de inspeção, desejo cadastrar, editar e visualizar as ordens de serviços a partir das requisições que chegam pelo portal do usuário.
-- [ ] Como técnico, desejo avaliar o local e consequentemente anotar irregularidades que a inspeção cobra, e ao final aprovar ou reprovar a inspeção do local.
-
-
-# Sprint 03
-
-## User Stories
-- [ ] Como supervisor de serviços, desejo cadastrar checklists de inspeção para que meu subordinado consiga realizar a inspeção do serviço e concluir uma ordem de serviço.
-- [ ] Como supervisor de seviços, desejo entender como estão as métricas dos serviços prestados para que seja possível analisar as demandas que tivemos ao longo do tempo e planejar as demandas para os próximos meses.
-
-# Sprint 04
-
-## User Stories
-- [ ] Como cliente, desejo ser avisado quando uma requisição que fiz for atendida e criada uma ordem de serviço para que seja possível o acompanhamento dos serviços que vão ser prestados.
-- [ ] Como cliente desejo receber a aprovação ou reprovação do laudo técnico para que seja possível guardar o laudo ou até mesmo tomar ações em relação às reprovações que tivemos.
-
+> [!WARNING]
+> Critical content demanding immediate user attention due to potential risks.

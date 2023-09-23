@@ -4,13 +4,9 @@
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "composite": true,
-    "module": "es2020",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
-  },
-  "files": [
-    "src/views/requisicoes/ListRequisicoesView.vue"
-  ],
+  }
 }
