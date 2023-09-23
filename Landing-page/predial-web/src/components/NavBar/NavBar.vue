@@ -5,29 +5,33 @@
       </figure>
       <ul>
         <div class="navbar-links">
-            <li :class="{ 'active': $route.path === '/home' }">
-            <router-link to="/home" class="router-link">
+          <li>
+            <a href="#" @click="scrollToTop" class="router-link">
+              <img src="../../assets/home.png" alt="Home" class="nav-icon" style="vertical-align: middle;">
               Home
-            </router-link>
+            </a>
           </li>
-    
-          <li :class="{ 'active': $route.path === '/solucoes' }">
-            <router-link to="/solucoes" class="router-link">
+          <li>
+            <a href="#solucoes" class="router-link">
+              <img src="../../assets/vector.png" alt="Solucoes" class="nav-icon" style="vertical-align: middle;">
               Soluções
-            </router-link>
+            </a>
           </li>
-    
-          <li :class="{ 'active': $route.path === '/fale-conosco' }">
-            <router-link to="/fale-conosco" class="router-link">
+          <li>
+            <a href="https://wa.me/5512982156294" target="_blank" class="router-link">
+              <img src="../../assets/phone-call.png" alt="FaleConosco" class="nav-icon" style="vertical-align: middle;">
               Fale Conosco
-            </router-link>
+            </a>
           </li>
-        </div>
-       
+        </div>  
       </ul>
     </div>
   </template>
 
 <script setup lang="ts">
-    import './style.css'
+  import './style.css'
+
+  const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 </script>

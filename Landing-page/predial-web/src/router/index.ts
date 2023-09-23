@@ -11,7 +11,11 @@ const router = createRouter({
       meta: {
         hideNavBar: false,
       }
-    }
+    },
+    {
+      path: '/solucoes',
+      component: () => import('@/views/home/HomeView.vue'),
+    },
   ]
 })
 
