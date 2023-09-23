@@ -28,8 +28,6 @@ public class ClienteService implements IClienteService {
                 cliente.getCnpj().isNaN() ||
                 cliente.getEmail() == null ||
                 cliente.getEmail().isBlank()||
-//                cliente.getLogadouro() == null ||
-//                cliente.getLogadouro().isBlank() ||
                 cliente.getTelefone() == null ||
                 cliente.getTelefone().isNaN()){
             throw new IllegalArgumentException("Usuário com atributos inválidos!");
