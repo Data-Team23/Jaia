@@ -2,7 +2,7 @@ package com.dataTeam.jaia.jaia.controller;
 
 
 import com.dataTeam.jaia.jaia.model.Cliente;
-import com.dataTeam.jaia.jaia.service.IClienteService;
+import com.dataTeam.jaia.jaia.service.Cliente.IClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
