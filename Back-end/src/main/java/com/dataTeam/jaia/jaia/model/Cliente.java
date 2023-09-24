@@ -23,11 +23,6 @@ public class Cliente {
     @Column(name = "email_cli")
     private String email;
 
-<<<<<<< HEAD
-    @Column(name = "telefone_cli")
-    private Double telefone;
-
-=======
     @Column(name = "logradouro")
     private String logradouro;
 
@@ -43,7 +38,6 @@ public class Cliente {
         this.logradouro = logradouro;
     }
 
->>>>>>> 3006b36950b0290ab32895ac1e0717d86785b530
     public Long getId() {
         return id;
     }
