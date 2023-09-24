@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/cliente")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class ClienteController {
 
     @Autowired
@@ -26,6 +26,7 @@ public class ClienteController {
     public Cliente novoCliente(@RequestBody Cliente cliente){
         return service.novoCliente(cliente);
     }
+    
 
     @GetMapping(value = "/{id}")
     public Cliente buscarPorId(@PathVariable("id") Long id){

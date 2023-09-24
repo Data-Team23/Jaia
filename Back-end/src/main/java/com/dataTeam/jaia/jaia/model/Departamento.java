@@ -20,7 +20,7 @@ public class Departamento {
         return cod_depart;
     }
 
-    public void setId(Long id) {
+    public void setId(Long cod_depart) {
         this.cod_depart = cod_depart;
     }
 

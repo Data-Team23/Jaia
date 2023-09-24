@@ -19,22 +19,7 @@ public class ClienteService implements IClienteService {
 
     @Transactional
     public Cliente novoCliente(Cliente cliente) {
-        if(cliente == null ||
-                cliente.getNome() == null ||
-                cliente.getNome().isBlank() ||
-                cliente.getSenha() == null ||
-                cliente.getSenha().isBlank() ||
-                cliente.getCnpj() == null ||
-                cliente.getCnpj().isNaN() ||
-                cliente.getEmail() == null ||
-                cliente.getEmail().isBlank()||
-                cliente.getLogradouro() == null||
-                cliente.getLogradouro().isBlank()||
-                cliente.getTelefone() == null ||
-                cliente.getTelefone().isNaN()){
-            throw new IllegalArgumentException("Usuário com atributos inválidos!");
-        }
-        return cliente;
+        return clienterepo.save(cliente);
     }
 
     public List<Cliente> buscarTodosClientes() {
