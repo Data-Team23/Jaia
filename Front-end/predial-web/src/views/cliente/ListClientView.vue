@@ -33,6 +33,7 @@
                                 <th>Logradouro</th>
                                 <th>Cnpj</th>
                                 <th>Telefone</th>
+                                <th>E-mail</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -43,6 +44,7 @@
                                 <td>{{ cliente.logradouro }}</td>
                                 <td>{{ cliente.cnpj }}</td>
                                 <td>{{ cliente.telefone }}</td>
+                                <td>{{ cliente.email }}</td>
                                 <td>
                                     <span class="material-symbols-outlined" id="edit-button" @click="editDialog = true">
                                         edit

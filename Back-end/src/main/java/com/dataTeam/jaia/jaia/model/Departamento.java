@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 @Table(name = "departamento")
 public class Departamento {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_depart")

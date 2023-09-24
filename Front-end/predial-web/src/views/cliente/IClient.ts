@@ -3,4 +3,5 @@ export default interface Cliente {
     logradouro: string
     cnpj: string
     telefone: string  
+    email: string  
 }

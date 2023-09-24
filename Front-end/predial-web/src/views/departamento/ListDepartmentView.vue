@@ -140,7 +140,7 @@ const page = ref(1);
 const itemsPerPage = ref(5);
 
 function listDepartaments() {
-  axios.get<any>('http://localhost:8080/departamentos') 
+  axios.get<any>('http://localhost:8080/departamentos/todos') 
       .then((response: any) => {
           departaments.value = response.data
           filteredDepartaments.value = departaments.value;
