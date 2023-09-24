@@ -22,12 +22,21 @@ public class Cliente {
 
     @Column(name = "email_cli")
     private String email;
+
+    @Column(name = "logradouro")
+    private String logradouro;
+
     @Column(name = "telefone_cli")
     private Double telefone;
 
 
+    public String getLogradouro() {
+        return logradouro;
+    }
 
-
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
 
     public Long getId() {
         return id;

@@ -1,6 +1,7 @@
 package com.dataTeam.jaia.jaia.model;
 
 import jakarta.persistence.*;
+import org.springframework.context.annotation.Primary;
 
 
 @Entity
@@ -9,20 +10,19 @@ public class Departamento {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_depart")
-    private Long id;
+    private Long cod_depart;
 
     @Column(name = "nome_depart")
     private String nome;
 
 
-    public Long getId() {
-        return id;
+    public Long getCod_depart() {
+        return cod_depart;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.cod_depart = cod_depart;
     }
 
     public String getNome() {
