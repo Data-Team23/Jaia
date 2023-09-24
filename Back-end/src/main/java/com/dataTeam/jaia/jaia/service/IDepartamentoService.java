@@ -16,7 +16,7 @@ public interface IDepartamentoService {
 
     //listar departamento
 
-    public List<Departamento> listarDepartamento();
+    public List<Departamento> buscarTodosDepartamentos();
 
     //update departamento
     public Departamento atualizarDepartamento(Long cod_depart, Departamento departamento);

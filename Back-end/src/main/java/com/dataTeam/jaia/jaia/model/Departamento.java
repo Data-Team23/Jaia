@@ -41,14 +41,6 @@ public class Departamento {
         this.nome_depart = nome_depart;
     }
 
-    public Departamento(Long cod_depart, String nome_depart){
-        this.cod_depart = cod_depart;
-        this.nome_depart = nome_depart;
-
-    }
-
-
-
     /*public String getNome_func() {
         return funcionario.getNome_func();
     }

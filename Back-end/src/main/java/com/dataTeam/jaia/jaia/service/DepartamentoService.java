@@ -31,7 +31,7 @@ public class DepartamentoService implements IDepartamentoService {
         return departRepo.save(departamento);
     }
 
-    public List<Departamento> listarDepartamento(){
+    public List<Departamento> buscarTodosDepartamentos(){
         return departRepo.findAll();
     }
 

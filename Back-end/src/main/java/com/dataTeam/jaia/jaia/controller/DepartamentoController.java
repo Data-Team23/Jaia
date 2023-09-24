@@ -23,6 +23,13 @@ public class DepartamentoController {
     @Autowired
     private IDepartamentoService service;
 
+        // Listar todos os departamentos
+    @GetMapping()
+    public List<Departamento> buscarTodos(){
+        return service.buscarTodosDepartamentos();
+    }
+
+
     // Adicionar departamento
     @PostMapping
     public Departamento novoDepartamento(@RequestBody Departamento departamento){
@@ -33,12 +40,6 @@ public class DepartamentoController {
     @GetMapping("/{cod_depart}")
     public Departamento deleteDepartamento(@PathVariable("cod_depart") Long cod_depart){
         return service.deleteDepartamento(cod_depart);
-    }
-
-    // Listar todos os departamentos
-    @GetMapping
-    public List<Departamento> buscarTodos(){
-        return service.listarDepartamento();
     }
 
     // Atualizar departamento por ID

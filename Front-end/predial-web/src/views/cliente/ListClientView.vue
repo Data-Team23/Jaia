@@ -142,12 +142,15 @@ const page = ref(1);
 const itemsPerPage = ref(5);
 
 function listClients() {
-    axios.get<any>(`${import.meta.env.VITE_API_URL}/clientes.json`)
+    axios.get<any>('http://localhost:8080/cliente') 
         .then((response: any) => {
             clients.value = response.data
             filteredClients.value = clients.value;
             filterClients();
         })
+        .catch((error: any) => {
+            console.error('Erro ao buscar clientes:', error);
+        });
 }
 
 function filterClients() {
