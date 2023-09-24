@@ -1,12 +1,14 @@
 package com.dataTeam.jaia.jaia.model;
 
 import jakarta.persistence.*;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "departamento")
 public class Departamento {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +34,8 @@ public class Departamento {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-
-
 }
+
+
+
+
