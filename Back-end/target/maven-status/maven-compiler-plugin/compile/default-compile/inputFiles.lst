@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 F:\FATEC\API\Jaia\Nova pasta\Jaia-backend-usuarios\Jaia\Back-end\src\main\java\com\dataTeam\jaia\jaia\controller\ClienteController.java
 F:\FATEC\API\Jaia\Nova pasta\Jaia-backend-usuarios\Jaia\Back-end\src\main\java\com\dataTeam\jaia\jaia\controller\DepartamentoController.java
 F:\FATEC\API\Jaia\Nova pasta\Jaia-backend-usuarios\Jaia\Back-end\src\main\java\com\dataTeam\jaia\jaia\repository\FuncionarioRepository.java
@@ -15,16 +14,3 @@ F:\FATEC\API\Jaia\Nova pasta\Jaia-backend-usuarios\Jaia\Back-end\src\main\java\c
 F:\FATEC\API\Jaia\Nova pasta\Jaia-backend-usuarios\Jaia\Back-end\src\main\java\com\dataTeam\jaia\jaia\service\Funcionario\IFuncionarioService.java
 F:\FATEC\API\Jaia\Nova pasta\Jaia-backend-usuarios\Jaia\Back-end\src\main\java\com\dataTeam\jaia\jaia\service\Funcionario\FuncionarioService.java
 F:\FATEC\API\Jaia\Nova pasta\Jaia-backend-usuarios\Jaia\Back-end\src\main\java\com\dataTeam\jaia\jaia\JaiaApplication.java
-=======
-C:\Users\Ariane\Desktop\Fatec\4Sem\API\Jaia\Back-end\src\main\java\com\dataTeam\jaia\jaia\model\Cliente.java
-C:\Users\Ariane\Desktop\Fatec\4Sem\API\Jaia\Back-end\src\main\java\com\dataTeam\jaia\jaia\service\IClienteService.java
-C:\Users\Ariane\Desktop\Fatec\4Sem\API\Jaia\Back-end\src\main\java\com\dataTeam\jaia\jaia\JaiaApplication.java
-C:\Users\Ariane\Desktop\Fatec\4Sem\API\Jaia\Back-end\src\main\java\com\dataTeam\jaia\jaia\repository\ClienteRepository.java
-C:\Users\Ariane\Desktop\Fatec\4Sem\API\Jaia\Back-end\src\main\java\com\dataTeam\jaia\jaia\controller\ClienteController.java
-C:\Users\Ariane\Desktop\Fatec\4Sem\API\Jaia\Back-end\src\main\java\com\dataTeam\jaia\jaia\model\Departamento.java
-C:\Users\Ariane\Desktop\Fatec\4Sem\API\Jaia\Back-end\src\main\java\com\dataTeam\jaia\jaia\service\DepartamentoService.java
-C:\Users\Ariane\Desktop\Fatec\4Sem\API\Jaia\Back-end\src\main\java\com\dataTeam\jaia\jaia\controller\DepartamentoController.java
-C:\Users\Ariane\Desktop\Fatec\4Sem\API\Jaia\Back-end\src\main\java\com\dataTeam\jaia\jaia\service\ClienteService.java
-C:\Users\Ariane\Desktop\Fatec\4Sem\API\Jaia\Back-end\src\main\java\com\dataTeam\jaia\jaia\repository\DepartamentoRepository.java
-C:\Users\Ariane\Desktop\Fatec\4Sem\API\Jaia\Back-end\src\main\java\com\dataTeam\jaia\jaia\service\IDepartamentoService.java
->>>>>>> dev
