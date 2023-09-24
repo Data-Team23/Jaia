@@ -12,11 +12,11 @@ public interface IDepartamentoSerivce {
 
     public Departamento novoDepartamento (Departamento departamento );
 
-    public Departamento deleteDepartamento(Long Id);
+    public Departamento deleteDepartamento(Long Cod_depart);
 
     public List<Departamento> listarDepartamento();
 
-    public Departamento atualizarDepartamento(Long Id, Departamento atualizarDepartamento);
+    public Departamento atualizarDepartamento(Long Cod_depart, Departamento atualizarDepartamento);
 
     List<Departamento> buscarTodosDepartamentos();
 }

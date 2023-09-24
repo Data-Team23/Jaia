@@ -33,8 +33,8 @@ public class DepartamentoService implements IDepartamentoSerivce {
         return departrepo.findAll();
     }
 
-    public Departamento buscarPorId(Long Id) {
-        Optional<Departamento> departamentoOp = departrepo.findById(Id);
+    public Departamento buscarPorCod_depart(Long Cod_depart) {
+        Optional<Departamento> departamentoOp = departrepo.findById(Cod_depart);
         if(departamentoOp.isEmpty()) {
             throw new IllegalArgumentException("Departamento nao encontrado!");
         }
@@ -42,11 +42,11 @@ public class DepartamentoService implements IDepartamentoSerivce {
     }
 
 
-    public Departamento deleteDepartamento(Long Id){
-        Optional<Departamento> delete = departrepo.findById(Id);
+    public Departamento deleteDepartamento(Long Cod_depart){
+        Optional<Departamento> delete = departrepo.findById(Cod_depart);
 
         if (delete.isPresent()){
-            departrepo.findById(Id);
+            departrepo.findById(Cod_depart);
             return delete.get(); // Retorna o departamento excluído
         } else {
             throw new IllegalArgumentException("Departamento não encontrado.");
@@ -61,8 +61,8 @@ public class DepartamentoService implements IDepartamentoSerivce {
 
 
     @Transactional
-    public Departamento atualizarDepartamento(Long Id, Departamento atualizarDepartamento) {
-        Optional<Departamento> existingDepartmentOptional = departrepo.findById(Id);
+    public Departamento atualizarDepartamento(Long Cod_depart, Departamento atualizarDepartamento) {
+        Optional<Departamento> existingDepartmentOptional = departrepo.findById(Cod_depart);
 
         if (existingDepartmentOptional.isPresent()) {
             Departamento existingDepartment = existingDepartmentOptional.get();
@@ -78,7 +78,7 @@ public class DepartamentoService implements IDepartamentoSerivce {
 
             return departrepo.save(existingDepartment);
         } else {
-            throw new EntityNotFoundException("O departamento encontrado não foi encontrado: " + Id);
+            throw new EntityNotFoundException("O departamento encontrado não foi encontrado: " + Cod_depart);
         }
     }
 
