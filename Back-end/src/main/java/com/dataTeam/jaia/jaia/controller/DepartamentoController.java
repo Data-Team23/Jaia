@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dataTeam.jaia.jaia.model.Departamento;
 import com.dataTeam.jaia.jaia.service.IDepartamentoService;
 
+
 @RestController
 @RequestMapping(value = "/departamentos")
 @CrossOrigin

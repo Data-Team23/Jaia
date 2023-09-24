@@ -68,14 +68,6 @@ public class Cliente {
     public void setEmail(String email) {
         this.email = email;
     }
-//
-//    public String getLogadouro() {
-//        return logadouro;
-//    }
-//
-//    public void setLogadouro(String logadouro) {
-//        this.logadouro = logadouro;
-//    }
 
     public Double getTelefone() {
         return telefone;

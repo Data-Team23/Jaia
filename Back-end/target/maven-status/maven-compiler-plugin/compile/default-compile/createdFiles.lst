@@ -1,4 +1,10 @@
 com\dataTeam\jaia\jaia\JaiaApplication.class
+<<<<<<< HEAD
+com\dataTeam\jaia\jaia\model\Departamento.class
+com\dataTeam\jaia\jaia\model\Funcionario.class
+com\dataTeam\jaia\jaia\service\Departamento\DepartamentoService.class
+com\dataTeam\jaia\jaia\controller\DepartamentoController.class
+=======
 com\dataTeam\jaia\jaia\repository\ClienteRepository.class
 com\dataTeam\jaia\jaia\service\IClienteService.class
 com\dataTeam\jaia\jaia\controller\ClienteController.class
@@ -8,4 +14,15 @@ com\dataTeam\jaia\jaia\repository\DepartamentoRepository.class
 com\dataTeam\jaia\jaia\service\ClienteService.class
 com\dataTeam\jaia\jaia\controller\DepartamentoController.class
 com\dataTeam\jaia\jaia\service\IDepartamentoService.class
+>>>>>>> dev
 com\dataTeam\jaia\jaia\model\Cliente.class
+com\dataTeam\jaia\jaia\repository\ClienteRepository.class
+com\dataTeam\jaia\jaia\service\Funcionario\FuncionarioService.class
+com\dataTeam\jaia\jaia\controller\ClienteController.class
+com\dataTeam\jaia\jaia\controller\FuncionarioController.class
+com\dataTeam\jaia\jaia\repository\DepartamentoRepository.class
+com\dataTeam\jaia\jaia\service\Cliente\ClienteService.class
+com\dataTeam\jaia\jaia\service\Cliente\IClienteService.class
+com\dataTeam\jaia\jaia\service\Departamento\IDepartamentoSerivce.class
+com\dataTeam\jaia\jaia\repository\FuncionarioRepository.class
+com\dataTeam\jaia\jaia\service\Funcionario\IFuncionarioService.class

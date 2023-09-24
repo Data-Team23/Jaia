@@ -1,4 +1,4 @@
-package com.dataTeam.jaia.jaia.service;
+package com.dataTeam.jaia.jaia.service.Cliente;
 
 import com.dataTeam.jaia.jaia.model.Cliente;
 

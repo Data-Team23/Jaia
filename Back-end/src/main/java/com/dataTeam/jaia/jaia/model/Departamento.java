@@ -1,61 +1,41 @@
 package com.dataTeam.jaia.jaia.model;
 
+import jakarta.persistence.*;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-
 @Entity
 @Table(name = "departamento")
 public class Departamento {
 
-
-//private Funcionario funcionario;
-
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_depart")
-    private Long cod_depart;
+    private Long id;
 
-    @Column(name = "nome_depart", unique = true)
-    private String nome_depart;
-
-     //@OneToMany(mappedBy = "departamento")
-    //private List<Funcionario> funcionarios;
+    @Column(name = "nome_depart")
+    private String nome;
 
 
-    public Long getCod_depart() {
-        return cod_depart;
+    public Long getId() {
+        return id;
     }
 
-    public void setCod_depart(Long cod_depart) {
-        this.cod_depart = cod_depart;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-
-    public String getNome_depart() {
-        return nome_depart;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNome_depart(String nome_depart) {
-        this.nome_depart = nome_depart;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
-
-    /*public String getNome_func() {
-        return funcionario.getNome_func();
-    }
-
-
-    public void setNome_func(String nome){
-        funcionario.setNome_func(nome);
-    }*/
-    
-
 }
 
 
-
-
-    
 
 
