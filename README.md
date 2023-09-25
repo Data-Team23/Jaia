@@ -259,9 +259,8 @@ Uma das personas gerais para esse tipo de sistema pode ser definida conforme a i
 ## Testes de Usabilidade
 ### Entrevista
 > _Cliente_ - [Cliente](https://drive.google.com/file/d/10ug0GTzyKmVGgaYbqfID1xUmN4SOVtI1/view?usp=sharing)
-> _Administrador_ - [Administrador](https://drive.google.com/file/d/1Znrt9308gqNi4rqAwPHAqMWoeiQUIDx_/view?usp=sharing)
 
-Administrador -> https://drive.google.com/file/d/1Znrt9308gqNi4rqAwPHAqMWoeiQUIDx_/view?usp=sharing
+> _Administrador_ - [Administrador](https://drive.google.com/file/d/1Znrt9308gqNi4rqAwPHAqMWoeiQUIDx_/view?usp=sharing)
 
 ## Modelagem de Dados
 ### DER
