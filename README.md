@@ -13,13 +13,21 @@
 Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios modernos e históricos, a empresa Jaia, apresentou um desafio significativo. A condução de inspeções prediais estava provando ser uma tarefa morosa e suscetível a imprecisões. Diante desse cenário, a Jaia buscou soluções inovadoras para otimizar esse processo crucial. A visão estratégica da empresa contemplou o desenvolvimento de um software de inspeção predial, projetado para revolucionar a abordagem atual. A plataforma concebida promete oferecer uma experiência intuitiva, capacitando os inspetores a documentar minuciosamente detalhes relevantes e capturar evidências visuais de forma eficaz. Adicionalmente, a geração instantânea de relatórios abastecerá a tomada de decisões embasadas. A Jaia, reconhecendo a necessidade de aprimorar a qualidade e eficiência das inspeções, direcionou seus esforços para o desenvolvimento desse software inovador. O resultado obtido transcendeu as expectativas iniciais, beneficiando não somente a empresa, mas também elevando o padrão das inspeções prediais na esfera urbana, contribuindo, assim, para uma maior segurança e excelência nas estruturas urbanas.
 
 # Equipe
+
 > _Product Owner_ - [Alan Morato](https://www.linkedin.com/in/alan-morato-37b214154/)
+
 > _Scrum Master_ - [Lucas Emanoel](https://www.linkedin.com/in/lucas-emanoel-teixeira-engracio-da-silva-ab5611234/)
+
 > _Dev. Team_ - [Ariane Cristina](https://www.linkedin.com/in/ariane-sousa77/)
+
 > _Dev. Team_ - [Elizabeth Cristina Alves Leite](https://www.linkedin.com/in/elizabeth-cristina-alves-leite-176a9416a)
+
 > _Dev. Team_ - [Tobias Fernandes Bezerra Sousa](https://www.linkedin.com/in/tobias-sousa-23bba822a)
+
 > _Dev. Team_ - [Julia Quitério](https://www.linkedin.com/in/j%C3%BAlia-quit%C3%A9rio-934894205/)
+
 > _Dev. Team_ - [Murilo Junior](https://www.linkedin.com/in/murilo-jos%C3%A9-de-brito-junior-32403b157/)
+
 > _Dev. Team_ - [Silas Prado](https://www.linkedin.com/in/silasprd/)
 
 # Product Backlog
@@ -248,12 +256,19 @@ Uma das personas gerais para esse tipo de sistema pode ser definida conforme a i
 
 ## Protótipo de Alta Fidelidade
 > _Landing Page_ - [Landing Page](https://drive.google.com/file/d/1yvxOZ45Gv9OEMV1K2_VCr2cSWsviPUTc/view?usp=sharing)
+
 > _Plataforma - Usuário_ - [Plataforma - Usuário](https://drive.google.com/file/d/1sQtjtkNJukLVNMacCZ7smczllghU0Dka/view?usp=sharing)
+
 > _CRUD Cliente_ - [CRUD Cliente](https://drive.google.com/file/d/1trerQmV_RaqEF4XdmavweAmB2dZ7eXaX/view?usp=sharing)
+
 > _CRUD Funcionário_ - [CRUD Funcionário](https://drive.google.com/file/d/1xbpi8JXZIiRtuJyA6XZeHOuk3-fb2Zko/view?usp=sharing)
+
 > _CRUD Departamento_ - [CRUD Departamento](https://drive.google.com/file/d/1rFVIRfbj8Ckr2nJWfwr_4lwvZS3UPqPq/view?usp=sharing)
+
 > _CRUD Requisição_ - [CRUD Requisição](https://drive.google.com/file/d/1IdCYwBXQ8CiW8nXfQInGO15jqdHotIVC/view?usp=sharing)
+
 > _CRUD Ordem de Serviço_ - [CRUD Ordem de Serviço](https://drive.google.com/file/d/1DT_R4xCqkJAtmnlFQksIOOL-vgp6fzMx/view?usp=sharing)
+
 > _CRUD Checklist_ - [CRUD Checklist](https://drive.google.com/file/d/1F5rtkDbU8IyD-t6z-3tpACPOWymZ9TsU/view?usp=sharing)
 
 ## Testes de Usabilidade
