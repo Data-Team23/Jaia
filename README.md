@@ -187,8 +187,8 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
 - [x] Como cliente, desejo ter acesso ao portal do usuário e realizar as requisições de inspeção para o meu prédio, pois preciso do laudo de inspeção para tornar o ambiente seguro.
 
 ## Burndown
-![image](https://github.com/Data-Team23/Jaia/assets/102003274/8895d5bf-aa0a-42c2-88c5-806d243d5f61)
 
+![image](https://github.com/Data-Team23/Jaia/assets/102003274/ea82cb68-b465-4070-9f5e-4b83f4732335)
 
 ## Análise de Mercado
 
