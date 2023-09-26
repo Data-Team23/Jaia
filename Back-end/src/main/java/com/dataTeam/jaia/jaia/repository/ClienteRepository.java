@@ -22,4 +22,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
     public Optional<Cliente> findByNomeAndSenha(String nome, String senha);
 
+    List<Cliente> findByCnpj(Integer cnpj);
+
 }

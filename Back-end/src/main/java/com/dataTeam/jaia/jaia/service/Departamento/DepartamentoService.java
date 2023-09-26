@@ -2,6 +2,7 @@ package com.dataTeam.jaia.jaia.service.Departamento;
 
 
 import com.dataTeam.jaia.jaia.model.Departamento;
+import com.dataTeam.jaia.jaia.model.Funcionario;
 import com.dataTeam.jaia.jaia.repository.DepartamentoRepository;
 import com.dataTeam.jaia.jaia.service.Departamento.IDepartamentoSerivce;
 import jakarta.persistence.EntityNotFoundException;
@@ -30,7 +31,13 @@ public class DepartamentoService implements IDepartamentoSerivce {
     }
 
     public List<Departamento> buscarTodosDepartamentos() {
-        return departrepo.findAll();
+        List<Departamento> departamentos = departrepo.findAll();
+        for(Departamento d : departamentos) {
+            for(Funcionario f : d.getFuncionarios()) {
+                f.setDepartamento(null);
+            }
+        }
+        return departamentos;
     }
 
     public Departamento buscarPorCod_depart(Long Cod_depart) {

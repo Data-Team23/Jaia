@@ -37,24 +37,24 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody v-for="(cliente, index) in paginatedClients" :key="index">
-                            <tr>
-                                <td>{{ index + 1 }}</td>
-                                <td>{{ cliente.nome }}</td>
-                                <td>{{ cliente.logradouro }}</td>
-                                <td>{{ cliente.cnpj }}</td>
-                                <td>{{ cliente.telefone }}</td>
-                                <td>{{ cliente.email }}</td>
-                                <td>
-                                    <span class="material-symbols-outlined" id="edit-button" @click="editDialog = true">
-                                        edit
-                                    </span>
-                                    <span class="material-symbols-outlined" id="delete-button" @click="deleteDialog = true">
-                                        delete
-                                    </span>
-                                </td>
-                            </tr>
-                        </tbody>
+                    <tbody v-for="(cliente, index) in paginatedClients" :key="index">
+                    <tr>
+                    <td>{{ index + 1 }}</td>
+                    <td>{{ cliente.nome }}</td>
+                    <td>{{ cliente.logradouro }}</td>
+                    <td>{{ cliente.cnpj }}</td>
+                    <td>{{ cliente.telefone }}</td>
+                    <td>{{ cliente.email }}</td>
+                    <td>
+                    <span class="material-symbols-outlined" id="edit-button" @click="editClient(cliente)">
+                    edit
+                    </span>
+                    <span class="material-symbols-outlined" id="delete-button" @click="deleteDialog = true">
+                    delete
+                    </span>
+                    </td>
+                    </tr>
+                    </tbody>
                     </table>
                     <div class="pagination">
                         <ul class="pagination-list">
@@ -112,18 +112,24 @@ import '../styles/form-styles.css'
 import '../styles/table-styles.css'
 import '../styles/dialog-styles.css'
 import type IClient from './IClient'
+import { globalCnpj } from './GlobalCnpj'; 
+
 
 let addDialog = ref(false)
 let editDialog = ref(false)
 let deleteDialog = ref(false)
 
 let clients = ref<Array<IClient>>([])
-
+let paginatedClients = ref<Array<IClient>>([]);
 let filteredClients = ref<Array<IClient>>([])
 let filterInput = ref("")
 let selectedFilter = ref("nome")
 
-let paginatedClients = ref<Array<IClient>>([]);
+function editClient(client: IClient) {
+  globalCnpj.value = client.cnpj; 
+  editDialog.value = true;
+}
+
 
 const filterSelectOptions = [
     {

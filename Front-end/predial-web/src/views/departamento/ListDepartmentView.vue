@@ -38,7 +38,7 @@
                       <tbody v-for="(departament, index) in paginatedDepartaments" :key="index">
                           <tr>
                               <td>{{ index + 1 }}</td>
-                              <td>{{ departament.codigo }}</td>
+                              <td>{{ departament.cod_depart }}</td>
                               <td>{{ departament.nome }}</td>
                               <td>{{ departament.responsavel }}</td>
                               <td>

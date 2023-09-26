@@ -21,13 +21,11 @@
                 placeholder="Informe o nome:"
                 :model-value="nameValue">
             </InputField>
-            <SelectField 
-                label="Plano:" 
-                :option-values="options"
-                v-model="planeValue"
-                value-prop="value" 
-                display-prop="label">
-            </SelectField>
+            <InputField 
+                label="E-mail:" 
+                placeholder="Informe o e-mail:"
+                :model-value="emailValue">
+            </InputField>
         </div>
         <div class="input-inline-field">
             <InputField 
@@ -46,39 +44,41 @@
     import InputField from '@/components/InputField/InputField.vue';
     import InputButton from '@/components/Button/InputButton.vue';
     import SelectField from '@/components/Select/SelectField.vue';
-    import { ref } from 'vue';
+    import { onMounted, ref } from 'vue';
+    import { globalCnpj } from './GlobalCnpj'; 
+    import axios from 'axios';
 
-    const options = [
-        {
-            label: 'Gold',
-            value: 'gold'
-        },
-        {
-            label: 'Silver',
-            value: 'silver'
-        },
-        {
-            label: 'Bronze',
-            value: 'bronze'
-        },
-    ]
     
-    const cnpjValue = ref('09.888.344/0001-01')
-    const phoneValue = ref('(12) 99689-5533')
-    const nameValue = ref('João Carlos')
-    const planeValue = ref(options[0].value)
-    const addressValue = ref('Rua Itajaí n° 245')
+    const cnpjValue = ref('')
+    const phoneValue = ref('')
+    const nameValue = ref('')
+    const emailValue = ref('')
+    const addressValue = ref('')
+    const selectedCnpj = globalCnpj;
 
-    function updateClient(){
-        event?.preventDefault()
-        const client = {
-            cnpjValue: cnpjValue.value,
-            phoneValue: phoneValue.value,
-            nameValue: nameValue.value,
-            planeValue: planeValue.value,
-            addressValue: addressValue.value,
-        }
-        console.log(client)
+    function infClient() {
+    axios.get<any>(`http://localhost:8080/cliente/por-cnpj/${selectedCnpj.value}`)
+        .then((response: any) => {
+            const clientData = response.data;
+
+            cnpjValue.value = clientData.cnpj || '';
+            phoneValue.value = clientData.telefone || '';
+            nameValue.value = clientData.nome || '';
+            emailValue.value = clientData.email || '';
+            addressValue.value = clientData.logradouro || '';
+        })
+        .catch((error: any) => {
+            console.error('Erro ao buscar cliente:', error);
+        });
+}
+
+    onMounted(() => {
+    infClient();
+    })
+
+
+    async function updateClient() {
+    
     }
 
 </script>

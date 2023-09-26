@@ -33,7 +33,11 @@ public class FuncionarioService implements IFuncionarioService {
         return funcionario;
     }
     public List<Funcionario> buscarTodosFuncionario() {
-        return funcrepo.findAll();
+        List<Funcionario> funcionarios = funcrepo.findAll();
+        for(Funcionario f : funcionarios) {
+            f.getDepartamento().setFuncionarios(null);
+        }
+        return funcionarios;
     }
 
     public Funcionario buscarPorId(Long id) {

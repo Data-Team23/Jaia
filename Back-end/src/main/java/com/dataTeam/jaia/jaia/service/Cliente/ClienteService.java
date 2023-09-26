@@ -13,7 +13,6 @@ import java.util.Optional;
 @Service
 public class ClienteService implements IClienteService {
 
-
     @Autowired
     private ClienteRepository clienterepo;
 
@@ -34,5 +33,19 @@ public class ClienteService implements IClienteService {
         return clienteOp.get();
     }
 
+    @Transactional
+    public void apagarClientePorCnpj(Integer cnpj) {
+        List<Cliente> clientes = clienterepo.findByCnpj(cnpj);
+        if (!clientes.isEmpty()) {
+            clienterepo.deleteAll(clientes);
+        } else {
+            throw new IllegalArgumentException("Nenhum cliente encontrado com o CNPJ informado.");
+        }
+    }
+
+
+    public List<Cliente> buscarPorCnpj(Integer cnpj) {
+        return clienterepo.findByCnpj(cnpj);
+    }
 
 }

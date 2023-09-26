@@ -12,7 +12,8 @@ public interface IClienteService {
 
     public Cliente buscarPorId(Long Id);
 
-
-
+    public List<Cliente> buscarPorCnpj(Integer cnpj);
+    
+    void apagarClientePorCnpj(Integer cnpj);
 
 }
