@@ -127,6 +127,7 @@ let selectedFilter = ref("nome")
 
 function editClient(client: IClient) {
   globalCnpj.value = client.cnpj; 
+  globalCnpj.toString();
   editDialog.value = true;
 }
 

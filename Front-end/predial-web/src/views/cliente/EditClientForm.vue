@@ -41,44 +41,41 @@
 </template>
 
 <script setup lang="ts">
-    import InputField from '@/components/InputField/InputField.vue';
-    import InputButton from '@/components/Button/InputButton.vue';
-    import SelectField from '@/components/Select/SelectField.vue';
-    import { onMounted, ref } from 'vue';
-    import { globalCnpj } from './GlobalCnpj'; 
-    import axios from 'axios';
+import InputField from '@/components/InputField/InputField.vue';
+import InputButton from '@/components/Button/InputButton.vue';
+import { globalCnpj } from './GlobalCnpj'; 
+import { ref } from 'vue';
+import axios from 'axios';
 
-    
-    const cnpjValue = ref('')
-    const phoneValue = ref('')
-    const nameValue = ref('')
-    const emailValue = ref('')
-    const addressValue = ref('')
-    const selectedCnpj = globalCnpj;
+const cnpjValue = ref('');
+const phoneValue = ref('');
+const nameValue = ref('');
+const emailValue = ref('');
+const addressValue = ref('');
+const mensagemSucesso = ref('');
 
-    function infClient() {
-    axios.get<any>(`http://localhost:8080/cliente/por-cnpj/${selectedCnpj.value}`)
-        .then((response: any) => {
-            const clientData = response.data;
-
-            cnpjValue.value = clientData.cnpj || '';
-            phoneValue.value = clientData.telefone || '';
-            nameValue.value = clientData.nome || '';
-            emailValue.value = clientData.email || '';
-            addressValue.value = clientData.logradouro || '';
-        })
-        .catch((error: any) => {
-            console.error('Erro ao buscar cliente:', error);
-        });
-}
-
-    onMounted(() => {
-    infClient();
-    })
+async function updateClient() {
+  try {
+    const clienteAtualizado = {
+      cnpj: cnpjValue.value, 
+      telefone: parseFloat(phoneValue.value),
+      senha: null,
+      nome: nameValue.value, 
+      email: emailValue.value, 
+      endereco: addressValue.value, 
+    };
+    console.log('Cliente Atualizado:', clienteAtualizado);
 
 
-    async function updateClient() {
-    
+    const response = await axios.put(`http://localhost:8080/cliente/atualizar?cnpj=${globalCnpj}`, clienteAtualizado);
+
+    if (response.status === 200) {
+      mensagemSucesso.value = 'Cliente atualizado com sucesso'; 
+    } else {
+      console.error('Erro ao atualizar o cliente');
     }
-
+  } catch (error) {
+    console.error('Erro interno ao atualizar o cliente', error);
+  }
+}
 </script>
