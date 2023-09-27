@@ -51,8 +51,8 @@ public class ClienteController {
         }
     }
 
-    @PutMapping("/atualizar")
-    public ResponseEntity<?> atualizarClientePorCnpj(@RequestParam String cnpj, @RequestBody Cliente clienteAtualizado) {
+    @PutMapping("/atualizar/{cnpj}")
+    public ResponseEntity<?> atualizarClientePorCnpj(@PathVariable String cnpj, @RequestBody Cliente clienteAtualizado) {
         try {
             Cliente clienteAtualizadoResult = service.atualizarClientePorCnpj(cnpj, clienteAtualizado);
             return ResponseEntity.ok(clienteAtualizadoResult); 
