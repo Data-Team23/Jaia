@@ -71,7 +71,11 @@ async function updateClient() {
     console.log('Cliente Atualizado:', clienteAtualizado);
 
 
+<<<<<<< HEAD
     const response = await axios.put(`http://localhost:8080/cliente/atualizar/"${clienteCnpj}"`, clienteAtualizado);
+=======
+    const response = await axios.put(`http://localhost:8080/cliente/atualizar/${clienteCnpj}`, clienteAtualizado);
+>>>>>>> 07d327fcfd4bdacd76fcb32d08d94bf9c2dba021
 
     if (response.status === 200) {
       mensagemSucesso.value = 'Cliente atualizado com sucesso'; 
@@ -83,4 +87,9 @@ async function updateClient() {
   }
 }
 
+<<<<<<< HEAD
 </script>
+=======
+</script>
+
+>>>>>>> 07d327fcfd4bdacd76fcb32d08d94bf9c2dba021
