@@ -43,7 +43,7 @@ async function createClient() {
     nome: nameValue.value,
     senha: "senha123", 
     email: emailValue.value,
-    logradouro: addressValue.value,
+    endereco: addressValue.value,
     telefone: parseFloat(phoneValue.value), 
   };
 

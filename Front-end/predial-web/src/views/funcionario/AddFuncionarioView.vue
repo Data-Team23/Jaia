@@ -7,28 +7,41 @@
       <InputField 
         label="Nome" 
         placeholder="Informe o nome"
-        :model-value="nomeValue">
+        v-model="nomeValue">
       </InputField>
       <InputField 
         label="E-mail" 
         placeholder="Informe o e-mail"
-        :model-value="emailValue">
+        v-model="emailValue">
       </InputField>
     </div>
     <div class="input-inline-field">
       <InputField 
         label="CPF" 
         placeholder="Informe o CPF"
-        :model-value="cpfValue">
+        v-model="cpfValue">
       </InputField>
       <InputField 
-        label="Departamento" 
-        placeholder="Informe o departamento"
-        :model-value="departamentoValue">
+        label="Telefone" 
+        placeholder="Informe o telefone"
+        v-model="telefoneValue">
+      </InputField>
+    </div>
+    <div class="input-inline-field">
+      <InputField 
+        label="Senha" 
+        placeholder="Informe a senha"
+        v-model="senhaValue"
+        type="password">
+      </InputField>
+      <InputField 
+        label="Informe o departamento" 
+        placeholder="Informe o código departamento"
+        v-model="departamentoValue">
       </InputField>
     </div>
     <div class="send-button">
-      <InputButton text-button="Salvar" @click="salvar"></InputButton>
+      <InputButton text-button="Salvar" @click="createFuncionario"></InputButton>
     </div>
   </form>
 </template>
@@ -37,21 +50,41 @@
 import InputField from '@/components/InputField/InputField.vue';
 import InputButton from '@/components/Button/InputButton.vue';
 import { ref } from 'vue';
+import axios from 'axios';
 
 const nomeValue = ref('');
 const emailValue = ref('');
 const cpfValue = ref('');
+const telefoneValue = ref('');
+const senhaValue = ref('');
 const departamentoValue = ref('');
 
-const salvar = () => {
-  const nome = nomeValue.value;
-  const email = emailValue.value;
-  const cpf = cpfValue.value;
-  const departamento = departamentoValue.value;
+async function createFuncionario() {
+  event?.preventDefault();
 
-  console.log("Nome:", nome);
-  console.log("E-mail:", email);
-  console.log("CPF:", cpf);
-  console.log("Departamento:", departamento);
+  const funcionario = {
+    cpf: cpfValue.value, 
+    nome: nomeValue.value,
+    email: emailValue.value,
+    senha: senhaValue.value,
+    telefone: telefoneValue.value
+  };
+
+  try {
+    const response = await axios.post('http://localhost:8080/funcionario', funcionario);
+    cpfValue.value = "";
+    nomeValue.value = "";
+    emailValue.value = "";
+    senhaValue.value = "";
+    telefoneValue.value = "";
+    console.log(response)
+    window.alert("Funcionario criado com sucesso")
+    location.reload()
+  } catch (error) {
+    console.error('Erro ao criar Funcionario:', error);
+    window.alert("Erro ao criar Funcionario")
+  }
 }
+
+
 </script>

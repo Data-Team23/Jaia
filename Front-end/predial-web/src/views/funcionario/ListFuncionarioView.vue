@@ -27,7 +27,7 @@
                 <th>No.</th>
                 <th>Nome</th>
                 <th>CPF</th>
-                <th>Departamento</th>
+                <th>Telefone</th>
                 <th>E-mail</th>
                 <th></th>
               </tr>
@@ -37,10 +37,10 @@
                 <td>{{ index + 1 }}</td>
                 <td>{{ funcionario.nome }}</td>
                 <td>{{ funcionario.cpf }}</td>
-                <td>{{ funcionario.departamento }}</td>
+                <td>{{ funcionario.telefone }}</td>
                 <td>{{ funcionario.email }}</td>
                 <td>
-                  <span class="material-symbols-outlined" id="edit-button" @click="editFuncionario(funcionario)"> edit </span>
+                  <span class="material-symbols-outlined" id="edit-button" @click="editFuncionario(funcionario.id)"> edit </span>
                   <span class="material-symbols-outlined" id="delete-button" @click="deleteDialog = true"> delete </span>
                 </td>
               </tr>
@@ -69,7 +69,7 @@
         <div class="close-button">
           <span class="material-symbols-outlined" @click="editDialog = false"> close </span>
         </div>
-        <EditFuncionarioForm></EditFuncionarioForm>
+        <UpdateFuncionarioForm></UpdateFuncionarioForm>
       </div>
     </v-dialog>
     <v-dialog v-model="deleteDialog" width="30%">
@@ -88,11 +88,14 @@
 <script setup lang="ts">
 import { ref, onMounted, computed, watch } from 'vue';
 import AddFuncionarioForm from "./AddFuncionarioView.vue";
-import EditFuncionarioForm from "./UpdateFuncionarioView.vue";
+import UpdateFuncionarioForm from "./UpdateFuncionarioView.vue";
 import InputButton from '@/components/Button/InputButton.vue';
 import SelectField from '@/components/Select/SelectField.vue';
 import axios from 'axios';
 import type IFuncionario from './IFuncionario';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 let addDialog = ref(false);
 let editDialog = ref(false);
@@ -121,6 +124,17 @@ const filterSelectOptions = [
 
 const page = ref(1);
 const itemsPerPage = ref(5);
+
+function editFuncionario(id: number) {
+    router.push({query: { id: id }})
+    editDialog.value = true
+}
+
+function clearUrlParam(newValue: boolean) {
+  if (!newValue && router.currentRoute.value.query.id !== undefined) {
+    router.push({ query: { ...router.currentRoute.value.query, id: undefined } });
+  }
+}
 
 function listFuncionarios() {
     axios.get<any>('http://localhost:8080/funcionario') 
@@ -156,6 +170,8 @@ onMounted(() => {
     listFuncionarios();
 })
 
+watch(editDialog, clearUrlParam)
+
 watch(filterInput, filterFuncionarios)
 
 watch(page, (newPage) => {
@@ -165,8 +181,5 @@ watch(page, (newPage) => {
 const changePage = (pageNumber: any) => {
     page.value = pageNumber;
 };
-
-function editFuncionario(funcionario: any) {
-}
 
 </script>
