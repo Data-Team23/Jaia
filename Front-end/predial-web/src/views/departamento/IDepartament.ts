@@ -1,5 +1,7 @@
-export default interface Departamento {
+import type IFuncionario from "../funcionario/IFuncionario"
+
+export default interface IDepartamento {
     nome: string
-    codigo: string
-    responsavel: string
+    codDepart: number
+    funcionarios: IFuncionario[]
 }

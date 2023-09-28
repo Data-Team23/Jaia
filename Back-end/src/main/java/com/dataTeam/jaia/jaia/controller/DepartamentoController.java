@@ -1,9 +1,10 @@
 package com.dataTeam.jaia.jaia.controller;
 
-
 import com.dataTeam.jaia.jaia.model.Departamento;
-import com.dataTeam.jaia.jaia.service.Departamento.IDepartamentoSerivce;
+import com.dataTeam.jaia.jaia.service.Departamento.IDepartamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,33 +14,28 @@ import java.util.List;
 @CrossOrigin
 public class DepartamentoController {
 
+        @Autowired
+        private IDepartamentoService service;
 
-    @Autowired
-    private IDepartamentoSerivce service;
+        @GetMapping
+        public List<Departamento> buscartodos() {
+                return service.buscarTodosDepartamentos();
+        }
 
+        @PostMapping
+        public Departamento criarDepartamento(@RequestBody Departamento departamento) {
+                return service.criarDepartamento(departamento);
+        }
 
-    // Adicionar departamento   //Foi
-    @PostMapping(value = "/novo")
-    public Departamento novoDepartamento(@RequestBody Departamento departamento){
-        return service.novoDepartamento(departamento);
-    }
+        @GetMapping("/{codDepart}")
+        public ResponseEntity<?> buscarPorCodDepart(@PathVariable Long codDepart) {
+                try {
+                        Departamento departamentoEncontrado = service.buscarPorCodDepart(codDepart);
+                        return ResponseEntity.ok(departamentoEncontrado);
+                } catch (Exception e) {
+                        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                        .body("Erro interno ao buscar departamento");
+                }
+        }
 
-    // Deletar departamento por ID
-    @GetMapping("/pegar/{id}")
-    public Departamento deleteDepartamento(@PathVariable("id") Long Id){
-        return service.deleteDepartamento(Id);
-    }
-
-    // Listar todos os departamentos  //foi
-    @GetMapping(value = "/todos")
-    public List<Departamento> buscartodos(){
-        return service.buscarTodosDepartamentos();
-    }
-
-
-    // Atualizar departamento por ID
-    @PutMapping("/{id}")
-    public Departamento atualizarDepartamento(@PathVariable("id") Long Id, @RequestBody Departamento atualizarDepartamento) {
-        return service.atualizarDepartamento(Id, atualizarDepartamento);
-    }
 }

@@ -39,11 +39,11 @@ async function createClient() {
   event?.preventDefault();
 
   const client = {
-    cnpj: parseFloat(cnpjValue.value), 
+    cnpj: cnpjValue.value, 
     nome: nameValue.value,
     senha: "senha123", 
     email: emailValue.value,
-    logradouro: addressValue.value,
+    endereco: addressValue.value,
     telefone: parseFloat(phoneValue.value), 
   };
 
@@ -54,9 +54,11 @@ async function createClient() {
     nameValue.value = "";
     emailValue.value = "";
     addressValue.value = "";
-    successMessage.value = "Cliente adicionado com sucesso!";
+    window.alert("Cliente criado com sucesso")
+    location.reload()
   } catch (error) {
     console.error('Erro ao criar cliente:', error);
+    window.alert("Erro ao criar cliente")
     successMessage.value = "";
   }
 }

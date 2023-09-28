@@ -10,8 +10,14 @@
       <div class="list-container">
         <div class="top-list">
           <h3><strong>Carteira de funcionários</strong></h3>
-          <div class="search-input">
-            <input type="text" />
+          <div class="search-filter">
+            <SelectField 
+                :option-values="filterSelectOptions" 
+                v-model="selectedFilter" 
+                value-prop="value" 
+                display-prop="label"
+            ></SelectField>
+            <input type="text" placeholder="Filtrar..." v-model="filterInput">
           </div>
         </div>
         <div class="table-container">
@@ -21,25 +27,32 @@
                 <th>No.</th>
                 <th>Nome</th>
                 <th>CPF</th>
-                <th>Departamento</th>
+                <th>Telefone</th>
                 <th>E-mail</th>
                 <th></th>
               </tr>
             </thead>
-            <tbody v-for="(funcionario, index) in funcionarios" :key="index">
+            <tbody v-for="(funcionario, index) in paginatedFuncionarios" :key="index">
               <tr>  
                 <td>{{ index + 1 }}</td>
-                <td>{{ funcionario.name }}</td>
+                <td>{{ funcionario.nome }}</td>
                 <td>{{ funcionario.cpf }}</td>
-                <td>{{ funcionario.departamento }}</td>
+                <td>{{ funcionario.telefone }}</td>
                 <td>{{ funcionario.email }}</td>
                 <td>
-                  <span class="material-symbols-outlined" id="edit-button" @click="editDialog = true"> edit </span>
+                  <span class="material-symbols-outlined" id="edit-button" @click="editFuncionario(funcionario.id)"> edit </span>
                   <span class="material-symbols-outlined" id="delete-button" @click="deleteDialog = true"> delete </span>
                 </td>
               </tr>
             </tbody>
           </table>
+          <div class="pagination">
+            <ul class="pagination-list">
+              <li v-for="pageNumber in totalPages" :key="pageNumber" @click="changePage(pageNumber)">
+                <a :class="{ active: page === pageNumber }">{{ pageNumber }}</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -56,7 +69,7 @@
         <div class="close-button">
           <span class="material-symbols-outlined" @click="editDialog = false"> close </span>
         </div>
-        <EditFuncionarioForm></EditFuncionarioForm>
+        <UpdateFuncionarioForm></UpdateFuncionarioForm>
       </div>
     </v-dialog>
     <v-dialog v-model="deleteDialog" width="30%">
@@ -73,50 +86,100 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted, computed, watch } from 'vue';
 import AddFuncionarioForm from "./AddFuncionarioView.vue";
-import EditFuncionarioForm from "./UpdateFuncionarioView.vue";
+import UpdateFuncionarioForm from "./UpdateFuncionarioView.vue";
 import InputButton from '@/components/Button/InputButton.vue';
+import SelectField from '@/components/Select/SelectField.vue';
+import axios from 'axios';
+import type IFuncionario from './IFuncionario';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 let addDialog = ref(false);
 let editDialog = ref(false);
 let deleteDialog = ref(false);
 
-const funcionarios = [
-  {
-    code: '001',
-    name: 'Vitoria',
-    cpf: '123.456.789-00',
-    departamento: 'RH',
-    email: 'vitoria@example.com',
-  },
-  {
-    code: '002',
-    name: 'Julia',
-    cpf: '987.654.321-00',
-    departamento: 'Financeiro',
-    email: 'julia@example.com',
-  },
-  {
-    code: '003',
-    name: 'Lucas',
-    cpf: '111.222.333-00',
-    departamento: 'Tecnologia',
-    email: 'lucas@example.com',
-  },
-  {
-    code: '004',
-    name: 'Tobias',
-    cpf: '444.555.666-00',
-    departamento: 'Vendas',
-    email: 'tobias@example.com',
-  },
-  {
-    code: '005',
-    name: 'Ariane',
-    cpf: '999.888.777-00',
-    departamento: 'Marketing',
-    email: 'ariane@example.com',
-  },
+let funcionarios = ref<Array<IFuncionario>>([]); 
+let paginatedFuncionarios = ref<Array<IFuncionario>>([]); 
+let filteredFuncionarios = ref<Array<IFuncionario>>([]); 
+let filterInput = ref("");
+let selectedFilter = ref("nome");
+
+const filterSelectOptions = [
+    {
+        label: "Nome",
+        value: "nome"
+    },
+    {
+        label: "CPF",
+        value: "cpf"
+    },
+    {
+        label: "Departamento",
+        value: "departamento"
+    },
 ];
+
+const page = ref(1);
+const itemsPerPage = ref(5);
+
+function editFuncionario(id: number) {
+    router.push({query: { id: id }})
+    editDialog.value = true
+}
+
+function clearUrlParam(newValue: boolean) {
+  if (!newValue && router.currentRoute.value.query.id !== undefined) {
+    router.push({ query: { ...router.currentRoute.value.query, id: undefined } });
+  }
+}
+
+function listFuncionarios() {
+    axios.get<any>('http://localhost:8080/funcionario') 
+        .then((response: any) => {
+            funcionarios.value = response.data
+            filteredFuncionarios.value = funcionarios.value;
+            filterFuncionarios();
+        })
+        .catch((error: any) => {
+            console.error('Erro ao buscar funcionários:', error);
+        });
+}
+
+function filterFuncionarios() {
+    filteredFuncionarios.value = funcionarios.value.filter((funcionario: any) => {
+        const selectedValue = funcionario[selectedFilter.value];
+        totalPages = computed(() => Math.ceil(filteredFuncionarios.value.length / itemsPerPage.value));
+        return selectedValue.toLowerCase().includes(filterInput.value.toLowerCase());
+    })
+    paginate()
+}
+
+const paginate = () => {
+    const startIndex = (page.value - 1) * itemsPerPage.value;
+    const endIndex = startIndex + itemsPerPage.value;
+
+    paginatedFuncionarios.value = filteredFuncionarios.value.slice(startIndex, endIndex);
+}
+
+let totalPages = computed(() => Math.ceil(funcionarios.value.length / itemsPerPage.value));
+
+onMounted(() => {
+    listFuncionarios();
+})
+
+watch(editDialog, clearUrlParam)
+
+watch(filterInput, filterFuncionarios)
+
+watch(page, (newPage) => {
+    paginate();
+});
+
+const changePage = (pageNumber: any) => {
+    page.value = pageNumber;
+};
+
 </script>

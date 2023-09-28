@@ -31,18 +31,18 @@
                               <th>No.</th>
                               <th>Código</th>
                               <th>Nome</th>
-                              <th>Responsável</th>
+                              <th>Qtd. de Funcionários</th>
                               <th></th>
                           </tr>
                       </thead>
                       <tbody v-for="(departament, index) in paginatedDepartaments" :key="index">
                           <tr>
                               <td>{{ index + 1 }}</td>
-                              <td>{{ departament.codigo }}</td>
+                              <td>{{ departament.codDepart }}</td>
                               <td>{{ departament.nome }}</td>
-                              <td>{{ departament.responsavel }}</td>
+                              <td>{{ departament.funcionarios.length }}</td>
                               <td>
-                                  <span class="material-symbols-outlined" id="edit-button" @click="editDialog = true">
+                                  <span class="material-symbols-outlined" id="edit-button" @click="editDepartamento(departament.codDepart)">
                                       edit
                                   </span>
                                   <span class="material-symbols-outlined" id="delete-button" @click="deleteDialog = true">
@@ -108,10 +108,13 @@ import '../styles/form-styles.css'
 import '../styles/table-styles.css'
 import '../styles/dialog-styles.css'
 import type IDepartament from './IDepartament'
+import { useRouter } from 'vue-router';
 
 let addDialog = ref(false)
 let editDialog = ref(false)
 let deleteDialog = ref(false)
+
+const router = useRouter();
 
 let departaments = ref<Array<IDepartament>>([])
 
@@ -139,8 +142,19 @@ const filterSelectOptions = [
 const page = ref(1);
 const itemsPerPage = ref(5);
 
+function editDepartamento(codDepart: number) {
+    router.push({query: { codDepart: codDepart }})
+    editDialog.value = true
+}
+
+function clearUrlParam(newValue: boolean) {
+  if (!newValue && router.currentRoute.value.query.codDepart !== undefined) {
+    router.push({ query: { ...router.currentRoute.value.query, codDepart: undefined } });
+  }
+}
+
 function listDepartaments() {
-  axios.get<any>('http://localhost:8080/departamentos/todos') 
+  axios.get<any>('http://localhost:8080/departamentos') 
       .then((response: any) => {
           departaments.value = response.data
           filteredDepartaments.value = departaments.value;
@@ -172,6 +186,8 @@ let totalPages = computed(() => Math.ceil(departaments.value.length / itemsPerPa
 onMounted(() => {
   listDepartaments();
 })
+
+watch(editDialog, clearUrlParam)
 
 watch(filterInput, filterDepartaments)
 

@@ -1,48 +1,60 @@
 package com.dataTeam.jaia.jaia.controller;
 
-
 import com.dataTeam.jaia.jaia.model.Cliente;
 import com.dataTeam.jaia.jaia.service.Cliente.IClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/cliente")
-@CrossOrigin(origins = "*")
+@CrossOrigin
 public class ClienteController {
 
     @Autowired
     private IClienteService service;
 
     @GetMapping
-    public List<Cliente> buscartodos(){
+    public List<Cliente> buscartodos() {
         return service.buscarTodosClientes();
     }
 
     @PostMapping
-    public Cliente novoCliente(@RequestBody Cliente cliente){
+    public Cliente novoCliente(@RequestBody Cliente cliente) {
         return service.novoCliente(cliente);
     }
-    
 
-    @GetMapping(value = "/{id}")
-    public Cliente buscarPorId(@PathVariable("id") Long id){
-        return service.buscarPorId(id);
+    @DeleteMapping("/excluir/{cnpj}")
+    public ResponseEntity<String> excluirClientePorCnpj(@PathVariable String cnpj) {
+        try {
+            service.excluirClientePorCnpj(cnpj);
+            return ResponseEntity.ok("Cliente excluído com sucesso");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno ao excluir o cliente");
+        }
     }
 
-    @GetMapping("/email/{id}")
-    public ResponseEntity<String> buscarEmailPorId(@PathVariable("id") Long id) {
-        Cliente cliente = service.buscarPorId(id);
-
-        if (cliente == null) {
-            return ResponseEntity.notFound().build();
+    @PutMapping("/atualizar/{cnpj}")
+    public ResponseEntity<?> atualizarClientePorCnpj(@PathVariable String cnpj,
+            @RequestBody Cliente clienteAtualizado) {
+        try {
+            Cliente clienteAtualizadoResult = service.atualizarClientePorCnpj(cnpj, clienteAtualizado);
+            return ResponseEntity.ok(clienteAtualizadoResult);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno ao atualizar o cliente");
         }
+    }
 
-        String email = cliente.getEmail();
-        return ResponseEntity.ok(email);
+    @GetMapping("/{cnpj}")
+    public ResponseEntity<?> buscarClientePorCnpj(@PathVariable String cnpj) {
+        try {
+            Cliente clienteEncontrado = service.buscarClientePorCnpj(cnpj);
+            return ResponseEntity.ok(clienteEncontrado);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno ao buscar o cliente");
+        }
     }
 
 }

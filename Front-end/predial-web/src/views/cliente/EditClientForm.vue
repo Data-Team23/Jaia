@@ -7,33 +7,31 @@
             <InputField 
                 label="CNPJ:" 
                 value="00.000.000/0000-01"
-                :model-value="cnpjValue">
+                v-model="cnpjValue">
             </InputField>
             <InputField 
                 label="Telefone:" 
                 placeholder="Informe o telefone:"
-                :model-value="phoneValue">
+                v-model="phoneValue">
             </InputField>
         </div>
         <div class="input-inline-field">
             <InputField 
                 label="Nome:" 
                 placeholder="Informe o nome:"
-                :model-value="nameValue">
+                v-model="nameValue">
             </InputField>
-            <SelectField 
-                label="Plano:" 
-                :option-values="options"
-                v-model="planeValue"
-                value-prop="value" 
-                display-prop="label">
-            </SelectField>
+            <InputField 
+                label="E-mail:" 
+                placeholder="Informe o e-mail:"
+                v-model="emailValue">
+            </InputField>
         </div>
         <div class="input-inline-field">
             <InputField 
                 label="Endereço:" 
                 placeholder="Informe o endereço:"
-                :model-value="addressValue">
+                v-model="addressValue">
             </InputField>
         </div>
         <div class="send-button">
@@ -43,42 +41,76 @@
 </template>
 
 <script setup lang="ts">
-    import InputField from '@/components/InputField/InputField.vue';
-    import InputButton from '@/components/Button/InputButton.vue';
-    import SelectField from '@/components/Select/SelectField.vue';
-    import { ref } from 'vue';
+import InputField from '@/components/InputField/InputField.vue';
+import InputButton from '@/components/Button/InputButton.vue';
+import { onMounted, ref } from 'vue';
+import axios from 'axios';
+import { type Router, useRouter } from 'vue-router';
+import type IClient from './IClient';
 
-    const options = [
-        {
-            label: 'Gold',
-            value: 'gold'
-        },
-        {
-            label: 'Silver',
-            value: 'silver'
-        },
-        {
-            label: 'Bronze',
-            value: 'bronze'
-        },
-    ]
-    
-    const cnpjValue = ref('09.888.344/0001-01')
-    const phoneValue = ref('(12) 99689-5533')
-    const nameValue = ref('João Carlos')
-    const planeValue = ref(options[0].value)
-    const addressValue = ref('Rua Itajaí n° 245')
+const router = useRouter();
+const cnpjValue = ref('');
+const phoneValue = ref('');
+const nameValue = ref('');
+const emailValue = ref('');
+const addressValue = ref('');
+const mensagemSucesso = ref('');
 
-    function updateClient(){
-        event?.preventDefault()
-        const client = {
-            cnpjValue: cnpjValue.value,
-            phoneValue: phoneValue.value,
-            nameValue: nameValue.value,
-            planeValue: planeValue.value,
-            addressValue: addressValue.value,
-        }
-        console.log(client)
-    }
+const clientSelected = ref<IClient>()
+
+onMounted(async () => {
+  await waitForCnpjInRoute(router);
+  const clienteCnpj = router.currentRoute.value.query.cnpj;
+  try {
+    axios.get<IClient>(`http://localhost:8080/cliente/${clienteCnpj}`).then((response) => {
+      if(response.data){
+        clientSelected.value = response.data
+        cnpjValue.value = clientSelected.value.cnpj
+        phoneValue.value = clientSelected.value.telefone
+        nameValue.value = clientSelected.value.nome
+        addressValue.value = clientSelected.value.endereco
+        emailValue.value = clientSelected.value.email
+      }
+    })
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+async function waitForCnpjInRoute(router: Router) {
+  // Loop para aguardar até que route.query.cnpj esteja definido
+  while (router.currentRoute.value.query.cnpj === undefined) {
+    // Definição do período de tempo (pode ser ajustado)
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  }
+}
+
+async function updateClient() {
+  event?.preventDefault()
+  try {
+    const clienteCnpj = router.currentRoute.value.query.cnpj;
+    const clienteAtualizado = {
+      nome: nameValue.value, 
+      telefone: parseFloat(phoneValue.value),
+      senha: null,
+      email: emailValue.value, 
+      endereco: addressValue.value, 
+    };
+
+    await axios.put(`http://localhost:8080/cliente/atualizar/${clienteCnpj}`, clienteAtualizado).then((response) => {
+      window.alert("Cliente atualizado com sucesso")
+      console.log(response)
+      location.reload()
+    }).catch((error) => {
+      console.log(error)
+    })
+
+  } catch (error) {
+    console.error('Erro interno ao atualizar o cliente', error);
+  }
+}
+
 
 </script>
+
+
