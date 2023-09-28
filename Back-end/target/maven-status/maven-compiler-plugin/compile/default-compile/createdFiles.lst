@@ -11,6 +11,5 @@ com\dataTeam\jaia\jaia\controller\FuncionarioController.class
 com\dataTeam\jaia\jaia\repository\DepartamentoRepository.class
 com\dataTeam\jaia\jaia\service\Cliente\ClienteService.class
 com\dataTeam\jaia\jaia\service\Cliente\IClienteService.class
-com\dataTeam\jaia\jaia\service\Departamento\IDepartamentoSerivce.class
 com\dataTeam\jaia\jaia\repository\FuncionarioRepository.class
 com\dataTeam\jaia\jaia\service\Funcionario\IFuncionarioService.class
