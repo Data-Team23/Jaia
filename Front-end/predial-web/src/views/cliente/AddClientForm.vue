@@ -39,7 +39,7 @@ async function createClient() {
   event?.preventDefault();
 
   const client = {
-    cnpj: parseFloat(cnpjValue.value), 
+    cnpj: cnpjValue.value, 
     nome: nameValue.value,
     senha: "senha123", 
     email: emailValue.value,

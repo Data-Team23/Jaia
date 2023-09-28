@@ -1,7 +1,6 @@
 package com.dataTeam.jaia.jaia.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import jakarta.persistence.*;

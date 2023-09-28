@@ -13,7 +13,6 @@ import java.util.Optional;
 @Service
 public class FuncionarioService implements IFuncionarioService {
 
-
     @Autowired
     private  FuncionarioRepository funcrepo;
 
@@ -30,13 +29,10 @@ public class FuncionarioService implements IFuncionarioService {
                 funcionario.getSupervisor().isBlank()){
             throw new IllegalArgumentException("Funcionario com atributos inválidos!");
         }
-        return funcionario;
+        return funcrepo.save(funcionario);
     }
     public List<Funcionario> buscarTodosFuncionario() {
         List<Funcionario> funcionarios = funcrepo.findAll();
-        for(Funcionario f : funcionarios) {
-            f.getDepartamento().setFuncionarios(null);
-        }
         return funcionarios;
     }
 

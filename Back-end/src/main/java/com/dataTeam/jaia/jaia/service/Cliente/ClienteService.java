@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
 public class ClienteService implements IClienteService {
 
@@ -25,27 +24,51 @@ public class ClienteService implements IClienteService {
         return clienterepo.findAll();
     }
 
-    public Cliente buscarPorId(Long id) {
-        Optional<Cliente> clienteOp = clienterepo.findById(id);
-        if(clienteOp.isEmpty()) {
-            throw new IllegalArgumentException("Usuario nao encontrado!");
+    public void excluirClientePorCnpj(String cnpj) {
+        Optional<Cliente> clienteOptional = clienterepo.findByCnpj(cnpj);
+        if (clienteOptional.isPresent()) {
+            Cliente cliente = clienteOptional.get();
+            clienterepo.delete(cliente);
+        } else {
         }
-        return clienteOp.get();
     }
 
     @Transactional
-    public void apagarClientePorCnpj(Integer cnpj) {
-        List<Cliente> clientes = clienterepo.findByCnpj(cnpj);
-        if (!clientes.isEmpty()) {
-            clienterepo.deleteAll(clientes);
-        } else {
-            throw new IllegalArgumentException("Nenhum cliente encontrado com o CNPJ informado.");
+    public Cliente atualizarClientePorCnpj(String cnpj, Cliente clienteAtualizado) {
+        Optional<Cliente> clienteExistente = clienterepo.findByCnpj(cnpj);
+    
+        if (clienteExistente.isEmpty()) {
+            try {
+                throw new Exception("Cliente com CNPJ " + cnpj + " não encontrado.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+    
+        Cliente cliente = clienteExistente.get();
+        
+        cliente.setNome(clienteAtualizado.getNome());
+        cliente.setTelefone(clienteAtualizado.getTelefone());
+        cliente.setSenha(clienteAtualizado.getSenha());
+        cliente.setEndereco(clienteAtualizado.getEndereco());
+        cliente.setEmail(clienteAtualizado.getEmail());
+    
+        return clienterepo.save(cliente);
     }
 
-
-    public List<Cliente> buscarPorCnpj(Integer cnpj) {
-        return clienterepo.findByCnpj(cnpj);
+    @Transactional
+    public Cliente buscarClientePorCnpj(String cnpj) {
+        Optional<Cliente> clienteExistente = clienterepo.findByCnpj(cnpj);
+    
+        if (clienteExistente.isEmpty()) {
+            try {
+                throw new Exception("Cliente com CNPJ " + cnpj + " não encontrado.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }             
+        } 
+        Cliente clienteEncontrado = clienteExistente.get();
+        return clienteEncontrado;    
     }
 
 }

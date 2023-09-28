@@ -1,19 +1,21 @@
 package com.dataTeam.jaia.jaia.service.Cliente;
 
 import com.dataTeam.jaia.jaia.model.Cliente;
-
 import java.util.List;
+import java.util.Optional;
+import org.springframework.stereotype.Repository;
 
-public interface IClienteService {
+@Repository
+public interface IClienteService{
 
     public Cliente novoCliente (Cliente cliente );
 
+    public Cliente buscarClientePorCnpj (String cnpj);
+
     public List<Cliente> buscarTodosClientes();
 
-    public Cliente buscarPorId(Long Id);
+    public void excluirClientePorCnpj(String cnpj);
 
-    public List<Cliente> buscarPorCnpj(Integer cnpj);
-    
-    void apagarClientePorCnpj(Integer cnpj);
+    Cliente atualizarClientePorCnpj(String cnpj, Cliente clienteAtualizado);
 
 }

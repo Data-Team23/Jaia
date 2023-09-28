@@ -1,7 +1,6 @@
 package com.dataTeam.jaia.jaia.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,7 +16,7 @@ public class Cliente {
     private Long id;
 
     @Column(name = "cnpj")
-    private Double cnpj;
+    private String cnpj;
 
     @Column(name = "nome")
     private String nome;
