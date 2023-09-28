@@ -38,9 +38,9 @@
                       <tbody v-for="(departament, index) in paginatedDepartaments" :key="index">
                           <tr>
                               <td>{{ index + 1 }}</td>
-                              <td>{{ departament.cod_depart }}</td>
+                              <td>{{ departament.codDepart }}</td>
                               <td>{{ departament.nome }}</td>
-                              <td>{{ departament.responsavel }}</td>
+                              <td>{{ departament.supervisores[0].replace(/[\[\]]/g, '') }}</td>
                               <td>
                                   <span class="material-symbols-outlined" id="edit-button" @click="editDialog = true">
                                       edit
@@ -140,7 +140,7 @@ const page = ref(1);
 const itemsPerPage = ref(5);
 
 function listDepartaments() {
-  axios.get<any>('http://localhost:8080/departamentos/todos') 
+  axios.get<any>('http://localhost:8080/departamentos/comSupervisores') 
       .then((response: any) => {
           departaments.value = response.data
           filteredDepartaments.value = departaments.value;

@@ -77,6 +77,14 @@ onMounted(async () => {
   }
 })
 
+async function waitForCnpjInRoute(router: Router) {
+  // Loop para aguardar até que route.query.cnpj esteja definido
+  while (router.currentRoute.value.query.cnpj === undefined) {
+    // Definição do período de tempo (pode ser ajustado)
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  }
+}
+
 async function updateClient() {
   event?.preventDefault()
   try {
@@ -91,6 +99,7 @@ async function updateClient() {
 
     await axios.put(`http://localhost:8080/cliente/atualizar/${clienteCnpj}`, clienteAtualizado).then((response) => {
       window.alert("Cliente atualizado com sucesso")
+      console.log(response)
       location.reload()
     }).catch((error) => {
       console.log(error)
@@ -101,13 +110,7 @@ async function updateClient() {
   }
 }
 
-async function waitForCnpjInRoute(router: Router) {
-  // Loop para aguardar até que route.query.cnpj esteja definido
-  while (router.currentRoute.value.query.cnpj === undefined) {
-    // Definição do período de tempo (pode ser ajustado)
-    await new Promise((resolve) => setTimeout(resolve, 100));
-  }
-}
 
 </script>
+
 
