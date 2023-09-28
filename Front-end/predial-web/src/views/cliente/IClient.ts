@@ -1,6 +1,6 @@
 export default interface Cliente {
     nome: string
-    logradouro: string
+    endereco: string
     cnpj: string
     telefone: string  
     email: string  

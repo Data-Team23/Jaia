@@ -41,12 +41,12 @@
                     <tr>
                     <td>{{ index + 1 }}</td>
                     <td>{{ cliente.nome }}</td>
-                    <td>{{ cliente.logradouro }}</td>
+                    <td>{{ cliente.endereco ?? 'Não informado' }}</td>
                     <td>{{ cliente.cnpj }}</td>
                     <td>{{ cliente.telefone }}</td>
                     <td>{{ cliente.email }}</td>
                     <td>
-                    <span class="material-symbols-outlined" id="edit-button" @click="editClient(cliente)">
+                    <span class="material-symbols-outlined" id="edit-button" @click="editClient(cliente.cnpj)">
                     edit
                     </span>
                     <span class="material-symbols-outlined" id="delete-button" @click="deleteDialog = true">
@@ -102,7 +102,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, type Ref, watch, computed } from 'vue';
+import { ref, onMounted, type Ref, watch, computed, watchEffect } from 'vue';
 import axios from 'axios';
 import AddClientForm from "./AddClientForm.vue";
 import EditClientForm from "./EditClientForm.vue";
@@ -113,22 +113,26 @@ import '../styles/table-styles.css'
 import '../styles/dialog-styles.css'
 import type IClient from './IClient'
 import { globalCnpj } from './GlobalCnpj'; 
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
 
 let addDialog = ref(false)
 let editDialog = ref(false)
 let deleteDialog = ref(false)
 
 let clients = ref<Array<IClient>>([])
+let clientSelected = ref<IClient>()
 let paginatedClients = ref<Array<IClient>>([]);
 let filteredClients = ref<Array<IClient>>([])
 let filterInput = ref("")
 let selectedFilter = ref("nome")
 
-function editClient(client: IClient) {
-  globalCnpj.value = client.cnpj; 
-  globalCnpj.toString();
-  editDialog.value = true;
+console.log(paginatedClients.value)
+
+function editClient(clientCnpj: string) {
+    editDialog.value = true
+    router.push({query: { cnpj: clientCnpj }})
 }
 
 
@@ -162,11 +166,15 @@ function listClients() {
         });
 }
 
-function filterClients() {
+function filterClients() {  
     filteredClients.value = clients.value.filter((client: any) => {
         const selectedValue = client[selectedFilter.value];
         totalPages = computed(() => Math.ceil(filteredClients.value.length / itemsPerPage.value));
-        return selectedValue.toLowerCase().includes(filterInput.value.toLowerCase());
+        if(selectedValue){
+            return selectedValue.toLowerCase().includes(filterInput.value.toLowerCase());
+        } else {
+            return clients.value
+        }
     })
     paginate()
 }

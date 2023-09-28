@@ -27,20 +27,6 @@ public class ClienteController {
         return service.novoCliente(cliente);
     }
 
-    @GetMapping("/{cnpj}")
-    public ResponseEntity<?> buscarClientePorCnpj(@PathVariable String cnpj) {
-        try {
-            Cliente cliente = service.buscarClientePorCnpj(cnpj);
-                if (cliente != null) {
-                    return ResponseEntity.ok(cliente);
-                } else {
-                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente não encontrado");
-                }
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno ao buscar o cliente");
-        }
-    }
-
     @DeleteMapping("/excluir/{cnpj}")
     public ResponseEntity<String> excluirClientePorCnpj(@PathVariable String cnpj) {
         try {

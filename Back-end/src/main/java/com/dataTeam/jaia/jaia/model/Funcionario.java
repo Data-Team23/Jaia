@@ -30,7 +30,7 @@ public class Funcionario {
     private String email;
 
     @Column(name = "supervisor")
-    private String supervisor;
+    private int supervisor;
 
     @ManyToOne
     @JoinColumn(name="FK_DEPARTAMENTO_COD_DEP")

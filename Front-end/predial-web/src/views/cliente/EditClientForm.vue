@@ -46,7 +46,9 @@ import InputButton from '@/components/Button/InputButton.vue';
 import { globalCnpj } from './GlobalCnpj'; 
 import { ref } from 'vue';
 import axios from 'axios';
+import { useRoute } from 'vue-router';
 
+const route = useRoute()
 const cnpjValue = ref('');
 const phoneValue = ref('');
 const nameValue = ref('');
@@ -55,19 +57,21 @@ const addressValue = ref('');
 const mensagemSucesso = ref('');
 
 async function updateClient() {
+  event?.preventDefault()
   try {
+    const clienteCnpj = route.query.cnpj
+    console.log(route.query.cnpj)
     const clienteAtualizado = {
-      cnpj: cnpjValue.value, 
+      nome: nameValue.value, 
       telefone: parseFloat(phoneValue.value),
       senha: null,
-      nome: nameValue.value, 
       email: emailValue.value, 
       endereco: addressValue.value, 
     };
     console.log('Cliente Atualizado:', clienteAtualizado);
 
 
-    const response = await axios.put(`http://localhost:8080/cliente/atualizar?cnpj=${globalCnpj}`, clienteAtualizado);
+    const response = await axios.put(`http://localhost:8080/cliente/atualizar/"${clienteCnpj}"`, clienteAtualizado);
 
     if (response.status === 200) {
       mensagemSucesso.value = 'Cliente atualizado com sucesso'; 
@@ -78,4 +82,5 @@ async function updateClient() {
     console.error('Erro interno ao atualizar o cliente', error);
   }
 }
+
 </script>
