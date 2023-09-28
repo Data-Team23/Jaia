@@ -2,44 +2,49 @@ package com.dataTeam.jaia.jaia.controller;
 
 
 import com.dataTeam.jaia.jaia.model.Departamento;
-import com.dataTeam.jaia.jaia.service.Departamento.IDepartamentoSerivce;
+import com.dataTeam.jaia.jaia.model.DepartamentoComSupervisor;
+import com.dataTeam.jaia.jaia.model.Funcionario;
+import com.dataTeam.jaia.jaia.service.Departamento.IDepartamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/departamentos")
 @CrossOrigin
 public class DepartamentoController {
 
-
     @Autowired
-    private IDepartamentoSerivce service;
+    private IDepartamentoService service;
 
-
-    // Adicionar departamento   //Foi
-    @PostMapping(value = "/novo")
-    public Departamento novoDepartamento(@RequestBody Departamento departamento){
-        return service.novoDepartamento(departamento);
-    }
-
-    // Deletar departamento por ID
-    @GetMapping("/pegar/{id}")
-    public Departamento deleteDepartamento(@PathVariable("id") Long Id){
-        return service.deleteDepartamento(Id);
-    }
-
-    // Listar todos os departamentos  //foi
     @GetMapping(value = "/todos")
     public List<Departamento> buscartodos(){
         return service.buscarTodosDepartamentos();
     }
 
+     @GetMapping("/comSupervisores")
+    public List<DepartamentoComSupervisor> buscarDepartamentosComSupervisores() {
+        List<Departamento> departamentos = service.buscarTodosDepartamentos();
 
-    // Atualizar departamento por ID
-    @PutMapping("/{id}")
-    public Departamento atualizarDepartamento(@PathVariable("id") Long Id, @RequestBody Departamento atualizarDepartamento) {
-        return service.atualizarDepartamento(Id, atualizarDepartamento);
+        List<Departamento> departamentosComSupervisores = departamentos.stream()
+                .filter(departamento -> departamento.getFuncionarios().stream()
+                        .anyMatch(funcionario -> funcionario.getSupervisor() == 2))
+                .collect(Collectors.toList());
+
+        List<DepartamentoComSupervisor> departamentosComSupervisoresDTO = departamentosComSupervisores.stream()
+                .map(departamento -> new DepartamentoComSupervisor(
+                        departamento.getCodDepart(),
+                        departamento.getNome(),
+                        departamento.getFuncionarios().stream()
+                                .filter(funcionario -> funcionario.getSupervisor() == 2)
+                                .map(Funcionario::getNome)
+                                .collect(Collectors.toList())
+                ))
+                .collect(Collectors.toList());
+
+        return departamentosComSupervisoresDTO;
     }
+
 }
