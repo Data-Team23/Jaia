@@ -47,4 +47,14 @@ public class ClienteController {
         }
     }
 
+    @GetMapping("/{cnpj}")
+    public ResponseEntity<?> buscarClientePorCnpj(@PathVariable String cnpj) {
+        try {
+            Cliente clienteEncontrado = service.buscarClientePorCnpj(cnpj);
+            return ResponseEntity.ok(clienteEncontrado);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno ao buscar o cliente");
+        }
+    }
+
 }

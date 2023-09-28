@@ -1,5 +1,7 @@
 package com.dataTeam.jaia.jaia.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "cliente")
 @Data
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Cliente {
 
     @Id
@@ -31,6 +34,6 @@ public class Cliente {
     private String endereco;
 
     @Column(name = "telefone")
-    private Double telefone;
+    private String telefone;
 
 }

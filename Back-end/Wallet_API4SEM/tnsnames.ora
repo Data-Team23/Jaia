@@ -1,0 +1,12 @@
+api4sem_high = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-saopaulo-1.oraclecloud.com))(connect_data=(service_name=g7d488f43e3aa55_api4sem_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+api4sem_low = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-saopaulo-1.oraclecloud.com))(connect_data=(service_name=g7d488f43e3aa55_api4sem_low.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+api4sem_medium = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-saopaulo-1.oraclecloud.com))(connect_data=(service_name=g7d488f43e3aa55_api4sem_medium.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+api4sem_tp = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-saopaulo-1.oraclecloud.com))(connect_data=(service_name=g7d488f43e3aa55_api4sem_tp.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+api4sem_tpurgent = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-saopaulo-1.oraclecloud.com))(connect_data=(service_name=g7d488f43e3aa55_api4sem_tpurgent.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+
+
