@@ -131,10 +131,15 @@ let selectedFilter = ref("nome")
 console.log(paginatedClients.value)
 
 function editClient(clientCnpj: string) {
-    editDialog.value = true
     router.push({query: { cnpj: clientCnpj }})
+    editDialog.value = true
 }
 
+function clearUrlParam(newValue: boolean) {
+  if (!newValue && router.currentRoute.value.query.cnpj !== undefined) {
+    router.push({ query: { ...router.currentRoute.value.query, cnpj: undefined } });
+  }
+}
 
 const filterSelectOptions = [
     {
@@ -197,6 +202,8 @@ watch(filterInput, filterClients)
 watch(page, (newPage) => {
     paginate();
 });
+
+watch(editDialog, clearUrlParam)
 
 const changePage = (pageNumber: any) => {
     page.value = pageNumber;

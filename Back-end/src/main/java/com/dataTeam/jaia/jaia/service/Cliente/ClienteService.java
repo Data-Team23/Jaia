@@ -56,4 +56,19 @@ public class ClienteService implements IClienteService {
         return clienterepo.save(cliente);
     }
 
+    @Transactional
+    public Cliente buscarClientePorCnpj(String cnpj) {
+        Optional<Cliente> clienteExistente = clienterepo.findByCnpj(cnpj);
+    
+        if (clienteExistente.isEmpty()) {
+            try {
+                throw new Exception("Cliente com CNPJ " + cnpj + " não encontrado.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }             
+        } 
+        Cliente clienteEncontrado = clienteExistente.get();
+        return clienteEncontrado;    
+    }
+
 }

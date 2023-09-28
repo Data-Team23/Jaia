@@ -10,6 +10,8 @@ public interface IClienteService{
 
     public Cliente novoCliente (Cliente cliente );
 
+    public Cliente buscarClientePorCnpj (String cnpj);
+
     public List<Cliente> buscarTodosClientes();
 
     public void excluirClientePorCnpj(String cnpj);
