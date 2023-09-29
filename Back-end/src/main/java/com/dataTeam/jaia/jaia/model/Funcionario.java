@@ -1,19 +1,18 @@
 package com.dataTeam.jaia.jaia.model;
 
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "funcionario")
-@Data
-@NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@Getter
+@Setter
 public class Funcionario {
 
     @Id
@@ -36,7 +35,7 @@ public class Funcionario {
     @Column(name = "telefone")
     private String telefone;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_Departamento_cod_dep")
     @JsonBackReference
     private Departamento departamento;

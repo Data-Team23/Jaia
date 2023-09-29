@@ -1,22 +1,19 @@
 package com.dataTeam.jaia.jaia.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "departamento")
-@Data
-@NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "codDepart")
+@Getter
+@Setter
 public class Departamento {
 
     @Id
@@ -28,6 +25,7 @@ public class Departamento {
 
     @OneToMany(mappedBy = "departamento")
     @JsonManagedReference
+    // @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
     private List<Funcionario> funcionarios;
 
 }

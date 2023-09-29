@@ -1,6 +1,5 @@
 package com.dataTeam.jaia.jaia.controller;
 
-import com.dataTeam.jaia.jaia.model.Departamento;
 import com.dataTeam.jaia.jaia.model.Funcionario;
 import com.dataTeam.jaia.jaia.service.Departamento.IDepartamentoService;
 import com.dataTeam.jaia.jaia.service.Funcionario.IFuncionarioService;
@@ -33,6 +32,11 @@ public class FuncionarioController {
     @GetMapping(value = "/{id}")
     public Funcionario buscarPorId(@PathVariable("id") Long id) {
         return service.buscarPorId(id);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public Funcionario deletarPorId(@PathVariable Long id) {
+        return service.deletarPorId(id);
     }
 
 }
