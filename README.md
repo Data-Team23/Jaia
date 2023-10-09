@@ -179,6 +179,7 @@ Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios mo
   </tr>
   </table>
 </div>
+
 # Tecnologias Utilizadas
 - ``Java``
 - ``JavaScript``
@@ -286,8 +287,25 @@ Uma das personas gerais para esse tipo de sistema pode ser definida conforme a i
 
 # Sprint 02
 ## User Stories
-- [ ] Como planejador de inspeção, desejo cadastrar, editar e visualizar as ordens de serviços a partir das requisições que chegam pelo portal do usuário.
-- [ ] Como técnico, desejo avaliar o local e consequentemente anotar irregularidades que a inspeção cobra, e ao final aprovar ou reprovar a inspeção do local.
+- [ ] Como planejador de inspeção, desejo cadastrar, editar e visualizar as ordens de serviços a partir das requisições que chegam pelo portal do usuário para que seja possível planejar e prestar todos os serviços, gerando caixa para a empresa.
+- [ ] Como técnico, desejo avaliar o local e consequentemente anotar irregularidades que a inspeção cobra, e ao final aprovar ou reprovar a inspeção do local para que seja possível o futuro recebimento do laudo técnico e aprovação da utilização do local.
+
+## Burndown
+
+
+## Wireframes
+### Requisições
+Quando um cliente preenche a requisição, o dado aparecerá em nosso sistema, será possível abrir, preencher as informações complementares e criar a ordem de serviço.
+![Requisições](https://github.com/Data-Team23/Jaia/assets/102003274/3ad25d8d-e343-4f74-82de-b37ad3db024d)
+
+### Ordem de Serviço
+Após a criação de requisição e criação da ordem de serviço, é possível verificar a ordem dentro dessa tela. É possível cadastrar novas O.S., editar e excluir dentro dessa feature
+![O S](https://github.com/Data-Team23/Jaia/assets/102003274/b8ecd8d1-abb3-4e22-9f50-a5b6641183d1)
+
+### Checklist
+Para a inspeção de algum lugar é necessário ter um checklist de inspeção, nessa tela é possível criar, editar e excluir os checklist.
+![checklist](https://github.com/Data-Team23/Jaia/assets/102003274/150aece1-a56d-408b-b411-be9b57e3699b)
+
 
 # Sprint 03
 ## User Stories
