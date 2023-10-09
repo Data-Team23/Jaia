@@ -296,10 +296,12 @@ Uma das personas gerais para esse tipo de sistema pode ser definida conforme a i
 ## Wireframes
 ### Requisições
 Quando um cliente preenche a requisição, o dado aparecerá em nosso sistema, será possível abrir, preencher as informações complementares e criar a ordem de serviço.
+
 ![Requisições](https://github.com/Data-Team23/Jaia/assets/102003274/3ad25d8d-e343-4f74-82de-b37ad3db024d)
 
 ### Ordem de Serviço
 Após a criação de requisição e criação da ordem de serviço, é possível verificar a ordem dentro dessa tela. É possível cadastrar novas O.S., editar e excluir dentro dessa feature
+
 ![O S](https://github.com/Data-Team23/Jaia/assets/102003274/b8ecd8d1-abb3-4e22-9f50-a5b6641183d1)
 
 ### Checklist
