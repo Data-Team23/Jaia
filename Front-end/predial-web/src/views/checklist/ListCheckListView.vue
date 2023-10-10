@@ -69,7 +69,7 @@
                         close
                     </span>
                 </div>
-                <AddClientForm></AddClientForm>
+                <AddCheckListView></AddCheckListView>
             </div>
         </v-dialog>
         <v-dialog v-model="editDialog" width="80%">
@@ -101,6 +101,7 @@ import { ref, onMounted, watch } from 'vue';
 import type ICheckList from './ICheckList';
 import { useRouter } from 'vue-router';
 import UpdateCheckListView from './UpdateCheckListView.vue';
+import AddCheckListView from './AddCheckListView.vue';
 
 const router = useRouter()
 
