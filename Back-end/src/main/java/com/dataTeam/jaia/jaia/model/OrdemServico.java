@@ -14,37 +14,35 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "funcionario")
+@Table(name = "ordem_servico")
 @Data
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Funcionario {
+public class OrdemServico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_func")
+    @Column(name = "id_ordem")
     private Long id;
 
-    @Column(name = "cpf_func", unique = true)
-    private String cpf;
+    @Column(name = "nome_ordem")
+    private String nomeOrdem;
 
-    @Column(name = "nome_func")
-    private String nome;
+    @Column(name = "tipo_inspecao")
+    private String tipoInspecao;
 
-    @Column(name = "senha_func")
-    private String senha;
-
-    @Column(name = "email_func", unique = true)
-    private String email;
-
-    @Column(name = "telefone_func")
-    private String telefone;
+    @Column(name = "status_ordem")
+    private String status;
 
     @ManyToOne
-    @JoinColumn(name = "id_departamento")
-    private Departamento departamento;
-
-    @ManyToOne
-    @JoinColumn(name = "supervisor")
+    @JoinColumn(name = "id_supervisor")
     private Funcionario supervisor;
+
+    @ManyToOne
+    @JoinColumn(name = "id_cli")
+    private Cliente cliente;
+
+    @ManyToOne
+    @JoinColumn(name = "id_check")
+    private Checklist checklist;
 }

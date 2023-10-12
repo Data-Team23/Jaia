@@ -20,10 +20,10 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 public class Departamento {
 
     @Id
-    @Column(name = "cod_dep")
+    @Column(name = "id_Depart")
     private Long codDepart;
 
-    @Column(name = "nome")
+    @Column(name = "nome_Depart")
     private String nome;
 
     @OneToMany(mappedBy = "departamento")
