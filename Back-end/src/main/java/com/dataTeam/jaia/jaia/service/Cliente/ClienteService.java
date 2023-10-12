@@ -24,7 +24,7 @@ public class ClienteService implements IClienteService {
         return clienterepo.findAll();
     }
 
-    public void excluirClientePorCnpj(String cnpj) {
+    public void excluirClientePorCnpj(Integer cnpj) {
         Optional<Cliente> clienteOptional = clienterepo.findByCnpj(cnpj);
         if (clienteOptional.isPresent()) {
             Cliente cliente = clienteOptional.get();
@@ -34,7 +34,7 @@ public class ClienteService implements IClienteService {
     }
 
     @Transactional
-    public Cliente atualizarClientePorCnpj(String cnpj, Cliente clienteAtualizado) {
+    public Cliente atualizarClientePorCnpj(Integer cnpj, Cliente clienteAtualizado) {
         Optional<Cliente> clienteExistente = clienterepo.findByCnpj(cnpj);
     
         if (clienteExistente.isEmpty()) {
@@ -57,7 +57,7 @@ public class ClienteService implements IClienteService {
     }
 
     @Transactional
-    public Cliente buscarClientePorCnpj(String cnpj) {
+    public Cliente buscarClientePorCnpj(Integer cnpj) {
         Optional<Cliente> clienteExistente = clienterepo.findByCnpj(cnpj);
     
         if (clienteExistente.isEmpty()) {

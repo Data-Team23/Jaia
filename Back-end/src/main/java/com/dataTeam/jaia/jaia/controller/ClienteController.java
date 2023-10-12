@@ -27,7 +27,7 @@ public class ClienteController {
     }
 
     @DeleteMapping("/excluir/{cnpj}")
-    public ResponseEntity<String> excluirClientePorCnpj(@PathVariable String cnpj) {
+    public ResponseEntity<String> excluirClientePorCnpj(@PathVariable Integer cnpj) {
         try {
             service.excluirClientePorCnpj(cnpj);
             return ResponseEntity.ok("Cliente excluído com sucesso");
@@ -37,7 +37,7 @@ public class ClienteController {
     }
 
     @PutMapping("/atualizar/{cnpj}")
-    public ResponseEntity<?> atualizarClientePorCnpj(@PathVariable String cnpj,
+    public ResponseEntity<?> atualizarClientePorCnpj(@PathVariable Integer cnpj,
             @RequestBody Cliente clienteAtualizado) {
         try {
             Cliente clienteAtualizadoResult = service.atualizarClientePorCnpj(cnpj, clienteAtualizado);
@@ -48,7 +48,7 @@ public class ClienteController {
     }
 
     @GetMapping("/{cnpj}")
-    public ResponseEntity<?> buscarClientePorCnpj(@PathVariable String cnpj) {
+    public ResponseEntity<?> buscarClientePorCnpj(@PathVariable Integer cnpj) {
         try {
             Cliente clienteEncontrado = service.buscarClientePorCnpj(cnpj);
             return ResponseEntity.ok(clienteEncontrado);

@@ -17,27 +17,24 @@ public class Funcionario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "")
+    @Column(name = "id_func")
     private Long id;
 
-    @Column(name = "cpf")
-    private String cpf;
+    @Column(name = "cpf_func")
+    private Integer cpf;
 
-    @Column(name = "nome")
+    @Column(name = "nome_func")
     private String nome;
 
-    @Column(name = "email")
+    @Column(name = "email_func")
     private String email;
 
-    @Column(name = "senha")
+    @Column(name = "senha_func")
     private String senha;
 
-    @Column(name = "telefone")
-    private String telefone;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_Departamento_cod_dep")
-    @JsonBackReference
-    private Departamento departamento;
+    // @ManyToOne(fetch = FetchType.EAGER)
+    // @JoinColumn(name = "fk_func_id_depart")
+    // @JsonBackReference
+    // private Departamento departamento;
 
 }

@@ -19,7 +19,7 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
     @Query("select u from Funcionario u where u.nome like %?1%")
     public List<Funcionario> buscarPeloNomeParecido(String nome);
 
-    @Query("SELECT f FROM Funcionario f LEFT JOIN FETCH f.departamento WHERE f.id = :id")
-    Optional<Funcionario> findByIdWithDepartamento(Long id);
+    // @Query("SELECT f FROM Funcionario f LEFT JOIN FETCH f.departamento WHERE f.id = :id")
+    // Optional<Funcionario> findByIdWithDepartamento(Long id);
 
 }

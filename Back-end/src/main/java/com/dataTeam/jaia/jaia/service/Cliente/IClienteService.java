@@ -9,12 +9,12 @@ public interface IClienteService {
 
     public Cliente novoCliente(Cliente cliente);
 
-    public Cliente buscarClientePorCnpj(String cnpj);
+    public Cliente buscarClientePorCnpj(Integer cnpj);
 
     public List<Cliente> buscarTodosClientes();
 
-    public void excluirClientePorCnpj(String cnpj);
+    public void excluirClientePorCnpj(Integer cnpj);
 
-    Cliente atualizarClientePorCnpj(String cnpj, Cliente clienteAtualizado);
+    Cliente atualizarClientePorCnpj(Integer cnpj, Cliente clienteAtualizado);
 
 }
