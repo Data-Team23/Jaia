@@ -1,6 +1,6 @@
 export default interface IListToCheck{
 
-    item: string
+    pergunta: string
     status: any
     comentario: any
     

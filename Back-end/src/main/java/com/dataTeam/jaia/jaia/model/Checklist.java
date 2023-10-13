@@ -1,10 +1,15 @@
 package com.dataTeam.jaia.jaia.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,5 +27,11 @@ public class Checklist {
 
     @Column(name = "nome_check")
     private String nome;
+
+    @ManyToMany
+    @JoinTable(name = "checklist_pergunta", 
+               joinColumns = @JoinColumn(name = "id_check"),
+               inverseJoinColumns = @JoinColumn(name = "id_pergunta"))
+    private List<Pergunta> perguntas;
     
 }

@@ -29,7 +29,7 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Checklist</th>
+                                <th>Nome</th>
                                 <th>Departamento</th>
                                 <th></th>
                             </tr>
@@ -37,7 +37,7 @@
                     <tbody v-for="(checkList, index) in checkLists" :key="index">
                     <tr>
                     <td>{{ index + 1 }}</td>
-                    <td>{{ checkList.checkList }}</td>
+                    <td>{{ checkList.nome }}</td>
                     <td>{{ checkList.departamento ?? 'Não informado' }}</td>
                     <td>
                     <span class="material-symbols-outlined" id="edit-button" @click="editCheckList(checkList.id.toString())">
@@ -130,7 +130,7 @@ function clearUrlParam(newValue: boolean) {
 watch(editDialog, clearUrlParam)
 
 function listCheckList(){
-    axios.get<any>(`${apiUrl}/checklist.json`).then((response: any) => {
+    axios.get<any>(`http://localhost:8080/checklist`).then((response: any) => {
         console.log(response.data)
         checkLists.value = response.data
     })

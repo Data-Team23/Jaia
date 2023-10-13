@@ -11,11 +11,18 @@
             display-prop="nome"
             v-model="departamentoValue">
         </SelectField>
+        <InputField
+            label="Nome:"
+            placeholder="Informe o nome do checklist"
+            v-model="nameValue">
+        </InputField>
+    </div>
+    <div class="input-inline-field">
         <div style="display: flex; width: 100%; justify-content: end;">
-            <InputField style="width: 90%;"
+            <InputField style="width: 100%;"
                 label="Adicione um item para inspeção:"
                 placeholder="Ex.: Inspeção de ar condicionado"
-                v-model="checkListItemValue">
+                v-model="perguntaValue">
             </InputField>
             <span class="material-symbols-outlined button-check-item" 
                 style=""
@@ -24,11 +31,12 @@
             </span>
         </div>
     </div>
+
     <div class="checklist-field">
         <ul class="checklist-list">
             <li v-for="(item, index) in checkListValue" :key="index" class="checklist-item">
                 <span>
-                    {{ item.item }}
+                    {{ item.pergunta }}
                 </span>
                 <i class="material-symbols-outlined" @click="deleteItemToCheckList(index)">
                     delete
@@ -54,16 +62,18 @@ import { onMounted } from 'vue';
 import type ICheckList from './ICheckList';
 import type IListToCheck from './IListToCheck';
 
+const nameValue = ref("")
 const departamentoValue = ref("")
 const checkListValue = ref<IListToCheck[]>([])
-const checkListItemValue = ref<any>()
-const checkListItemToAdd = ref<any>({});
+const perguntaValue = ref<any>()
+const listaPerguntaValue = ref<any>({});
 const departamentos = ref<IDepartamento[]>([]);
 
 function listDepartaments() {
   axios.get<any>('http://localhost:8080/departamentos') 
       .then((response: any) => {
             departamentos.value = response.data
+            console.log(departamentos.value)
       })
       .catch((error: any) => {
           console.error('Erro ao buscar departamentos:', error);
@@ -71,20 +81,33 @@ function listDepartaments() {
 }
 
 function addItemToCheckList(){
-    if(checkListItemValue.value){
-        checkListItemToAdd.value.item = checkListItemValue.value
-        checkListItemToAdd.value.status = 'Não informado'
-        checkListItemToAdd.value.comentario = 'Não informado'
-        checkListValue.value.push(checkListItemToAdd.value)
-        checkListItemValue.value = ''
+    if(perguntaValue.value){
+        const novaPergunta = {
+            pergunta: perguntaValue.value,
+            status: 'Não informado',
+            comentario: 'Não informado'
+        };
+        checkListValue.value.push(novaPergunta)
+        perguntaValue.value = ''
     }
 }
 
 function createCheckList(){
-    event?.preventDefault()
     const newCheckList = {
-        departamento: { id: departamentoValue.value },
-        checklist: checkListValue.value
+        nome: nameValue.value,
+        perguntas: checkListValue.value
+    }
+
+    try {
+        const response = axios.post("http://localhost:8080/checklist", newCheckList)
+        perguntaValue.value = ""
+        departamentoValue.value = ""
+        console.log(response)
+        window.alert("Checklist criado com sucesso")  
+        location.reload()      
+    } catch (error) {
+        console.error('Erro ao criar checklist:', error);
+        window.alert("Erro ao criar checklist")
     }
     console.log(newCheckList)
 }
