@@ -15,6 +15,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     @Query("select u from Cliente u where u.nome like %?1%")
     public List<Cliente> buscarPeloNomeParecido(String nome);
 
-    public Optional<Cliente> findByCnpj(Integer cnpj);
+    public Optional<Cliente> findByCnpj(String cnpj);
 
 }

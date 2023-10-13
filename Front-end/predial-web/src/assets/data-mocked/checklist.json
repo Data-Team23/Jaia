@@ -1,0 +1,59 @@
+[
+    {
+        "id": 1,
+        "checkList": "Inspeção predial",
+        "departamento": "Encanação",
+        "listToCheck": [
+            {
+                "item": "",
+                "check": true
+            },
+            {
+                "item": "",
+                "check": true
+            },
+            {
+                "item": "",
+                "check": true
+            },
+            {
+                "item": "",
+                "check": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "checkList": "Inspeção predial",
+        "departamento": "Elétrica",
+        "listToCheck": [
+            {
+                "item": "",
+                "check": true
+            },
+            {
+                "item": "",
+                "check": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "checkList": "Inspeção predial",
+        "departamento": "Limpeza",
+        "listToCheck": [
+            {
+                "item": "",
+                "check": true
+            },
+            {
+                "item": "",
+                "check": true
+            },
+            {
+                "item": "",
+                "check": true
+            }
+        ]
+    }
+]

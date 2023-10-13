@@ -14,6 +14,7 @@
 <script lang="ts">
 
     import './style.css'
+    import type IListToCheck from '@/views/checklist/IListToCheck';
 
     export default {
         name: "InputField",
@@ -27,7 +28,7 @@
                 default: "text"
             },
             modelValue: {
-                type: String,
+                type: [String, Object],
                 default: ""
             },
             placeholder: {

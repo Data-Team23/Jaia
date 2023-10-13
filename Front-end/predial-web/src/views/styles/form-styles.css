@@ -46,3 +46,58 @@
 .input-inline-field label{
     width: 40%;
 }
+
+.button-check-item{
+    color:white; 
+    background-color: var(--secondary-text-color);
+    padding: 5px;
+    display: flex; 
+    align-self: end;
+    align-items: center;
+    justify-content: center;
+    height: 40px !important; 
+    width: 40px !important;
+    margin: 0 0 0 7px !important; 
+    border-radius: 10px;
+    &:hover{
+        color: var(--primary-link-color);
+        background-color: var(--secondary-bg-color);
+    }
+}
+
+.checklist-field{
+    width: 100%;
+}
+
+.checklist-list{
+    color: var(--primary-text-color);
+    text-align: start;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.checklist-item{
+    width: 100%;
+    display: flex;
+    align-items: end;
+}
+
+.checklist-item span{
+    background-color: var(--secondary-text-color);
+    width: 100%;
+    margin: 0 0 5px 0 !important;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.checklist-item i{
+    margin: 0 0 5px 5px;
+    padding: 5px;
+    background-color: var(--secondary-text-color);
+    color: var(--primary-link-color);
+    cursor: pointer;
+    border-radius: 10px;
+    &:hover{
+        color: var(--secondary-hover-color);
+    }
+}

@@ -61,7 +61,7 @@ table{
     }
 }
 
-span{
+.table-container span{
     cursor: pointer;
     margin: 0 7px;
 }

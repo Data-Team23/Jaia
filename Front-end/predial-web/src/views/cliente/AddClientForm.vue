@@ -44,7 +44,7 @@ async function createClient() {
     senha: "senha123", 
     email: emailValue.value,
     endereco: addressValue.value,
-    telefone: parseFloat(phoneValue.value), 
+    telefone: phoneValue.value, 
   };
 
   try {
