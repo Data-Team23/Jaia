@@ -19,7 +19,7 @@ public class Cliente {
     private Long id;
 
     @Column(name = "cnpj_cli")
-    private Integer cnpj;
+    private String cnpj;
 
     @Column(name = "nome_cli")
     private String nome;

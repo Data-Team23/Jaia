@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +27,7 @@ public class ClienteService implements IClienteService {
         return clienterepo.findAll();
     }
 
-    public void excluirClientePorCnpj(Integer cnpj) {
+    public void excluirClientePorCnpj(String cnpj) {
         Optional<Cliente> clienteOptional = clienterepo.findByCnpj(cnpj);
         if (clienteOptional.isPresent()) {
             Cliente cliente = clienteOptional.get();
@@ -34,9 +37,9 @@ public class ClienteService implements IClienteService {
     }
 
     @Transactional
-    public Cliente atualizarClientePorCnpj(Integer cnpj, Cliente clienteAtualizado) {
+    public Cliente atualizarClientePorCnpj(String cnpj, Cliente clienteAtualizado) {
         Optional<Cliente> clienteExistente = clienterepo.findByCnpj(cnpj);
-    
+
         if (clienteExistente.isEmpty()) {
             try {
                 throw new Exception("Cliente com CNPJ " + cnpj + " não encontrado.");
@@ -44,31 +47,37 @@ public class ClienteService implements IClienteService {
                 e.printStackTrace();
             }
         }
-    
+
         Cliente cliente = clienteExistente.get();
-        
+
         cliente.setNome(clienteAtualizado.getNome());
         cliente.setTelefone(clienteAtualizado.getTelefone());
         cliente.setSenha(clienteAtualizado.getSenha());
         cliente.setEndereco(clienteAtualizado.getEndereco());
         cliente.setEmail(clienteAtualizado.getEmail());
-    
+
         return clienterepo.save(cliente);
     }
 
     @Transactional
-    public Cliente buscarClientePorCnpj(Integer cnpj) {
-        Optional<Cliente> clienteExistente = clienterepo.findByCnpj(cnpj);
-    
-        if (clienteExistente.isEmpty()) {
-            try {
-                throw new Exception("Cliente com CNPJ " + cnpj + " não encontrado.");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }             
-        } 
-        Cliente clienteEncontrado = clienteExistente.get();
-        return clienteEncontrado;    
+    public Cliente buscarClientePorCnpj(String cnpj) {
+        try {
+            String cnpjEncoded = URLEncoder.encode(cnpj, StandardCharsets.UTF_8.toString());
+            Optional<Cliente> clienteExistente = clienterepo.findByCnpj(cnpjEncoded);
+            if (clienteExistente.isEmpty()) {
+                try {
+                    throw new Exception("Cliente com CNPJ " + cnpj + " não encontrado.");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            Cliente clienteEncontrado = clienteExistente.get();
+            return clienteEncontrado;
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 
 }

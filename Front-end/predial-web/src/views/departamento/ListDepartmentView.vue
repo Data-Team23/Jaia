@@ -31,7 +31,6 @@
                               <th>No.</th>
                               <th>Código</th>
                               <th>Nome</th>
-                              <th>Qtd. de Funcionários</th>
                               <th></th>
                           </tr>
                       </thead>
@@ -40,7 +39,6 @@
                               <td>{{ index + 1 }}</td>
                               <td>{{ departament.codDepart }}</td>
                               <td>{{ departament.nome }}</td>
-                              <td>{{ departament.funcionarios.length }}</td>
                               <td>
                                   <span class="material-symbols-outlined" id="edit-button" @click="editDepartamento(departament.codDepart)">
                                       edit

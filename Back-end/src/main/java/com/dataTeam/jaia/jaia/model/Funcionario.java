@@ -21,7 +21,7 @@ public class Funcionario {
     private Long id;
 
     @Column(name = "cpf_func")
-    private Integer cpf;
+    private String cpf;
 
     @Column(name = "nome_func")
     private String nome;
@@ -32,9 +32,8 @@ public class Funcionario {
     @Column(name = "senha_func")
     private String senha;
 
-    // @ManyToOne(fetch = FetchType.EAGER)
-    // @JoinColumn(name = "fk_func_id_depart")
-    // @JsonBackReference
-    // private Departamento departamento;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_departamento")
+    private Departamento departamento;
 
 }

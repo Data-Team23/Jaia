@@ -6,7 +6,10 @@ import lombok.Setter;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "departamento")
@@ -15,16 +18,14 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Departamento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_depart")
     private Long codDepart;
 
     @Column(name = "nome_depart")
     private String nome;
 
-    // @OneToMany(mappedBy = "departamento")
-    // @JsonManagedReference
-    // // @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
-    // private List<Funcionario> funcionarios;
+    @OneToMany(mappedBy = "departamento")
+    @JsonIgnore
+    private List<Funcionario> funcionarios;
 
 }
