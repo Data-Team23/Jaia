@@ -15,25 +15,25 @@ public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "")
+    @Column(name = "id_cli")
     private Long id;
 
-    @Column(name = "cnpj")
+    @Column(name = "cnpj_cli")
     private String cnpj;
 
-    @Column(name = "nome")
+    @Column(name = "nome_cli")
     private String nome;
 
-    @Column(name = "senha")
+    @Column(name = "senha_cli")
     private String senha;
 
-    @Column(name = "email")
+    @Column(name = "email_cli")
     private String email;
 
-    @Column(name = "endereco")
+    @Column(name = "end_cli")
     private String endereco;
 
-    @Column(name = "telefone")
+    @Column(name = "telefone_cli")
     private String telefone;
 
 }

@@ -26,7 +26,7 @@ public class FuncionarioService implements IFuncionarioService {
     }
 
     public Funcionario buscarPorId(Long id) {
-        Optional<Funcionario> funcionarioOp = funcrepo.findByIdWithDepartamento(id);
+        Optional<Funcionario> funcionarioOp = funcrepo.findById(id);
         if (funcionarioOp.isEmpty()) {
             throw new IllegalArgumentException("Usuario nao encontrado!");
         }
