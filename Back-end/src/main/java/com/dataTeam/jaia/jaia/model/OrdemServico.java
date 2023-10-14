@@ -26,23 +26,24 @@ public class OrdemServico {
     private Long id;
 
     @Column(name = "nome_ordem")
-    private String nomeOrdem;
+    private String nome_ordem;
 
     @Column(name = "tipo_inspecao")
-    private String tipoInspecao;
+    private String tipo_inspecao;
 
     @Column(name = "status_ordem")
-    private String status;
+    private String status_ordem;
 
     @ManyToOne
     @JoinColumn(name = "id_supervisor")
-    private Funcionario supervisor;
+    private Funcionario id_supervisor;
 
     @ManyToOne
     @JoinColumn(name = "id_cli")
-    private Cliente cliente;
+    private Cliente id_cli;
 
     @ManyToOne
     @JoinColumn(name = "id_check")
-    private Checklist checklist;
+    private Checklist id_check;
+    
 }

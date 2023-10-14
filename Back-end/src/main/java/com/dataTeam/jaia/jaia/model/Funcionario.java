@@ -47,4 +47,6 @@ public class Funcionario {
     @ManyToOne
     @JoinColumn(name = "supervisor")
     private Funcionario supervisor;
+
+    
 }
