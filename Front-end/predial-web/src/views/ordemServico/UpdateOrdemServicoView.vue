@@ -5,27 +5,46 @@
     <form action="" class="add-form">
       <div class="input-inline-field">
         <InputField 
-          label="Nome:" 
-          placeholder="Informe o nome" 
-          v-model="nameValue">
+          label="Nome" 
+          placeholder="Informe o nome"
+          v-model="nome_ordemValue">
         </InputField>
         <InputField 
-          label="E-mail:" 
-          placeholder="Informe o e-mail" 
-          v-model="emailValue">
+          label="Data Abertura" 
+          placeholder="Data da Abertura do chamado"
+          v-model="dataaberturaValue">
         </InputField>
       </div>
       <div class="input-inline-field">
-        <InputField    
-          label="CPF:" 
-          placeholder="Informe o CPF" 
-          v-model="cpfValue">
-        </InputField>    
-        <InputField    
-          label="Telefone:" 
-          placeholder="Informe o telefone" 
-          v-model="statusValue">
-        </InputField>  
+        <InputField 
+          label="CNPJ" 
+          placeholder="CNPJ"
+          v-model="cnpjValue">
+        </InputField>
+        <InputField 
+          label="Inspeção" 
+          placeholder="Inspeção"
+          v-model="inspecaoValue">
+        </InputField>
+      </div>
+      <div class="input-inline-field">
+        <InputField 
+          label="Status da Ordem de Serviço" 
+          placeholder="Informe status da Ordem de Serviço"
+          v-model=" status_ordemValue">
+        </InputField>
+        <InputField 
+          label="Descrição" 
+          placeholder="Informe a Descrição"
+          v-model=" descricaoValue">
+        </InputField>
+      </div>
+      <div class="input-inline-field">
+        <InputField 
+          label="Data da prestação de Serviço" 
+          placeholder="Informe a data"
+          v-model="dataValue">
+        </InputField>
       </div>
       <div class="send-button">
         <InputButton text-button="Salvar"></InputButton>
@@ -43,12 +62,13 @@
   
   const router = useRouter()
   
-  const cpfValue = ref('');
-  const departmentValue = ref('');
-  const emailValue = ref('');
-  const nameValue = ref('');
-  const senhaValue = ref('');
-  const statusValue = ref('');
+  const nome_ordemValue = ref('');
+  const dataaberturaValue = ref('');
+  const cnpjValue = ref('');
+  const inspecaoValue = ref('');
+  const status_ordemValue = ref('');
+  const descricaoValue = ref('');
+  const dataValue = ref('');
   
   const ordem_servicoSelected = ref<IOrdemServico>()
   
@@ -57,13 +77,18 @@
     const id = router.currentRoute.value.query.id;
     try {
       axios
-        .get<IOrdemServico>(`http://localhost:8080/ordem_servico/${id}`)
+        .get<IOrdemServico>(`http://localhost:8080/ordem-servico/${id}`)
         .then((response) => {
           if (response.data) {
             ordem_servicoSelected.value = response.data;
             console.log(ordem_servicoSelected.value)
-            nameValue.value = ordem_servicoSelected.value.nome;
-            statusValue.value = ordem_servicoSelected.value.status;
+            nome_ordemValue.value = ordem_servicoSelected.value.nome_ordem;
+            dataaberturaValue.value = ordem_servicoSelected.value.data_abertura;
+            cnpjValue.value = ordem_servicoSelected.value.cnpj;
+            inspecaoValue.value = ordem_servicoSelected.value.inspecao;
+            status_ordemValue.value = ordem_servicoSelected.value.status_ordem;
+            descricaoValue.value = ordem_servicoSelected.value.descricao;
+            dataValue.value = ordem_servicoSelected.value.data;
           }ordem_servicoSelected
         });
     } catch (error) {
@@ -78,5 +103,34 @@
       await new Promise((resolve) => setTimeout(resolve, 100));
     }
   }
+
+  
+async function updateOS() {
+  event?.preventDefault()
+  try {
+    const id = router.currentRoute.value.query.cnpj;
+    const ordemservicoAtualizado = {
+      nome: nome_ordemValue.value,   
+      data_abertura: dataaberturaValue.value,
+      cnpj: cnpjValue.value,
+      inspecao: inspecaoValue.value,
+      status: status_ordemValue.value,
+      descricao: descricaoValue.value,
+      data: dataValue.value, 
+    };
+
+    await axios.put(`http://localhost:8080/ordem-servico/${id}`, ordemservicoAtualizado).then((response) => {
+      window.alert("Cliente atualizado com sucesso")
+      console.log(response)
+      location.reload()
+    }).catch((error) => {
+      console.log(error)
+    })
+
+  } catch (error) {
+    console.error('Erro interno ao atualizar o cliente', error);
+  }
+}
+
   </script>
   

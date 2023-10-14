@@ -1,9 +1,9 @@
 <template>
     <div class="form-title">
-      <h2>Cadastrar Ordem de Serviço</h2>
+      <h2>Ordem de Serviço</h2>
     </div>
     <form action="" class="add-form">
-      <div class="input-inline-field">
+        <div class="input-inline-field">
         <InputField 
           label="Nome" 
           placeholder="Informe o nome"
@@ -63,17 +63,22 @@
           v-model=" checklValue">
         </InputField>
       </div>
-      <div class="send-button">
-        <InputButton text-button="Salvar" @click="createOrdemServico"></InputButton>
+      <div class="aprove-button"> 
+        <InputButton text-button="Salvar"></InputButton>
       </div>
+      <div class="disapprove-button"></div>
     </form>
   </template>
   
   <script setup lang="ts">
   import InputField from '@/components/InputField/InputField.vue';
   import InputButton from '@/components/Button/InputButton.vue';
-  import { ref } from 'vue';
+  import { onMounted, ref } from 'vue';
+  import { useRouter, type Router } from 'vue-router';
+  import type IOrdemServico from './IOrdemServico';
   import axios from 'axios';
+  
+
   
   const nome_ordemValue = ref('');
   const statusRValue = ref('');
@@ -85,28 +90,8 @@
   const responsavelValue = ref('');
   const dataValue = ref('');
   const checklValue = ref('');
-  
-  async function createOrdemServico() {
-    event?.preventDefault();
-  
-    const ordem_servico = {
-      responsavel: responsavelValue.value,
-      status_ordem: status_ordemValue.value
-    };
-  
-    try {
-      const response = await axios.post('http://localhost:8080/ordem-servico/criar', ordem_servico);
+ 
 
-      responsavelValue.value = "";
-      status_ordemValue.value = "";
-      console.log(response)
-      window.alert("Funcionario criado com sucesso")
-      location.reload()
-    } catch (error) {
-      console.error('Erro ao criar Funcionario:', error);
-      window.alert("Erro ao criar Funcionario")
-    }
-  }
   
   
   </script>
