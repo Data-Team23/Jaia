@@ -9,12 +9,8 @@ import com.dataTeam.jaia.jaia.repository.ChecklistRepository;
 import com.dataTeam.jaia.jaia.repository.ClienteRepository;
 import com.dataTeam.jaia.jaia.repository.FuncionarioRepository;
 import com.dataTeam.jaia.jaia.repository.OrdemServicoRepository;
-import com.dataTeam.jaia.jaia.service.Departamento.IDepartamentoService;
-import com.dataTeam.jaia.jaia.service.Funcionario.IFuncionarioService;
 import com.dataTeam.jaia.jaia.service.OrdemServico.IOrdemServicoService;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,7 +42,6 @@ public class OrdemServicoController {
 
     @PostMapping("/criar")
     public OrdemServico criarOrdemServico(@RequestBody OrdemServicoDTO ordemServicoDTO) {
-        // Recuperar o supervisor, cliente e checklist com base nos IDs
         Funcionario supervisor = funcionarioRepository.findById(ordemServicoDTO.getIdSupervisor())
                 .orElseThrow(() -> new RuntimeException("Supervisor não encontrado"));
 
@@ -56,7 +51,6 @@ public class OrdemServicoController {
         Checklist checklist = checklistRepository.findById(ordemServicoDTO.getIdChecklist())
                 .orElseThrow(() -> new RuntimeException("Checklist não encontrado"));
 
-        // Criar uma nova OrdemServico
         OrdemServico ordemServico = new OrdemServico();
         ordemServico.setNome_ordem(ordemServicoDTO.getNome_ordem());
         ordemServico.setTipo_inspecao(ordemServicoDTO.getTipo_inspecao());
@@ -65,8 +59,31 @@ public class OrdemServicoController {
         ordemServico.setId_cli(cliente);
         ordemServico.setId_check(checklist);
 
-        // Salvar a nova OrdemServico no repositório
         return ordemServicoRepository.save(ordemServico);
+    }
+
+    @DeleteMapping("/{id}")
+    public String excluirOrdemServico(@PathVariable Long id) {
+        if (ordemServicoRepository.existsById(id)) {
+            ordemServicoRepository.deleteById(id);
+            return "Ordem de Serviço com ID " + id + " foi excluída com sucesso.";
+        } else {
+            return "Ordem de Serviço com ID " + id + " não encontrada.";
+        }
+    }
+
+    @PutMapping("/{id}")
+    public String atualizarOrdemServico(@PathVariable Long id, @RequestBody OrdemServicoDTO ordemServicoDTO) {
+        if (ordemServicoRepository.existsById(id)) {
+            OrdemServico ordemServico = ordemServicoRepository.getOne(id);
+            ordemServico.setNome_ordem(ordemServicoDTO.getNome_ordem());
+            ordemServico.setTipo_inspecao(ordemServicoDTO.getTipo_inspecao());
+            ordemServico.setStatus_ordem(ordemServicoDTO.getStatus_ordem());
+            ordemServicoRepository.save(ordemServico);
+            return "Ordem de Serviço com ID " + id + " foi atualizada com sucesso.";
+        } else {
+            return "Ordem de Serviço com ID " + id + " não encontrada.";
+        }
     }
 
 }

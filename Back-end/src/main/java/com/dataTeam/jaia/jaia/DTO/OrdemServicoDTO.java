@@ -1,7 +1,6 @@
 package com.dataTeam.jaia.jaia.DTO;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 public class OrdemServicoDTO {

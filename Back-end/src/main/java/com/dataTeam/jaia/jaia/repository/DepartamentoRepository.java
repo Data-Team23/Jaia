@@ -1,7 +1,6 @@
 package com.dataTeam.jaia.jaia.repository;
 
 import com.dataTeam.jaia.jaia.model.Departamento;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
