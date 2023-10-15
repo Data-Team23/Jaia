@@ -1,10 +1,5 @@
 package com.dataTeam.jaia.jaia.model;
 
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,4 +31,9 @@ public class Funcionario {
     @JoinColumn(name = "id_departamento")
     private Departamento departamento;
 
+    @ManyToOne
+    @JoinColumn(name = "supervisor")
+    private Funcionario supervisor;
+
+    
 }
