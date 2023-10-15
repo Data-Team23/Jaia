@@ -14,6 +14,8 @@
 body{
     font-family: var(--font);
 }
+
+
   
 .container {
     width: 100%;
@@ -52,11 +54,23 @@ th {
     }
 }
 
-#maximize-button {
+#aprove-button {
     cursor: pointer;
+    padding: 10px 20px;
+    transition: color 0.3s; 
     &:hover {
       color: var(--primary-link-color);
     }
+}
+
+#disapprove-button {
+    cursor: pointer;
+    padding: 10px 20px;
+    transition: color 0.3s; 
+    &:hover {
+      color: var(--primary-link-color);
+    }
+    
 }
   
 span {
@@ -125,6 +139,7 @@ span {
     padding: 30px;
     box-shadow: 5px 5px 20px 0 #00000030;
     border-radius: 20px;
+        
 }
 
 
@@ -163,37 +178,6 @@ span {
     justify-content: flex-end;
 }
   
-
-.aprove-client-button-container {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-}
-  
-.aprove-client-button {
-    background-color: var(--primary-bg-color);
-    margin: 10px 0;
-    border-radius: 20px;
-    padding: 3px 40px;
-    box-shadow: 5px 5px 20px 0 #00000030;
-    font-weight: bold;
-    border: 1px solid var(--primary-bg-color);
-}
-  
-.aprove-client-button:hover {
-    border: 1px solid var(--primary-link-color);
-    color: var(--primary-link-color);
-}
-  
-.aprove-client-container {
-    width: 100%;
-    height: 100%;
-    background-color: var(--primary-bg-color);
-    padding: 30px;
-    box-shadow: 5px 5px 20px 0 #00000030;
-    border-radius: 20px;
-}
-
 
 table tbody:nth-child(odd) {
     background-color: #626288;
@@ -244,6 +228,8 @@ tbody tr td:first-child {
   justify-content: space-between;
   gap: 200px;
 }
+
+
 
 
 

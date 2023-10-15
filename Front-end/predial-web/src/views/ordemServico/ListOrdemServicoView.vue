@@ -10,15 +10,6 @@
       <div class="list-container">
         <div class="top-list">
           <h3><strong>Visualizar Odem de Serviço</strong></h3>
-          <div class="search-filter">
-            <SelectField 
-                :option-values="filterSelectOptions" 
-                v-model="selectedFilter" 
-                value-prop="value" 
-                display-prop="label"
-            ></SelectField>
-            <input type="text" placeholder="Filtrar..." v-model="filterInput">
-          </div>
         </div>
         <div class="table-container">
           <table>
@@ -40,14 +31,14 @@
                 <td>{{ index + 1 }}</td>
                 <td>{{ OrdemServico.nome_ordem }}</td>
                 <td>{{ OrdemServico.data_abertura }}</td>
-                <td>{{ OrdemServico.cnpj }}</td>
+                <td>{{ OrdemServico.id_cli.cnpj }}</td>
                 <td>{{ OrdemServico.tipo_inspecao }}</td>
                 <td>{{ OrdemServico.status_ordem }}</td>
                 <td>{{ OrdemServico.descricao }}</td>
                 <td>{{ OrdemServico.data }}</td>
                 <td>
                   <span class="material-symbols-outlined" id="edit-button" @click="editOrdemServico(OrdemServico.id)"> edit </span>
-                  <span class="material-symbols-outlined" id= "maximize-button" @click="maximizeDialog = false"> maximize </span>
+                  <span class="material-symbols-outlined" id= "aprove-button" @click="aproveDialog = true"> zoom_out_map </span>
                   <span class="material-symbols-outlined" id="delete-button" @click="deleteDialog = true"> delete </span>
                 </td>
               </tr>
@@ -79,10 +70,10 @@
         <UpdateOrdemServicoForm></UpdateOrdemServicoForm>
       </div>
     </v-dialog>
-    <v-dialog v-model="maximizeDialog" width="80%">
-      <div class="aprove-client-container">
-        <div class="close-button">
-          <span class="material-symbols-outlined" @click="maximizeDialog = false"> maximize  </span>
+    <v-dialog v-model="aproveDialog" width="80%">
+      <div class="add-client-container">
+        <div class="button">
+          <span class="material-symbols-outlined" @click="aproveDialog = false"> zoom_out_map  </span>
         </div>
         <AproveOrdemServicoForm></AproveOrdemServicoForm>
       </div>
@@ -116,7 +107,7 @@ const router = useRouter()
 let addDialog = ref(false);
 let editDialog = ref(false);
 let deleteDialog = ref(false);
-let maximizeDialog = ref(false);
+let aproveDialog = ref(false);
 
 let OrdemServicos = ref<Array<IOrdemServico>>([]); 
 let paginatedOrdemServicos = ref<Array<IOrdemServico>>([]); 

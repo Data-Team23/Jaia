@@ -84,7 +84,7 @@
             console.log(ordem_servicoSelected.value)
             nome_ordemValue.value = ordem_servicoSelected.value.nome_ordem;
             dataaberturaValue.value = ordem_servicoSelected.value.data_abertura;
-            cnpjValue.value = ordem_servicoSelected.value.cnpj;
+            cnpjValue.value = ordem_servicoSelected.value.id_cli.cnpj;
             inspecaoValue.value = ordem_servicoSelected.value.inspecao;
             status_ordemValue.value = ordem_servicoSelected.value.status_ordem;
             descricaoValue.value = ordem_servicoSelected.value.descricao;
@@ -103,34 +103,6 @@
       await new Promise((resolve) => setTimeout(resolve, 100));
     }
   }
-
-  
-async function updateOS() {
-  event?.preventDefault()
-  try {
-    const id = router.currentRoute.value.query.cnpj;
-    const ordemservicoAtualizado = {
-      nome: nome_ordemValue.value,   
-      data_abertura: dataaberturaValue.value,
-      cnpj: cnpjValue.value,
-      inspecao: inspecaoValue.value,
-      status: status_ordemValue.value,
-      descricao: descricaoValue.value,
-      data: dataValue.value, 
-    };
-
-    await axios.put(`http://localhost:8080/ordem-servico/${id}`, ordemservicoAtualizado).then((response) => {
-      window.alert("Cliente atualizado com sucesso")
-      console.log(response)
-      location.reload()
-    }).catch((error) => {
-      console.log(error)
-    })
-
-  } catch (error) {
-    console.error('Erro interno ao atualizar o cliente', error);
-  }
-}
 
   </script>
   

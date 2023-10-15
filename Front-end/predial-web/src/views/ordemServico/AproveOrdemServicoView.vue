@@ -5,7 +5,7 @@
     <form action="" class="add-form">
         <div class="input-inline-field">
         <InputField 
-          label="Nome" 
+          label="nome"
           placeholder="Informe o nome"
           v-model="nome_ordemValue">
         </InputField>
@@ -63,10 +63,28 @@
           v-model=" checklValue">
         </InputField>
       </div>
-      <div class="aprove-button"> 
-        <InputButton text-button="Salvar"></InputButton>
+      <div class="input-inline-field">
+        <label for="showAdditionalFields">Mostrar campos adicionais</label>
+        <input type="checkbox" id="showAdditionalFields" v-model="showAdditionalFields">
       </div>
-      <div class="disapprove-button"></div>
+      <div class="input-inline-field" v-if="showAdditionalFields">
+        <InputField 
+        label="Campo Adicional 1" 
+        placeholder="Informe o campo adicional 1"
+        v-model="campoAdicional1">
+        </InputField>
+        <InputField 
+          label="Campo Adicional 2" 
+          placeholder="Informe o campo adicional 2"
+          v-model="campoAdicional2">
+        </InputField>
+      </div>
+      <div class="aprove-button"> 
+        <InputButton text-button="Aprovar"></InputButton>
+      </div>
+      <div class="disapprove-button">
+        <InputButton text-button="Reprovar"></InputButton>
+      </div>
     </form>
   </template>
   
@@ -91,8 +109,14 @@
   const dataValue = ref('');
   const checklValue = ref('');
  
+  const showAdditionalFields = ref(false);
+  const campoAdicional1 = ref('');
+  const campoAdicional2 = ref('');
 
-  
+  function listOrdemServicos() {
+    axios.get<any>('http://localhost:8080/ordem-servico') 
+         
+}
   
   </script>
   
