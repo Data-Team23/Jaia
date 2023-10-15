@@ -6,10 +6,7 @@ import lombok.Setter;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "departamento")
@@ -27,5 +24,9 @@ public class Departamento {
     @OneToMany(mappedBy = "departamento")
     @JsonIgnore
     private List<Funcionario> funcionarios;
+    
+    @ManyToMany(mappedBy = "departamentos")
+    @JsonIgnore
+    private List<Checklist> checklists;
 
 }
