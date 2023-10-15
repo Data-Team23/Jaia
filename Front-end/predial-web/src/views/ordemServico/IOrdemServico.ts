@@ -1,4 +1,5 @@
 export default interface IOrdemServico {
+id_cli: any
     id: number
     nome_ordem: string
     tipo_inspecao: string

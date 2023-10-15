@@ -38,7 +38,7 @@
                 <td>{{ OrdemServico.data }}</td>
                 <td>
                   <span class="material-symbols-outlined" id="edit-button" @click="editOrdemServico(OrdemServico.id)"> edit </span>
-                  <span class="material-symbols-outlined" id= "aprove-button" @click="aproveDialog = true"> zoom_out_map </span>
+                  <span class="material-symbols-outlined" id= "aprove-button" @click="aproveOrdemServico(OrdemServico.id)"> zoom_out_map </span>
                   <span class="material-symbols-outlined" id="delete-button" @click="deleteDialog = true"> delete </span>
                 </td>
               </tr>
@@ -64,7 +64,7 @@
     </v-dialog>
     <v-dialog v-model="editDialog" width="80%">
       <div class="add-client-container">
-        <div class="button">
+        <div class="close-button">
           <span class="material-symbols-outlined" @click="editDialog = false"> close </span>
         </div>
         <UpdateOrdemServicoForm></UpdateOrdemServicoForm>
@@ -137,6 +137,12 @@ function editOrdemServico(id: number) {
     router.push({query: { id: id }})
     editDialog.value = true
 }
+
+function aproveOrdemServico(id: number) {
+    router.push({query: { id: id }})
+    aproveDialog.value = true
+}
+
 
 function clearUrlParam(newValue: boolean) {
   if (!newValue && router.currentRoute.value.query.id !== undefined) {

@@ -19,7 +19,7 @@
         <InputField 
           label="Data Abertura" 
           placeholder="Data da Abertura do chamado"
-          v-model="DataAberturaValue">
+          v-model="dataaberturaValue">
         </InputField>
         <InputField 
           label="Descrição" 
@@ -63,22 +63,6 @@
           v-model=" checklValue">
         </InputField>
       </div>
-      <div class="input-inline-field">
-        <label for="showAdditionalFields">Mostrar campos adicionais</label>
-        <input type="checkbox" id="showAdditionalFields" v-model="showAdditionalFields">
-      </div>
-      <div class="input-inline-field" v-if="showAdditionalFields">
-        <InputField 
-        label="Campo Adicional 1" 
-        placeholder="Informe o campo adicional 1"
-        v-model="campoAdicional1">
-        </InputField>
-        <InputField 
-          label="Campo Adicional 2" 
-          placeholder="Informe o campo adicional 2"
-          v-model="campoAdicional2">
-        </InputField>
-      </div>
       <div class="aprove-button"> 
         <InputButton text-button="Aprovar"></InputButton>
       </div>
@@ -95,12 +79,15 @@
   import { useRouter, type Router } from 'vue-router';
   import type IOrdemServico from './IOrdemServico';
   import axios from 'axios';
+
   
+  const router = useRouter()
+
 
   
   const nome_ordemValue = ref('');
   const statusRValue = ref('');
-  const DataAberturaValue = ref('');
+  const dataaberturaValue = ref('');
   const descricaoValue = ref('');
   const cnpjValue = ref('');
   const status_ordemValue = ref('');
@@ -109,14 +96,42 @@
   const dataValue = ref('');
   const checklValue = ref('');
  
-  const showAdditionalFields = ref(false);
-  const campoAdicional1 = ref('');
-  const campoAdicional2 = ref('');
+ 
 
-  function listOrdemServicos() {
-    axios.get<any>('http://localhost:8080/ordem-servico') 
-         
-}
+  const ordem_servicoSelected = ref<IOrdemServico>()
+
+  onMounted(async () => {
+    await waitForIdInRoute(router);
+    const id = router.currentRoute.value.query.id;
+    try {
+      axios
+        .get<IOrdemServico>(`http://localhost:8080/ordem-servico/${id}`)
+        .then((response) => {
+          if (response.data) {
+            ordem_servicoSelected.value = response.data;
+            console.log(ordem_servicoSelected.value)
+            nome_ordemValue.value = ordem_servicoSelected.value.nome_ordem;
+            dataaberturaValue.value = ordem_servicoSelected.value.data_abertura;
+            cnpjValue.value = ordem_servicoSelected.value.id_cli.cnpj;
+            inspecaoValue.value = ordem_servicoSelected.value.inspecao;
+            status_ordemValue.value = ordem_servicoSelected.value.status_ordem;
+            descricaoValue.value = ordem_servicoSelected.value.descricao;
+            dataValue.value = ordem_servicoSelected.value.data;
+          }ordem_servicoSelected
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
+  async function waitForIdInRoute(router: Router) {
+    // Loop para aguardar até que route.query.cnpj esteja definido
+    while (router.currentRoute.value.query.id === undefined) {
+      // Definição do período de tempo (pode ser ajustado)
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
+  }
+
   
   </script>
   
