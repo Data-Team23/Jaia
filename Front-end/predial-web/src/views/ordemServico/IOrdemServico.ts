@@ -10,7 +10,6 @@ id_cli: any
     inspecao: string
     descricao: string
     data: string
+    id_check_nome: string
+    id_check_perguntas: string
 }
-
-
-    
