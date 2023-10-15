@@ -72,8 +72,8 @@
     </v-dialog>
     <v-dialog v-model="aproveDialog" width="80%">
       <div class="add-client-container">
-        <div class="button">
-          <span class="material-symbols-outlined" @click="aproveDialog = false"> zoom_out_map  </span>
+        <div class="close-button">
+          <span class="material-symbols-outlined" @click="aproveDialog = false"> close  </span>
         </div>
         <AproveOrdemServicoForm></AproveOrdemServicoForm>
       </div>
