@@ -25,23 +25,29 @@
             <thead>
               <tr>
                 <th>No.</th>
-                <th>Nome</th>
+                <th>nome</th>
                 <th>Data Abertura</th>
                 <th>CNPJ</th>
                 <th>Inspeção</th>
                 <th>Status O.S.</th>
                 <th>Descrição</th>
                 <th>Data</th>
+                <th></th>
               </tr>
             </thead>
             <tbody v-for="(OrdemServico, index) in paginatedOrdemServicos" :key="index">
               <tr>  
                 <td>{{ index + 1 }}</td>
-                <td>{{ OrdemServico.nome }}</td>
+                <td>{{ OrdemServico.nome_ordem }}</td>
+                <td>{{ OrdemServico.data_abertura }}</td>
+                <td>{{ OrdemServico.cnpj }}</td>
                 <td>{{ OrdemServico.tipo_inspecao }}</td>
-                <td>{{ OrdemServico.status }}</td>
+                <td>{{ OrdemServico.status_ordem }}</td>
+                <td>{{ OrdemServico.descricao }}</td>
+                <td>{{ OrdemServico.data }}</td>
                 <td>
                   <span class="material-symbols-outlined" id="edit-button" @click="editOrdemServico(OrdemServico.id)"> edit </span>
+                  <span class="material-symbols-outlined" id= "maximize-button" @click="maximizeDialog = false"> maximize </span>
                   <span class="material-symbols-outlined" id="delete-button" @click="deleteDialog = true"> delete </span>
                 </td>
               </tr>
@@ -67,10 +73,18 @@
     </v-dialog>
     <v-dialog v-model="editDialog" width="80%">
       <div class="add-client-container">
-        <div class="close-button">
+        <div class="button">
           <span class="material-symbols-outlined" @click="editDialog = false"> close </span>
         </div>
         <UpdateOrdemServicoForm></UpdateOrdemServicoForm>
+      </div>
+    </v-dialog>
+    <v-dialog v-model="maximizeDialog" width="80%">
+      <div class="aprove-client-container">
+        <div class="close-button">
+          <span class="material-symbols-outlined" @click="maximizeDialog = false"> maximize  </span>
+        </div>
+        <AproveOrdemServicoForm></AproveOrdemServicoForm>
       </div>
     </v-dialog>
     <v-dialog v-model="deleteDialog" width="30%">
@@ -90,6 +104,7 @@
 import { ref, onMounted, computed, watch } from 'vue';
 import AddOrdemServicoForm from "./AddOrdemServicoView.vue";
 import UpdateOrdemServicoForm from "./UpdateOrdemServicoView.vue";
+import AproveOrdemServicoForm from './AproveOrdemServicoView.vue';
 import InputButton from '@/components/Button/InputButton.vue';
 import SelectField from '@/components/Select/SelectField.vue';
 import axios from 'axios';
@@ -101,17 +116,18 @@ const router = useRouter()
 let addDialog = ref(false);
 let editDialog = ref(false);
 let deleteDialog = ref(false);
+let maximizeDialog = ref(false);
 
 let OrdemServicos = ref<Array<IOrdemServico>>([]); 
 let paginatedOrdemServicos = ref<Array<IOrdemServico>>([]); 
 let filteredOrdemServicos = ref<Array<IOrdemServico>>([]); 
 let filterInput = ref("");
-let selectedFilter = ref("nome");
+let selectedFilter = ref("nome_ordem");
 
 const filterSelectOptions = [
     {
-        label: "Nome",
-        value: "nome"
+        label: "nome_ordem",
+        value: "nome_ordem"
     },
     {
         label: "CPF",
@@ -137,8 +153,9 @@ function clearUrlParam(newValue: boolean) {
   }
 }
 
+
 function listOrdemServicos() {
-    axios.get<any>('http://localhost:8080/ordem_servico') 
+    axios.get<any>('http://localhost:8080/ordem-servico') 
         .then((response: any) => {
             OrdemServicos.value = response.data
             filteredOrdemServicos.value = OrdemServicos.value;
