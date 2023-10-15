@@ -27,6 +27,13 @@
         v-model="telefoneValue">
       </InputField>  
     </div>
+    <div class="input-inline-field">
+      <InputField    
+        label="Departamento:" 
+        placeholder="Informe o departamento" 
+        v-model="departmentValue">
+      </InputField>    
+    </div>
     <div class="send-button">
       <InputButton text-button="Salvar"></InputButton>
     </div>
@@ -61,10 +68,12 @@ onMounted(async () => {
       .then((response) => {
         if (response.data) {
           funcionarioSelected.value = response.data;
-          console.log(funcionarioSelected.value)
           cpfValue.value = funcionarioSelected.value.cpf
           nameValue.value = funcionarioSelected.value.nome;
           telefoneValue.value = funcionarioSelected.value.telefone;
+          emailValue.value = funcionarioSelected.value.email;
+          departmentValue.value = funcionarioSelected.value.departamento.nome;
+          console.log(response.data)
         }
       });
   } catch (error) {

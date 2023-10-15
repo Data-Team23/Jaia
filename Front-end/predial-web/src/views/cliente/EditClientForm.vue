@@ -71,6 +71,7 @@ onMounted(async () => {
         addressValue.value = clientSelected.value.endereco
         emailValue.value = clientSelected.value.email
       }
+      console.log(response.data)
     })
   } catch (error) {
     console.log(error)
@@ -91,7 +92,7 @@ async function updateClient() {
     const clienteCnpj = router.currentRoute.value.query.cnpj;
     const clienteAtualizado = {
       nome: nameValue.value, 
-      telefone: parseFloat(phoneValue.value),
+      telefone: phoneValue.value,
       senha: null,
       email: emailValue.value, 
       endereco: addressValue.value, 
