@@ -40,6 +40,11 @@ public class OrdemServicoController {
         return service.buscarTodasOrdemServico();
     }
 
+    @GetMapping("/{id}")
+    public OrdemServico buscarOrdemServicoPorId(@PathVariable Long id) {
+        return ordemServicoRepository.findById(id).orElse(null);
+    }
+
     @PostMapping("/criar")
     public OrdemServico criarOrdemServico(@RequestBody OrdemServicoDTO ordemServicoDTO) {
         Funcionario supervisor = funcionarioRepository.findById(ordemServicoDTO.getIdSupervisor())
@@ -66,9 +71,9 @@ public class OrdemServicoController {
     public String excluirOrdemServico(@PathVariable Long id) {
         if (ordemServicoRepository.existsById(id)) {
             ordemServicoRepository.deleteById(id);
-            return "Ordem de Serviço com ID " + id + " foi excluída com sucesso.";
+            return "Ordem de Serviço com ID: " + id + " excluída com sucesso.";
         } else {
-            return "Ordem de Serviço com ID " + id + " não encontrada.";
+            return "Ordem de Serviço com ID: " + id + " não encontrada.";
         }
     }
 
@@ -80,9 +85,9 @@ public class OrdemServicoController {
             ordemServico.setTipo_inspecao(ordemServicoDTO.getTipo_inspecao());
             ordemServico.setStatus_ordem(ordemServicoDTO.getStatus_ordem());
             ordemServicoRepository.save(ordemServico);
-            return "Ordem de Serviço com ID " + id + " foi atualizada com sucesso.";
+            return "Ordem de Serviço com ID: " + id + " atualizada com sucesso.";
         } else {
-            return "Ordem de Serviço com ID " + id + " não encontrada.";
+            return "Ordem de Serviço com ID: " + id + " não encontrada.";
         }
     }
 
