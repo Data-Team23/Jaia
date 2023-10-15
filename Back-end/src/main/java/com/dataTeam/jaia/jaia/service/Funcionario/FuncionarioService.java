@@ -21,7 +21,7 @@ public class FuncionarioService implements IFuncionarioService {
     }
 
     public List<Funcionario> buscarTodosFuncionario() {
-        List<Funcionario> funcionarios = funcrepo.findAll();
+        List<Funcionario> funcionarios = funcrepo.findAllWithDepartamento();
         return funcionarios;
     }
 
@@ -41,7 +41,7 @@ public class FuncionarioService implements IFuncionarioService {
         }
         Funcionario funcionarioToDelete = funcionarioOp.get();
         
-        funcrepo.delete(funcionarioToDelete);
+        funcrepo.deleteByIdWithCascade(funcionarioToDelete.getId());
 
         return funcionarioToDelete;
     }

@@ -1,12 +1,16 @@
 package com.dataTeam.jaia.jaia.repository;
 
-import com.dataTeam.jaia.jaia.model.Funcionario;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
+import com.dataTeam.jaia.jaia.model.Funcionario;
+
+import jakarta.transaction.Transactional;
 
 @Repository
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> {
@@ -23,5 +27,13 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
 
     @Query("SELECT f FROM Funcionario f LEFT JOIN FETCH f.departamento WHERE f.id = :id")
     Optional<Funcionario> findByIdWithDepartamento(Long id);
+
+    @Query("SELECT f FROM Funcionario f LEFT JOIN FETCH f.departamento")
+    public List<Funcionario> findAllWithDepartamento();
+
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM Funcionario f WHERE f.id = ?1")
+    void deleteByIdWithCascade(Long id);
 
 }
