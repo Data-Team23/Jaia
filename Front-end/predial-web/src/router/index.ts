@@ -11,6 +11,7 @@ import ListRequisicoesView from '@/views/requisicoes/ListRequisicoesView.vue'
 import AddRequisicoesView from '@/views/requisicoes/AddRequisicoesView.vue'
 import UpdateRequisicoesView from '@/views/requisicoes/UpdateRequisicoesView.vue'
 import ListChecklistViewVue from '@/views/checklist/ListChecklistView.vue'
+import ListOrdemServicoView from '@/views/ordemServico/ListOrdemServicoView.vue'
 
 
 const router = createRouter({
@@ -78,6 +79,11 @@ const router = createRouter({
       path: '/check-list',
       name: 'check-list',
       component: ListChecklistViewVue
+    },
+    {
+      path: '/ordens-de-servico',
+      name:'ordem-de-servico',
+      component: ListOrdemServicoView
     }
   ]
 })

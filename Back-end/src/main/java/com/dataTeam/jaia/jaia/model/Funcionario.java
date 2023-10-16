@@ -31,4 +31,9 @@ public class Funcionario {
     @JoinColumn(name = "id_departamento")
     private Departamento departamento;
 
+    @ManyToOne
+    @JoinColumn(name = "supervisor")
+    private Funcionario supervisor;
+
+    
 }
