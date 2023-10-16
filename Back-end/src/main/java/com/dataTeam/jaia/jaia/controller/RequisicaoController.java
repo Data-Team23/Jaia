@@ -32,9 +32,9 @@ public class RequisicaoController {
         return service.buscarTodasRequisicoes();
     }
 
-    @PostMapping
-    public Requisicao novaRequisicao(@RequestBody Requisicao requisicao){
-        return service.novaRequisicao(requisicao);
+    @PostMapping("/{clienteId}")
+    public Requisicao novaRequisicao(@RequestBody Requisicao requisicao, @PathVariable Long clienteId){
+        return service.novaRequisicao(requisicao, clienteId);
     }
 
 

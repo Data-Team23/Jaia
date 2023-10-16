@@ -30,7 +30,7 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Nome</th>
-                                <th>Logradouro</th>
+                                <th>Endereço</th>
                                 <th>Cnpj</th>
                                 <th>Telefone</th>
                                 <th>E-mail</th>
