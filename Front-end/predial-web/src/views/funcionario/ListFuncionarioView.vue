@@ -11,12 +11,8 @@
         <div class="top-list">
           <h3><strong>Carteira de funcionários</strong></h3>
           <div class="search-filter">
-            <SelectField 
-                :option-values="filterSelectOptions" 
-                v-model="selectedFilter" 
-                value-prop="value" 
-                display-prop="label"
-            ></SelectField>
+            <SelectField :option-values="filterSelectOptions" v-model="selectedFilter" value-prop="value"
+              display-prop="label"></SelectField>
             <input type="text" placeholder="Filtrar..." v-model="filterInput">
           </div>
         </div>
@@ -27,20 +23,24 @@
                 <th>No.</th>
                 <th>Nome</th>
                 <th>CPF</th>
-                <th>Telefone</th>
+                <th>Departamento</th>
                 <th>E-mail</th>
                 <th></th>
               </tr>
             </thead>
             <tbody v-for="(funcionario, index) in paginatedFuncionarios" :key="index">
-              <tr>  
+              <tr>
                 <td>{{ index + 1 }}</td>
                 <td>{{ funcionario.nome }}</td>
                 <td>{{ funcionario.cpf }}</td>
-                <td>{{ funcionario.telefone }}</td>
+                <td>
+                  <span v-if="funcionario.departamento">{{ funcionario.departamento.nome }}</span>
+                  <span v-else>Não informado</span>
+                </td>
                 <td>{{ funcionario.email }}</td>
                 <td>
-                  <span class="material-symbols-outlined" id="edit-button" @click="editFuncionario(funcionario.id)"> edit </span>
+                  <span class="material-symbols-outlined" id="edit-button" @click="editFuncionario(funcionario.id)"> edit
+                  </span>
                   <span class="material-symbols-outlined" id="delete-button" @click="deleteDialog = true"> delete </span>
                 </td>
               </tr>
@@ -94,6 +94,7 @@ import SelectField from '@/components/Select/SelectField.vue';
 import axios from 'axios';
 import type IFuncionario from './IFuncionario';
 import { useRouter } from 'vue-router';
+import type { Ref } from 'vue';
 
 const router = useRouter()
 
@@ -101,33 +102,33 @@ let addDialog = ref(false);
 let editDialog = ref(false);
 let deleteDialog = ref(false);
 
-let funcionarios = ref<Array<IFuncionario>>([]); 
-let paginatedFuncionarios = ref<Array<IFuncionario>>([]); 
-let filteredFuncionarios = ref<Array<IFuncionario>>([]); 
+let funcionarios = ref<Array<IFuncionario>>([]);
+let paginatedFuncionarios = ref<Array<IFuncionario>>([]);
+let filteredFuncionarios = ref<Array<IFuncionario>>([]);
 let filterInput = ref("");
 let selectedFilter = ref("nome");
 
 const filterSelectOptions = [
-    {
-        label: "Nome",
-        value: "nome"
-    },
-    {
-        label: "CPF",
-        value: "cpf"
-    },
-    {
-        label: "Departamento",
-        value: "departamento"
-    },
+  {
+    label: "Nome",
+    value: "nome"
+  },
+  {
+    label: "CPF",
+    value: "cpf"
+  },
+  {
+    label: "Departamento",
+    value: "departamento"
+  },
 ];
 
 const page = ref(1);
 const itemsPerPage = ref(5);
 
 function editFuncionario(id: number) {
-    router.push({query: { id: id }})
-    editDialog.value = true
+  router.push({ query: { id: id } })
+  editDialog.value = true
 }
 
 function clearUrlParam(newValue: boolean) {
@@ -137,37 +138,40 @@ function clearUrlParam(newValue: boolean) {
 }
 
 function listFuncionarios() {
-    axios.get<any>('http://localhost:8080/funcionario') 
-        .then((response: any) => {
-            funcionarios.value = response.data
-            filteredFuncionarios.value = funcionarios.value;
-            filterFuncionarios();
-        })
-        .catch((error: any) => {
-            console.error('Erro ao buscar funcionários:', error);
-        });
-}
-
-function filterFuncionarios() {
-    filteredFuncionarios.value = funcionarios.value.filter((funcionario: any) => {
-        const selectedValue = funcionario[selectedFilter.value];
-        totalPages = computed(() => Math.ceil(filteredFuncionarios.value.length / itemsPerPage.value));
-        return selectedValue.toLowerCase().includes(filterInput.value.toLowerCase());
+  axios.get<IFuncionario>('http://localhost:8080/funcionario')
+    .then((response: any) => {
+      funcionarios.value = response.data
+      filterFuncionarios(response.data)
     })
-    paginate()
+    .catch((error: any) => {
+      console.error('Erro ao buscar funcionários:', error);
+    });
 }
 
-const paginate = () => {
-    const startIndex = (page.value - 1) * itemsPerPage.value;
-    const endIndex = startIndex + itemsPerPage.value;
+function filterFuncionarios(list: any) {
 
-    paginatedFuncionarios.value = filteredFuncionarios.value.slice(startIndex, endIndex);
+
+  filteredFuncionarios.value = list.filter((funcionario: any) => {
+    const selectedValue = funcionario[selectedFilter.value];
+    totalPages = computed(() => Math.ceil(filteredFuncionarios.value.length / itemsPerPage.value));
+    return selectedValue.toLowerCase().includes(filterInput.value.toLowerCase());
+  })
+  paginate(filteredFuncionarios.value)
+}
+
+const paginate = (list: any) => {
+  const startIndex = (page.value - 1) * itemsPerPage.value;
+  const endIndex = startIndex + itemsPerPage.value;
+  paginatedFuncionarios.value = list.slice(startIndex, endIndex);
+  console.log(paginatedFuncionarios.value[2].departamento?.nome)
+  console.log(paginatedFuncionarios.value[1].departamento?.nome)
+  console.log(paginatedFuncionarios.value[0].departamento?.nome)
 }
 
 let totalPages = computed(() => Math.ceil(funcionarios.value.length / itemsPerPage.value));
 
 onMounted(() => {
-    listFuncionarios();
+  listFuncionarios();
 })
 
 watch(editDialog, clearUrlParam)
@@ -175,11 +179,11 @@ watch(editDialog, clearUrlParam)
 watch(filterInput, filterFuncionarios)
 
 watch(page, (newPage) => {
-    paginate();
+  paginate(filteredFuncionarios);
 });
 
 const changePage = (pageNumber: any) => {
-    page.value = pageNumber;
+  page.value = pageNumber;
 };
 
 </script>

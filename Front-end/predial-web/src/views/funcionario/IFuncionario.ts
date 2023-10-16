@@ -1,3 +1,5 @@
+import type IDepartament from "../departamento/IDepartament"
+
 export default interface IFuncionario {
     id: number
     nome: string
@@ -5,4 +7,5 @@ export default interface IFuncionario {
     email:string
     telefone: string
     senha: string
+    departamento: IDepartament
 }
