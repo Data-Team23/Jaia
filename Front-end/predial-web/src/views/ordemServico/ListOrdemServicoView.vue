@@ -22,20 +22,18 @@
                 <th>Inspeção</th>
                 <th>Status O.S.</th>
                 <th>Descrição</th>
-                <th>Data</th>
                 <th></th>
               </tr>
             </thead>
             <tbody v-for="(OrdemServico, index) in paginatedOrdemServicos" :key="index">
               <tr>  
                 <td>{{ index + 1 }}</td>
-                <td>{{ OrdemServico.nome_ordem }}</td>
-                <td>{{ OrdemServico.data_abertura }}</td>
-                <td>{{ OrdemServico.id_cli.cnpj }}</td>
-                <td>{{ OrdemServico.tipo_inspecao }}</td>
-                <td>{{ OrdemServico.status_ordem }}</td>
-                <td>{{ OrdemServico.descricao }}</td>
-                <td>{{ OrdemServico.data }}</td>
+                  <td>{{ OrdemServico.nome_ordem }}</td>
+                  <td>{{ OrdemServico.id_req.data_abertura }}</td>
+                  <td>{{ OrdemServico.id_cli.cnpj }}</td>
+                  <td>{{ OrdemServico.tipo_inspecao }}</td>
+                  <td>{{ OrdemServico.status_ordem }}</td>
+                  <td>{{ OrdemServico.id_req.descricao }}</td>
                 <td>
                   <span class="material-symbols-outlined" id="edit-button" @click="editOrdemServico(OrdemServico.id)"> edit </span>
                   <span class="material-symbols-outlined" id= "aprove-button" @click="aproveOrdemServico(OrdemServico.id)"> zoom_out_map </span>

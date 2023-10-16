@@ -45,5 +45,9 @@ public class OrdemServico {
     @ManyToOne
     @JoinColumn(name = "id_check")
     private Checklist id_check;
+
+    @ManyToOne
+    @JoinColumn(name = "id_req")
+    private Requisicao id_req;
     
 }

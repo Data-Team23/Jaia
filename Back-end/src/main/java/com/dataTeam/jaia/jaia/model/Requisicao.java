@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -43,10 +44,10 @@ public class Requisicao {
     @Column(name = "data_abertura_req")
     private LocalDateTime data_abertura;
 
-<<<<<<< HEAD
-=======
+    @ManyToOne
+    @JoinColumn(name = "fk_cliente_id")
+    private Cliente fk_cliente_id;
 
->>>>>>> bcdf88524afce4cc0e1c18357902b36981f5e959
     @ManyToMany
     @JoinTable(
         name = "solicitacao",
@@ -55,10 +56,5 @@ public class Requisicao {
     )
     @JsonManagedReference
     private List<Cliente> clientes;
-<<<<<<< HEAD
  
-=======
-
-    
->>>>>>> bcdf88524afce4cc0e1c18357902b36981f5e959
 }

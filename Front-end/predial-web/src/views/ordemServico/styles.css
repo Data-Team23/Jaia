@@ -15,8 +15,15 @@ body{
     font-family: var(--font);
 }
 
-
+.v-dialog {
+    max-height: 70vh; /* Defina a altura máxima conforme necessário (por exemplo, 70% da altura da janela) */
+    overflow-y: auto; /* Ativa a barra de rolagem vertical quando necessário */
+  }
   
+  .add-client-container {
+    min-height: 200px; /* Defina a altura mínima conforme necessário */
+  }
+
 .container {
     width: 100%;
 }
@@ -27,6 +34,8 @@ body{
     width: 100%;
     box-shadow: 5px 5px 20px 0 #00000030;
     border-radius: 20px;
+    overflow-y: scroll; 
+    max-height: 300px;
 }
   
 .list-view {
@@ -104,6 +113,16 @@ span {
     padding: 0 10px;
     caret-color: var(--primary-text-color);
 }
+
+.select-field {
+    width: 330px;
+    background-color: var(--secondary-text-color);
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px 2px #00000025;
+    color: var(--primary-text-color);
+    padding: 0 10px;
+    caret-color: var(--primary-text-color);
+}
   
 .v-dialog {
     display: flex;
@@ -141,9 +160,6 @@ span {
     border-radius: 20px;
         
 }
-
-
-
   
 .delete-client-container {
     background-color: var(--primary-bg-color);
@@ -163,14 +179,13 @@ span {
     color: red;
 }
   
-.send-button {
-    width: 100%;
-}
   
 .send-button .div-button {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-around;
     width: 100%;
+
+    flex-direction: row;
 }
   
 .close-button {
@@ -228,11 +243,5 @@ tbody tr td:first-child {
   justify-content: space-between;
   gap: 200px;
 }
-
-
-
-
-
-
 
 

@@ -75,14 +75,14 @@
 </template>
 
 <script setup lang="ts">
-import "./styles.css";
+import "../styles.css";
 
 import { computed, onMounted, ref, watch } from "vue";
 import SelectField from "@/components/Select/SelectField.vue";
 import InputButton from "@/components/Button/InputButton.vue";
 import AddRequisicoesForm from "./AddRequisicoesForm.vue";
-import UpdateRequisicoesForm from "./UpdateRequisicoesForm.vue";
-import type IRequisition from "./IRequisition";
+import UpdateRequisicoesForm from "./UpdateRequisicoesView.vue";
+import type IRequisition from "../IRequisition";
 import axios from "axios";
 
 let addDialog = ref(false);
