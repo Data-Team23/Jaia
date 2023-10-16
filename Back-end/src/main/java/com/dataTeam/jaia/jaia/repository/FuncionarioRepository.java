@@ -1,14 +1,17 @@
 package com.dataTeam.jaia.jaia.repository;
 
-import com.dataTeam.jaia.jaia.model.Funcionario;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
+import com.dataTeam.jaia.jaia.model.Funcionario;
+
+import jakarta.transaction.Transactional;
 
 @Repository
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> {
