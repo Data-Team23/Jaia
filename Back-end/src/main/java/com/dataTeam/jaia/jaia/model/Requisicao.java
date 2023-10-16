@@ -43,6 +43,10 @@ public class Requisicao {
     @Column(name = "data_abertura_req")
     private LocalDateTime data_abertura;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bcdf88524afce4cc0e1c18357902b36981f5e959
     @ManyToMany
     @JoinTable(
         name = "solicitacao",
@@ -51,5 +55,10 @@ public class Requisicao {
     )
     @JsonManagedReference
     private List<Cliente> clientes;
+<<<<<<< HEAD
  
+=======
+
+    
+>>>>>>> bcdf88524afce4cc0e1c18357902b36981f5e959
 }

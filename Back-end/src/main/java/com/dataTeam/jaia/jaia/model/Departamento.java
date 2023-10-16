@@ -22,5 +22,9 @@ public class Departamento {
     @OneToMany(mappedBy = "departamento")
     @JsonIgnore
     private List<Funcionario> funcionarios;
+    
+    @ManyToMany(mappedBy = "departamentos")
+    @JsonIgnore
+    private List<Checklist> checklists;
 
 }
