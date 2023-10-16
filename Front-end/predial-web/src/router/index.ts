@@ -11,11 +11,7 @@ import ListRequisicoesView from '@/views/requisicoes/ListRequisicoesView.vue'
 import AddRequisicoesView from '@/views/requisicoes/AddRequisicoesView.vue'
 import UpdateRequisicoesView from '@/views/requisicoes/UpdateRequisicoesView.vue'
 import ListChecklistViewVue from '@/views/checklist/ListChecklistView.vue'
-<<<<<<< HEAD
 import ListOrdemServicoViewVue from '@/views/ordemServico/ListOrdemServicoView.vue'
-=======
-import ListOrdemServicoView from '@/views/ordemServico/ListOrdemServicoView.vue'
->>>>>>> 5c78695885526bc0e3ceb9ed7853b76561de23aa
 
 
 const router = createRouter({
@@ -86,13 +82,8 @@ const router = createRouter({
     },
     {
       path: '/ordens-de-servico',
-<<<<<<< HEAD
       name: 'ordens-de-servico',
       component: ListOrdemServicoViewVue
-=======
-      name:'ordem-de-servico',
-      component: ListOrdemServicoView
->>>>>>> 5c78695885526bc0e3ceb9ed7853b76561de23aa
     }
   ]
 })
