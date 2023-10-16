@@ -1,12 +1,18 @@
 package com.dataTeam.jaia.jaia.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +29,7 @@ public class Requisicao {
     private Long id;
 
     @Column(name = "nome_req")
-    private String cpf;
+    private String nome;
 
     @Column(name = "inspecao_req")
     private String inspecao;
@@ -36,5 +42,16 @@ public class Requisicao {
 
     @Column(name = "data_abertura_req")
     private LocalDateTime data_abertura;
+
+
+    @ManyToMany
+    @JoinTable(
+        name = "solicitacao",
+        joinColumns = @JoinColumn(name = "id_req"),
+        inverseJoinColumns = @JoinColumn(name = "id_cli")
+    )
+    @JsonManagedReference
+    private List<Cliente> clientes;
+
     
 }
