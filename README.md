@@ -291,6 +291,7 @@ Uma das personas gerais para esse tipo de sistema pode ser definida conforme a i
 - [ ] Como técnico, desejo avaliar o local e consequentemente anotar irregularidades que a inspeção cobra, e ao final aprovar ou reprovar a inspeção do local para que seja possível o futuro recebimento do laudo técnico e aprovação da utilização do local.
 
 ## Burndown
+![image](https://github.com/Data-Team23/Jaia/assets/143366830/ddf9cd64-7983-4afe-a21f-cd468cb619c4)
 
 
 ## Wireframes
@@ -311,8 +312,8 @@ Para a inspeção de algum lugar é necessário ter um checklist de inspeção, 
 
 # Sprint 03
 ## User Stories
-- [ ] Como supervisor de serviços, desejo cadastrar checklists de inspeção para que meu subordinado consiga realizar a inspeção do serviço e concluir uma ordem de serviço.
-- [ ] Como supervisor de seviços, desejo entender como estão as métricas dos serviços prestados para que seja possível analisar as demandas que tivemos ao longo do tempo e planejar as demandas para os próximos meses.
+- [ ] Como supervisor de serviços, desejo ter uma visualização de relatório em dashboard para entender quais departamentos e áreas estão tendo um maior volume de requisições para investir mais tempo e especialização nos meus funcionários
+- [ ] Como cliente, desejo receber o laudo técnico e aprovações de inspeção no meu email, para que seja possível imprimir o PDF e ter o produto final em meu local inspecionado.
 
 # Sprint 04
 ## User Stories

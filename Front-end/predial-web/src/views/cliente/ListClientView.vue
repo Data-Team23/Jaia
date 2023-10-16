@@ -39,7 +39,7 @@
                         </thead>
                     <tbody v-for="(cliente, index) in paginatedClients" :key="index">
                     <tr>
-                    <td>{{ index + 1 }}</td>
+                    <td>{{ cliente.no }}</td>
                     <td>{{ cliente.nome }}</td>
                     <td>{{ cliente.endereco ?? 'Não informado' }}</td>
                     <td>{{ cliente.cnpj }}</td>
@@ -163,7 +163,10 @@ function listClients() {
     axios.get<any>('http://localhost:8080/cliente') 
         .then((response: any) => {
             clients.value = response.data
-            filteredClients.value = clients.value;
+            filteredClients.value = response.data;
+            clients.value.forEach((client, index) => {
+                client.no = index + 1
+            })
             filterClients();
         })
         .catch((error: any) => {
