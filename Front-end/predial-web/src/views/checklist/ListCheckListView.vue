@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+    <div class="container">
         <div class="container-top">
 
         </div>
@@ -34,23 +34,28 @@
                                 <th></th>
                             </tr>
                         </thead>
-                    <tbody v-for="(checkList, index) in checkLists" :key="index">
-                    <tr>
-                    <td>{{ index + 1 }}</td>
-                    <td>{{ checkList.nome }}</td>
-                    <td>{{ checkList.departamento ?? 'Não informado' }}</td>
-                    <td>
-                    <span class="material-symbols-outlined" id="edit-button" @click="editCheckList(checkList.id.toString())">
-                    edit
-                    </span>
-                    <span class="material-symbols-outlined" id="delete-button" @click="deleteDialog = true">
-                    delete
-                    </span>
-                    </td>
-                    </tr>
-                    </tbody>
+                        <tbody v-for="(checkList, index) in paginatedChecklist" :key="index">
+                            <tr>
+                                <td>{{ checkList.no }}</td>
+                                <td>{{ checkList.nome }}</td>
+                                <td>
+                                    <span v-if="checkList.departamentos.length > 0">{{ checkList.departamentos[0].nome
+                                    }}</span>
+                                    <span v-else>Não informado</span>
+                                </td>
+                                <td>
+                                    <span class="material-symbols-outlined" id="edit-button"
+                                        @click="editCheckList(checkList.id.toString())">
+                                        edit
+                                    </span>
+                                    <span class="material-symbols-outlined" id="delete-button" @click="deleteDialog = true">
+                                        delete
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
-                    <!-- <div class="pagination">
+                    <div class="pagination">
                         <ul class="pagination-list">
                             <li v-for="pageNumber in totalPages" :key="pageNumber" @click="changePage(pageNumber)">
                                 <a :class="{ active: page === pageNumber }">
@@ -58,7 +63,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -97,7 +102,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch, computed } from 'vue';
 import type ICheckList from './ICheckList';
 import { useRouter } from 'vue-router';
 import UpdateCheckListView from './UpdateCheckListView.vue';
@@ -115,29 +120,70 @@ const itemsPerPage = ref(5);
 const apiUrl = import.meta.env.VITE_API_URL
 
 let checkLists = ref<Array<ICheckList>>([])
+let filteredChecklist = ref<Array<ICheckList>>([])
+let paginatedChecklist = ref<Array<ICheckList>>([])
+let selectedFilter = ref("")
+let filterInput = ref("")
 
 function editCheckList(id: string) {
-    router.push({query: { id: id }})
+    router.push({ query: { id: id } })
     editDialog.value = true
 }
 
 function clearUrlParam(newValue: boolean) {
-  if (!newValue && router.currentRoute.value.query.id !== undefined) {
-    router.push({ query: { ...router.currentRoute.value.query, id: undefined } });
-  }
+    if (!newValue && router.currentRoute.value.query.id !== undefined) {
+        router.push({ query: { ...router.currentRoute.value.query, id: undefined } });
+    }
 }
 
 watch(editDialog, clearUrlParam)
 
-function listCheckList(){
+function listCheckList() {
     axios.get<any>(`http://localhost:8080/checklist`).then((response: any) => {
         console.log(response.data)
         checkLists.value = response.data
+        filteredChecklist = response.data
+        checkLists.value.forEach((checklist, index) => {
+            checklist.no = index + 1
+        })
+        filterChecklist()
     })
 }
+
+function filterChecklist() {
+    filteredChecklist.value = checkLists.value.filter((client: any) => {
+        const selectedValue = client[selectedFilter.value];
+        totalPages = computed(() => Math.ceil(filteredChecklist.value.length / itemsPerPage.value));
+        if (selectedValue) {
+            return selectedValue.toLowerCase().includes(filterInput.value.toLowerCase());
+        } else {
+            return checkLists.value
+        }
+    })
+    paginate()
+}
+
+const paginate = () => {
+    const startIndex = (page.value - 1) * itemsPerPage.value;
+    const endIndex = startIndex + itemsPerPage.value;
+
+    paginatedChecklist.value = filteredChecklist.value.slice(startIndex, endIndex);
+}
+
+let totalPages = computed(() => Math.ceil(checkLists.value.length / itemsPerPage.value));
 
 onMounted(() => {
     listCheckList()
 })
+
+watch(filterInput, filterChecklist)
+
+watch(page, (newPage) => {
+    paginate();
+});
+
+const changePage = (pageNumber: any) => {
+    page.value = pageNumber;
+};
 
 </script>

@@ -63,6 +63,9 @@
           v-model=" checklValue">
         </InputField>
       </div>
+      <div class="input-inline-field" v-for="(pergunta, index) in perguntas" :key="index">
+      <InputField :label="pergunta" v-model="respostas[index]"></InputField>
+    </div>
       <div class="aprove-button"> 
         <InputButton text-button="Aprovar"></InputButton>
       </div>
@@ -76,6 +79,7 @@
   import InputField from '@/components/InputField/InputField.vue';
   import InputButton from '@/components/Button/InputButton.vue';
   import { onMounted, ref } from 'vue';
+  import type IListToCheck from '../checklist/IListToCheck';
   import { useRouter, type Router } from 'vue-router';
   import type IOrdemServico from './IOrdemServico';
   import axios from 'axios';
@@ -95,6 +99,8 @@
   const responsavelValue = ref('');
   const dataValue = ref('');
   const checklValue = ref('');
+  const respostas = ref([]);
+  const perguntas = ref([]);
  
  
 
@@ -117,6 +123,8 @@
             status_ordemValue.value = ordem_servicoSelected.value.status_ordem;
             descricaoValue.value = ordem_servicoSelected.value.descricao;
             dataValue.value = ordem_servicoSelected.value.data;
+            checklValue.value = ordem_servicoSelected.value.id_check.nome;
+            perguntasValue.value = ordem_servicoSelected.value.id_check.perguntas;
           }ordem_servicoSelected
         });
     } catch (error) {

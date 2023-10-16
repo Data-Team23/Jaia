@@ -33,5 +33,12 @@ public class Checklist {
                joinColumns = @JoinColumn(name = "id_check"),
                inverseJoinColumns = @JoinColumn(name = "id_pergunta"))
     private List<Pergunta> perguntas;
+
+    @ManyToMany
+    @JoinTable(name = "item_checklist",
+               joinColumns = @JoinColumn(name = "id_check"),
+               inverseJoinColumns = @JoinColumn(name = "id_depart"))
+    private List<Departamento> departamentos;
+
     
 }

@@ -2,7 +2,8 @@
     <label for="" class="label">
         {{ label }}
         <select name="" id="select-field-comp" class="select-field" :value="modelValue" @input="updateSelect">
-            <option style="color: #B3B3B3;" disabled value="" selected>Selecione um opção</option>
+            <option v-if="preSelectedProp != undefined" style="color: #B3B3B3;" disabled value="" selected>{{ preSelectedProp }}</option>
+            <option v-else selected>Selecione uma opção</option>
             <template v-for="option in optionValues" :key="getSelectedValue(option)">
                 <option :value="getSelectedValue(option)">{{getSelectedLabel(option)}}</option>
             </template>
@@ -34,6 +35,10 @@
             displayProp: {
                 type: String,
                 default: 'label'
+            },
+            preSelectedProp: {
+                type: String,
+                default: 'Selecione uma opção'
             }
         },
         methods: {
