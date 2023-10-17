@@ -60,7 +60,7 @@
         <AddOrdemServicoForm></AddOrdemServicoForm>
       </div>
     </v-dialog>
-    <v-dialog v-model="editDialog" width="80%">
+    <v-dialog v-model="editDialog" width="80%" class="update-os">
       <div class="add-client-container">
         <div class="close-button">
           <span class="material-symbols-outlined" @click="editDialog = false"> close </span>
