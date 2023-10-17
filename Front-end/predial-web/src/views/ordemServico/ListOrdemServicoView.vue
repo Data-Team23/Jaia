@@ -30,7 +30,7 @@
                 <td>{{ index + 1 }}</td>
                   <td>{{ OrdemServico.nome_ordem }}</td>
                   <td>{{ OrdemServico.id_req.data_abertura }}</td>
-                  <td>{{ OrdemServico.id_cli.cnpj }}</td>
+                  <td>{{ OrdemServico.id_req.fk_cliente_id.cnpj }}</td>
                   <td>{{ OrdemServico.tipo_inspecao }}</td>
                   <td>{{ OrdemServico.status_ordem }}</td>
                   <td>{{ OrdemServico.id_req.descricao }}</td>

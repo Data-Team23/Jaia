@@ -82,8 +82,6 @@
     
     <div class="send-button"> 
       <InputButton text-button="Aprovar"></InputButton>
-    </div>
-    <div >
       <InputButton text-button="Reprovar"></InputButton>
     </div>
   </form>
@@ -123,7 +121,7 @@ onMounted(async () => {
             nome_ordemValue.value = ordem_servicoSelected.value.nome_ordem;
             dataaberturaValue.value = ordem_servicoSelected.value.id_req.data_abertura;
             statusRValue.value = ordem_servicoSelected.value.id_req.status;
-            cnpjValue.value = ordem_servicoSelected.value.id_cli.cnpj;
+            cnpjValue.value = ordem_servicoSelected.value.id_req.fk_cliente_id.cnpj;
             inspecaoValue.value = ordem_servicoSelected.value.tipo_inspecao;
             responsavelValue.value = ordem_servicoSelected.value.id_supervisor.nome;
             status_ordemValue.value = ordem_servicoSelected.value.status_ordem;
@@ -133,6 +131,7 @@ onMounted(async () => {
   } catch (error) {
     console.error(error);
   }
+
 });
 
 async function waitForIdInRoute(router: Router) {

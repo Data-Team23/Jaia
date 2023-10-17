@@ -22,7 +22,7 @@
 }
 .send-button .div-button{
     display: flex;
-    justify-content: flex-end;
+    align-items: flex-end;
     width: 100%;
 }
 

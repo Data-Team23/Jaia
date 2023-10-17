@@ -39,15 +39,6 @@
         placeholder="00.000.000/0000-00"
       >
       </InputField>
-      <SelectField
-        label="Status da O.S:"
-        placeholder="Selecione"
-        v-model="statusOsValue"
-        :option-values="optionsStatusOs"
-        value-prop="value"
-        display-prop="label"
-      >
-      </SelectField>
     </div>
     <div class="input-inline-field">
       <SelectField
@@ -59,34 +50,9 @@
         display-prop="label"
       >
       </SelectField>
-      <SelectField
-        label="Responsável:"
-        v-model="statusOsValue"
-        :option-values="optionsStatusOs"
-        value-prop="value"
-        display-prop="label"
-      >
-      </SelectField>
-    </div>
-    <div class="input-inline-field">
-      <InputField
-        label="Data da prestação do serviço:"
-        v-model="inspectionValue"
-        placeholder="01/01/2020"
-      >
-      </InputField>
-      <SelectField
-        label="Checklist:"
-        placeholder="Informe o checklist"
-        v-model="statusOsValue"
-        :option-values="optionsStatusOs"
-        value-prop="value"
-        display-prop="label"
-      >
-      </SelectField>
     </div>
     <div class="send-button">
-      <InputButton text-button="Criar O.S." @click="createRequisition"></InputButton>
+      <InputButton text-button="Enviar requisição" @click="createRequisition"></InputButton>
     </div>
   </form>
 </template>
@@ -156,4 +122,6 @@ const optionsInspecao = [
 function createRequisition(){
 
 }
+
+
 </script>

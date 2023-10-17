@@ -18,5 +18,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     public List<Cliente> buscarPeloNomeParecido(String nome);
 
     public Optional<Cliente> findByCnpj(String cnpj);
+    
 
 }

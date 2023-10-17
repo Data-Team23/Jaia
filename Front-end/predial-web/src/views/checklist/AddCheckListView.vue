@@ -4,7 +4,7 @@
     </div>
     <form action="" class="add-form">
         <div class="input-inline-field">
-            <SelectField label="Departamento:" :option-values="departamentos" value-prop="codDepart" display-prop="nome"
+            <SelectField label="Departamento:" :option-values="departamentos" value-prop="id_depart" display-prop="nome"
                 v-model="departamentoValue">
             </SelectField>
             <InputField label="Nome:" placeholder="Informe o nome do checklist" v-model="nameValue">

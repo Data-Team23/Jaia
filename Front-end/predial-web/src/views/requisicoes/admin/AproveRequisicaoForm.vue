@@ -99,7 +99,7 @@ const dataValue = ref('');
 const responsavelValue = ref('');
 const checklValue = ref('');
 const inspecaoValue = ref('');
-
+const idValue = ref('');
 const requisicaoSelected = ref<IRequisition>();
 const funcionarios = ref<IFuncionario[]>([]);
 const checklist = ref<ICheckList[]>([]);
@@ -132,8 +132,6 @@ onMounted(async () => {
     if (checklistResponse.data) {
       checklist.value = checklistResponse.data;
     }
-
-    console.log(requisicaoResponse.data);
   } catch (error) {
     console.error('Erro ao buscar dados:', error);
   }
@@ -147,17 +145,19 @@ async function waitForIdInRoute(router: Router) {
 
 async function createOS(event: { preventDefault: () => void; }) {
   event.preventDefault();
+  const id = router.currentRoute.value.query.id;
 
   const osData = {
     nome_ordem: nome_ordemValue.value,
-    inspecao: inspecaoValue.value,
+    tipo_inspecao: inspecaoValue.value,
     status_ordem: statusRValue.value,
-    fk_cliente_id: {
-      cnpj: cnpjValue.value,
-    },
-    fk_responsavel_id: responsavelValue.value, 
-    fk_checklist_id: checklValue.value,
+    idSupervisor: responsavelValue.value, 
+    idChecklist: checklValue.value,
+    idReq: id,
 };
+
+
+console.log(osData);
 
   try {
     const response = await axios.post('http://localhost:8080/ordem-servico/criar', osData);
@@ -167,7 +167,6 @@ async function createOS(event: { preventDefault: () => void; }) {
     descricaoValue.value = '';
     statusRValue.value = '';
     dataaberturaValue.value = '';
-    cnpjValue.value = '';
   } catch (error) {
     console.error('Erro ao criar a Ordem de serviço:', error);
     window.alert('Erro ao criar a Ordem de serviço');

@@ -2,12 +2,10 @@ com\dataTeam\jaia\jaia\DTO\OrdemServicoDTO.class
 com\dataTeam\jaia\jaia\JaiaApplication.class
 com\dataTeam\jaia\jaia\repository\ChecklistRepository.class
 com\dataTeam\jaia\jaia\service\OrdemServico\OrdemServicoService.class
-com\dataTeam\jaia\jaia\controller\OrdemServicoController.class
 com\dataTeam\jaia\jaia\model\Cliente.class
 com\dataTeam\jaia\jaia\service\OrdemServico\IOrdemServicoService.class
 com\dataTeam\jaia\jaia\service\Departamento\IDepartamentoService.class
 com\dataTeam\jaia\jaia\controller\ClienteController.class
-com\dataTeam\jaia\jaia\service\Cliente\ClienteService.class
 com\dataTeam\jaia\jaia\model\OrdemServico.class
 com\dataTeam\jaia\jaia\service\Funcionario\IFuncionarioService.class
 com\dataTeam\jaia\jaia\model\Departamento.class

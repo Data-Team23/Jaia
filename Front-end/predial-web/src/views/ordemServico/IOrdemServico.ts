@@ -11,13 +11,14 @@ export default interface IOrdemServico {
             comentario: string; 
             status: string }>;
     };
-    id_cli: {
-        cnpj: string;
-    };
     id_req: {
         data_abertura: string;
         descricao: string;
         status: string;
+        fk_cliente_id: {
+            id: number,
+            cnpj: string,
+        }
     };
     id_supervisor: {
         nome: string;
