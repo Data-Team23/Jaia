@@ -48,13 +48,13 @@ public class Requisicao {
     @JoinColumn(name = "fk_cliente_id")
     private Cliente fk_cliente_id;
 
-    @ManyToMany
-    @JoinTable(
-        name = "solicitacao",
-        joinColumns = @JoinColumn(name = "id_req"),
-        inverseJoinColumns = @JoinColumn(name = "id_cli")
-    )
-    @JsonManagedReference
-    private List<Cliente> clientes;
+    // @ManyToMany
+    // @JoinTable(
+    //     name = "solicitacao",
+    //     joinColumns = @JoinColumn(name = "id_req"),
+    //     inverseJoinColumns = @JoinColumn(name = "id_cli")
+    // )
+    // @JsonManagedReference
+    // private List<Cliente> clientes;
  
 }
