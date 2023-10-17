@@ -145,24 +145,22 @@ async function waitForIdInRoute(router: Router) {
   }
 }
 
-async function createOS() {
-  event?.preventDefault();
+async function createOS(event: { preventDefault: () => void; }) {
+  event.preventDefault();
 
-  const requisicao = {
-    nome: nome_ordemValue.value,
+  const osData = {
+    nome_ordem: nome_ordemValue.value,
     inspecao: inspecaoValue.value,
-    descricao: descricaoValue.value,
-    status: statusRValue.value,
-    data_abertura: dataaberturaValue.value,
+    status_ordem: statusRValue.value,
     fk_cliente_id: {
       cnpj: cnpjValue.value,
     },
-    fk_responsavel_id: responsavelValue,
-    fk_checklist_id: checklValue,
-  };
+    fk_responsavel_id: responsavelValue.value, 
+    fk_checklist_id: checklValue.value,
+};
 
   try {
-    const response = await axios.post('http://localhost:8080/ordem-servico/criar', requisicao);
+    const response = await axios.post('http://localhost:8080/ordem-servico/criar', osData);
     window.alert('Ordem de serviço criada com sucesso');
     nome_ordemValue.value = '';
     inspecaoValue.value = '';
