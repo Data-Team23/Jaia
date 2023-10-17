@@ -67,12 +67,12 @@
     
     <div class="input-inline-field" v-for="(pergunta, index) in ordem_servicoSelected?.id_check?.perguntas || []" :key="index">
         <div class="column">
-          <label class="input-inline-field-pergunta-label">{{ pergunta.pergunta }}</label>
-          <select v-model="pergunta.status">
-            <option value="Aprovado">Aprovado</option>
+          <label class="input-inline-field">{{ pergunta.pergunta }}</label>
+          <select class="input-select" v-model="pergunta.status">
+            <option style="color: black;" value="Aprovado">Aprovado</option>
             <option value="Reprovado">Reprovado</option>
           </select>
-          <InputField 
+          <InputField class="input-inline-field" style="width: 445px;"
             label="" 
             placeholder="Comentário"
             v-model="pergunta.comentario"

@@ -10,3 +10,5 @@ export default interface ICheckList {
     perguntas: any
     
 }
+
+const checklistData: ICheckList[] = [];

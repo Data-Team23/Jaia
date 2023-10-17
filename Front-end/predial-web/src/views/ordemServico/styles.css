@@ -244,4 +244,8 @@ tbody tr td:first-child {
   gap: 200px;
 }
 
+option {
+    width: 50%;
+    border-radius: 10px;
+}
 
