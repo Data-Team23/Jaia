@@ -26,11 +26,11 @@ public class EmailService {
 
         MimeMessage mail = mailSender.createMimeMessage();
 
-        MimeMessageHelper mensagem = new MimeMessageHelper(mail);
-        mensagem.setAssunto(assunto);
-        mensagem.setEmail(email);
-        mensagem.setFrom(supportMail);
-        mensagem.setTo(email);
+        MimeMessageHelper mensagems = new MimeMessageHelper(mail);
+        mensagems.setAssunto(assunto); //teste
+        mensagems.setEmail(email);
+        mensagems.setFrom(supportMail);
+        mensagems.setTo(email);
 
         mailSender.send(mail);
 
