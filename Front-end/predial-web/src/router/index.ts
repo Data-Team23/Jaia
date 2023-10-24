@@ -1,4 +1,3 @@
-import ListChecklistViewVue from '@/views/checklist/ListChecklistView.vue'
 import ListClientViewVue from '@/views/cliente/ListClientView.vue'
 import AddDepartmentView from '@/views/departamento/AddDepartmentView.vue'
 import ListDepartmentView from '@/views/departamento/ListDepartmentView.vue'
@@ -14,6 +13,8 @@ import UpdateRequisicoesView from '@/views/requisicoes/cliente/UpdateRequisicoes
 import ListRequisicoesAdminView from '@/views/requisicoes/admin/ListRequisicoesAdmin.vue'
 
 import { createRouter, createWebHistory } from 'vue-router'
+import DashboardViewVue from '@/views/dashboard/DashboardView.vue'
+import ListChecklistViewVue from '@/views/checklist/ListCheckListView.vue'
 
 
 const router = createRouter({
@@ -91,6 +92,11 @@ const router = createRouter({
       path: '/requisicoesAdmin',
       name: 'requisicoesAdmin',
       component: ListRequisicoesAdminView
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: DashboardViewVue
     }
   ]
 })
