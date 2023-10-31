@@ -3,15 +3,15 @@
     <h2>Dashboard - Requisições/Ordem de Serviço</h2>
     <div class="chart-box">
         <div class="bar-chart-container">
-          <bar-chart :chart-data="dataClients" :options="chartOptions"></bar-chart>
+          <bar-chart :chart-data="clienteReq" :options="chartOptions"></bar-chart>
         </div>
         <div class="bar-chart-container">
-          <bar-chart :chart-data="dataFunc"></bar-chart>
+          <bar-chart :chart-data="funcionarioOs"></bar-chart>
         </div>
     </div>
     <div class="chart-box">
         <div class="pie-chart-container">
-          <pie-chart :chart-data="dataFunc"></pie-chart>
+          <pie-chart :chart-data="funcionarioOs"></pie-chart>
         </div>
     </div>
   </div>
@@ -32,6 +32,17 @@ import {
 } from "chart.js";
 import { BarChart, PieChart } from "vue-chart-3";
 import "./style.css";
+import { ref } from "vue";
+import type IFuncionario from "../funcionario/IFuncionario";
+import axios from "axios";
+import { onMounted } from "vue";
+import type IOrdemServico from "../ordemServico/IOrdemServico";
+import type IDashboard from "./IDashboard";
+
+let funcionarios = ref<Array<IFuncionario>>([]);
+let ordemServicos = ref<Array<IOrdemServico>>([]); 
+let funcionarioOs = ref<any>([]);
+let clienteReq = ref<any>([]);
 
 ChartJS.register(
   CategoryScale,
@@ -45,30 +56,29 @@ ChartJS.register(
   ArcElement
 );
 
-const dataClients = {
-  labels: ["Cliente 1", "Cliente 2", "Cliente 3", "Cliente 4", "Cliente 5"],
-  datasets: [
-    {
-      label: "Requisições",
-      backgroundColor: ["#000000", "#2E2E48", "#626288", "#8080BF", "#6A6A69"],
-      borderColor: "rgba(75, 192, 192, 1)",
-      borderWidth: 1,
-      data: [65, 59, 80, 81, 56],
-    },
-  ],
-};
+function getFuncionarioOs(){
+  axios.get<any>('http://localhost:8080/dashboard/os-funcionario')
+    .then((response: any) => {
+      funcionarioOs.value = response.data
+    })
+}
 
-const dataFunc = {
-  labels: ["Funcionário 1", "Funcionário 2", "Funcionário 3", "Funcionário 4", "Funcionário 5"],
-  datasets: [
-    {
-      label: "Ordem de Serviço",
-      backgroundColor: ["#000000", "#2E2E48", "#626288", "#8080BF", "#6A6A69"],
-      borderWidth: 1,
-      data: [20, 49, 40, 81, 56],
-    },
-  ],
-};
+function getClienteReq(){
+  axios.get<any>('http://localhost:8080/dashboard/req-cliente')
+    .then((response: any) => {
+      clienteReq.value = response.data
+    })
+}
+
+function listOrdemServicos() {
+    axios.get<any>('http://localhost:8080/ordem-servico') 
+        .then((response: any) => {
+            ordemServicos.value = response.data
+        })
+        .catch((error: any) => {
+            console.error('Erro ao buscar funcionários:', error);
+        });
+}
 
 const chartOptions = {
   indexAxis: "y",
@@ -78,4 +88,11 @@ const chartOptions = {
     },
   },
 };
+
+onMounted(() => {
+  getFuncionarioOs()
+  getClienteReq()
+  listOrdemServicos()
+})
+
 </script>

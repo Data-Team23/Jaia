@@ -25,7 +25,7 @@
                   <th>CNPJ</th>
                   <th>Inspeção</th>
                   <th>Status Requisição</th>
-                  <th>Descrição</th>
+                  <th>Cliente</th>
                   <th></th>
                 </tr>
               </thead>
@@ -36,7 +36,7 @@
                   <td>{{ requisitions.fk_cliente_id.cnpj }}</td>
                   <td>{{ requisitions.inspecao }}</td>
                   <td>{{ requisitions.status }}</td>
-                  <td>{{ requisitions.descricao }}</td>
+                  <td>{{ requisitions.fk_cliente_id.nome }}</td>
                   <td>
                     <span class="material-symbols-outlined" id= "aprove-button" @click="aproveRequisicao(requisitions.id)"> zoom_out_map </span>
                     <span class="material-symbols-outlined" id="delete-button" @click="deleteDialog = true"> delete </span>
