@@ -1,5 +1,7 @@
 package com.dataTeam.jaia.jaia.service.Email;
 
+import java.security.SecureRandom;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -17,34 +19,50 @@ public class EmailService {
     @Autowired
     private JavaMailSender mailSender;
 
-
     @Value("${support.mail}")
     private String supportMail;
 
+    public void enviarEmailCliente(Cliente cliente, String assunto) throws MessagingException {
 
-    public void enviarEmailCliente(String assunto, String email, String conteudo) throws MessagingException{
+        String senhaGerada = generateRandomPassword(5);
+
+
+        cliente.setSenha(senhaGerada);
 
         MimeMessage mail = mailSender.createMimeMessage();
 
-        MimeMessageHelper mensagems = new MimeMessageHelper(mail);
-        mensagems.setAssunto(assunto); //teste
-        mensagems.setEmail(email);
-        mensagems.setFrom(supportMail);
-        mensagems.setTo(email);
+        MimeMessageHelper mensagem = new MimeMessageHelper(mail, true);
+        mensagem.setSubject(assunto);
+        mensagem.setTo(cliente.getEmail());
+        mensagem.setFrom(supportMail);
+
+        String conteudoDoEmail = getContentMailCertificate(cliente, senhaGerada);
+
+        mensagem.setText(conteudoDoEmail, true);
 
         mailSender.send(mail);
-
     }
 
-
-    public String getContentMailCertificate(Cliente String nome, String senha, String cnpj){
-        return "<p>Ol&aacute;," + nome + "! bem vindo(a) ao Predial!</p>" +
+    public String getContentMailCertificate(Cliente cliente, String senhaGerada) {
+        String nome = cliente.getNome();
+        String cnpj = cliente.getCnpj();
+        return "<p>Olá, " + nome + "! Bem-vindo(a) ao Predial!</p>" +
                 "<p>&nbsp;</p>" +
-                "<p>Seu Login est&aacute; dispon&iacute;vel abaixo:<br /><br /></p>" +
-                "<p>Login:</p>" +
-                "<p>CPF: </p>" + cnpj +
-                "<p>Senha: </p>" + senha;
+                "<p>Seu Login com suas credenciais está disponível abaixo:<br /></p>" +
+                "<p>CPF: " + cnpj + "</p>" +
+                "<p>Senha: " + senhaGerada + "</p>";
     }
-    
-    
+
+    private String generateRandomPassword(int length) {
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+=<>?";
+        SecureRandom random = new SecureRandom();
+        StringBuilder password = new StringBuilder();
+
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(characters.length());
+            password.append(characters.charAt(index));
+        }
+
+        return password.toString();
+    }
 }
