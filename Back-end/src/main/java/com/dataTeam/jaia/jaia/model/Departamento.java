@@ -23,7 +23,7 @@ public class Departamento {
     @JsonIgnore
     private List<Funcionario> funcionarios;
     
-    @ManyToMany(mappedBy = "departamentos")
+    @ManyToMany(mappedBy = "departamento")
     @JsonIgnore
     private List<Checklist> checklists;
 

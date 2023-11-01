@@ -1,3 +1,5 @@
+import type IDepartamento from "../departamento/IDepartament";
+
 export default interface IOrdemServico {
     id: number;
     nome_ordem: string;
@@ -5,6 +7,7 @@ export default interface IOrdemServico {
     status_ordem: string;
     id_check: {
         nome: string;
+        departamentos: IDepartamento[]
         perguntas: Array<{ 
             id: number; 
             pergunta: string; 

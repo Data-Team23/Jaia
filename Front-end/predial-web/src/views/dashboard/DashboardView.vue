@@ -3,10 +3,10 @@
     <h2>Dashboard - Requisições/Ordem de Serviço</h2>
     <div class="chart-box">
         <div class="bar-chart-container">
-          <bar-chart :chart-data="clienteReq" :options="chartOptions"></bar-chart>
+          <bar-chart :chart-data="departamentoOs"></bar-chart>
         </div>
         <div class="bar-chart-container">
-          <bar-chart :chart-data="funcionarioOs"></bar-chart>
+          <bar-chart :chart-data="clienteReq" :options="chartOptions"></bar-chart>
         </div>
     </div>
     <div class="chart-box">
@@ -43,6 +43,7 @@ let funcionarios = ref<Array<IFuncionario>>([]);
 let ordemServicos = ref<Array<IOrdemServico>>([]); 
 let funcionarioOs = ref<any>([]);
 let clienteReq = ref<any>([]);
+let departamentoOs = ref<any>([]);
 
 ChartJS.register(
   CategoryScale,
@@ -70,6 +71,13 @@ function getClienteReq(){
     })
 }
 
+function getDepartamentoOs(){
+  axios.get<any>('http://localhost:8080/dashboard/os-departamento')
+    .then((response: any) => {
+      clienteReq.value = response.data
+    })
+}
+
 function listOrdemServicos() {
     axios.get<any>('http://localhost:8080/ordem-servico') 
         .then((response: any) => {
@@ -91,6 +99,7 @@ const chartOptions = {
 
 onMounted(() => {
   getFuncionarioOs()
+  getDepartamentoOs()
   getClienteReq()
   listOrdemServicos()
 })

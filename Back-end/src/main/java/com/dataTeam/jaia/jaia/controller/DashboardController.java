@@ -26,4 +26,9 @@ public class DashboardController {
     public DashboardDTO handleGetClienteReq() {
         return dashboardService.getClienteReq();
     }
+
+    @GetMapping("/os-departamento")
+    public DashboardDTO hangleGetOsByDepartment() {
+        return dashboardService.getOsByDepartment();
+    }
 }

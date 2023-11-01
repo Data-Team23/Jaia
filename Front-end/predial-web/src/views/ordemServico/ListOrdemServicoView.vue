@@ -21,7 +21,7 @@
                 <th>CNPJ</th>
                 <th>Inspeção</th>
                 <th>Status O.S.</th>
-                <th>Descrição</th>
+                <th>Departamento</th>
                 <th></th>
               </tr>
             </thead>
@@ -33,7 +33,7 @@
                   <td>{{ OrdemServico.id_req.fk_cliente_id.cnpj }}</td>
                   <td>{{ OrdemServico.tipo_inspecao }}</td>
                   <td>{{ OrdemServico.status_ordem }}</td>
-                  <td>{{ OrdemServico.id_req.descricao }}</td>
+                  <td>{{ OrdemServico.id_check.departamentos[0] ?? "Não informado" }}</td>
                 <td>
                   <span class="material-symbols-outlined" id="edit-button" @click="editOrdemServico(OrdemServico.id)"> edit </span>
                   <span class="material-symbols-outlined" id= "aprove-button" @click="aproveOrdemServico(OrdemServico.id)"> zoom_out_map </span>
@@ -153,6 +153,7 @@ function listOrdemServicos() {
     axios.get<any>('http://localhost:8080/ordem-servico') 
         .then((response: any) => {
             OrdemServicos.value = response.data
+            console.log(response.data)
             filteredOrdemServicos.value = OrdemServicos.value;
             filterOrdemServicos();
         })
