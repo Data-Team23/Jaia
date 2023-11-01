@@ -9,6 +9,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.dataTeam.jaia.jaia.model.Cliente;
+import com.dataTeam.jaia.jaia.repository.ClienteRepository;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -18,6 +19,9 @@ public class EmailService {
 
     @Autowired
     private JavaMailSender mailSender;
+
+    @Autowired
+    private ClienteRepository cliRepo;
 
     @Value("${support.mail}")
     private String supportMail;
@@ -41,6 +45,9 @@ public class EmailService {
         mensagem.setText(conteudoDoEmail, true);
 
         mailSender.send(mail);
+
+        cliRepo.save(cliente);
+
     }
 
     public String getContentMailCertificate(Cliente cliente, String senhaGerada) {
@@ -50,7 +57,8 @@ public class EmailService {
                 "<p>&nbsp;</p>" +
                 "<p>Seu Login com suas credenciais está disponível abaixo:<br /></p>" +
                 "<p>CPF: " + cnpj + "</p>" +
-                "<p>Senha: " + senhaGerada + "</p>";
+                "<p>Senha: " + senhaGerada + "</p>" +
+                "<p>** Não responda este E-mail</p>";
     }
 
     private String generateRandomPassword(int length) {
