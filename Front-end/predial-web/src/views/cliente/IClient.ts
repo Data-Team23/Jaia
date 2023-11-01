@@ -5,4 +5,5 @@ export default interface Cliente {
     cnpj: string
     telefone: string  
     email: string  
+    senha: string
 }
