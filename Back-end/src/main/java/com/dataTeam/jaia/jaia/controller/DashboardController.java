@@ -31,4 +31,14 @@ public class DashboardController {
     public DashboardDTO hangleGetOsByDepartment() {
         return dashboardService.getOsByDepartment();
     }
+
+    @GetMapping("/os-status")
+    public DashboardDTO hangleGetOsByStatus() {
+        return dashboardService.getOsByStatus();
+    }
+
+    @GetMapping("/os-reprovada")
+    public DashboardDTO hangleGetOsReprovedByDepartment() {
+        return dashboardService.getOsReprovedByDepartment();
+    }
 }

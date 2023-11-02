@@ -33,7 +33,7 @@
                   <td>{{ OrdemServico.id_req.fk_cliente_id.cnpj }}</td>
                   <td>{{ OrdemServico.tipo_inspecao }}</td>
                   <td>{{ OrdemServico.status_ordem }}</td>
-                  <td>{{ OrdemServico.id_check.departamentos[0] ?? "Não informado" }}</td>
+                  <td>{{ OrdemServico.id_check.departamento.nome ?? "Não informado" }}</td>
                 <td>
                   <span class="material-symbols-outlined" id="edit-button" @click="editOrdemServico(OrdemServico.id)"> edit </span>
                   <span class="material-symbols-outlined" id= "aprove-button" @click="aproveOrdemServico(OrdemServico.id)"> zoom_out_map </span>

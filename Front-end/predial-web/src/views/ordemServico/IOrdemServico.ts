@@ -7,7 +7,7 @@ export default interface IOrdemServico {
     status_ordem: string;
     id_check: {
         nome: string;
-        departamentos: IDepartamento[]
+        departamento: IDepartamento
         perguntas: Array<{ 
             id: number; 
             pergunta: string; 

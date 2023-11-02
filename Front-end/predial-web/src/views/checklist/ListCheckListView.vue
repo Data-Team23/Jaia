@@ -39,7 +39,7 @@
                                 <td>{{ checkList.no }}</td>
                                 <td>{{ checkList.nome }}</td>
                                 <td>
-                                    <span v-if="checkList.departamentos.length > 0">{{ checkList.departamentos[0].nome
+                                    <span v-if="checkList.departamento">{{ checkList.departamento.nome
                                     }}</span>
                                     <span v-else>Não informado</span>
                                 </td>

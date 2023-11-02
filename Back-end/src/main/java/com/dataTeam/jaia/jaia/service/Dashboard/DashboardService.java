@@ -114,11 +114,11 @@ public class DashboardService {
         for (Departamento departamento : departamentos) {
             labels.add(departamento.getNome());
             Integer osCount = 0;
-            for(OrdemServico os : ordens){
+            for (OrdemServico os : ordens) {
                 Departamento osDepart = os.getId_check().getDepartamento();
-                // if(osDepart.size() > 0 && osDepart.get(0).getCodDepart() == departamento.getCodDepart()){
-                //     osCount += 1;
-                // }
+                if (osDepart != null && osDepart.getCodDepart() == departamento.getCodDepart()) {
+                    osCount += 1;
+                }
             }
             osCountList.add(osCount);
         }
@@ -146,14 +146,66 @@ public class DashboardService {
     public DashboardDTO getOsByStatus() {
 
         DashboardDTO dataDashboard = new DashboardDTO();
+        DatasetsDTO datasets = new DatasetsDTO();
+        List<DatasetsDTO> datasetsList = new ArrayList<>();
+        List<OrdemServico> ordens = ordemService.buscarTodasOrdemServico();
+        List<String> labels = new ArrayList<>();
+        List<Number> osCountList = new ArrayList<>();
+        String[] barColors = { "#000000", "#2E2E48", "#626288", "#8080BF", "#6A6A69" };
+
+        for (OrdemServico ordem : ordens) {
+            Integer osCount = 0;
+            String osStatus = ordem.getStatus_ordem();
+            labels.add(osStatus);
+            for (OrdemServico os : ordens) {
+                if (osStatus == os.getStatus_ordem()) {
+                    osCount += 1;
+                }
+            }
+            osCountList.add(osCount);
+        }
+
+        datasets.setData(osCountList);
+        datasets.setLabel("Status da ordem");
+        datasets.setBorderWidth(1);
+        datasets.setBackgroundColor(barColors);
+        datasetsList.add(0, datasets);
+        dataDashboard.setLabels(labels);
+        dataDashboard.setDatasets(datasetsList);
 
         return dataDashboard;
 
     }
 
-    public DashboardDTO getOsApprovedByDepartment(){
+    public DashboardDTO getOsReprovedByDepartment() {
 
         DashboardDTO dataDashboard = new DashboardDTO();
+        DatasetsDTO datasets = new DatasetsDTO();
+        List<DatasetsDTO> datasetsList = new ArrayList<>();
+        List<OrdemServico> ordens = ordemService.buscarTodasOrdemServico();
+        List<Departamento> departamentos = departService.buscarTodosDepartamentos();
+        List<String> labels = new ArrayList<>();
+        List<Number> osCountList = new ArrayList<>();
+        String[] barColors = { "#000000", "#2E2E48", "#626288", "#8080BF", "#6A6A69" };
+
+        for (Departamento depart : departamentos) {
+            Integer osCount = 0;
+            labels.add(depart.getNome());
+            for (OrdemServico os : ordens) {
+                if (os.getId_check().getDepartamento() == depart && os.getStatus_ordem() == "Reprovado") {
+                    osCount += 1;
+                }
+            }
+            osCountList.add(osCount);
+        }
+
+        datasets.setData(osCountList);
+        datasets.setLabel("Ordens de Serviço reprovadas");
+        datasets.setBorderWidth(1);
+        datasets.setBackgroundColor(barColors);
+        datasetsList.add(0, datasets);
+        dataDashboard.setLabels(labels);
+        dataDashboard.setDatasets(datasetsList);
 
         return dataDashboard;
 
