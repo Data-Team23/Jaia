@@ -43,9 +43,10 @@ async function sendEmail() {
     nome: nameValue.value,
     email: emailValue.value,
     endereco: addressValue.value,
-    telefone: phoneValue
-
+    telefone: phoneValue.value
   }
+  console.log('Sending email with data:', clientEmail);
+
 
   try {
     const response = await axios.post('http://localhost:8080/email/enviar', clientEmail);
@@ -69,15 +70,14 @@ async function createClient() {
 
   try {
     const response = await axios.post('http://localhost:8080/cliente', client);
+    window.alert("Cliente criado com sucesso");
+    sendEmail();
     window.alert("Email enviado com sucesso");
     cnpjValue.value = "";
     phoneValue.value = "";
     nameValue.value = "";
     emailValue.value = "";
     addressValue.value = "";
-    sendEmail();
-    window.alert("Cliente criado com sucesso");
-    location.reload();
   } catch (error) {
     console.error('Erro ao criar cliente:', error);
     window.alert("Erro ao criar cliente");
