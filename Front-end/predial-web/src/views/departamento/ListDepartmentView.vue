@@ -37,10 +37,10 @@
                       <tbody v-for="(departament, index) in paginatedDepartaments" :key="index">
                           <tr>
                               <td>{{ index + 1 }}</td>
-                              <td>{{ departament.codDepart }}</td>
+                              <td>{{ departament.idDepart }}</td>
                               <td>{{ departament.nome }}</td>
                               <td>
-                                  <span class="material-symbols-outlined" id="edit-button" @click="editDepartamento(departament.codDepart)">
+                                  <span class="material-symbols-outlined" id="edit-button" @click="editDepartamento(departament.idDepart)">
                                       edit
                                   </span>
                                   <span class="material-symbols-outlined" id="delete-button" @click="deleteDialog = true">

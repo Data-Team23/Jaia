@@ -17,16 +17,6 @@ public class DashboardController {
     @Autowired
     private DashboardService dashboardService;
 
-    @GetMapping("/os-funcionario")
-    public DashboardDTO handleGetFuncionarioOS() {
-        return dashboardService.getFuncionarioOS();
-    }
-
-    @GetMapping("/req-cliente")
-    public DashboardDTO handleGetClienteReq() {
-        return dashboardService.getClienteReq();
-    }
-
     @GetMapping("/os-departamento")
     public DashboardDTO hangleGetOsByDepartment() {
         return dashboardService.getOsByDepartment();
@@ -40,5 +30,10 @@ public class DashboardController {
     @GetMapping("/os-reprovada")
     public DashboardDTO hangleGetOsReprovedByDepartment() {
         return dashboardService.getOsReprovedByDepartment();
+    }
+
+    @GetMapping("/os-time")
+    public DashboardDTO hangleGetOsByAllTime() {
+        return dashboardService.getReqByMonths();
     }
 }

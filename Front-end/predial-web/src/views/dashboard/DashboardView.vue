@@ -9,15 +9,20 @@
           <bar-chart :chart-data="osReprovedByDepartment" :options="chartOptions"></bar-chart>
         </div>
     </div>
+    <br>
     <div class="chart-box">
         <div class="pie-chart-container">
           <pie-chart :chart-data="statusOs"></pie-chart>
+        </div>
+        <div class="pie-chart-container">
+          <line-chart :chart-data="reqByMonths" :options="chartLineOptions"></line-chart>
         </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import axios from "axios";
 import {
     Chart as ChartJS,
     Title,
@@ -28,50 +33,37 @@ import {
     LinearScale,
     BarController,
     PieController,
+    LineController,
     ArcElement,
+PointElement,
+LineElement,
 } from "chart.js";
-import { BarChart, PieChart } from "vue-chart-3";
-import "./style.css";
+import { BarChart, PieChart, LineChart } from "vue-chart-3";
 import { ref } from "vue";
-import type IFuncionario from "../funcionario/IFuncionario";
-import axios from "axios";
 import { onMounted } from "vue";
 import type IOrdemServico from "../ordemServico/IOrdemServico";
-import type IDashboard from "./IDashboard";
+import "./style.css";
 
-let funcionarios = ref<Array<IFuncionario>>([]);
 let ordemServicos = ref<Array<IOrdemServico>>([]); 
-let funcionarioOs = ref<any>([]);
-let clienteReq = ref<any>([]);
 let departamentoOs = ref<any>([]);
 let statusOs = ref<any>([]);
 let osReprovedByDepartment = ref<any>([]);
+let reqByMonths = ref<any>([]);
 
 ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
   Title,
   Tooltip,
   Legend,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  ArcElement,
+  PointElement, 
+  LineElement,
   BarController,
   PieController,
-  ArcElement
+  LineController
 );
-
-function getFuncionarioOs(){
-  axios.get<any>('http://localhost:8080/dashboard/os-funcionario')
-    .then((response: any) => {
-      funcionarioOs.value = response.data
-    })
-}
-
-function getClienteReq(){
-  axios.get<any>('http://localhost:8080/dashboard/req-cliente')
-    .then((response: any) => {
-      clienteReq.value = response.data
-    })
-}
 
 function getDepartamentoOs(){
   axios.get<any>('http://localhost:8080/dashboard/os-departamento')
@@ -92,7 +84,13 @@ function getOsReprovedByDepartment(){
   axios.get<any>('http://localhost:8080/dashboard/os-reprovada')
     .then((response: any) => {
       osReprovedByDepartment.value = response.data
-      console.log(response.data)
+    })
+}
+
+function getReqByMonths(){
+  axios.get<any>('http://localhost:8080/dashboard/os-time')
+    .then((response: any) => {
+      reqByMonths.value = response.data
     })
 }
 
@@ -115,12 +113,23 @@ const chartOptions = {
   },
 };
 
+const chartLineOptions = ref({
+  responsive: true,
+  maintainAspectRatio: false,
+
+  elements: {
+    line: {
+      borderWidth: 2,
+      borderColor: "#3A3A5A",
+    },
+  },
+});
+
 onMounted(() => {
-  getFuncionarioOs()
   getDepartamentoOs()
   getStatusOs()
-  getClienteReq()
   getOsReprovedByDepartment()
+  getReqByMonths()
   listOrdemServicos()
 })
 

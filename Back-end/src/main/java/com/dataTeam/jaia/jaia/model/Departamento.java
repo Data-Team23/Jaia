@@ -13,8 +13,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Departamento {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_depart")
-    private Long codDepart;
+    private Long idDepart;
 
     @Column(name = "nome_depart")
     private String nome;

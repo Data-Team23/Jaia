@@ -24,7 +24,7 @@ public class DepartamentoService implements IDepartamentoService {
     }
 
     public Departamento buscarPorCodDepart(Long codDepart) {
-        Optional<Departamento> departamentoExistente = departrepo.findByCodDepart(codDepart);
+        Optional<Departamento> departamentoExistente = departrepo.findByIdDepart(codDepart);
         if (departamentoExistente.isEmpty()) {
             try {
                 throw new Exception("Departamento com cod " + codDepart + " não encontrado.");

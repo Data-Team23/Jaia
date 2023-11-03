@@ -1,6 +1,5 @@
 package com.dataTeam.jaia.jaia.service.Checklist;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
