@@ -51,7 +51,7 @@
                   <span
                     class="material-symbols-outlined"
                     id="delete-button"
-                    @click="deleteDialog = true"
+                    @click="deletRequisicao(requisitions.id)"
                   >
                     delete
                   </span>
@@ -92,7 +92,7 @@
         <div class="confirm-delete-button">
           <InputButton
             text-button="Sim"
-            @click="deleteDialog = false"
+            @click="deleteRequisicao()"
           ></InputButton>
           <InputButton
             text-button="Não"
@@ -225,4 +225,25 @@ function aproveRequisicao(id: number) {
   router.push({ query: { id: id } });
   aproveDialog.value = true;
 }
+
+function deletRequisicao(id: number){
+    router.push({query: { id: id }})
+    deleteDialog.value = true
+}
+
+function deleteRequisicao() {
+    const id = router.currentRoute.value.query.id;
+    axios.delete(`http://localhost:8080/requisicao/excluir/${id}`)
+        .then((response) => {
+            window.alert('Requisição excluído com sucesso!!');
+            listRequisitions();
+            deleteDialog.value = false;
+        })
+        .catch((error) => {
+            window.alert('Erro ao excluir a requisição');
+            deleteDialog.value = false;
+        });
+}
+
+
 </script>
