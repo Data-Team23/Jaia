@@ -1,0 +1,27 @@
+.chart-container{
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    background-color: #FFFFFF;
+    padding: 14px 20px;
+    border-radius: 10px;
+    height: 100%;
+}
+
+.chart-box{
+    display: flex;
+}
+
+.chart-container h2{
+    color: var(--primary-bg-color);
+}
+
+.bar-chart-container, .pie-chart-container{
+    width: 100% !important;
+}
+
+#bar-chart, #pie-chart{
+    max-height: 350px !important;
+    width: 100% !important;
+
+}

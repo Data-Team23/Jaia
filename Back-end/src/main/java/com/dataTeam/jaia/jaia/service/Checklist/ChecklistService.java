@@ -1,6 +1,5 @@
 package com.dataTeam.jaia.jaia.service.Checklist;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,11 +24,7 @@ public class ChecklistService {
         Optional<Departamento> optDepartamento = departamentoRepo.findById(departamentoId);
         if(optDepartamento.isPresent()){
             Departamento departamento = optDepartamento.get();
-            if(checklist.getDepartamentos() == null){
-                List<Departamento> departamentoList = new ArrayList<Departamento>();
-                checklist.setDepartamentos(departamentoList);
-            }
-            checklist.getDepartamentos().add(departamento);
+            checklist.setDepartamento(departamento);
             departamento.getChecklists().add(checklist);
             departamentoRepo.save(departamento);
             checklist = checkListRepo.save(checklist);

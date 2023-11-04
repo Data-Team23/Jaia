@@ -9,11 +9,6 @@
         placeholder="Informe o nome"
         v-model="nameValue">
       </InputField>
-      <InputField 
-        label="Código:" 
-        placeholder="Informe o código"
-        v-model="codDepartValue">
-      </InputField>
     </div>
     <div class="send-button">
       <InputButton text-button="Salvar" @click="createDepartment()"></InputButton>
@@ -34,7 +29,6 @@ async function createDepartment() {
   event?.preventDefault();
 
   const departamento = {
-    codDepart: parseInt(codDepartValue.value), 
     nome: nameValue.value,
   };
 

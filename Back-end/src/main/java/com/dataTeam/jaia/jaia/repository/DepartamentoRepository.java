@@ -9,6 +9,6 @@ public interface DepartamentoRepository extends JpaRepository<Departamento, Long
 
     List<Departamento> findAll();
 
-    Optional<Departamento> findByCodDepart(Long codDepart);
+    Optional<Departamento> findByIdDepart(Long idDepart);
 
 }
