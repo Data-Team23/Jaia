@@ -16,11 +16,10 @@ body{
 }
 
 .update-os{
-     /* Ativa a barra de rolagem vertical quando necessário */
 }
 
 .v-dialog {
-    max-height: 70vh; /* Defina a altura máxima conforme necessário (por exemplo, 70% da altura da janela) */
+    max-height: 70vh; 
   }
   
 .add-client-container {

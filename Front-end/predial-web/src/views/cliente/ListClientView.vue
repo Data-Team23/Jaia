@@ -49,7 +49,7 @@
                     <span class="material-symbols-outlined" id="edit-button" @click="editClient(cliente.cnpj)">
                     edit
                     </span>
-                    <span class="material-symbols-outlined" id="delete-button" @click="deleteDialog = true">
+                    <span class="material-symbols-outlined" id="delete-button" @click="deletClient(cliente.cnpj)">
                     delete
                     </span>
                     </td>
@@ -91,9 +91,9 @@
         <v-dialog v-model="deleteDialog" width="30%">
             <div class="delete-client-container">
                 <h2>Tem certeza que deseja excluir ?</h2>
-                <br>
+            <br>
                 <div class="confirm-delete-button">
-                    <InputButton text-button="Sim" @click="deleteDialog = false"></InputButton>
+                    <InputButton text-button="Sim" @click="deleteClient()"></InputButton>
                     <InputButton text-button="Não" @click="deleteDialog = false"></InputButton>
                 </div>
             </div>
@@ -211,4 +211,24 @@ watch(editDialog, clearUrlParam)
 const changePage = (pageNumber: any) => {
     page.value = pageNumber;
 };
+
+function deletClient(clientCnpj: string){
+    router.push({query: { cnpj: clientCnpj }})
+    deleteDialog.value = true
+}
+
+function deleteClient() {
+    const cnpj = router.currentRoute.value.query.cnpj;
+    axios.delete(`http://localhost:8080/cliente/excluir/${cnpj}`)
+        .then((response) => {
+            window.alert('Cliente excluído com sucesso!!');
+            listClients();
+            deleteDialog.value = false;
+        })
+        .catch((error) => {
+            window.alert('Erro ao excluir o cliente');
+            deleteDialog.value = false;
+        });
+}
+
 </script>
