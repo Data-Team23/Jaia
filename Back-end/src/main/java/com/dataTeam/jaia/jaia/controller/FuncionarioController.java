@@ -1,9 +1,12 @@
 package com.dataTeam.jaia.jaia.controller;
 
+import com.dataTeam.jaia.jaia.model.Cliente;
 import com.dataTeam.jaia.jaia.model.Funcionario;
 import com.dataTeam.jaia.jaia.service.Departamento.IDepartamentoService;
 import com.dataTeam.jaia.jaia.service.Funcionario.IFuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,9 +37,20 @@ public class FuncionarioController {
         return service.buscarPorId(id);
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/excluir/{id}")
     public Funcionario deletarPorId(@PathVariable Long id) {
         return service.deletarPorId(id);
+    }
+
+    @PutMapping("/atualizar/{id}")
+    public ResponseEntity<?> atualizarClientePorCnpj(@PathVariable Long id,
+            @RequestBody Funcionario funcionarioAtualizado) {
+        try {
+            Funcionario funcionarioAtualizadoResult = service.atualizarFuncionarioPorId(id, funcionarioAtualizado);
+            return ResponseEntity.ok(funcionarioAtualizadoResult);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno ao atualizar o funcionario");
+        }
     }
 
 }
