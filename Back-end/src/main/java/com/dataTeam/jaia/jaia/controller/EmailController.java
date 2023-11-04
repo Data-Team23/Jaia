@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dataTeam.jaia.jaia.model.Checklist;
 import com.dataTeam.jaia.jaia.model.Cliente;
+import com.dataTeam.jaia.jaia.model.Funcionario;
+import com.dataTeam.jaia.jaia.model.OrdemServico;
+import com.dataTeam.jaia.jaia.model.Requisicao;
 import com.dataTeam.jaia.jaia.service.Email.EmailService;
 
 import jakarta.mail.MessagingException;
@@ -32,4 +36,21 @@ public class EmailController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Não foi possível enviar o email, tente novamente.");
         }
     }
+
+    @PostMapping("/criar")
+    public ResponseEntity<String> enviarOrdemServico(@RequestBody OrdemServico ordemServico, Requisicao requisicao, Cliente cliente, Funcionario funcionario, Checklist checklist){
+            try{
+                String assunto = "Predial - Ordem de Serviço Criada";
+                emailService.enviarOrdemServico(ordemServico , requisicao, cliente, funcionario, checklist, assunto);
+                return ResponseEntity.ok("Email enviado com sucesso.");
+            } catch (MessagingException e){
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Não foi possível enviar o email, tente novamente.");
+            }
+
+
+    }
+
+
+
+
 }
