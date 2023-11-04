@@ -30,11 +30,32 @@ public class DepartamentoController {
         @GetMapping("/{codDepart}")
         public ResponseEntity<?> buscarPorCodDepart(@PathVariable Long codDepart) {
                 try {
-                        Departamento departamentoEncontrado = service.buscarPorCodDepart(codDepart);
+                        Departamento departamentoEncontrado = service.buscarPorIdDepart(codDepart);
                         return ResponseEntity.ok(departamentoEncontrado);
                 } catch (Exception e) {
                         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                                         .body("Erro interno ao buscar departamento");
+                }
+        }
+
+        @DeleteMapping("/excluir/{idDepart}")
+        public ResponseEntity<String> excluirDepartamentoPorID(@PathVariable Long idDepart) {
+                try {
+                service.excluirDepartamentoPorIdDepart(idDepart);
+                return ResponseEntity.ok("Departamento excluído com sucesso");
+                } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno ao excluir o departamento.");
+                }
+        }
+
+        @PutMapping("/atualizar/{idDepart}")
+        public ResponseEntity<?> atualizarDepartamentoPorIdDepart(@PathVariable Long idDepart,
+                @RequestBody Departamento departamentoAtualizado) {
+                try {
+                Departamento departamentoAtualizadoResult = service.atualizarDepartamentoPorIdDepart(idDepart, departamentoAtualizado);
+                return ResponseEntity.ok(departamentoAtualizadoResult);
+                } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno ao atualizar o departamento");
                 }
         }
 
