@@ -5,7 +5,7 @@
 * [Sprint 01](#sprint-01)
 * [Sprint 02](#sprint-02)
 * [Sprint 03](#sprint-03)
-* [Sprint 03](#sprint-04)
+* [Sprint 04](#sprint-04)
 * [Tecnologias utilizadas](#tecnologias-utilizadas)
   
 # Contexto
