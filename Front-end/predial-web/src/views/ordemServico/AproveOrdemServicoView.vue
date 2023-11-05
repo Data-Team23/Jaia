@@ -81,7 +81,7 @@
       </div>
     
     <div class="send-button"> 
-      <InputButton text-button="Aprovar" @click="generatePDF"></InputButton>
+      <InputButton text-button="Aprovar" @click="generatePDFAndSendEmail"></InputButton>
       <InputButton text-button="Reprovar"></InputButton>
     </div>
   </form>
@@ -144,21 +144,23 @@ async function waitForIdInRoute(router: Router) {
   }
 }
 
-async function generatePDF() {
+
+async function getPdfData(): Promise<Blob> {
   const docDefinition = {
     content: [
-      { text: "Nome: " + nome_ordemValue.value },
-      { text: "Status da Requisição: " + statusRValue.value },
-      { text: "Data Abertura: " + dataaberturaValue.value },
-      { text: "Descrição: " + descricaoValue.value },
-      { text: "CNPJ: " + cnpjValue.value },
-      { text: "Status da Ordem de Serviço: " + status_ordemValue.value },
-      { text: "Inspeção: " + inspecaoValue.value },
-      { text: "Responsável: " + responsavelValue.value },
-      { text: "Data da prestação de Serviço: " + dataValue.value },
-      { text: "Checklist: " + checklValue.value },
+      { text: 'Nome: ' + nome_ordemValue.value },
+      { text: 'Status da Requisição: ' + statusRValue.value },
+      { text: 'Data Abertura: ' + dataaberturaValue.value },
+      { text: 'Descrição: ' + descricaoValue.value },
+      { text: 'CNPJ: ' + cnpjValue.value },
+      { text: 'Status da Ordem de Serviço: ' + status_ordemValue.value },
+      { text: 'Inspeção: ' + inspecaoValue.value },
+      { text: 'Responsável: ' + responsavelValue.value },
+      { text: 'Data da prestação de Serviço: ' + dataValue.value },
+      { text: 'Checklist: ' + checklValue.value },
     ],
   };
+
   if (ordem_servicoSelected.value?.id_check?.perguntas) {
     const perguntasContent = ordem_servicoSelected.value.id_check.perguntas.map((pergunta) => {
       const status = pergunta.status;
@@ -166,22 +168,59 @@ async function generatePDF() {
       if (status === "Aprovado" || status === "Reprovado") {
         const texto = `Pergunta: ${pergunta.pergunta} - ${status}`;
         if (comentario) {
-          return { text: texto, margin: [0, 2], bold: true };
+          docDefinition.content.push({ text: texto, margin: [0, 2], bold: true });
         } else {
-          return { text: texto, margin: [0, 2] };
+          docDefinition.content.push({ text: texto, margin: [0, 2] });
         }
       }
-      return null;
-    }).filter(Boolean); 
+    });
 
     if (perguntasContent.length > 0) {
-      docDefinition.content.push({ text: "Perguntas e Respostas:", margin: [0, 8], bold: true });
+      docDefinition.content.push({ text: 'Perguntas e Respostas:', margin: [0, 8], bold: true });
       docDefinition.content.push(...perguntasContent);
     }
   }
-  const pdf = pdfMake.createPdf(docDefinition);
-  window.alert("PDF gerado com sucesso!");
-  pdf.download("ordem_servico.pdf");
+
+  return new Promise((resolve) => {
+    const pdfDocument = pdfMake.createPdf(docDefinition);
+    pdfDocument.getBlob((blob: Blob) => {
+      resolve(blob);
+    });
+  });
+}
+
+async function generatePDFAndSendEmail() {
+  try {
+    const pdfData = await getPdfData();
+    const pdfFileName = 'ordem_servico.pdf';
+
+    const email = ordem_servicoSelected.value?.id_req.fk_cliente_id.email;
+
+    if (typeof email === 'string') {
+      const assunto = 'Predial - Seja bem-vindo(a) | Ordem de Serviço';
+      const corpo = `<p>Olá, ${ordem_servicoSelected.value?.id_req.fk_cliente_id.nome}! Bem-vindo(a) ao Predial!</p>` +
+                   `<p>Sua Ordem de Serviço gerada a partir da Requisição: ${ordem_servicoSelected.value?.id_req.nome} Foi Aprovada <br /></p>` +
+                   `<p>Segue em anexo o PDF com mais informações: ${pdfFileName}</p>`;
+
+      const formData = new FormData();
+      formData.append('recipient', email);
+      formData.append('subject', assunto);
+      formData.append('body', corpo);
+      formData.append('pdfData', new Blob([pdfData], { type: 'application/pdf' }), pdfFileName);
+
+      const response = await axios.post('http://localhost:8080/email/send', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      window.alert('E-mail enviado com sucesso!')
+    } else {
+      window.alert('Endereço de e-mail inválido.');
+    }
+  } catch (error) {
+    console.error(error);
+    window.alert('Erro ao enviar o e-mail.');
+  }
 }
 
 </script>
