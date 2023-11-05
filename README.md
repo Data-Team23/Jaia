@@ -315,7 +315,34 @@ Para a inspeção de algum lugar é necessário ter um checklist de inspeção, 
 - [ ] Como supervisor de serviços, desejo ter uma visualização de relatório em dashboard para entender quais departamentos e áreas estão tendo um maior volume de requisições para investir mais tempo e especialização nos meus funcionários
 - [ ] Como cliente, desejo receber o laudo técnico e aprovações de inspeção no meu email, para que seja possível imprimir o PDF e ter o produto final em meu local inspecionado.
 
+## Burndown
+![image](https://github.com/Data-Team23/Jaia/assets/102003274/95db405c-6451-42f3-97e7-081fbabf9b32)
+
+## Teste de Usabilidade
+
+O teste 1 foi realizado no dia 31/10, as 19h46, com a versão da aplicação presente na main (ou seja, versão entregue na sprint anterior).
+Esse teste foi dividido entre as partes das telas da aplicação que foram avaliadas durante sua execução e anotadas as impressões conforme segue:
+
+### Nav bar
+Bem intuitiva, dá para entender perfeitamente que se eu clicar no campo "Departamentos" vai abrir a lista de Departamentos e as funcionalidades dele, assim por diante. O botão “sair” está bem destacado o que fica fácil para “deslogar” da aplicação, mas em questão de visão, considerando que o usuário ficaria logado 8 horas por dia, eu alteraria a cor do "Sair" para uma cor mais escura ou até mais destacada, porém como é o único botão nessa parte da tela, não é um problema.
+
+### Tela Cliente, Departamentos e Funcionários
+Tamanho e tipo da fonte ok, não força a visão para enxergar.
+Paleta de cores também agradáveis.
+Achei que não ficou legal o campo "Filtrar...", ao invés disso creio que ficaria mais intuitivo para o usuário se tivesse escrito "Escreva aqui" ou "Insira aqui". 
+
+### Ordem de serviços 
+Mesmas impressões da tela anterior, só no título que está com um erro de português, o correto seria "Visualizar Ordem de Serviço". A palavra "nome" na coluna da tabela, está em letra minúscula destoando das outras que estão em maiúscula.
+Senti falta dos filtros nessa tela também.
+
+### Tela Checklist
+Mesmas impressões da tela anterior, no entanto essa não tem nenhum erro, mas também não tem o título, não faz falta em relação ao entendimento da funcionalidade, mas senti falta em relação ao visual da tela.
+
+### Impressões gerais
+O sistema é bem intuitivo, as informações disponibilizadas na tela são essenciais, o que torna a experiência do usuário mais simples, pois ele não precisa ficar procurando na tela as funcionalidades principais que precisa.
+
+
 # Sprint 04
 ## User Stories
 - [ ] Como cliente, desejo ser avisado quando uma requisição que fiz for atendida e criada uma ordem de serviço para que seja possível o acompanhamento dos serviços que vão ser prestados.
-- [ ] Como cliente desejo receber a aprovação ou reprovação do laudo técnico para que seja possível guardar o laudo ou até mesmo tomar ações em relação às reprovações que tivemos.
+- [ ] Como Supervisor desejo direcionar minha ordem de serviço para um funcionário para que assim seja prestado o serviço requisitado pelo cliente
