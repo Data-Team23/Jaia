@@ -79,9 +79,7 @@ onMounted(async () => {
 })
 
 async function waitForCnpjInRoute(router: Router) {
-  // Loop para aguardar até que route.query.cnpj esteja definido
   while (router.currentRoute.value.query.cnpj === undefined) {
-    // Definição do período de tempo (pode ser ajustado)
     await new Promise((resolve) => setTimeout(resolve, 100));
   }
 }

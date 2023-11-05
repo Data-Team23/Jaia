@@ -5,8 +5,10 @@ export default interface ICheckList {
 
     no: number
     id: number
-    departamentos: IDepartamento[]
+    departamento: IDepartamento
     nome: string
     perguntas: any
     
 }
+
+const checklistData: ICheckList[] = [];

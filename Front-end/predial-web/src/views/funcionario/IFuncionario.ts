@@ -9,3 +9,5 @@ export default interface IFuncionario {
     senha: string
     departamento: IDepartament
 }
+
+const funcionarioData: IFuncionario[] = [];

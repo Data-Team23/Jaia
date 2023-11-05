@@ -6,7 +6,7 @@ import com.dataTeam.jaia.jaia.model.Requisicao;
 
 public interface IRequisicaoService {
 
-    public Requisicao novaRequisicao (Requisicao requisicao);
+    public Requisicao novaRequisicao (Requisicao requisicao, Long clienteId);
 
     public List<Requisicao> buscarTodasRequisicoes();
 

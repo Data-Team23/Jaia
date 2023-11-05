@@ -41,7 +41,7 @@
                 <td>
                   <span class="material-symbols-outlined" id="edit-button" @click="editFuncionario(funcionario.id)"> edit
                   </span>
-                  <span class="material-symbols-outlined" id="delete-button" @click="deleteDialog = true"> delete </span>
+                  <span class="material-symbols-outlined" id="delete-button" @click="deletFuncionario(funcionario.id)"> delete </span>
                 </td>
               </tr>
             </tbody>
@@ -77,7 +77,7 @@
         <h2>Tem certeza que deseja excluir ?</h2>
         <br />
         <div class="confirm-delete-button">
-          <InputButton text-button="Sim" @click="deleteDialog = false"></InputButton>
+          <InputButton text-button="Sim" @click="deleteFuncionario()"></InputButton>
           <InputButton text-button="Não" @click="deleteDialog = false"></InputButton>
         </div>
       </div>
@@ -141,31 +141,31 @@ function listFuncionarios() {
   axios.get<IFuncionario>('http://localhost:8080/funcionario')
     .then((response: any) => {
       funcionarios.value = response.data
-      filterFuncionarios(response.data)
+      filterFuncionarios()
     })
     .catch((error: any) => {
       console.error('Erro ao buscar funcionários:', error);
     });
 }
 
-function filterFuncionarios(list: any) {
-
-
-  filteredFuncionarios.value = list.filter((funcionario: any) => {
-    const selectedValue = funcionario[selectedFilter.value];
-    totalPages = computed(() => Math.ceil(filteredFuncionarios.value.length / itemsPerPage.value));
-    return selectedValue.toLowerCase().includes(filterInput.value.toLowerCase());
-  })
-  paginate(filteredFuncionarios.value)
+function filterFuncionarios() {
+  filteredFuncionarios.value = funcionarios.value.filter((funcionario: any) => {
+        const selectedValue = funcionario[selectedFilter.value];
+        totalPages = computed(() => Math.ceil(filteredFuncionarios.value.length / itemsPerPage.value));
+        if(selectedValue){
+            return selectedValue.toLowerCase().includes(filterInput.value.toLowerCase());
+        } else {
+            return funcionarios.value
+        }
+    })
+    paginate()
 }
 
-const paginate = (list: any) => {
-  const startIndex = (page.value - 1) * itemsPerPage.value;
-  const endIndex = startIndex + itemsPerPage.value;
-  paginatedFuncionarios.value = list.slice(startIndex, endIndex);
-  console.log(paginatedFuncionarios.value[2].departamento?.nome)
-  console.log(paginatedFuncionarios.value[1].departamento?.nome)
-  console.log(paginatedFuncionarios.value[0].departamento?.nome)
+const paginate = () => {
+    const startIndex = (page.value - 1) * itemsPerPage.value;
+    const endIndex = startIndex + itemsPerPage.value;
+
+    paginatedFuncionarios.value = filteredFuncionarios.value.slice(startIndex, endIndex);
 }
 
 let totalPages = computed(() => Math.ceil(funcionarios.value.length / itemsPerPage.value));
@@ -179,11 +179,30 @@ watch(editDialog, clearUrlParam)
 watch(filterInput, filterFuncionarios)
 
 watch(page, (newPage) => {
-  paginate(filteredFuncionarios);
+  paginate();
 });
 
 const changePage = (pageNumber: any) => {
   page.value = pageNumber;
 };
+
+function deletFuncionario(id: number){
+    router.push({query: { id: id }})
+    deleteDialog.value = true
+}
+
+function deleteFuncionario() {
+    const id = router.currentRoute.value.query.id;
+    axios.delete(`http://localhost:8080/funcionario/excluir/${id}`)
+        .then((response) => {
+            window.alert('Funcionario excluído com sucesso!!');
+            listFuncionarios();
+            deleteDialog.value = false;
+        })
+        .catch((error) => {
+            window.alert('Erro ao excluir o Funcionario');
+            deleteDialog.value = false;
+        });
+}
 
 </script>

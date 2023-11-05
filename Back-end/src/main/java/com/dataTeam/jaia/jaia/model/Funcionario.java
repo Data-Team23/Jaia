@@ -27,6 +27,7 @@ public class Funcionario {
     @Column(name = "senha_func")
     private String senha;
 
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_departamento")
     private Departamento departamento;
