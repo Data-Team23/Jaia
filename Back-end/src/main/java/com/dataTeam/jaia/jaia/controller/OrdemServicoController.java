@@ -15,12 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dataTeam.jaia.jaia.DTO.OrdemServicoDTO;
 import com.dataTeam.jaia.jaia.model.Checklist;
-import com.dataTeam.jaia.jaia.model.Cliente;
 import com.dataTeam.jaia.jaia.model.Funcionario;
 import com.dataTeam.jaia.jaia.model.OrdemServico;
 import com.dataTeam.jaia.jaia.model.Requisicao;
 import com.dataTeam.jaia.jaia.repository.ChecklistRepository;
-import com.dataTeam.jaia.jaia.repository.ClienteRepository;
 import com.dataTeam.jaia.jaia.repository.FuncionarioRepository;
 import com.dataTeam.jaia.jaia.repository.OrdemServicoRepository;
 import com.dataTeam.jaia.jaia.repository.RequisicaoRepository;

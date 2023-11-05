@@ -81,7 +81,7 @@
       </div>
     
     <div class="send-button"> 
-      <InputButton text-button="Aprovar"></InputButton>
+      <InputButton text-button="Aprovar" @click="generatePDF"></InputButton>
       <InputButton text-button="Reprovar"></InputButton>
     </div>
   </form>
@@ -95,6 +95,10 @@ import { useRouter, type Router } from 'vue-router';
 import type IOrdemServico from './IOrdemServico';
 import axios from 'axios';
 import router from '@/router';
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const nome_ordemValue = ref('');
 const statusRValue = ref('');
@@ -139,4 +143,45 @@ async function waitForIdInRoute(router: Router) {
     await new Promise((resolve) => setTimeout(resolve, 100));
   }
 }
+
+async function generatePDF() {
+  const docDefinition = {
+    content: [
+      { text: "Nome: " + nome_ordemValue.value },
+      { text: "Status da Requisição: " + statusRValue.value },
+      { text: "Data Abertura: " + dataaberturaValue.value },
+      { text: "Descrição: " + descricaoValue.value },
+      { text: "CNPJ: " + cnpjValue.value },
+      { text: "Status da Ordem de Serviço: " + status_ordemValue.value },
+      { text: "Inspeção: " + inspecaoValue.value },
+      { text: "Responsável: " + responsavelValue.value },
+      { text: "Data da prestação de Serviço: " + dataValue.value },
+      { text: "Checklist: " + checklValue.value },
+    ],
+  };
+  if (ordem_servicoSelected.value?.id_check?.perguntas) {
+    const perguntasContent = ordem_servicoSelected.value.id_check.perguntas.map((pergunta) => {
+      const status = pergunta.status;
+      const comentario = pergunta.comentario;
+      if (status === "Aprovado" || status === "Reprovado") {
+        const texto = `Pergunta: ${pergunta.pergunta} - ${status}`;
+        if (comentario) {
+          return { text: texto, margin: [0, 2], bold: true };
+        } else {
+          return { text: texto, margin: [0, 2] };
+        }
+      }
+      return null;
+    }).filter(Boolean); 
+
+    if (perguntasContent.length > 0) {
+      docDefinition.content.push({ text: "Perguntas e Respostas:", margin: [0, 8], bold: true });
+      docDefinition.content.push(...perguntasContent);
+    }
+  }
+  const pdf = pdfMake.createPdf(docDefinition);
+  window.alert("PDF gerado com sucesso!");
+  pdf.download("ordem_servico.pdf");
+}
+
 </script>

@@ -46,8 +46,6 @@ public class EmailController {
             } catch (MessagingException e){
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Não foi possível enviar o email, tente novamente.");
             }
-
-
     }
 
 

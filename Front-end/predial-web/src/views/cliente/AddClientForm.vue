@@ -43,10 +43,8 @@ async function sendEmail() {
     nome: nameValue.value,
     email: emailValue.value,
     endereco: addressValue.value,
-    telefone: phoneValue.value
   }
   console.log('Sending email with data:', clientEmail);
-
 
   try {
     const response = await axios.post('http://localhost:8080/email/enviar', clientEmail);
@@ -64,7 +62,6 @@ async function createClient() {
     nome: nameValue.value,
     email: emailValue.value,
     endereco: addressValue.value,
-    telefone: phoneValue.value, 
     senha: '123'
   };
 
