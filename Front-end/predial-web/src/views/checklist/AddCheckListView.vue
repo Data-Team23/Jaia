@@ -62,7 +62,6 @@ function listDepartaments() {
     axios.get<any>('http://localhost:8080/departamentos')
         .then((response: any) => {
             departamentos.value = response.data
-            console.log(departamentos.value)
         })
         .catch((error: any) => {
             console.error('Erro ao buscar departamentos:', error);
@@ -82,16 +81,16 @@ function addItemToCheckList() {
 }
 
 function createCheckList() {
+    event?.preventDefault()
     const newCheckList = {
         nome: nameValue.value,
         perguntas: checkListValue.value
     }
 
     try {
-        const response = axios.post(`http://localhost:8080/checklist/${departamentoValue}`, newCheckList)
+        axios.post(`http://localhost:8080/checklist/${departamentoValue.value}`, newCheckList)
         perguntaValue.value = ""
         departamentoValue.value = ""
-        console.log(response)
         window.alert("Checklist criado com sucesso")
         location.reload()
     } catch (error) {

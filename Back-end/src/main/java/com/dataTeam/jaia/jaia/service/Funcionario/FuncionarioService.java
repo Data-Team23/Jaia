@@ -1,5 +1,6 @@
 package com.dataTeam.jaia.jaia.service.Funcionario;
 
+import com.dataTeam.jaia.jaia.model.Cliente;
 import com.dataTeam.jaia.jaia.model.Funcionario;
 import com.dataTeam.jaia.jaia.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,27 @@ public class FuncionarioService implements IFuncionarioService {
         funcrepo.deleteByIdWithCascade(funcionarioToDelete.getId());
 
         return funcionarioToDelete;
+    }
+
+    @Transactional
+    public Funcionario atualizarFuncionarioPorId(Long id, Funcionario funcionarioAtualizado) {
+        Optional<Funcionario> funcionarioExistente = funcrepo.findById(id);
+
+        if (funcionarioExistente.isEmpty()) {
+            try {
+                throw new Exception("Funcionario não encontrado.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        Funcionario funcionario = funcionarioExistente.get();
+
+        funcionario.setNome(funcionarioAtualizado.getNome());
+        funcionario.setCpf(funcionarioAtualizado.getCpf());
+        funcionario.setEmail(funcionarioAtualizado.getEmail());
+        funcionario.setDepartamento(funcionarioAtualizado.getDepartamento());
+
+        return funcrepo.save(funcionario);
     }
 }

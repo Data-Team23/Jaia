@@ -28,7 +28,6 @@
                   <table>
                       <thead>
                           <tr>
-                              <th>No.</th>
                               <th>Código</th>
                               <th>Nome</th>
                               <th></th>
@@ -36,14 +35,13 @@
                       </thead>
                       <tbody v-for="(departament, index) in paginatedDepartaments" :key="index">
                           <tr>
-                              <td>{{ index + 1 }}</td>
-                              <td>{{ departament.codDepart }}</td>
+                              <td>{{ departament.idDepart }}</td>
                               <td>{{ departament.nome }}</td>
                               <td>
-                                  <span class="material-symbols-outlined" id="edit-button" @click="editDepartamento(departament.codDepart)">
+                                  <span class="material-symbols-outlined" id="edit-button" @click="editDepartamento(departament.idDepart)">
                                       edit
                                   </span>
-                                  <span class="material-symbols-outlined" id="delete-button" @click="deleteDialog = true">
+                                  <span class="material-symbols-outlined" id="delete-button" @click="deletDepartment(departament.idDepart)">
                                       delete
                                   </span>
                               </td>
@@ -87,7 +85,7 @@
               <h2>Tem certeza que deseja excluir ?</h2>
               <br>
               <div class="confirm-delete-button">
-                  <InputButton text-button="Sim" @click="deleteDialog = false"></InputButton>
+                  <InputButton text-button="Sim" @click="deleteDepartment()"></InputButton>
                   <InputButton text-button="Não" @click="deleteDialog = false"></InputButton>
               </div>
           </div>
@@ -116,7 +114,7 @@ const router = useRouter();
 
 let departaments = ref<Array<IDepartament>>([])
 
-let filteredDepartaments = ref<Array<IDepartament>>([])
+let filteredDepartments = ref<Array<IDepartament>>([])
 let filterInput = ref("")
 let selectedFilter = ref("nome")
 
@@ -131,17 +129,13 @@ const filterSelectOptions = [
       label: "Código",
       value: "codigo"
   },
-  {
-      label: "Responsável",
-      value: "responsavel"
-  },
 ]
 
 const page = ref(1);
 const itemsPerPage = ref(5);
 
-function editDepartamento(codDepart: number) {
-    router.push({query: { codDepart: codDepart }})
+function editDepartamento(idDepart: number) {
+    router.push({query: { idDepart: idDepart }})
     editDialog.value = true
 }
 
@@ -155,7 +149,7 @@ function listDepartaments() {
   axios.get<any>('http://localhost:8080/departamentos') 
       .then((response: any) => {
           departaments.value = response.data
-          filteredDepartaments.value = departaments.value;
+          filteredDepartments.value = departaments.value;
           filterDepartaments();
       })
       .catch((error: any) => {
@@ -164,11 +158,15 @@ function listDepartaments() {
 }
 
 function filterDepartaments() {
-  filteredDepartaments.value = departaments.value.filter((departament: any) => {
-      const selectedValue = departament[selectedFilter.value];
-      totalPages = computed(() => Math.ceil(filteredDepartaments.value.length / itemsPerPage.value));
-      return selectedValue.toLowerCase().includes(filterInput.value.toLowerCase());
-  })
+    filteredDepartments.value = departaments.value.filter((departament: any) => {
+        const selectedValue = departament[selectedFilter.value];
+        totalPages = computed(() => Math.ceil(filteredDepartments.value.length / itemsPerPage.value));
+        if(selectedValue){
+            return selectedValue.toLowerCase().includes(filterInput.value.toLowerCase());
+        } else {
+            return departament.value
+        }
+    })
   paginate()
 }
 
@@ -176,7 +174,7 @@ const paginate = () => {
   const startIndex = (page.value - 1) * itemsPerPage.value;
   const endIndex = startIndex + itemsPerPage.value;
 
-  paginatedDepartaments.value = filteredDepartaments.value.slice(startIndex, endIndex);
+  paginatedDepartaments.value = filteredDepartments.value.slice(startIndex, endIndex);
 }
 
 let totalPages = computed(() => Math.ceil(departaments.value.length / itemsPerPage.value));
@@ -196,4 +194,24 @@ watch(page, (newPage) => {
 const changePage = (pageNumber: any) => {
   page.value = pageNumber;
 };
+
+function deletDepartment(idDepart: number){
+    router.push({query: { idDepart: idDepart }})
+    deleteDialog.value = true
+}
+
+function deleteDepartment() {
+    const cod = router.currentRoute.value.query.idDepart;
+    axios.delete(`http://localhost:8080/departamentos/excluir/${cod}`)
+        .then((response) => {
+            window.alert('Departamento excluído com sucesso!!');
+            listDepartaments();
+            deleteDialog.value = false;
+        })
+        .catch((error) => {
+            window.alert('Erro ao excluir o departamento');
+            deleteDialog.value = false;
+        });
+}
+
 </script>

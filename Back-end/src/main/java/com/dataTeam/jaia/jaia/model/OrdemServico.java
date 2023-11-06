@@ -35,12 +35,12 @@ public class OrdemServico {
     private String status_ordem;
 
     @ManyToOne
-    @JoinColumn(name = "id_supervisor")
-    private Funcionario id_supervisor;
+    @JoinColumn(name = "id_req")
+    private Requisicao id_req;
 
     @ManyToOne
-    @JoinColumn(name = "id_cli")
-    private Cliente id_cli;
+    @JoinColumn(name = "id_supervisor")
+    private Funcionario id_supervisor;
 
     @ManyToOne
     @JoinColumn(name = "id_check")

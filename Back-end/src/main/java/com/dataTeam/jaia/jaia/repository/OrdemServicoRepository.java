@@ -8,4 +8,6 @@ import com.dataTeam.jaia.jaia.model.OrdemServico;
 @Repository
 public interface OrdemServicoRepository extends JpaRepository<OrdemServico, Long>{
     
+
+    
 }

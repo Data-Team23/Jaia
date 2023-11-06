@@ -21,5 +21,6 @@ public class OrdemServicoService implements IOrdemServicoService {
         List<OrdemServico> ordemServico = ordemRepo.findAll();
         return ordemServico;
     }
+    
 
 }

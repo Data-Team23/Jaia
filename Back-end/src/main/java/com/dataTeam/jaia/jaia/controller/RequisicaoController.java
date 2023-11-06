@@ -32,9 +32,9 @@ public class RequisicaoController {
         return service.buscarTodasRequisicoes();
     }
 
-    @PostMapping
-    public Requisicao novaRequisicao(@RequestBody Requisicao requisicao){
-        return service.novaRequisicao(requisicao);
+    @PostMapping("/{clienteId}")
+    public Requisicao novaRequisicao(@RequestBody Requisicao requisicao, @PathVariable Long clienteId){
+        return service.novaRequisicao(requisicao, clienteId);
     }
 
 
@@ -49,7 +49,7 @@ public class RequisicaoController {
     }
 }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/excluir/{id}")
     public Requisicao deletarPorId(@PathVariable Long id){
         return service.deletarPorId(id);
     }
@@ -64,11 +64,6 @@ public class RequisicaoController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno ao atualizar a requisição");
         }
 
-
-
-
     }
-
-
     
 }

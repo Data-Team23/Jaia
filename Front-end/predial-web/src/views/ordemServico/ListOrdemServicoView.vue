@@ -21,21 +21,19 @@
                 <th>CNPJ</th>
                 <th>Inspeção</th>
                 <th>Status O.S.</th>
-                <th>Descrição</th>
-                <th>Data</th>
+                <th>Departamento</th>
                 <th></th>
               </tr>
             </thead>
             <tbody v-for="(OrdemServico, index) in paginatedOrdemServicos" :key="index">
               <tr>  
                 <td>{{ index + 1 }}</td>
-                <td>{{ OrdemServico.nome_ordem }}</td>
-                <td>{{ OrdemServico.data_abertura }}</td>
-                <td>{{ OrdemServico.id_cli.cnpj }}</td>
-                <td>{{ OrdemServico.tipo_inspecao }}</td>
-                <td>{{ OrdemServico.status_ordem }}</td>
-                <td>{{ OrdemServico.descricao }}</td>
-                <td>{{ OrdemServico.data }}</td>
+                  <td>{{ OrdemServico.nome_ordem }}</td>
+                  <td>{{ OrdemServico.id_req.data_abertura }}</td>
+                  <td>{{ OrdemServico.id_req.fk_cliente_id.cnpj }}</td>
+                  <td>{{ OrdemServico.tipo_inspecao }}</td>
+                  <td>{{ OrdemServico.status_ordem }}</td>
+                  <td>{{ OrdemServico.id_check.departamento.nome ?? "Não informado" }}</td>
                 <td>
                   <span class="material-symbols-outlined" id="edit-button" @click="editOrdemServico(OrdemServico.id)"> edit </span>
                   <span class="material-symbols-outlined" id= "aprove-button" @click="aproveOrdemServico(OrdemServico.id)"> zoom_out_map </span>
@@ -62,7 +60,7 @@
         <AddOrdemServicoForm></AddOrdemServicoForm>
       </div>
     </v-dialog>
-    <v-dialog v-model="editDialog" width="80%">
+    <v-dialog v-model="editDialog" width="80%" class="update-os">
       <div class="add-client-container">
         <div class="close-button">
           <span class="material-symbols-outlined" @click="editDialog = false"> close </span>
@@ -155,6 +153,7 @@ function listOrdemServicos() {
     axios.get<any>('http://localhost:8080/ordem-servico') 
         .then((response: any) => {
             OrdemServicos.value = response.data
+            console.log(response.data)
             filteredOrdemServicos.value = OrdemServicos.value;
             filterOrdemServicos();
         })

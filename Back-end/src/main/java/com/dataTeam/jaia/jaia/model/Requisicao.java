@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -43,15 +44,17 @@ public class Requisicao {
     @Column(name = "data_abertura_req")
     private LocalDateTime data_abertura;
 
+    @ManyToOne
+    @JoinColumn(name = "fk_cliente_id")
+    private Cliente fk_cliente_id;
 
-    @ManyToMany
-    @JoinTable(
-        name = "solicitacao",
-        joinColumns = @JoinColumn(name = "id_req"),
-        inverseJoinColumns = @JoinColumn(name = "id_cli")
-    )
-    @JsonManagedReference
-    private List<Cliente> clientes;
-
-    
+    // @ManyToMany
+    // @JoinTable(
+    //     name = "solicitacao",
+    //     joinColumns = @JoinColumn(name = "id_req"),
+    //     inverseJoinColumns = @JoinColumn(name = "id_cli")
+    // )
+    // @JsonManagedReference
+    // private List<Cliente> clientes;
+ 
 }
