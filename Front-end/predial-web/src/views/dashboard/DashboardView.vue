@@ -76,7 +76,6 @@ function getStatusOs(){
   axios.get<any>('http://localhost:8080/dashboard/os-status')
     .then((response: any) => {
       statusOs.value = response.data
-      console.log(response.data)
     })
 }
 
