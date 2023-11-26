@@ -32,11 +32,11 @@
                 <th>Descrição</th>
               </tr>
             </thead>
-            <tbody v-for="(requisicao, index) in requisicoes" :key="index">
-              <tr>  
+            <tbody v-for="(requisicao, index) in requisitions" :key="index">
+              <tr>
                 <td>{{ index + 1 }}</td>
                 <td>{{ requisicao.nome }}</td>
-                <td>{{ requisicao.dataAbertura }}</td>
+                <td>{{ requisicao.data_abertura }}</td>
                 <td>{{ requisicao.status }}</td>
                 <td>{{ requisicao.descricao }}</td>
               </tr>
@@ -77,13 +77,13 @@
 <script setup lang="ts">
 import "../styles.css";
 
-import { computed, onMounted, ref, watch } from "vue";
-import SelectField from "@/components/Select/SelectField.vue";
 import InputButton from "@/components/Button/InputButton.vue";
+import SelectField from "@/components/Select/SelectField.vue";
+import axios from "axios";
+import { computed, onMounted, ref, watch } from "vue";
+import type IRequisition from "../IRequisition";
 import AddRequisicoesForm from "./AddRequisicoesForm.vue";
 import UpdateRequisicoesForm from "./UpdateRequisicoesView.vue";
-import type IRequisition from "../IRequisition";
-import axios from "axios";
 
 let addDialog = ref(false);
 let editDialog = ref(false);
@@ -106,7 +106,9 @@ const requisicoes = [
   },
 ];
 
-let requisitions = ref<Array<IRequisition>>([])
+//let requisitions = ref<Array<IRequisition>>([])
+
+const requisitions = ref();
 
 let filteredRequisitions = ref<Array<IRequisition>>([])
 let filterInput = ref("")
@@ -136,14 +138,25 @@ const filterSelectOptions = [
     }
 ]
 
-function listRequisitions() {
+/*function listRequisitions() {
     axios.get<any>(`${import.meta.env.VITE_API_URL}/requisitions.json`)
         .then((response: any) => {
             requisitions.value = response.data
             filteredRequisitions.value = requisitions.value;
             filterRequisitions();
         })
+}*/
+
+async function listRequisitions() {
+  try {
+    requisitions.value = (await axios.get('http://localhost:8080/requisicao')).data;
+  } catch (error) {
+    console.error('Erro ao obter requisições:', error);
+  }
 }
+
+
+
 
 function filterRequisitions() {
     filteredRequisitions.value = requisitions.value.filter((client: any) => {
