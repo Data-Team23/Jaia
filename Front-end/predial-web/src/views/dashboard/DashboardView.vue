@@ -1,22 +1,49 @@
 <template>
-  <div class="chart-container">
-    <h2>Dashboard - Requisições/Ordem de Serviço</h2>
-    <div class="chart-box">
+  <div class="dashboard-container">
+    <div class="chart-container">
+      <div class="title">
+        <h3>Ordens de Serviço por Departamento</h3>
+      </div>
+      <div class="chart-box">
         <div class="bar-chart-container">
-          <bar-chart :chart-data="departamentoOs"></bar-chart>
-        </div>
-        <div class="bar-chart-container">
-          <bar-chart :chart-data="osReprovedByDepartment" :options="chartOptions"></bar-chart>
-        </div>
+          <bar-chart :chart-data="departamentoOs" :options="chartVerticalOptions"></bar-chart>
+        </div>      
+      </div>
     </div>
-    <br>
-    <div class="chart-box">
-        <div class="pie-chart-container">
-          <pie-chart :chart-data="statusOs"></pie-chart>
+  
+    <div class="duo-chart">
+      <div class="chart-container" style="width: 75% !important;">
+        <div class="title">
+          <h3>Ordens de Serviço por Status</h3>
         </div>
-        <div class="pie-chart-container">
-          <line-chart :chart-data="reqByMonths" :options="chartLineOptions"></line-chart>
+        <div class="duo-chart-box">   
+          <div class="pie-chart-container">
+            <pie-chart :chart-data="statusOs"></pie-chart>
+          </div>
+        </div>  
+      </div>
+      <div class="chart-container">
+        <div class="title">
+          <h3>Ordens de Serviço Reprovadas por Departamento</h3>
         </div>
+        <div class="duo-chart-box">
+          <div class="bar-chart-container">
+            <bar-chart :chart-data="osReprovedByDepartment" :options="chartOptions"></bar-chart>
+          </div> 
+        </div>
+      </div>
+    </div>
+  
+    <div class="chart-container" style="margin-top: 20px;">
+      <div class="title">
+        <h3>Requisições de Clientes ao longo do ano</h3>
+      </div>
+      <div class="chart-box">
+        <div class="pie-chart-container">
+          <line-chart :chart-data="reqByMonths" :options="chartLineOptions" :height="300"></line-chart>
+        </div>
+      </div>
+      <br>   
     </div>
   </div>
 </template>
@@ -68,7 +95,25 @@ ChartJS.register(
 function getDepartamentoOs(){
   axios.get<any>('http://localhost:8080/dashboard/os-departamento')
     .then((response: any) => {
-      departamentoOs.value = response.data
+      const chartData = response.data
+
+      // Obtém os dados e os rótulos
+      const data = chartData.datasets[0].data;
+      const labels = chartData.labels;
+
+      // Cria um array de objetos {label, data} para facilitar a ordenação
+      const dataWithLabels = labels.map((label: any, index: any) => ({ label, data: data[index] }));
+
+      // Ordena o array com base nos dados em ordem decrescente
+      dataWithLabels.sort((a: any, b: any) => b.data - a.data);
+
+      // Atualiza os rótulos e dados no objeto chartData
+      chartData.labels = dataWithLabels.map((item: any) => item.label);
+      chartData.datasets[0].data = dataWithLabels.map((item: any) => item.data);
+
+      // Atualiza o estado
+      departamentoOs.value = chartData;
+      console.log(departamentoOs.value);
     })
 }
 
@@ -82,7 +127,19 @@ function getStatusOs(){
 function getOsReprovedByDepartment(){
   axios.get<any>('http://localhost:8080/dashboard/os-reprovada')
     .then((response: any) => {
-      osReprovedByDepartment.value = response.data
+      const chartData = response.data
+
+      const data = chartData.datasets[0].data;
+      const labels = chartData.labels;
+
+      const dataWithLabels = labels.map((label: any, index: any) => ({ label, data: data[index] }));
+
+      dataWithLabels.sort((a: any, b: any) => b.data - a.data);
+
+      chartData.labels = dataWithLabels.map((item: any) => item.label);
+      chartData.datasets[0].data = dataWithLabels.map((item: any) => item.data);
+
+      osReprovedByDepartment.value = chartData
     })
 }
 
@@ -110,16 +167,37 @@ const chartOptions = {
       beginAtZero: true,
     },
   },
+  plugins: {
+    legend: {
+      display: false,
+    },
+  },
 };
+
+const chartVerticalOptions = {
+  plugins: {
+    legend: {
+      display: false,
+    },
+  },
+}
 
 const chartLineOptions = ref({
   responsive: true,
   maintainAspectRatio: false,
-
+  scales: {
+    y: {
+      beginAtZero: true
+    }
+  },
   elements: {
     line: {
-      borderWidth: 2,
       borderColor: "#3A3A5A",
+    },
+  },
+  plugins: {
+    legend: {
+      display: false,
     },
   },
 });

@@ -56,7 +56,7 @@ public class DashboardService {
         }
 
         datasets.setData(osCountList);
-        datasets.setLabel("Ordens de Serviço por Departamento");
+        datasets.setLabel("");
         datasets.setBorderWidth(1);
         datasets.setBackgroundColor(barColors);
         datasetsList.add(0, datasets);
@@ -111,7 +111,7 @@ public class DashboardService {
         }
 
         datasets.setData(osCountList);
-        datasets.setLabel("Requisições ao longo do ano");
+        // datasets.setLabel("Requisições ao longo do ano");
         datasets.setBorderWidth(1);
         datasets.setBackgroundColor(barColors);
         datasetsList.add(0, datasets);
@@ -145,7 +145,7 @@ public class DashboardService {
         }
 
         datasets.setData(osCountList);
-        datasets.setLabel("Status da ordem");
+        // datasets.setLabel("Status da ordem");
         datasets.setBorderWidth(1);
         datasets.setBackgroundColor(barColors);
         datasetsList.add(0, datasets);
@@ -180,7 +180,7 @@ public class DashboardService {
         }
 
         datasets.setData(osCountList);
-        datasets.setLabel("Ordens de Serviço reprovadas por departamento");
+        // datasets.setLabel("Ordens de Serviço reprovadas por departamento");
         datasets.setBorderWidth(1);
         datasets.setBackgroundColor(barColors);
         datasetsList.add(0, datasets);
