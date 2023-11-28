@@ -148,17 +148,29 @@ async function waitForIdInRoute(router: Router) {
 async function getPdfData(): Promise<Blob> {
   const docDefinition = {
     content: [
-      { text: 'Nome: ' + nome_ordemValue.value },
-      { text: 'Status da Requisição: ' + statusRValue.value },
-      { text: 'Data Abertura: ' + dataaberturaValue.value },
-      { text: 'Descrição: ' + descricaoValue.value },
-      { text: 'CNPJ: ' + cnpjValue.value },
-      { text: 'Status da Ordem de Serviço: ' + status_ordemValue.value },
-      { text: 'Inspeção: ' + inspecaoValue.value },
-      { text: 'Responsável: ' + responsavelValue.value },
-      { text: 'Data da prestação de Serviço: ' + dataValue.value },
-      { text: 'Checklist: ' + checklValue.value },
+      { text: 'Ordem de Serviço', style: 'header' },
+      { text: [{ text: 'Nome: ', style: 'label' }, nome_ordemValue.value ]},
+      { text: [{ text: 'Status da Requisição: ', style: 'label' }, statusRValue.value ]},
+      { text: [{ text: 'Data Abertura: ', style: 'label' }, dataaberturaValue.value ]},
+      { text: [{ text: 'Descrição: ', style: 'label' }, descricaoValue.value ]},
+      { text: [{ text: 'CNPJ: ', style: 'label' }, cnpjValue.value ]},
+      { text: [{ text: 'Status da Ordem de Serviço: ', style: 'label' }, status_ordemValue.value ]},
+      { text: [{ text: 'Inspeção: ', style: 'label' }, inspecaoValue.value ]},
+      { text: [{ text: 'Responsável: ', style: 'label' }, responsavelValue.value ]},
+      { text: [{ text: 'Data da prestação de Serviço: ', style: 'label' }, dataValue.value ]},
+      { text: [{ text: 'Checklist: ', style: 'label' }, checklValue.value ]},
     ],
+    styles: {
+      header: {
+        fontSize: 18,
+        bold: true,
+        margin: [0,0,0,20],
+      },
+      label: {
+        bold: true,
+        margin: [0,0,0,10],
+      },
+    },
   };
 
   if (ordem_servicoSelected.value?.id_check?.perguntas) {
