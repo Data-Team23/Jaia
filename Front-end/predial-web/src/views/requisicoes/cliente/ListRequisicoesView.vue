@@ -32,9 +32,9 @@
                 <th>Descrição</th>
               </tr>
             </thead>
-            <tbody v-for="(requisicao, index) in requisitions" :key="index">
+            <tbody v-for="(requisicao, index) in paginatedRequisitions" :key="index">
               <tr>
-                <td>{{ index + 1 }}</td>
+                <td>{{ requisicao.no }}</td>
                 <td>{{ requisicao.nome }}</td>
                 <td>{{ requisicao.data_abertura }}</td>
                 <td>{{ requisicao.status }}</td>
@@ -42,6 +42,13 @@
               </tr>
             </tbody>
           </table>
+          <div class="pagination">
+            <ul class="pagination-list">
+              <li v-for="pageNumber in totalPages" :key="pageNumber" @click="changePage(pageNumber)">
+                <a :class="{ active: page === pageNumber }">{{ pageNumber }}</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -89,26 +96,9 @@ let addDialog = ref(false);
 let editDialog = ref(false);
 let deleteDialog = ref(false);
 
-const requisicoes = [
-  {
-    code: '001',
-    nome: 'Requisição 1',
-    dataAbertura: '2023-09-12',
-    status: 'Criação',
-    descricao: 'Descrição da Requisição 1',
-  },
-  {
-    code: '002',
-    nome: 'Requisição 2',
-    dataAbertura: '2023-09-13',
-    status: 'Em Criação',
-    descricao: 'Descrição da Requisição 2',
-  },
-];
-
 //let requisitions = ref<Array<IRequisition>>([])
 
-const requisitions = ref();
+const requisitions = ref<Array<IRequisition>>([]);
 
 let filteredRequisitions = ref<Array<IRequisition>>([])
 let filterInput = ref("")
@@ -125,35 +115,34 @@ const filterSelectOptions = [
         value: "nome"
     },
     {
-        label: "CNPJ",
-        value: "cnpj"
+        label: "Data",
+        value: "data_abertura"
     },
     {
-        label: "Status OS.",
-        value: "status_os"
-    },
-    {
-        label: "Status Req.",
-        value: "status_req"
+        label: "Status",
+        value: "status"
     }
 ]
 
-/*function listRequisitions() {
-    axios.get<any>(`${import.meta.env.VITE_API_URL}/requisitions.json`)
+function listRequisitions() {
+    axios.get<any>(`http://localhost:8080/requisicao`)
         .then((response: any) => {
             requisitions.value = response.data
             filteredRequisitions.value = requisitions.value;
+            requisitions.value.forEach((requisicao, index) => {
+                requisicao.no = index + 1
+            })
             filterRequisitions();
         })
-}*/
-
-async function listRequisitions() {
-  try {
-    requisitions.value = (await axios.get('http://localhost:8080/requisicao')).data;
-  } catch (error) {
-    console.error('Erro ao obter requisições:', error);
-  }
 }
+
+// async function listRequisitions() {
+//   try {
+//     requisitions.value = (await axios.get('http://localhost:8080/requisicao')).data;
+//   } catch (error) {
+//     console.error('Erro ao obter requisições:', error);
+//   }
+// }
 
 
 
