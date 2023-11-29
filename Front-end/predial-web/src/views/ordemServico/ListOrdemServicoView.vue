@@ -9,14 +9,14 @@
       </div>
       <div class="list-container">
         <div class="top-list">
-          <h3><strong>Visualizar Odem de Serviço</strong></h3>
+          <h3><strong>Visualizar Ordem de Serviço</strong></h3>
         </div>
         <div class="table-container">
           <table>
             <thead>
               <tr>
                 <th>No.</th>
-                <th>nome</th>
+                <th>Nome</th>
                 <th>Data Abertura</th>
                 <th>CNPJ</th>
                 <th>Inspeção</th>
