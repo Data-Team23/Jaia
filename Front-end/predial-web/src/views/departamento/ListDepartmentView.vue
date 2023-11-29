@@ -7,7 +7,7 @@
           <div class="add-client-button-container">
               <div class="add-client-button">
                   <button @click="addDialog = true">
-                      Adicionar departamento
+                      ADICIONAR
                   </button>
               </div>
           </div>

@@ -1,10 +1,17 @@
+
+
+
+
+
+
+
 <template>
   <div class="container">
     <div class="container-top"></div>
     <div class="list-view">
       <div class="add-client-button-container">
         <div class="add-client-button">
-          <button @click="addDialog = true">Cadastrar Ordem de Serviço</button>
+          <button @click="addDialog = true">CADASTRAR</button>
         </div>
       </div>
       <div class="list-container">

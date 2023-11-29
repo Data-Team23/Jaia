@@ -73,7 +73,7 @@
       </div>
     </div>
     <div class="send-button">
-      <InputButton text-button="Criar OS" @click="createOS" />
+      <InputButton text-button="CRIAR" @click="createOS" />
     </div>
   </form>
 </template>

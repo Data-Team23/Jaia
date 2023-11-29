@@ -53,7 +53,7 @@
       </SelectField>
     </div>
     <div class="send-button">
-      <InputButton text-button="Enviar requisição" @click="createRequisition"></InputButton>
+      <InputButton text-button="ENVIAR" @click="createRequisition"></InputButton>
     </div>
   </form>
 </template>

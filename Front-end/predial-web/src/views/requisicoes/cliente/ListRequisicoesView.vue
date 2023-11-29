@@ -4,7 +4,7 @@
     <div class="list-view">
       <div class="add-client-button-container">
         <div class="add-client-button">
-          <button @click="addDialog = true">Criar requisição</button>
+          <button @click="addDialog = true">CRIAR</button>
         </div>
       </div>
       <div class="list-container">
