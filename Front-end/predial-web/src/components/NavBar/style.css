@@ -1,12 +1,11 @@
 .nav-bar-container{
-    display: flex; 
     flex-direction: column; 
     width: 200px; 
     height: 100%;
     background-color: #464667 !important;
     justify-content: space-between;
     align-items: flex-end;
-    padding: 0 0 60px 0;
+    padding: 0 0 60px 15px;
 }
 
 img{

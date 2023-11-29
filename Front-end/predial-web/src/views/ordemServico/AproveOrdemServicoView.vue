@@ -67,7 +67,7 @@
     
     <div class="input-inline-field" v-for="(pergunta, index) in ordem_servicoSelected?.id_check?.perguntas || []" :key="index">
         <div class="column">
-          <label class="input-inline-field">{{ pergunta.pergunta }}</label>
+          <label class="input-inline-field" style="width: 445px;">{{ pergunta.pergunta }}</label>
           <select class="input-select" v-model="pergunta.status">
             <option style="color: black;" value="Aprovado">Aprovado</option>
             <option value="Reprovado">Reprovado</option>
@@ -82,8 +82,9 @@
     
     <div class="send-button"> 
       <InputButton text-button="Aprovar" @click="generatePDFAndSendEmail"></InputButton>
-      <InputButton text-button="Reprovar"></InputButton>
+      <InputButton text-button="Reprovar" @click="generatePDFAndSendEmail"></InputButton>
     </div>
+    <InputButton text-button="Baixar PDF" @click="generatePDF"></InputButton>
   </form>
 </template>
 
@@ -144,21 +145,32 @@ async function waitForIdInRoute(router: Router) {
   }
 }
 
-
 async function getPdfData(): Promise<Blob> {
   const docDefinition = {
     content: [
-      { text: 'Nome: ' + nome_ordemValue.value },
-      { text: 'Status da Requisição: ' + statusRValue.value },
-      { text: 'Data Abertura: ' + dataaberturaValue.value },
-      { text: 'Descrição: ' + descricaoValue.value },
-      { text: 'CNPJ: ' + cnpjValue.value },
-      { text: 'Status da Ordem de Serviço: ' + status_ordemValue.value },
-      { text: 'Inspeção: ' + inspecaoValue.value },
-      { text: 'Responsável: ' + responsavelValue.value },
-      { text: 'Data da prestação de Serviço: ' + dataValue.value },
-      { text: 'Checklist: ' + checklValue.value },
+      { text: 'Ordem de Serviço', style: 'header' },
+      { text: [{ text: 'Nome: ', style: 'label' }, nome_ordemValue.value ]},
+      { text: [{ text: 'Status da Requisição: ', style: 'label' }, statusRValue.value ]},
+      { text: [{ text: 'Data Abertura: ', style: 'label' }, dataaberturaValue.value ]},
+      { text: [{ text: 'Descrição: ', style: 'label' }, descricaoValue.value ]},
+      { text: [{ text: 'CNPJ: ', style: 'label' }, cnpjValue.value ]},
+      { text: [{ text: 'Status da Ordem de Serviço: ', style: 'label' }, status_ordemValue.value ]},
+      { text: [{ text: 'Inspeção: ', style: 'label' }, inspecaoValue.value ]},
+      { text: [{ text: 'Responsável: ', style: 'label' }, responsavelValue.value ]},
+      { text: [{ text: 'Data da prestação de Serviço: ', style: 'label' }, dataValue.value ]},
+      { text: [{ text: 'Checklist: ', style: 'label' }, checklValue.value ]},
     ],
+    styles: {
+      header: {
+        fontSize: 18,
+        bold: true,
+        margin: [0,0,0,20],
+      },
+      label: {
+        bold: true,
+        margin: [0,0,0,10],
+      },
+    },
   };
 
   if (ordem_servicoSelected.value?.id_check?.perguntas) {
@@ -221,6 +233,45 @@ async function generatePDFAndSendEmail() {
     console.error(error);
     window.alert('Erro ao enviar o e-mail.');
   }
+}
+
+async function generatePDF() {
+  const docDefinition = {
+    content: [
+      { text: "Nome: " + nome_ordemValue.value },
+      { text: "Status da Requisição: " + statusRValue.value },
+      { text: "Data Abertura: " + dataaberturaValue.value },
+      { text: "Descrição: " + descricaoValue.value },
+      { text: "CNPJ: " + cnpjValue.value },
+      { text: "Status da Ordem de Serviço: " + status_ordemValue.value },
+      { text: "Inspeção: " + inspecaoValue.value },
+      { text: "Responsável: " + responsavelValue.value },
+      { text: "Data da prestação de Serviço: " + dataValue.value },
+      { text: "Checklist: " + checklValue.value },
+    ],
+  };
+  if (ordem_servicoSelected.value?.id_check?.perguntas) {
+    const perguntasContent = ordem_servicoSelected.value.id_check.perguntas.map((pergunta) => {
+      const status = pergunta.status;
+      const comentario = pergunta.comentario;
+      if (status === "Aprovado" || status === "Reprovado") {
+        const texto = `Pergunta: ${pergunta.pergunta} - ${status}`;
+        if (comentario) {
+          return { text: texto, margin: [0, 2], bold: true };
+        } else {
+          return { text: texto, margin: [0, 2] };
+        }
+      }
+      return null;
+    }).filter(Boolean); 
+    if (perguntasContent.length > 0) {
+      docDefinition.content.push({ text: "Perguntas e Respostas:", margin: [0, 8], bold: true });
+      docDefinition.content.push(...perguntasContent);
+    }
+  }
+  const pdf = pdfMake.createPdf(docDefinition);
+  window.alert("PDF gerado com sucesso!");
+  pdf.download("ordem_servico.pdf");
 }
 
 </script>

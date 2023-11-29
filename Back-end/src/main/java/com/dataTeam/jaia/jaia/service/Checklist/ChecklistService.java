@@ -20,9 +20,9 @@ public class ChecklistService {
     @Autowired
     private DepartamentoRepository departamentoRepo;
 
-    public Checklist novoChecklist(Checklist checklist, Long departamentoId){
+    public Checklist novoChecklist(Checklist checklist, Long departamentoId) {
         Optional<Departamento> optDepartamento = departamentoRepo.findById(departamentoId);
-        if(optDepartamento.isPresent()){
+        if (optDepartamento.isPresent()) {
             Departamento departamento = optDepartamento.get();
             checklist.setDepartamento(departamento);
             departamento.getChecklists().add(checklist);
@@ -32,21 +32,21 @@ public class ChecklistService {
         return checklist;
     }
 
-    public List<Checklist> buscarTodos(){
+    public List<Checklist> buscarTodos() {
         return checkListRepo.findAll();
     }
 
-    public Checklist buscarPorId(Long id){
+    public Checklist buscarPorId(Long id) {
         Optional<Checklist> optChecklist = checkListRepo.findById(id);
-        if(optChecklist.isEmpty()){
+        if (optChecklist.isEmpty()) {
             throw new IllegalArgumentException("Checklist não encontrado!!");
         }
         Checklist checklist = optChecklist.get();
         return checklist;
     }
 
-    public void deletarPorId(Long id){
+    public void deletarPorId(Long id) {
         checkListRepo.deleteByIdWithCascade(id);
     }
-    
+
 }
