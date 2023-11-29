@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="list-container">
-                <!-- <div class="top-list">
+                <div class="top-list">
                     <h3><strong>Carteira de clientes</strong></h3>
                     <div class="search-filter">
                         <SelectField 
@@ -23,7 +23,7 @@
                         </SelectField>
                         <input type="text" placeholder="Filtrar..." v-model="filterInput">
                     </div>
-                </div> -->
+                </div>
                 <div class="table-container">
                     <table>
                         <thead>
@@ -101,12 +101,18 @@
 </template>
 
 <script setup lang="ts">
+
 import axios from 'axios';
+
 import { ref, onMounted, watch, computed } from 'vue';
-import type ICheckList from './ICheckList';
 import { useRouter } from 'vue-router';
+
+import type ICheckList from './ICheckList';
 import UpdateCheckListView from './UpdateCheckListView.vue';
 import AddCheckListView from './AddCheckListView.vue';
+
+import InputButton from '@/components/Button/InputButton.vue';
+import SelectField from '@/components/Select/SelectField.vue';
 
 const router = useRouter()
 
@@ -138,6 +144,17 @@ function clearUrlParam(newValue: boolean) {
 
 watch(editDialog, clearUrlParam)
 
+const filterSelectOptions = [
+  {
+    label: "Nome",
+    value: "nome"
+  },
+  {
+    label: "Código",
+    value: "idDepart"
+  }
+];
+
 function listCheckList() {
     axios.get<any>(`http://localhost:8080/checklist`).then((response: any) => {
         console.log(response.data)
@@ -154,6 +171,7 @@ function filterChecklist() {
     filteredChecklist.value = checkLists.value.filter((client: any) => {
         const selectedValue = client[selectedFilter.value];
         totalPages = computed(() => Math.ceil(filteredChecklist.value.length / itemsPerPage.value));
+        console.log(filterInput.value)
         if (selectedValue) {
             return selectedValue.toLowerCase().includes(filterInput.value.toLowerCase());
         } else {

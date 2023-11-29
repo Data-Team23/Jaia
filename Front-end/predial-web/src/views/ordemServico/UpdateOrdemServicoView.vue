@@ -81,6 +81,7 @@
             status_ordemValue.value = ordem_servicoSelected.value.status_ordem;
             descricaoValue.value = ordem_servicoSelected.value.id_req.descricao;
           }ordem_servicoSelected
+          console.log(response.data)
         });
     } catch (error) {
       console.log(error);
