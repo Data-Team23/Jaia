@@ -32,7 +32,7 @@
                 <th>Descrição</th>
               </tr>
             </thead>
-            <tbody v-for="(requisicao, index) in requisicoes" :key="index">
+            <tbody v-for="(requisicao, index) in paginatedRequisitions" :key="index">
               <tr> 
                 <td>{{ index + 1 }}</td>
                 <td>{{ requisicao.nome }}</td>
@@ -72,6 +72,7 @@
       </div>
     </v-dialog>
   </div>
+  <button class="button" @click="logout">Sair</button>
 </template>
 
 <script setup lang="ts">
@@ -84,6 +85,8 @@ import AddRequisicoesForm from "./AddRequisicoesForm.vue";
 import UpdateRequisicoesForm from "./UpdateRequisicoesView.vue";
 import type IRequisition from "../IRequisition";
 import axios from "axios";
+import { useAuthStore } from '@/stores/authStore';
+
 
 let requisicoes = ref<Array<IRequisition>>([]);
 let addDialog = ref(false);
@@ -94,6 +97,8 @@ let filteredRequisitions = ref<Array<IRequisition>>([])
 let filterInput = ref("")
 let selectedFilter = ref("nome")
 let paginatedRequisitions = ref<Array<IRequisition>>([]);
+
+const authStore = useAuthStore();
 
 const page = ref(1);
 const itemsPerPage = ref(5);
@@ -118,13 +123,13 @@ const filterSelectOptions = [
 ]
 
 function listRequisitions() {
-  axios.get<any>("http://localhost:8080/requisicao/").then((response: any) => {
+  const id_cliente = authStore.userId
+  axios.get<any>(`http://localhost:8080/requisicao/cliente/${id_cliente}`).then((response: any) => {
     requisitions.value = response.data;
     filteredRequisitions.value = requisitions.value;
     filterRequisitions();
   });
 }
-
 
 
 function filterRequisitions() {
@@ -150,7 +155,6 @@ const paginate = () => {
   );
 };
 
-
 let totalPages = computed(() => Math.ceil(requisitions.value.length / itemsPerPage.value));
 
 onMounted(() => {
@@ -170,4 +174,9 @@ const changePage = (pageNumber: any) => {
 onMounted(() => {
   listRequisitions();
 });
+
+const logout = () => {
+  window.location.href = '/';
+};
+
 </script>

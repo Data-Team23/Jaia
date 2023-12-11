@@ -6,22 +6,56 @@
     padding: 14px 20px;
     border-radius: 10px;
     height: 100%;
+    width: 100%;
 }
-
+.dashboard-container{
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    margin: 10px;
+}
 .chart-box{
     display: flex;
+    width: 100%;
+}
+
+.duo-chart-box{
+    display: flex;
+    width: 100%;
+}
+
+.duo-chart{
+    display: flex;
+    margin-top: 20px;
+}
+
+.duo-chart .chart-container:first-child{
+    margin-right: 20px;
 }
 
 .chart-container h2{
     color: var(--primary-bg-color);
+    font-size: 24px;
+    font-weight: bolder;
+    margin: 10px;
 }
 
-.bar-chart-container, .pie-chart-container{
+.bar-chart-container{
     width: 100% !important;
+    margin: 10px;
+}
+
+.pie-chart-container{
+    width: 100% !important;
+    margin: 10px;
 }
 
 #bar-chart, #pie-chart{
     max-height: 350px !important;
     width: 100% !important;
 
+}
+
+.title{
+    color: var(--secondary-text-color);
 }

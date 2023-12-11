@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dataTeam.jaia.jaia.model.AuthRequest;
+import com.dataTeam.jaia.jaia.model.AuthResponse;
 import com.dataTeam.jaia.jaia.service.AuthService;
 
 @RestController
@@ -25,19 +26,26 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody AuthRequest authRequest) {
+    public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest authRequest) {
         String username = authRequest.getUsername();
         String password = authRequest.getPassword();
         String tipoDocumento = authRequest.getTipoDocumento();
 
+        AuthResponse result = null;
+
         if ("cnpj".equals(tipoDocumento)) {
-            String result = authService.authenticateCliente(username, password);
-            return ResponseEntity.ok(result);
+            result = authService.authenticateCliente(username, password);
         } else if ("cpf".equals(tipoDocumento)) {
-            String result = authService.authenticateFuncionario(username, password);
-            return ResponseEntity.ok(result);
+            result = authService.authenticateFuncionario(username, password);
+        }  else if ("admin".equals(tipoDocumento)) {
+            result = authService.authenticateAdministrador(username, password);
         }
 
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Tipo de documento inválido");
+        if (result != null) {
+            return ResponseEntity.ok(result);
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new AuthResponse("Tipo de documento inválido", null));
+        }
     }
+
 }

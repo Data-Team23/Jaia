@@ -66,5 +66,15 @@ public class RequisicaoController {
 
     }
     
-    
+    @GetMapping("/cliente/{clienteId}")
+    public ResponseEntity<?> buscarRequisicoesPorCliente(@PathVariable Long clienteId) {
+        try {
+            List<Requisicao> requisicoesDoCliente = service.buscarRequisicoesPorCliente(clienteId);
+            return ResponseEntity.ok(requisicoesDoCliente);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Erro ao buscar requisicoes para o cliente com o id informado.");
+        }
+    }
+
 }

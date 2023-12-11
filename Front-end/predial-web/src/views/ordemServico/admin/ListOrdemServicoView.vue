@@ -30,7 +30,7 @@
                 <td>{{ index + 1 }}</td>
                   <td>{{ OrdemServico.nome_ordem }}</td>
                   <td>{{ OrdemServico.id_req.data_abertura }}</td>
-                  <td>{{ OrdemServico.id_req.fk_cliente_id.cnpj }}</td>
+                  <td>{{ OrdemServico.id_req.fkCliente.cnpj }}</td>
                   <td>{{ OrdemServico.tipo_inspecao }}</td>
                   <td>{{ OrdemServico.status_ordem }}</td>
                   <td>{{ OrdemServico.id_check.departamento.nome ?? "Não informado" }}</td>
@@ -97,7 +97,7 @@ import AproveOrdemServicoForm from './AproveOrdemServicoView.vue';
 import InputButton from '@/components/Button/InputButton.vue';
 import SelectField from '@/components/Select/SelectField.vue';
 import axios from 'axios';
-import type IOrdemServico from './IOrdemServico';
+import type IOrdemServico from '../IOrdemServico';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
@@ -158,7 +158,7 @@ function listOrdemServicos() {
             filterOrdemServicos();
         })
         .catch((error: any) => {
-            console.error('Erro ao buscar funcionários:', error);
+            console.error('Erro ao buscar Ordem servico:', error);
         });
 }
 

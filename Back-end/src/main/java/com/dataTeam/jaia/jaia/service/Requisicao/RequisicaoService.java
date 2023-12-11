@@ -29,7 +29,7 @@ public class RequisicaoService implements IRequisicaoService {
             throw new IllegalArgumentException("Cliente não encontrado");
         }
         Cliente cliente = optCliente.get();
-        requisicao.setFk_cliente_id(cliente);
+        requisicao.setFkCliente(cliente);
         return requiRepo.save(requisicao);
     }
 
@@ -85,6 +85,9 @@ public class RequisicaoService implements IRequisicaoService {
     }
 
 
-
+    @Override
+    public List<Requisicao> buscarRequisicoesPorCliente(Long clienteId) {
+        return requiRepo.findByFkClienteId(clienteId);
+    }
     
 }

@@ -36,10 +36,10 @@
               <tr>
                 <td>{{ index + 1 }}</td>
                 <td>{{ requisitions.nome }}</td>
-                <td>{{ requisitions.fk_cliente_id.cnpj }}</td>
+                <td>{{ requisitions.fkCliente.cnpj }}</td>
                 <td>{{ requisitions.inspecao }}</td>
                 <td>{{ requisitions.status }}</td>
-                <td>{{ requisitions.fk_cliente_id.nome }}</td>
+                <td>{{ requisitions.fkCliente.nome }}</td>
                 <td>
                   <span
                     class="material-symbols-outlined"
@@ -149,10 +149,6 @@ const filterSelectOptions = [
   {
     label: "Nome",
     value: "nome",
-  },
-  {
-    label: "CNPJ",
-    value: "cnpj",
   },
   {
     label: "Status OS.",

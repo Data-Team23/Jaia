@@ -3,6 +3,8 @@ package com.dataTeam.jaia.jaia.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -70,7 +72,7 @@ public class OrdemServicoController {
     ordemServico.setNome_ordem(ordemServicoDTO.getNome_ordem());
     ordemServico.setTipo_inspecao(ordemServicoDTO.getTipo_inspecao());
     ordemServico.setStatus_ordem(ordemServicoDTO.getStatus_ordem());
-    ordemServico.setId_supervisor(supervisor);
+    ordemServico.setFkSupervisor(supervisor);
     ordemServico.setId_check(checklist);
     ordemServico.setId_req(requisicao);
 
@@ -99,6 +101,17 @@ public class OrdemServicoController {
             return "Ordem de Serviço com ID: " + id + " atualizada com sucesso.";
         } else {
             return "Ordem de Serviço com ID: " + id + " não encontrada.";
+        }
+    }
+
+    @GetMapping("/supervisor/{supervisorId}")
+    public ResponseEntity<?> buscarOrdemPorSupervisor(@PathVariable Long supervisorId) {
+        try {
+            List<OrdemServico> ordemdoSupervisor = service.getOrdemServicosBySupervisorId(supervisorId);
+            return ResponseEntity.ok(ordemdoSupervisor);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Erro ao buscar Ordem de serviço para o supervisor com o id informado.");
         }
     }
 

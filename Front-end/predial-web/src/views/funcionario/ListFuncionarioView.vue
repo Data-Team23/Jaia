@@ -116,11 +116,7 @@ const filterSelectOptions = [
   {
     label: "CPF",
     value: "cpf"
-  },
-  {
-    label: "Departamento",
-    value: "departamento"
-  },
+  }
 ];
 
 const page = ref(1);

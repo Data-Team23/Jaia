@@ -46,7 +46,7 @@ public class Requisicao {
 
     @ManyToOne
     @JoinColumn(name = "fk_cliente_id")
-    private Cliente fk_cliente_id;
+    private Cliente fkCliente;
 
     // @ManyToMany
     // @JoinTable(

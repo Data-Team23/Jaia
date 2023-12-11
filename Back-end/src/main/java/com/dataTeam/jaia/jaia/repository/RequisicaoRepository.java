@@ -14,4 +14,6 @@ public interface RequisicaoRepository extends JpaRepository<Requisicao, Long> {
     List<Requisicao> findAll();
     Optional<Requisicao> findById(Long id);
 
+    List<Requisicao> findByFkClienteId(Long clienteId);
+
 }

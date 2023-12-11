@@ -1,6 +1,7 @@
 package com.dataTeam.jaia.jaia.service.OrdemServico;
 
 import com.dataTeam.jaia.jaia.model.OrdemServico;
+
 import java.util.List;
 
 public interface IOrdemServicoService {
@@ -9,4 +10,7 @@ public interface IOrdemServicoService {
 
     public List<OrdemServico> buscarTodasOrdemServico();
 
+    public List<OrdemServico> getOrdemServicosBySupervisorId(Long supervisorId);
+
 }
+

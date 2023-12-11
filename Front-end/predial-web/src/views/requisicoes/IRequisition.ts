@@ -6,7 +6,7 @@ export default interface IRequisition {
     status: string;
     data_abertura: string;
     status_os: string;
-    fk_cliente_id: {
+    fkCliente: {
       id: number;
       cnpj: string;
       nome: string;

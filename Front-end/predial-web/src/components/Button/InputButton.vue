@@ -1,6 +1,6 @@
 <template>
     <div class="div-button">
-        <button @click="onClick">{{ textButton }}</button>
+        <button @click="onClick" style="white-space: nowrap;">{{ textButton }}</button>
     </div>
 </template>
 

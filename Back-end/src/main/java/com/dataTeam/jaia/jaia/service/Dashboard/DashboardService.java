@@ -171,7 +171,8 @@ public class DashboardService {
             Integer osCount = 0;
             labels.add(depart.getNome());
             for (OrdemServico os : ordens) {
-                if (os.getId_check().getDepartamento() == depart && os.getStatus_ordem() == "Aberta") {
+                if (os.getId_check().getDepartamento().getIdDepart() == depart.getIdDepart()
+                        && os.getStatus_ordem().equals("Reprovado")) {
                     osCount += 1;
                 }
             }

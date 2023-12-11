@@ -11,11 +11,15 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "ordem_servico")
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrdemServico {
@@ -39,8 +43,8 @@ public class OrdemServico {
     private Requisicao id_req;
 
     @ManyToOne
-    @JoinColumn(name = "id_supervisor")
-    private Funcionario id_supervisor;
+    @JoinColumn(name = "FK_ORDS_ID_SUPER")
+    private Funcionario fkSupervisor;
 
     @ManyToOne
     @JoinColumn(name = "id_check")

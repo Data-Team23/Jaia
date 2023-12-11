@@ -30,6 +30,7 @@
     font-weight: bold;
     border: 1px solid var(--primary-bg-color);
     color: var(--primary-text-color);
+    white-space: nowrap;
 }
   
 .add-client-button:hover {

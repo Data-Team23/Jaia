@@ -12,7 +12,7 @@ export default interface IOrdemServico {
             pergunta: string;
             comentario: string;
             status: string;
-        };
+        }>;
         departamento: {
             idDepart: number;
             nome: string;
@@ -23,21 +23,21 @@ export default interface IOrdemServico {
         data_abertura: string;
         descricao: string;
         status: string;
-        fk_cliente_id: {
+        fkCliente: {
             id: number;
             cnpj: string;
             nome: string;
             email: string;
         };
     };
-    id_supervisor: {
+    fkSupervisor: {
         nome: string;
-        cpf: string; // Adicionei a propriedade "cpf" que estava ausente no JSON
-        email: string; // Adicionei a propriedade "email" que estava ausente no JSON
+        cpf: string; 
+        email: string; 
         departamento: {
             idDepart: number;
             nome: string;
         };
-        supervisor: null | any; // Supus que "supervisor" poderia ser de qualquer tipo
+        supervisor: null | any; 
     };
 }

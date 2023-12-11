@@ -147,6 +147,7 @@ span {
     box-shadow: 5px 5px 20px 0 #00000030;
     font-weight: bold;
     border: 1px solid var(--primary-bg-color);
+    white-space: nowrap;
 }
   
 .add-client-button:hover {

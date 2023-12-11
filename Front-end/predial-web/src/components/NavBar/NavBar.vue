@@ -40,10 +40,10 @@
             <div class="radius-bottom"></div>
           </div>
         </li>
-        <li :class="{ 'active': $route.path === '/ordens-de-servico' }">
+        <li :class="{ 'active': $route.path === '/ordens-de-servico-Admin' }">
           <div class="nav-text">  
             <div class="radius-top"></div>
-            <router-link to="/ordens-de-servico" class="router-link">
+            <router-link to="/ordens-de-servico-Admin" class="router-link" style="white-space: nowrap;">
               Ordem de serviços
             </router-link>
             <div class="radius-bottom"></div>
@@ -90,11 +90,13 @@
   import { watchEffect } from 'vue';
   
   watchEffect(() => {
-    if (route.path === '/requisicoes') {
-      showNavBar = false;
-    } else {
-      showNavBar = true;
-    }
-  });
-  </script>
+  const restrictedRoutes = ['/requisicoes', '/ordens-de-servico'];
+
+  if (restrictedRoutes.includes(route.path)) {
+    showNavBar = false;
+  } else {
+    showNavBar = true;
+  }
+});
+</script>
   

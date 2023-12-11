@@ -6,8 +6,9 @@ import AddFuncionarioViewVue from '@/views/funcionario/AddFuncionarioView.vue'
 import ListFuncionarioViewVue from '@/views/funcionario/ListFuncionarioView.vue'
 import UpdateFuncionarioViewVue from '@/views/funcionario/UpdateFuncionarioView.vue'
 import LoginView from '@/views/login/LoginView.vue'
-import ListOrdemServicoView from '@/views/ordemServico/ListOrdemServicoView.vue'
-import AddRequisicoesView from '@/views/requisicoes/cliente/AddRequisicoesView.vue'
+import ListOrdemServicoView from '@/views/ordemServico/admin/ListOrdemServicoView.vue'
+import ListOrdemServicoViewFuncionario from '@/views/ordemServico/funcionario/ListOrdemServicoView.vue'
+import AddRequisicoesView from '@/views/requisicoes/cliente/AddRequisicoesForm.vue'
 import ListRequisicoesView from '@/views/requisicoes/cliente/ListRequisicoesView.vue'
 import UpdateRequisicoesView from '@/views/requisicoes/cliente/UpdateRequisicoesView.vue'
 import ListRequisicoesAdminView from '@/views/requisicoes/admin/ListRequisicoesAdmin.vue'
@@ -84,9 +85,14 @@ const router = createRouter({
       component: ListChecklistViewVue
     },
     {
+      path: '/ordens-de-servico-Admin',
+      name:'ordem-de-servico-Admin',
+      component: ListOrdemServicoView
+    },
+    {
       path: '/ordens-de-servico',
       name:'ordem-de-servico',
-      component: ListOrdemServicoView
+      component: ListOrdemServicoViewFuncionario
     },
     {
       path: '/requisicoesAdmin',

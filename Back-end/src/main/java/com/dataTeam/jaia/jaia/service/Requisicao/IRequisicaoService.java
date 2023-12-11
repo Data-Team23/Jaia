@@ -15,6 +15,7 @@ public interface IRequisicaoService {
     public Requisicao deletarPorId(Long Id);
 
     public Requisicao atualizarPorId(Long id, Requisicao requisicaoAtualizada);
-    
+
+    List<Requisicao> buscarRequisicoesPorCliente(Long clienteId);
 
 }
