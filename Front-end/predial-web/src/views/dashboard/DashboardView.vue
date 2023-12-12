@@ -113,14 +113,25 @@ function getDepartamentoOs(){
 
       // Atualiza o estado
       departamentoOs.value = chartData;
-      console.log(departamentoOs.value);
     })
 }
 
 function getStatusOs(){
   axios.get<any>('http://localhost:8080/dashboard/os-status')
     .then((response: any) => {
-      statusOs.value = response.data
+      const chartData = response.data
+
+      const data = chartData.datasets[0].data;
+      const labels = chartData.labels;
+
+      const dataWithLabels = labels.map((label: any, index: any) => ({ label, data: data[index] }));
+
+      dataWithLabels.sort((a: any, b: any) => b.data - a.data);
+
+      chartData.labels = dataWithLabels.map((item: any) => item.label);
+      chartData.datasets[0].data = dataWithLabels.map((item: any) => item.data);
+
+      statusOs.value = chartData
     })
 }
 
@@ -140,7 +151,6 @@ function getOsReprovedByDepartment(){
       chartData.datasets[0].data = dataWithLabels.map((item: any) => item.data);
 
       osReprovedByDepartment.value = chartData
-      console.log(osReprovedByDepartment.value)
     })
 }
 
@@ -193,7 +203,7 @@ const chartLineOptions = ref({
   },
   elements: {
     line: {
-      borderColor: "#3A3A5A",
+      borderColor: "#D78222",
     },
   },
   plugins: {

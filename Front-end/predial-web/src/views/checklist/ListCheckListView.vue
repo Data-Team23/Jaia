@@ -48,7 +48,7 @@
                                         @click="editCheckList(checkList.id.toString())">
                                         edit
                                     </span>
-                                    <span class="material-symbols-outlined" id="delete-button" @click="deleteDialog = true">
+                                    <span class="material-symbols-outlined" id="delete-button" @click="getChecklistId(checkList.id)">
                                         delete
                                     </span>
                                 </td>
@@ -92,7 +92,7 @@
                 <h2>Tem certeza que deseja excluir ?</h2>
                 <br>
                 <div class="confirm-delete-button">
-                    <InputButton text-button="Sim" @click="deleteDialog = false"></InputButton>
+                    <InputButton text-button="Sim" @click="deleteChecklist()"></InputButton>
                     <InputButton text-button="Não" @click="deleteDialog = false"></InputButton>
                 </div>
             </div>
@@ -107,6 +107,7 @@ import type ICheckList from './ICheckList';
 import { useRouter } from 'vue-router';
 import UpdateCheckListView from './UpdateCheckListView.vue';
 import AddCheckListView from './AddCheckListView.vue';
+import InputButton from '@/components/Button/InputButton.vue';
 
 const router = useRouter()
 
@@ -161,6 +162,25 @@ function filterChecklist() {
         }
     })
     paginate()
+}
+
+function deleteChecklist() {
+    const id = router.currentRoute.value.query.id;
+    axios.delete(`http://localhost:8080/checklist/${id}`)
+        .then((response) => {
+            window.alert('Checklist excluído com sucesso!!');
+            deleteDialog.value = false;
+            listCheckList()
+        })
+        .catch((error) => {
+            window.alert('Erro ao excluir o Checklist');
+            deleteDialog.value = false;
+        });
+}
+
+function getChecklistId(id: number){
+    router.push({query: { id: id }})
+    deleteDialog.value = true
 }
 
 const paginate = () => {

@@ -76,11 +76,12 @@
             console.log(ordem_servicoSelected.value)
             nome_ordemValue.value = ordem_servicoSelected.value.nome_ordem;
             dataaberturaValue.value = ordem_servicoSelected.value.id_req.data_abertura;
-            cnpjValue.value = ordem_servicoSelected.value.id_req.fk_cliente_id.cnpj;
+            cnpjValue.value = ordem_servicoSelected.value.id_req.fkCliente.cnpj;
             inspecaoValue.value = ordem_servicoSelected.value.tipo_inspecao;
             status_ordemValue.value = ordem_servicoSelected.value.status_ordem;
             descricaoValue.value = ordem_servicoSelected.value.id_req.descricao;
           }ordem_servicoSelected
+          console.log(response.data)
         });
     } catch (error) {
       console.log(error);

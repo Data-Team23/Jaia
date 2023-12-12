@@ -19,7 +19,8 @@
         <InputField 
           label="Data Abertura" 
           placeholder="Data da Abertura do chamado"
-          v-model="DataAberturaValue">
+          v-model="DataAberturaValue"
+          type="datetime-local">
         </InputField>
         <InputField 
           label="Descrição" 
@@ -55,7 +56,8 @@
         <InputField 
           label="Data da prestação de Serviço" 
           placeholder="Informe a data"
-          v-model="dataValue">
+          v-model="dataValue"
+          type="datetime-local">
         </InputField>
         <InputField 
           label="Checklist" 

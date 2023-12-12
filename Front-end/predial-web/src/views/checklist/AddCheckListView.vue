@@ -4,7 +4,7 @@
     </div>
     <form action="" class="add-form">
         <div class="input-inline-field">
-            <SelectField label="Departamento:" :option-values="departamentos" value-prop="codDepart" display-prop="nome"
+            <SelectField label="Departamento:" :option-values="departamentos" value-prop="idDepart" display-prop="nome"
                 v-model="departamentoValue">
             </SelectField>
             <InputField label="Nome:" placeholder="Informe o nome do checklist" v-model="nameValue">
@@ -87,17 +87,19 @@ function createCheckList() {
         perguntas: checkListValue.value
     }
 
+    console.log(departamentoValue.value)
+
     try {
-        axios.post(`http://localhost:8080/checklist/${departamentoValue.value}`, newCheckList)
+        const response = axios.post(`http://localhost:8080/checklist/${departamentoValue.value}`, newCheckList)
         perguntaValue.value = ""
         departamentoValue.value = ""
-        window.alert("Checklist criado com sucesso")
-        location.reload()
+        console.log(response)
+        // window.alert("Checklist criado com sucesso")
+        // location.reload()
     } catch (error) {
         console.error('Erro ao criar checklist:', error);
         window.alert("Erro ao criar checklist")
     }
-    console.log(newCheckList)
 }
 
 function deleteItemToCheckList(index: number) {

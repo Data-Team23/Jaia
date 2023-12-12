@@ -41,7 +41,7 @@ public class DashboardService {
         List<OrdemServico> ordens = ordemService.buscarTodasOrdemServico();
         List<String> labels = new ArrayList<>();
         List<Number> osCountList = new ArrayList<>();
-        String[] barColors = { "#000000", "#2E2E48", "#626288", "#8080BF", "#6A6A69" };
+        String[] barColors = { "#A52D10", "#A55F10", "#D78222", "#E89E4C", "#FFBE75", "#FFD2A0" };
 
         for (Departamento departamento : departamentos) {
             labels.add(departamento.getNome());
@@ -76,7 +76,7 @@ public class DashboardService {
         List<String> months = new ArrayList<>();
         Map<String, Integer> monthMap;
         List<Number> osCountList = new ArrayList<>();
-        String[] barColors = { "#000000", "#2E2E48", "#626288", "#8080BF", "#6A6A69" };
+        String[] barColors = { "#A52D10" };
 
         months.add("Janeiro");
         months.add("Fevereiro");
@@ -98,9 +98,9 @@ public class DashboardService {
 
         Collections.sort(months, (month1, month2) -> Integer.compare(monthMap.get(month1), monthMap.get(month2)));
 
-        for(int i = 0; i < months.size(); i++){
-            Integer osCount = 0;          
-            for(Requisicao req : requisicoes){
+        for (int i = 0; i < months.size(); i++) {
+            Integer osCount = 0;
+            for (Requisicao req : requisicoes) {
                 LocalDateTime dataAbertura = req.getData_abertura();
                 int mesAbertura = dataAbertura.getMonthValue();
                 if (i + 1 == mesAbertura) {
@@ -130,13 +130,13 @@ public class DashboardService {
         List<OrdemServico> ordens = ordemService.buscarTodasOrdemServico();
         List<String> labels = new ArrayList<>();
         List<Number> osCountList = new ArrayList<>();
-        String[] barColors = { "#000000", "#2E2E48", "#626288", "#8080BF", "#6A6A69" };
+        String[] barColors = { "#A52D10", "#A55F10", "#D78222", "#E89E4C", "#FFBE75", "#FFD2A0" };
 
         Map<String, Integer> osCountMap = new HashMap<>();
 
         for (OrdemServico ordem : ordens) {
             String osStatus = ordem.getStatus_ordem();
-            osCountMap.put(osStatus, osCountMap.getOrDefault(osStatus, 0) + 1);         
+            osCountMap.put(osStatus, osCountMap.getOrDefault(osStatus, 0) + 1);
         }
 
         for (Map.Entry<String, Integer> entry : osCountMap.entrySet()) {
@@ -165,7 +165,7 @@ public class DashboardService {
         List<Departamento> departamentos = departService.buscarTodosDepartamentos();
         List<String> labels = new ArrayList<>();
         List<Number> osCountList = new ArrayList<>();
-        String[] barColors = { "#000000", "#2E2E48", "#626288", "#8080BF", "#6A6A69" };
+        String[] barColors = { "#A52D10", "#A55F10", "#D78222", "#E89E4C", "#FFBE75", "#FFD2A0" };
 
         for (Departamento depart : departamentos) {
             Integer osCount = 0;

@@ -1,7 +1,10 @@
 package com.dataTeam.jaia.jaia.controller;
 
 import com.dataTeam.jaia.jaia.model.Cliente;
+import com.dataTeam.jaia.jaia.model.Departamento;
 import com.dataTeam.jaia.jaia.model.Funcionario;
+import com.dataTeam.jaia.jaia.service.Checklist.ChecklistService;
+import com.dataTeam.jaia.jaia.service.Departamento.DepartamentoService;
 import com.dataTeam.jaia.jaia.service.Departamento.IDepartamentoService;
 import com.dataTeam.jaia.jaia.service.Funcionario.IFuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +30,10 @@ public class FuncionarioController {
         return service.buscarTodosFuncionario();
     }
 
-    @PostMapping
-    public Funcionario novoFuncionario(@RequestBody Funcionario funcionario) {
+    @PostMapping("/departamento/{idDepart}")
+    public Funcionario novoFuncionario(@RequestBody Funcionario funcionario, @PathVariable Long idDepart) {
+        Departamento depart = departService.buscarPorIdDepart(idDepart);
+        funcionario.setDepartamento(depart);
         return service.novoFuncionario(funcionario);
     }
 
@@ -49,7 +54,8 @@ public class FuncionarioController {
             Funcionario funcionarioAtualizadoResult = service.atualizarFuncionarioPorId(id, funcionarioAtualizado);
             return ResponseEntity.ok(funcionarioAtualizadoResult);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno ao atualizar o funcionario");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Erro interno ao atualizar o funcionario");
         }
     }
 
