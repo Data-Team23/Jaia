@@ -64,7 +64,7 @@ onMounted(async () => {
           cpfValue.value = funcionarioSelected.value.cpf
           nameValue.value = funcionarioSelected.value.nome;
           emailValue.value = funcionarioSelected.value.email;
-          departmentValue.value = funcionarioSelected.value.departamento.nome;
+          departmentValue.value = funcionarioSelected.value.departamento?.nome ?? 'Não informado';
           console.log(response.data)
         }
       });
@@ -91,10 +91,11 @@ async function UpdateFuncionario() {
 
     await axios.put(`http://localhost:8080/funcionario/atualizar/${id}`, funcionarioAtualizado).then((response) => {
       window.alert("Funcionario atualizado com sucesso")
-      console.log(response)
+      router.replace("/funcionarios")
       location.reload()
     }).catch((error) => {
       console.log(error)
+      router.replace("/funcionarios");
     })
 
   } catch (error) {

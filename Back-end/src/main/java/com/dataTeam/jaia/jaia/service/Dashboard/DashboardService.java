@@ -172,7 +172,7 @@ public class DashboardService {
             labels.add(depart.getNome());
             for (OrdemServico os : ordens) {
                 if (os.getId_check().getDepartamento().getIdDepart() == depart.getIdDepart()
-                        && os.getStatus_ordem().equals("Reprovado")) {
+                        && os.getStatus_ordem().equals("Reprovada")) {
                     osCount += 1;
                 }
             }

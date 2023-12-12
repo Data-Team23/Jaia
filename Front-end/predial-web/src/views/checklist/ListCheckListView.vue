@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="list-container">
-                <!-- <div class="top-list">
+                <div class="top-list">
                     <h3><strong>Carteira de clientes</strong></h3>
                     <div class="search-filter">
                         <SelectField 
@@ -23,7 +23,7 @@
                         </SelectField>
                         <input type="text" placeholder="Filtrar..." v-model="filterInput">
                     </div>
-                </div> -->
+                </div>
                 <div class="table-container">
                     <table>
                         <thead>
@@ -108,6 +108,7 @@ import { useRouter } from 'vue-router';
 import UpdateCheckListView from './UpdateCheckListView.vue';
 import AddCheckListView from './AddCheckListView.vue';
 import InputButton from '@/components/Button/InputButton.vue';
+import SelectField from '@/components/Select/SelectField.vue';
 
 const router = useRouter()
 
@@ -125,6 +126,17 @@ let filteredChecklist = ref<Array<ICheckList>>([])
 let paginatedChecklist = ref<Array<ICheckList>>([])
 let selectedFilter = ref("")
 let filterInput = ref("")
+
+const filterSelectOptions = [
+  {
+    label: "Nome",
+    value: "nome"
+  },
+  {
+    label: "Código",
+    value: "id"
+  }
+];
 
 function editCheckList(id: string) {
     router.push({ query: { id: id } })

@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Repository;
 
-import com.dataTeam.jaia.jaia.model.Cliente;
 import com.dataTeam.jaia.jaia.model.Funcionario;
 
 @Repository

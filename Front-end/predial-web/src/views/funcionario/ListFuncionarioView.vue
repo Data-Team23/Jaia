@@ -11,9 +11,13 @@
         <div class="top-list">
           <h3><strong>Carteira de funcionários</strong></h3>
           <div class="search-filter">
-            <SelectField :option-values="filterSelectOptions" v-model="selectedFilter" value-prop="value"
-              display-prop="label"></SelectField>
-            <input type="text" placeholder="Filtrar..." v-model="filterInput">
+            <SelectField
+              :option-values="filterSelectOptions"
+              v-model="selectedFilter"
+              value-prop="value"
+              display-prop="label"
+            ></SelectField>
+            <input type="text" placeholder="Filtrar..." v-model="filterInput" />
           </div>
         </div>
         <div class="table-container">
@@ -28,27 +32,47 @@
                 <th></th>
               </tr>
             </thead>
-            <tbody v-for="(funcionario, index) in paginatedFuncionarios" :key="index">
+            <tbody
+              v-for="(funcionario, index) in paginatedFuncionarios"
+              :key="index"
+            >
               <tr>
-                <td>{{ index + 1 }}</td>
+                <td>{{ funcionario.no }}</td>
                 <td>{{ funcionario.nome }}</td>
                 <td>{{ funcionario.cpf }}</td>
                 <td>
-                  <span v-if="funcionario.departamento">{{ funcionario.departamento.nome }}</span>
+                  <span v-if="funcionario.departamento">{{
+                    funcionario.departamento.nome
+                  }}</span>
                   <span v-else>Não informado</span>
                 </td>
                 <td>{{ funcionario.email }}</td>
                 <td>
-                  <span class="material-symbols-outlined" id="edit-button" @click="editFuncionario(funcionario.id)"> edit
+                  <span
+                    class="material-symbols-outlined"
+                    id="edit-button"
+                    @click="editFuncionario(funcionario.id)"
+                  >
+                    edit
                   </span>
-                  <span class="material-symbols-outlined" id="delete-button" @click="deletFuncionario(funcionario.id)"> delete </span>
+                  <span
+                    class="material-symbols-outlined"
+                    id="delete-button"
+                    @click="deletFuncionario(funcionario.id)"
+                  >
+                    delete
+                  </span>
                 </td>
               </tr>
             </tbody>
           </table>
           <div class="pagination">
             <ul class="pagination-list">
-              <li v-for="pageNumber in totalPages" :key="pageNumber" @click="changePage(pageNumber)">
+              <li
+                v-for="pageNumber in totalPages"
+                :key="pageNumber"
+                @click="changePage(pageNumber)"
+              >
                 <a :class="{ active: page === pageNumber }">{{ pageNumber }}</a>
               </li>
             </ul>
@@ -59,7 +83,9 @@
     <v-dialog v-model="addDialog" width="80%">
       <div class="add-client-container">
         <div class="close-button">
-          <span class="material-symbols-outlined" @click="addDialog = false"> close </span>
+          <span class="material-symbols-outlined" @click="addDialog = false">
+            close
+          </span>
         </div>
         <AddFuncionarioForm></AddFuncionarioForm>
       </div>
@@ -67,7 +93,9 @@
     <v-dialog v-model="editDialog" width="80%">
       <div class="add-client-container">
         <div class="close-button">
-          <span class="material-symbols-outlined" @click="editDialog = false"> close </span>
+          <span class="material-symbols-outlined" @click="editDialog = false">
+            close
+          </span>
         </div>
         <UpdateFuncionarioForm></UpdateFuncionarioForm>
       </div>
@@ -77,8 +105,14 @@
         <h2>Tem certeza que deseja excluir ?</h2>
         <br />
         <div class="confirm-delete-button">
-          <InputButton text-button="Sim" @click="deleteFuncionario()"></InputButton>
-          <InputButton text-button="Não" @click="deleteDialog = false"></InputButton>
+          <InputButton
+            text-button="Sim"
+            @click="deleteFuncionario()"
+          ></InputButton>
+          <InputButton
+            text-button="Não"
+            @click="deleteDialog = false"
+          ></InputButton>
         </div>
       </div>
     </v-dialog>
@@ -86,17 +120,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed, watch } from 'vue';
+import { ref, onMounted, computed, watch } from "vue";
 import AddFuncionarioForm from "./AddFuncionarioView.vue";
 import UpdateFuncionarioForm from "./UpdateFuncionarioView.vue";
-import InputButton from '@/components/Button/InputButton.vue';
-import SelectField from '@/components/Select/SelectField.vue';
-import axios from 'axios';
-import type IFuncionario from './IFuncionario';
-import { useRouter } from 'vue-router';
-import type { Ref } from 'vue';
+import InputButton from "@/components/Button/InputButton.vue";
+import SelectField from "@/components/Select/SelectField.vue";
+import axios from "axios";
+import type IFuncionario from "./IFuncionario";
+import { useRouter } from "vue-router";
+import type { Ref } from "vue";
 
-const router = useRouter()
+const router = useRouter();
 
 let addDialog = ref(false);
 let editDialog = ref(false);
@@ -111,68 +145,89 @@ let selectedFilter = ref("nome");
 const filterSelectOptions = [
   {
     label: "Nome",
-    value: "nome"
+    value: "nome",
   },
   {
     label: "CPF",
-    value: "cpf"
-  }
+    value: "cpf",
+  },
 ];
 
 const page = ref(1);
 const itemsPerPage = ref(5);
 
 function editFuncionario(id: number) {
-  router.push({ query: { id: id } })
-  editDialog.value = true
+  router.push({ query: { id: id } });
+  editDialog.value = true;
 }
 
 function clearUrlParam(newValue: boolean) {
   if (!newValue && router.currentRoute.value.query.id !== undefined) {
-    router.push({ query: { ...router.currentRoute.value.query, id: undefined } });
+    router.push({
+      query: { ...router.currentRoute.value.query, id: undefined },
+    });
   }
 }
 
 function listFuncionarios() {
-  axios.get<IFuncionario>('http://localhost:8080/funcionario')
+  axios
+    .get<IFuncionario>("http://localhost:8080/funcionario")
     .then((response: any) => {
-      funcionarios.value = response.data
-      filterFuncionarios()
+      funcionarios.value = response.data;
+      funcionarios.value.forEach((client, index) => {
+        client.no = index + 1;
+      });
+      filterFuncionarios();
     })
     .catch((error: any) => {
-      console.error('Erro ao buscar funcionários:', error);
+      console.error("Erro ao buscar funcionários:", error);
     });
+
+  if (editDialog.value == false) {
+    router.push({
+      query: { ...router.currentRoute.value.query, id: undefined },
+    });
+  }
 }
 
 function filterFuncionarios() {
   filteredFuncionarios.value = funcionarios.value.filter((funcionario: any) => {
-        const selectedValue = funcionario[selectedFilter.value];
-        totalPages = computed(() => Math.ceil(filteredFuncionarios.value.length / itemsPerPage.value));
-        if(selectedValue){
-            return selectedValue.toLowerCase().includes(filterInput.value.toLowerCase());
-        } else {
-            return funcionarios.value
-        }
-    })
-    paginate()
+    const selectedValue = funcionario[selectedFilter.value];
+    totalPages = computed(() =>
+      Math.ceil(filteredFuncionarios.value.length / itemsPerPage.value)
+    );
+    if (selectedValue) {
+      return selectedValue
+        .toLowerCase()
+        .includes(filterInput.value.toLowerCase());
+    } else {
+      return funcionarios.value;
+    }
+  });
+  paginate();
 }
 
 const paginate = () => {
-    const startIndex = (page.value - 1) * itemsPerPage.value;
-    const endIndex = startIndex + itemsPerPage.value;
+  const startIndex = (page.value - 1) * itemsPerPage.value;
+  const endIndex = startIndex + itemsPerPage.value;
 
-    paginatedFuncionarios.value = filteredFuncionarios.value.slice(startIndex, endIndex);
-}
+  paginatedFuncionarios.value = filteredFuncionarios.value.slice(
+    startIndex,
+    endIndex
+  );
+};
 
-let totalPages = computed(() => Math.ceil(funcionarios.value.length / itemsPerPage.value));
+let totalPages = computed(() =>
+  Math.ceil(funcionarios.value.length / itemsPerPage.value)
+);
 
 onMounted(() => {
   listFuncionarios();
-})
+});
 
-watch(editDialog, clearUrlParam)
+watch(editDialog, clearUrlParam);
 
-watch(filterInput, filterFuncionarios)
+watch(filterInput, filterFuncionarios);
 
 watch(page, (newPage) => {
   paginate();
@@ -182,23 +237,23 @@ const changePage = (pageNumber: any) => {
   page.value = pageNumber;
 };
 
-function deletFuncionario(id: number){
-    router.push({query: { id: id }})
-    deleteDialog.value = true
+function deletFuncionario(id: number) {
+  router.push({ query: { id: id } });
+  deleteDialog.value = true;
 }
 
 function deleteFuncionario() {
-    const id = router.currentRoute.value.query.id;
-    axios.delete(`http://localhost:8080/funcionario/excluir/${id}`)
-        .then((response) => {
-            window.alert('Funcionario excluído com sucesso!!');
-            listFuncionarios();
-            deleteDialog.value = false;
-        })
-        .catch((error) => {
-            window.alert('Erro ao excluir o Funcionario');
-            deleteDialog.value = false;
-        });
+  const id = router.currentRoute.value.query.id;
+  axios
+    .delete(`http://localhost:8080/funcionario/excluir/${id}`)
+    .then((response) => {
+      window.alert("Funcionario excluído com sucesso!!");
+      listFuncionarios();
+      deleteDialog.value = false;
+    })
+    .catch((error) => {
+      window.alert("Erro ao excluir o Funcionario");
+      deleteDialog.value = false;
+    });
 }
-
 </script>

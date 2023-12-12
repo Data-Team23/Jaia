@@ -121,7 +121,7 @@ onMounted(async () => {
       dataaberturaValue.value = requisicaoSelected.value.data_abertura;
       statusRValue.value = requisicaoSelected.value.status;
       descricaoValue.value = requisicaoSelected.value.descricao;
-      cnpjValue.value = requisicaoSelected.value.fk_cliente_id.cnpj;
+      cnpjValue.value = requisicaoSelected.value.fkCliente.cnpj;
       inspecaoValue.value = requisicaoSelected.value.inspecao;
     }
 

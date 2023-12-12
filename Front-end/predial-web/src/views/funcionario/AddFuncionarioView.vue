@@ -83,8 +83,9 @@ async function createFuncionario() {
     emailValue.value = "";
     senhaValue.value = "";
     telefoneValue.value = "";
-    window.alert("Funcionario criado com sucesso")
-    location.reload()
+    // window.alert("Funcionario criado com sucesso")
+    // location.reload()
+    console.log(response)
   } catch (error) {
     console.error('Erro ao criar Funcionario:', error);
     window.alert("Erro ao criar Funcionario")

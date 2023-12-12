@@ -39,13 +39,12 @@ public class OrdemServicoController {
 
     @Autowired
     private FuncionarioRepository funcionarioRepository;
-        
+
     @Autowired
     private ChecklistRepository checklistRepository;
 
     @Autowired
     private RequisicaoRepository requisicaoRepository;
-
 
     @GetMapping
     public List<OrdemServico> buscartodos() {
@@ -59,35 +58,29 @@ public class OrdemServicoController {
 
     @PostMapping("/criar")
     public OrdemServico criarOrdemServico(@RequestBody OrdemServicoDTO ordemServicoDTO) {
-    Funcionario supervisor = funcionarioRepository.findById(ordemServicoDTO.getIdSupervisor())
-            .orElseThrow(() -> new RuntimeException("Supervisor não encontrado"));
+        Funcionario supervisor = funcionarioRepository.findById(ordemServicoDTO.getIdSupervisor())
+                .orElseThrow(() -> new RuntimeException("Supervisor não encontrado"));
 
-    Checklist checklist = checklistRepository.findById(ordemServicoDTO.getIdChecklist())
-            .orElseThrow(() -> new RuntimeException("Checklist não encontrado"));
+        Checklist checklist = checklistRepository.findById(ordemServicoDTO.getIdChecklist())
+                .orElseThrow(() -> new RuntimeException("Checklist não encontrado"));
 
-    Requisicao requisicao = requisicaoRepository.findById(ordemServicoDTO.getIdReq())
-            .orElseThrow(() -> new RuntimeException("Requisição não encontrado"));
+        Requisicao requisicao = requisicaoRepository.findById(ordemServicoDTO.getIdReq())
+                .orElseThrow(() -> new RuntimeException("Requisição não encontrado"));
 
-    OrdemServico ordemServico = new OrdemServico();
-    ordemServico.setNome_ordem(ordemServicoDTO.getNome_ordem());
-    ordemServico.setTipo_inspecao(ordemServicoDTO.getTipo_inspecao());
-    ordemServico.setStatus_ordem(ordemServicoDTO.getStatus_ordem());
-    ordemServico.setFkSupervisor(supervisor);
-    ordemServico.setId_check(checklist);
-    ordemServico.setId_req(requisicao);
+        OrdemServico ordemServico = new OrdemServico();
+        ordemServico.setNome_ordem(ordemServicoDTO.getNome_ordem());
+        ordemServico.setTipo_inspecao(ordemServicoDTO.getTipo_inspecao());
+        ordemServico.setStatus_ordem(ordemServicoDTO.getStatus_ordem());
+        ordemServico.setFkSupervisor(supervisor);
+        ordemServico.setId_check(checklist);
+        ordemServico.setId_req(requisicao);
 
-    return ordemServicoRepository.save(ordemServico);
-}
-
+        return ordemServicoRepository.save(ordemServico);
+    }
 
     @DeleteMapping("/{id}")
-    public String excluirOrdemServico(@PathVariable Long id) {
-        if (ordemServicoRepository.existsById(id)) {
-            ordemServicoRepository.deleteById(id);
-            return "Ordem de Serviço com ID: " + id + " excluída com sucesso.";
-        } else {
-            return "Ordem de Serviço com ID: " + id + " não encontrada.";
-        }
+    public OrdemServico excluirOrdemServico(@PathVariable Long id) {
+        return service.deletarPorId(id);
     }
 
     @PutMapping("/{id}")
@@ -111,7 +104,7 @@ public class OrdemServicoController {
             return ResponseEntity.ok(ordemdoSupervisor);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body("Erro ao buscar Ordem de serviço para o supervisor com o id informado.");
+                    .body("Erro ao buscar Ordem de serviço para o supervisor com o id informado.");
         }
     }
 

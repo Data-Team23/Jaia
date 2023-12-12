@@ -1,19 +1,19 @@
 export default interface IRequisition {
+  no: number;
+  id: number;
+  nome: string;
+  inspecao: string;
+  descricao: string;
+  status: string;
+  data_abertura: string;
+  status_os: string;
+  fkCliente: {
     id: number;
+    cnpj: string;
     nome: string;
-    inspecao: string;
-    descricao: string;
-    status: string;
-    data_abertura: string;
-    status_os: string;
-    fkCliente: {
-      id: number;
-      cnpj: string;
-      nome: string;
-      senha: string;
-      email: string;
-      endereco: string;
-      telefone: string;
-    };
-  }
-  
+    senha: string;
+    email: string;
+    endereco: string;
+    telefone: string;
+  };
+}

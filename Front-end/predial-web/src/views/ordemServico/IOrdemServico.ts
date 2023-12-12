@@ -1,6 +1,7 @@
 import type IDepartamento from "../departamento/IDepartament";
 
 export default interface IOrdemServico {
+    no: number
     id: number;
     nome_ordem: string;
     tipo_inspecao: string;

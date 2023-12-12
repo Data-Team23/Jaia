@@ -10,6 +10,16 @@
       <div class="list-container">
         <div class="top-list">
           <h3><strong>Visualizar Ordem de Serviço</strong></h3>
+          <div class="search-filter">
+            <SelectField
+              :option-values="filterSelectOptions"
+              v-model="selectedFilter"
+              value-prop="value"
+              display-prop="label"
+            >
+            </SelectField>
+            <input type="text" placeholder="Filtrar..." v-model="filterInput" />
+          </div>
         </div>
         <div class="table-container">
           <table>
@@ -118,18 +128,18 @@ let filterInput = ref("");
 let selectedFilter = ref("nome_ordem");
 
 const filterSelectOptions = [
-    {
-        label: "nome_ordem",
-        value: "nome_ordem"
-    },
-    {
-        label: "CPF",
-        value: "cpf"
-    },
-    {
-        label: "Departamento",
-        value: "departamento"
-    },
+  {
+    label: "Nome",
+    value: "nome_ordem",
+  },
+  {
+    label: "Status",
+    value: "status_ordem",
+  },
+  {
+    label: "Insepeção",
+    value: "tipo_inspecao",
+  },
 ];
 
 const page = ref(1);

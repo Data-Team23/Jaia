@@ -20,7 +20,7 @@
           <table>
             <thead>
               <tr>
-                <th>No.</th>
+                <th>Código</th>
                 <th>Nome</th>
                 <th>CNPJ</th>
                 <th>Inspeção</th>
@@ -34,7 +34,7 @@
               :key="index"
             >
               <tr>
-                <td>{{ index + 1 }}</td>
+                <td>{{ requisitions.id }}</td>
                 <td>{{ requisitions.nome }}</td>
                 <td>{{ requisitions.fkCliente.cnpj }}</td>
                 <td>{{ requisitions.inspecao }}</td>
@@ -164,6 +164,9 @@ function listRequisitions() {
   axios.get<any>("http://localhost:8080/requisicao").then((response: any) => {
     requisitions.value = response.data;
     filteredRequisitions.value = requisitions.value;
+    requisitions.value.forEach((req, index) => {
+      req.no = index + 1
+    })
     filterRequisitions();
   });
 }
