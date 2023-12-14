@@ -15,8 +15,18 @@ body{
     font-family: var(--font);
 }
 
+.update-os{
+}
 
+.v-dialog {
+    max-height: 70vh; 
+  }
   
+.add-client-container {
+    max-height: 700px;
+    overflow: auto; /* Defina a altura mínima conforme necessário */
+}
+
 .container {
     width: 100%;
 }
@@ -27,11 +37,14 @@ body{
     width: 100%;
     box-shadow: 5px 5px 20px 0 #00000030;
     border-radius: 20px;
+    overflow-y: scroll; 
+    max-height: 300px;
 }
   
 .list-view {
     width: 100%;
 }
+
   
 thead, tbody {
     background-color: var(--secondary-bg-color);
@@ -104,6 +117,16 @@ span {
     padding: 0 10px;
     caret-color: var(--primary-text-color);
 }
+
+.select-field {
+    width: 330px;
+    background-color: var(--secondary-text-color);
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px 2px #00000025;
+    color: var(--primary-text-color);
+    padding: 0 10px;
+    caret-color: var(--primary-text-color);
+}
   
 .v-dialog {
     display: flex;
@@ -125,6 +148,7 @@ span {
     box-shadow: 5px 5px 20px 0 #00000030;
     font-weight: bold;
     border: 1px solid var(--primary-bg-color);
+    white-space: nowrap;
 }
   
 .add-client-button:hover {
@@ -141,9 +165,6 @@ span {
     border-radius: 20px;
         
 }
-
-
-
   
 .delete-client-container {
     background-color: var(--primary-bg-color);
@@ -163,15 +184,13 @@ span {
     color: red;
 }
   
-.send-button {
-    width: 100%;
-}
   
 .send-button .div-button {
     display: flex;
-    justify-content: flex-end;
     width: 100%;
+    flex-direction: row;
 }
+
   
 .close-button {
     display: flex;
@@ -229,10 +248,8 @@ tbody tr td:first-child {
   gap: 200px;
 }
 
-
-
-
-
-
-
+option {
+    width: 50%;
+    border-radius: 10px;
+}
 

@@ -104,6 +104,7 @@ span {
     box-shadow: 5px 5px 20px 0 #00000030;
     font-weight: bold;
     border: 1px solid var(--primary-bg-color);
+    white-space: nowrap;
 }
   
 .add-client-button:hover {
@@ -114,6 +115,8 @@ span {
 .add-client-container {
     width: 100%;
     height: 100%;
+    max-height: 700px;
+    overflow: auto;
     background-color: var(--primary-bg-color);
     padding: 30px;
     box-shadow: 5px 5px 20px 0 #00000030;
@@ -202,9 +205,6 @@ tbody tr td:first-child {
   justify-content: space-between;
   gap: 200px;
 }
-
-
-
 
 
 

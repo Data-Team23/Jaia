@@ -9,7 +9,7 @@ public class OrdemServicoDTO {
     private String tipo_inspecao;
     private String status_ordem;
     private Long idSupervisor;
-    private Long idCliente;
     private Long idChecklist;
+    private Long idReq;
 
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="form-title">
-    <h2>Adicionar cliente</h2>
+    <h2>Adicionar requisição</h2>
   </div>
   <form action="" class="add-form">
     <div class="input-inline-field">
@@ -23,6 +23,7 @@
       <InputField
         label="Data Abertura:"
         v-model="dateValue"
+        type="datetime-local"
       >
       </InputField>
       <InputField
@@ -31,23 +32,6 @@
         v-model="describeValue"
       >
       </InputField>
-    </div>
-    <div class="input-inline-field">
-      <InputField
-        label="CNPJ:"
-        v-model="inspectionValue"
-        placeholder="00.000.000/0000-00"
-      >
-      </InputField>
-      <SelectField
-        label="Status da O.S:"
-        placeholder="Selecione"
-        v-model="statusOsValue"
-        :option-values="optionsStatusOs"
-        value-prop="value"
-        display-prop="label"
-      >
-      </SelectField>
     </div>
     <div class="input-inline-field">
       <SelectField
@@ -59,34 +43,9 @@
         display-prop="label"
       >
       </SelectField>
-      <SelectField
-        label="Responsável:"
-        v-model="statusOsValue"
-        :option-values="optionsStatusOs"
-        value-prop="value"
-        display-prop="label"
-      >
-      </SelectField>
-    </div>
-    <div class="input-inline-field">
-      <InputField
-        label="Data da prestação do serviço:"
-        v-model="inspectionValue"
-        placeholder="01/01/2020"
-      >
-      </InputField>
-      <SelectField
-        label="Checklist:"
-        placeholder="Informe o checklist"
-        v-model="statusOsValue"
-        :option-values="optionsStatusOs"
-        value-prop="value"
-        display-prop="label"
-      >
-      </SelectField>
     </div>
     <div class="send-button">
-      <InputButton text-button="Criar O.S." @click="createRequisition"></InputButton>
+      <InputButton text-button="Enviar requisição" @click="createRequisition"></InputButton>
     </div>
   </form>
 </template>
@@ -96,14 +55,19 @@ import { ref } from "vue";
 import InputField from "@/components/InputField/InputField.vue";
 import SelectField from "@/components/Select/SelectField.vue";
 import InputButton from "@/components/Button/InputButton.vue";
+import axios from "axios";
+import { useAuthStore } from '@/stores/authStore';
 
+const authStore = useAuthStore();
 const nameValue = ref("");
 const statusReqValue = ref("");
 const describeValue = ref("");
-const dateValue = ref("")
-const cnpjValue = ref("")
+const dateValue = ref()
 const statusOsValue = ref("")
 const inspectionValue = ref("")
+const cnpjValue = ref("")
+const cliente = ref()
+
 
 const optionsStatusReq = [
   {
@@ -153,7 +117,28 @@ const optionsInspecao = [
   },
 ];
 
-function createRequisition(){
+async function createRequisition() {
+    event?.preventDefault();
+    const id_cliente = authStore.userId
 
-}
+    const requisicao = {
+      nome: nameValue.value,
+      inspecao: inspectionValue.value,
+      descricao: describeValue.value,
+      status: statusReqValue.value,
+      data_abertura: dateValue.value
+    };
+  
+    try {
+      const response = await axios.post(`http://localhost:8080/requisicao/${id_cliente}`, requisicao);
+
+      console.log(response)
+      window.alert("Requisição criado com sucesso")
+      window.location.reload()
+    } catch (error) {
+      console.error('Erro ao criar Requisição:', error);
+      window.alert("Erro ao criar Requisição")
+    }
+  }
+  
 </script>

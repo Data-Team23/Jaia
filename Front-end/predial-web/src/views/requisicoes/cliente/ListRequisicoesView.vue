@@ -32,11 +32,11 @@
                 <th>Descrição</th>
               </tr>
             </thead>
-            <tbody v-for="(requisicao, index) in requisicoes" :key="index">
-              <tr>  
-                <td>{{ index + 1 }}</td>
+            <tbody v-for="(requisicao, index) in paginatedRequisitions" :key="index">
+              <tr> 
+                <td>{{ requisicao.no }}</td>
                 <td>{{ requisicao.nome }}</td>
-                <td>{{ requisicao.dataAbertura }}</td>
+                <td>{{ requisicao.data_abertura }}</td>
                 <td>{{ requisicao.status }}</td>
                 <td>{{ requisicao.descricao }}</td>
               </tr>
@@ -72,47 +72,33 @@
       </div>
     </v-dialog>
   </div>
+  <button class="button" @click="logout">Sair</button>
 </template>
 
 <script setup lang="ts">
-import "./styles.css";
+import "../styles.css";
 
 import { computed, onMounted, ref, watch } from "vue";
 import SelectField from "@/components/Select/SelectField.vue";
 import InputButton from "@/components/Button/InputButton.vue";
 import AddRequisicoesForm from "./AddRequisicoesForm.vue";
-import UpdateRequisicoesForm from "./UpdateRequisicoesForm.vue";
-import type IRequisition from "./IRequisition";
+import UpdateRequisicoesForm from "./UpdateRequisicoesView.vue";
+import type IRequisition from "../IRequisition";
 import axios from "axios";
+import { useAuthStore } from '@/stores/authStore';
 
+
+let requisicoes = ref<Array<IRequisition>>([]);
 let addDialog = ref(false);
 let editDialog = ref(false);
 let deleteDialog = ref(false);
-
-const requisicoes = [
-  {
-    code: '001',
-    nome: 'Requisição 1',
-    dataAbertura: '2023-09-12',
-    status: 'Criação',
-    descricao: 'Descrição da Requisição 1',
-  },
-  {
-    code: '002',
-    nome: 'Requisição 2',
-    dataAbertura: '2023-09-13',
-    status: 'Em Criação',
-    descricao: 'Descrição da Requisição 2',
-  },
-];
-
 let requisitions = ref<Array<IRequisition>>([])
-
 let filteredRequisitions = ref<Array<IRequisition>>([])
 let filterInput = ref("")
 let selectedFilter = ref("nome")
-
 let paginatedRequisitions = ref<Array<IRequisition>>([]);
+
+const authStore = useAuthStore();
 
 const page = ref(1);
 const itemsPerPage = ref(5);
@@ -137,29 +123,40 @@ const filterSelectOptions = [
 ]
 
 function listRequisitions() {
-    axios.get<any>(`${import.meta.env.VITE_API_URL}/requisitions.json`)
-        .then((response: any) => {
-            requisitions.value = response.data
-            filteredRequisitions.value = requisitions.value;
-            filterRequisitions();
-        })
+  const id_cliente = authStore.userId
+  axios.get<any>(`http://localhost:8080/requisicao/cliente/${id_cliente}`).then((response: any) => {
+    requisitions.value = response.data;
+    filteredRequisitions.value = requisitions.value;
+    requisitions.value.forEach((req, index) => {
+      req.no = index + 1
+    })
+    filterRequisitions();
+  });
 }
 
+
 function filterRequisitions() {
-    filteredRequisitions.value = requisitions.value.filter((client: any) => {
-        const selectedValue = client[selectedFilter.value];
-        totalPages = computed(() => Math.ceil(filteredRequisitions.value.length / itemsPerPage.value));
-        return selectedValue.toLowerCase().includes(filterInput.value.toLowerCase());
-    })
-    paginate()
+  filteredRequisitions.value = requisitions.value.filter((client: any) => {
+    const selectedValue = client[selectedFilter.value];
+    totalPages = computed(() =>
+      Math.ceil(filteredRequisitions.value.length / itemsPerPage.value)
+    );
+    return selectedValue
+      .toLowerCase()
+      .includes(filterInput.value.toLowerCase());
+  });
+  paginate();
 }
 
 const paginate = () => {
-    const startIndex = (page.value - 1) * itemsPerPage.value;
-    const endIndex = startIndex + itemsPerPage.value;
+  const startIndex = (page.value - 1) * itemsPerPage.value;
+  const endIndex = startIndex + itemsPerPage.value;
 
-    paginatedRequisitions.value = filteredRequisitions.value.slice(startIndex, endIndex);
-}
+  paginatedRequisitions.value = filteredRequisitions.value.slice(
+    startIndex,
+    endIndex
+  );
+};
 
 let totalPages = computed(() => Math.ceil(requisitions.value.length / itemsPerPage.value));
 
@@ -176,4 +173,13 @@ watch(page, (newPage) => {
 const changePage = (pageNumber: any) => {
     page.value = pageNumber;
 };
+
+onMounted(() => {
+  listRequisitions();
+});
+
+const logout = () => {
+  window.location.href = '/';
+};
+
 </script>

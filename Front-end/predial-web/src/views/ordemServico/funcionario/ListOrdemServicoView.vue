@@ -9,33 +9,41 @@
       </div>
       <div class="list-container">
         <div class="top-list">
-          <h3><strong>Visualizar Odem de Serviço</strong></h3>
+          <h3><strong>Visualizar Ordem de Serviço</strong></h3>
+          <div class="search-filter">
+            <SelectField
+              :option-values="filterSelectOptions"
+              v-model="selectedFilter"
+              value-prop="value"
+              display-prop="label"
+            >
+            </SelectField>
+            <input type="text" placeholder="Filtrar..." v-model="filterInput" />
+          </div>
         </div>
         <div class="table-container">
           <table>
             <thead>
               <tr>
                 <th>No.</th>
-                <th>nome</th>
+                <th>Nome</th>
                 <th>Data Abertura</th>
                 <th>CNPJ</th>
                 <th>Inspeção</th>
                 <th>Status O.S.</th>
-                <th>Descrição</th>
-                <th>Data</th>
+                <th>Departamento</th>
                 <th></th>
               </tr>
             </thead>
             <tbody v-for="(OrdemServico, index) in paginatedOrdemServicos" :key="index">
               <tr>  
                 <td>{{ index + 1 }}</td>
-                <td>{{ OrdemServico.nome_ordem }}</td>
-                <td>{{ OrdemServico.data_abertura }}</td>
-                <td>{{ OrdemServico.id_cli.cnpj }}</td>
-                <td>{{ OrdemServico.tipo_inspecao }}</td>
-                <td>{{ OrdemServico.status_ordem }}</td>
-                <td>{{ OrdemServico.descricao }}</td>
-                <td>{{ OrdemServico.data }}</td>
+                  <td>{{ OrdemServico.nome_ordem }}</td>
+                  <td>{{ OrdemServico.id_req.data_abertura }}</td>
+                  <td>{{ OrdemServico.id_req.fkCliente.cnpj ? OrdemServico.id_req.fkCliente.cnpj : "Não informado" }}</td>
+                  <td>{{ OrdemServico.tipo_inspecao }}</td>
+                  <td>{{ OrdemServico.status_ordem }}</td>
+                  <td>{{ OrdemServico.id_check.departamento.nome ?? "Não informado" }}</td>
                 <td>
                   <span class="material-symbols-outlined" id="edit-button" @click="editOrdemServico(OrdemServico.id)"> edit </span>
                   <span class="material-symbols-outlined" id= "aprove-button" @click="aproveOrdemServico(OrdemServico.id)"> zoom_out_map </span>
@@ -62,7 +70,7 @@
         <AddOrdemServicoForm></AddOrdemServicoForm>
       </div>
     </v-dialog>
-    <v-dialog v-model="editDialog" width="80%">
+    <v-dialog v-model="editDialog" width="80%" class="update-os">
       <div class="add-client-container">
         <div class="close-button">
           <span class="material-symbols-outlined" @click="editDialog = false"> close </span>
@@ -89,6 +97,7 @@
       </div>
     </v-dialog>
   </div>
+  <button class="button" @click="logout">Sair</button>
 </template>
 
 <script setup lang="ts">
@@ -99,10 +108,13 @@ import AproveOrdemServicoForm from './AproveOrdemServicoView.vue';
 import InputButton from '@/components/Button/InputButton.vue';
 import SelectField from '@/components/Select/SelectField.vue';
 import axios from 'axios';
-import type IOrdemServico from './IOrdemServico';
+import type IOrdemServico from '../IOrdemServico';
 import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/authStore';
 
 const router = useRouter()
+
+const authStore = useAuthStore();
 
 let addDialog = ref(false);
 let editDialog = ref(false);
@@ -116,18 +128,18 @@ let filterInput = ref("");
 let selectedFilter = ref("nome_ordem");
 
 const filterSelectOptions = [
-    {
-        label: "nome_ordem",
-        value: "nome_ordem"
-    },
-    {
-        label: "CPF",
-        value: "cpf"
-    },
-    {
-        label: "Departamento",
-        value: "departamento"
-    },
+  {
+    label: "Nome",
+    value: "nome_ordem",
+  },
+  {
+    label: "Status",
+    value: "status_ordem",
+  },
+  {
+    label: "Insepeção",
+    value: "tipo_inspecao",
+  },
 ];
 
 const page = ref(1);
@@ -152,9 +164,11 @@ function clearUrlParam(newValue: boolean) {
 
 
 function listOrdemServicos() {
-    axios.get<any>('http://localhost:8080/ordem-servico') 
+    const id_supervisor = authStore.userId
+    axios.get<any>(`http://localhost:8080/ordem-servico/supervisor/${id_supervisor}`) 
         .then((response: any) => {
             OrdemServicos.value = response.data
+            console.log(response.data)
             filteredOrdemServicos.value = OrdemServicos.value;
             filterOrdemServicos();
         })
@@ -195,6 +209,11 @@ watch(page, (newPage) => {
 
 const changePage = (pageNumber: any) => {
     page.value = pageNumber;
+};
+
+
+const logout = () => {
+  window.location.href = '/';
 };
 
 </script>

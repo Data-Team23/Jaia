@@ -11,8 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import com.dataTeam.jaia.jaia.model.Funcionario;
 
-import jakarta.transaction.Transactional;
-
 @Repository
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> {
 
@@ -36,5 +34,7 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
     @Transactional
     @Query("DELETE FROM Funcionario f WHERE f.id = ?1")
     void deleteByIdWithCascade(Long id);
+
+    Funcionario findByCpfAndSenha(String cpf, String senha);
 
 }

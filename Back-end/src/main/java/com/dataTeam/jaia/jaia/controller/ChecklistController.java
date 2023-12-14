@@ -29,12 +29,12 @@ public class ChecklistController {
     private PerguntaService perguntaService;
 
     @GetMapping
-    public List<Checklist> buscarTodos(){
+    public List<Checklist> buscarTodos() {
         return service.buscarTodos();
     }
 
     @PostMapping("/{departamentoId}")
-    public Checklist novoChecklist(@RequestBody Checklist checklist, @PathVariable Long departamentoId){
+    public Checklist novoChecklist(@RequestBody Checklist checklist, @PathVariable Long departamentoId) {
         for (Pergunta pergunta : checklist.getPerguntas()) {
             pergunta = perguntaService.criarPergunta(pergunta);
         }
@@ -42,13 +42,13 @@ public class ChecklistController {
     }
 
     @GetMapping("/{id}")
-    public Checklist buscarPorId(@PathVariable Long id){
+    public Checklist buscarPorId(@PathVariable Long id) {
         return service.buscarPorId(id);
     }
 
     @DeleteMapping("/{id}")
-    public void deletarPorId(@PathVariable Long id){
+    public void deletarPorId(@PathVariable Long id) {
         service.deletarPorId(id);
     }
-    
+
 }

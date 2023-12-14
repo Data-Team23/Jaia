@@ -24,10 +24,10 @@
 </template>
 
 <script setup lang="ts">
-import InputField from '@/components/InputField/InputField.vue';
 import InputButton from '@/components/Button/InputButton.vue';
-import { ref } from 'vue';
+import InputField from '@/components/InputField/InputField.vue';
 import axios from 'axios';
+import { ref } from 'vue';
 
 const cnpjValue = ref("");
 const phoneValue = ref("");
@@ -35,30 +35,50 @@ const nameValue = ref("");
 const emailValue = ref("");
 const addressValue = ref("");
 const successMessage = ref(""); 
+
+async function sendEmail() {
+
+  const clientEmail = {
+    cnpj: cnpjValue.value,
+    nome: nameValue.value,
+    email: emailValue.value,
+    endereco: addressValue.value,
+  }
+  console.log('Sending email with data:', clientEmail);
+
+  try {
+    const response = await axios.post('http://localhost:8080/email/enviar', clientEmail);
+    window.alert("Email enviado com sucesso");
+  } catch (error) {
+    console.error('Erro ao enviar E-mail:', error);
+  }
+}
+
 async function createClient() {
   event?.preventDefault();
 
   const client = {
     cnpj: cnpjValue.value, 
     nome: nameValue.value,
-    senha: "senha123", 
     email: emailValue.value,
     endereco: addressValue.value,
-    telefone: phoneValue.value, 
+    telefone: phoneValue.value,
+    senha: '123'
   };
 
   try {
     const response = await axios.post('http://localhost:8080/cliente', client);
+    window.alert("Cliente criado com sucesso");
+    sendEmail();
+    window.alert("Email enviado com sucesso");
     cnpjValue.value = "";
     phoneValue.value = "";
     nameValue.value = "";
     emailValue.value = "";
     addressValue.value = "";
-    window.alert("Cliente criado com sucesso")
-    location.reload()
   } catch (error) {
     console.error('Erro ao criar cliente:', error);
-    window.alert("Erro ao criar cliente")
+    window.alert("Erro ao criar cliente");
     successMessage.value = "";
   }
 }

@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dataTeam.jaia.jaia.model.Cliente;
 import com.dataTeam.jaia.jaia.model.Requisicao;
+import com.dataTeam.jaia.jaia.repository.ClienteRepository;
 import com.dataTeam.jaia.jaia.repository.RequisicaoRepository;
 
 @Service
@@ -17,8 +19,17 @@ public class RequisicaoService implements IRequisicaoService {
     @Autowired
     private RequisicaoRepository requiRepo;
 
+    @Autowired
+    private ClienteRepository clienteRepo;
+
     @Transactional
-    public Requisicao novaRequisicao(Requisicao requisicao) {
+    public Requisicao novaRequisicao(Requisicao requisicao, Long clienteId) {
+        Optional<Cliente> optCliente = clienteRepo.findById(clienteId);
+        if(optCliente.isEmpty()){
+            throw new IllegalArgumentException("Cliente não encontrado");
+        }
+        Cliente cliente = optCliente.get();
+        requisicao.setFkCliente(cliente);
         return requiRepo.save(requisicao);
     }
 
@@ -74,6 +85,9 @@ public class RequisicaoService implements IRequisicaoService {
     }
 
 
-
+    @Override
+    public List<Requisicao> buscarRequisicoesPorCliente(Long clienteId) {
+        return requiRepo.findByFkClienteId(clienteId);
+    }
     
 }

@@ -20,14 +20,7 @@
         label="CPF:" 
         placeholder="Informe o CPF" 
         v-model="cpfValue">
-      </InputField>    
-      <InputField    
-        label="Telefone:" 
-        placeholder="Informe o telefone" 
-        v-model="telefoneValue">
       </InputField>  
-    </div>
-    <div class="input-inline-field">
       <InputField    
         label="Departamento:" 
         placeholder="Informe o departamento" 
@@ -35,7 +28,7 @@
       </InputField>    
     </div>
     <div class="send-button">
-      <InputButton text-button="Salvar"></InputButton>
+      <InputButton text-button="Salvar" @click="UpdateFuncionario"></InputButton>
     </div>
   </form>
 </template>
@@ -70,9 +63,8 @@ onMounted(async () => {
           funcionarioSelected.value = response.data;
           cpfValue.value = funcionarioSelected.value.cpf
           nameValue.value = funcionarioSelected.value.nome;
-          telefoneValue.value = funcionarioSelected.value.telefone;
           emailValue.value = funcionarioSelected.value.email;
-          departmentValue.value = funcionarioSelected.value.departamento.nome;
+          departmentValue.value = funcionarioSelected.value.departamento?.nome ?? 'Não informado';
           console.log(response.data)
         }
       });
@@ -82,10 +74,32 @@ onMounted(async () => {
 });
 
 async function waitForIdInRoute(router: Router) {
-  // Loop para aguardar até que route.query.cnpj esteja definido
   while (router.currentRoute.value.query.id === undefined) {
-    // Definição do período de tempo (pode ser ajustado)
     await new Promise((resolve) => setTimeout(resolve, 100));
+  }
+}
+
+async function UpdateFuncionario() {
+  event?.preventDefault()
+  try {
+    const id = router.currentRoute.value.query.id;
+    const funcionarioAtualizado = {
+      nome: nameValue.value, 
+      cpf: cpfValue.value,
+      email: emailValue.value, 
+    };
+
+    await axios.put(`http://localhost:8080/funcionario/atualizar/${id}`, funcionarioAtualizado).then((response) => {
+      window.alert("Funcionario atualizado com sucesso")
+      router.replace("/funcionarios")
+      location.reload()
+    }).catch((error) => {
+      console.log(error)
+      router.replace("/funcionarios");
+    })
+
+  } catch (error) {
+    console.error('Erro interno ao atualizar o funcionario', error);
   }
 }
 </script>

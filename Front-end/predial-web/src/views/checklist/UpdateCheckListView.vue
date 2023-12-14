@@ -108,7 +108,7 @@ onMounted(async () => {
             if (response.data) {
                 checklistSelected.value = response.data
                 nameValue.value = checklistSelected.value.nome
-                departamentoValue.value = checklistSelected.value.departamentos.length > 0 ? checklistSelected.value.departamentos[0].nome : "Não informado"
+                departamentoValue.value = checklistSelected.value.departamento.nome ?? "Não informado"
                 console.log(departamentoValue.value)
                 checkListValue.value = checklistSelected.value.perguntas
             }

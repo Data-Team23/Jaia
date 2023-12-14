@@ -34,11 +34,13 @@
         v-model="senhaValue"
         type="password">
       </InputField>
-      <InputField 
-        label="Informe o departamento" 
-        placeholder="Informe o código departamento"
+      <SelectField 
+        label="Departamento:" 
+        :option-values="departamentos" 
+        value-prop="idDepart" 
+        display-prop="nome"
         v-model="departamentoValue">
-      </InputField>
+      </SelectField>
     </div>
     <div class="send-button">
       <InputButton text-button="Salvar" @click="createFuncionario"></InputButton>
@@ -48,16 +50,19 @@
 
 <script setup lang="ts">
 import InputField from '@/components/InputField/InputField.vue';
+import SelectField from '@/components/Select/SelectField.vue';
 import InputButton from '@/components/Button/InputButton.vue';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import axios from 'axios';
+
+const departamentos = ref();
 
 const nomeValue = ref('');
 const emailValue = ref('');
 const cpfValue = ref('');
 const telefoneValue = ref('');
 const senhaValue = ref('');
-const departamentoValue = ref('');
+const departamentoValue = ref();
 
 async function createFuncionario() {
   event?.preventDefault();
@@ -71,20 +76,35 @@ async function createFuncionario() {
   };
 
   try {
-    const response = await axios.post('http://localhost:8080/funcionario', funcionario);
+    const response = await axios.post(`http://localhost:8080/funcionario/departamento/${departamentoValue.value}`, funcionario);
+    console.log(response)
     cpfValue.value = "";
     nomeValue.value = "";
     emailValue.value = "";
     senhaValue.value = "";
     telefoneValue.value = "";
-    console.log(response)
     window.alert("Funcionario criado com sucesso")
     location.reload()
+    console.log(response)
   } catch (error) {
     console.error('Erro ao criar Funcionario:', error);
     window.alert("Erro ao criar Funcionario")
   }
 }
+
+function listDepartaments() {
+    axios.get<any>('http://localhost:8080/departamentos')
+        .then((response: any) => {
+            departamentos.value = response.data
+        })
+        .catch((error: any) => {
+            console.error('Erro ao buscar departamentos:', error);
+        });
+}
+
+onMounted(() => {
+  listDepartaments()
+})
 
 
 </script>

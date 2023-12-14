@@ -21,12 +21,12 @@ public class Administrador {
     private Long id;
 
     @Column(name = "nome_usuario")
-    private String nome_usuario;
+    private String usuario;
 
     @Column(name = "nome_adm")
-    private String nome_adm;
+    private String nome;
 
     @Column(name = "senha_adm")
-    private String senha_adm;
+    private String senha;
     
 }
