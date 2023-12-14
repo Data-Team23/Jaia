@@ -145,5 +145,6 @@ function reloadPage(){
   border-radius: 10px;
   width: 100%;
   margin-bottom: 20px;
+  font-size: 18px;
 }
 </style>

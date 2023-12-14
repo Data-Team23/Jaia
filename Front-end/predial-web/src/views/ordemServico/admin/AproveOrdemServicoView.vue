@@ -5,7 +5,7 @@
   <form action="" class="add-form">
     <div class="input-inline-field">
       <InputField 
-        label="nome"
+        label="Nome"
         placeholder="Informe o nome"
         v-model="nome_ordemValue"
       ></InputField>
@@ -41,7 +41,7 @@
     </div>
     <div class="input-inline-field">
       <InputField 
-        label="Inspeção" 
+        label="Tipo de inspeção" 
         placeholder="Inspeção"
         v-model="inspecaoValue"
       ></InputField>
@@ -126,7 +126,7 @@ onMounted(async () => {
             nome_ordemValue.value = ordem_servicoSelected.value.nome_ordem;
             dataaberturaValue.value = ordem_servicoSelected.value.id_req.data_abertura;
             statusRValue.value = ordem_servicoSelected.value.id_req.status;
-            cnpjValue.value = ordem_servicoSelected.value.id_req.fk_cliente_id.cnpj;
+            cnpjValue.value = ordem_servicoSelected.value.id_req.fkCliente.cnpj;
             inspecaoValue.value = ordem_servicoSelected.value.tipo_inspecao;
             responsavelValue.value = ordem_servicoSelected.value.fkSupervisor.nome;
             status_ordemValue.value = ordem_servicoSelected.value.status_ordem;
@@ -194,11 +194,11 @@ async function generatePDFAndSendEmail() {
     const pdfData = await getPdfData();
     const pdfFileName = 'ordem_servico.pdf';
 
-    const email = ordem_servicoSelected.value?.id_req.fk_cliente_id.email;
+    const email = ordem_servicoSelected.value?.id_req.fkCliente.email;
 
     if (typeof email === 'string') {
       const assunto = 'Predial - Seja bem-vindo(a) | Ordem de Serviço';
-      const corpo = `<p>Olá, ${ordem_servicoSelected.value?.id_req.fk_cliente_id.nome}! Bem-vindo(a) ao Predial!</p>` +
+      const corpo = `<p>Olá, ${ordem_servicoSelected.value?.id_req.fkCliente.nome}! Bem-vindo(a) ao Predial!</p>` +
                    `<p>Sua Ordem de Serviço gerada a partir da Requisição: ${ordem_servicoSelected.value?.id_req.nome} Foi Aprovada <br /></p>` +
                    `<p>Segue em anexo o PDF com mais informações: ${pdfFileName}</p>`;
 
